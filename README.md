@@ -1,15 +1,15 @@
-# Monopoly web project group [number]
+# Monopoly web project group 17
 
 ## Before you start
 Search for the string XX and **replace it with your group number**.
 
 ## Parent group
-https://git.ti.howest.be/TI/2021-2022/s2/programming-project/projects/group-XX
+https://git.ti.howest.be/TI/2021-2022/s2/programming-project/projects/group-17
 
 ## Remote urls
 ### Your own project
-* https://project-i.ti.howest.be/monopoly-XX/
-* https://project-i.ti.howest.be/monopoly-XX/api/
+* https://project-i.ti.howest.be/monopoly-17/
+* https://project-i.ti.howest.be/monopoly-17/api/
 
 ### Provided API
 * https://project-i.ti.howest.be/monopoly-api-spec/
