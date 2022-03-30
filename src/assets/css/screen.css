@@ -5,6 +5,15 @@ body {
     font-size: 1rem;
 }
 
+#login h1{
+    color: #d54d7b;
+    font-family: "Great Vibes", cursive;
+    font-size: 5rem;
+    text-align: center;
+    text-shadow: 0 0.02rem 0.02rem #ffffff;
+    margin-bottom: 5rem;
+}
+
 .hidden
 {
     display: none;
