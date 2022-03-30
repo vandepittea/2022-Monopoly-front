@@ -8,7 +8,15 @@
     margin-left: 22rem;
     margin-right: 22rem;
     margin-top: 10rem;
-    padding: 10rem 1rem 20rem 1rem;
+    padding: 10rem 1rem 18rem 1rem;
     border-radius: 2rem;
     text-align: center;
+}
+
+#login button {
+    font-size: 1.5rem;
+    background-color: lightgray;
+    box-shadow: 0.1rem 0.1rem darkgray;
+    display: block;
+    margin: auto;
 }
