@@ -68,12 +68,10 @@ function joinGameWithPlayer(gameID, playerName)
     };
 
     fetchFromServer(`/games/${gameID}/players`, 'POST', playerObject)
-        .then(response => _token = response.token)
+        .then(response =>
+        {
+            _token = response.token;
+            switchVisibleDivs("game-list", "waiting-screen");
+        })
         .catch(errorHandler);
-}
-
-function switchVisibleDivs(idOfDivToHide, idOfDivToShow)
-{
-    document.querySelector(`#${idOfDivToHide}`).classList.add("hidden");
-    document.querySelector(`#${idOfDivToShow}`).classList.remove("hidden");
 }
