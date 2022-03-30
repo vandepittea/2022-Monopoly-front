@@ -13,10 +13,18 @@
     text-align: center;
 }
 
-input {
+form > label {
+    font-family: "Arial", "Helvetica", serif;
+    text-align: left;
+    font-size: 1.9rem;
+    float: left;
+    padding-left: 1.7rem;
+}
+
+#login input {
     display: block;
     margin: auto;
-    width: 45rem;
+    width: 92%;
     height: 1.2rem;
     margin-bottom: 2rem;
     margin-top: 0.2rem;
