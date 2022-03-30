@@ -1,4 +1,45 @@
+body {
+    font-family: "Arial", "Helvetica", serif;
+    color: black;
+    background-color: white;
+    font-size: 1rem;
+}
+
 .hidden
 {
     display: none;
+}
+
+#login {
+    background-color: lightgray;
+    margin-left: 22rem;
+    margin-right: 22rem;
+    margin-top: 10rem;
+    padding: 10rem 1rem 10rem 1rem;
+    border-radius: 2rem;
+    text-align: center;
+}
+
+form > label {
+    text-align: left;
+    font-size: 1.9rem;
+    float: left;
+    padding-left: 1.7rem;
+}
+
+#login input {
+    display: block;
+    margin: auto;
+    width: 92%;
+    height: 1.2rem;
+    margin-bottom: 2rem;
+    margin-top: 0.2rem;
+}
+
+#login button {
+    font-size: 1.7rem;
+    background-color: lightgray;
+    box-shadow: 0.1rem 0.1rem darkgray;
+    display: block;
+    margin: auto;
 }
