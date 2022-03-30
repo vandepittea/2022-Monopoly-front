@@ -7,6 +7,7 @@ function init(){
     testConnection();
     document.querySelector("form").addEventListener("submit", showGames);
     document.querySelector("#create-game").addEventListener("click", createGame);
+    document.querySelector("tbody").addEventListener("click", joinGame);
 }
 
 
