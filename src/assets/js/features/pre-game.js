@@ -12,6 +12,25 @@ function showGames(e){
     switchVisibleDivs("login", "game-list");
 }
 
+function createGame()
+{
+   console.log("Create game");
+   const bodyParams = {
+       prefix: _config.prefix,
+       numberOfPlayers: parseInt(_amountPlayers)
+   };
+
+   fetchFromServer('/games', 'POST', bodyParams)
+       .then(game =>
+       {
+           const playerObject = {
+               playerName: _nickname
+           };
+           fetchFromServer(`/games/${game.id}/players`, 'POST', playerObject)
+               .then(response => _token = response.token);
+       });
+}
+
 function createGameList()
 {
     const $container = document.querySelector('#game-list tbody');

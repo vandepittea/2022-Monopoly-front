@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded',init);
 function init(){
     testConnection();
     document.querySelector("form").addEventListener("submit", showGames);
+    document.querySelector("table button").addEventListener("click", createGame);
 }
 
 
