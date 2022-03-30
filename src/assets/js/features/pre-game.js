@@ -23,18 +23,15 @@ function createGame()
    fetchFromServer('/games', 'POST', bodyParams)
        .then(game =>
        {
-           const playerObject = {
-               playerName: _nickname
-           };
-           fetchFromServer(`/games/${game.id}/players`, 'POST', playerObject)
-               .then(response => _token = response.token);
-       });
+           joinGameWithPlayer(game.id, _nickname);
+       })
+       .catch(errorHandler);
 }
 
 function createGameList()
 {
     const $container = document.querySelector('#game-list tbody');
-    fetchFromServer(`/games?numberOfPlayers=${_amountPlayers}`,'GET')
+    fetchFromServer(`/games?started=false&numberOfPlayers=${_amountPlayers}&prefix=${_config.prefix}`,'GET')
         .then(games =>
         {
             games.forEach(game => addGameToContainer($container, game));
@@ -45,11 +42,34 @@ function createGameList()
 function addGameToContainer($container, game)
 {
     const $template = $container.querySelector('template').content.firstElementChild.cloneNode(true);
+    $template.dataset.gameid = game.id;
     game.players.forEach(player =>
     {
         $template.querySelector('ul').insertAdjacentHTML('beforeend', `<li>${player.name}</li>`);
     });
     $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+}
+
+function joinGame(e)
+{
+    if (e.target.nodeName.toLowerCase() !== "button")
+    {
+        return;
+    }
+
+    const gameID = e.target.closest('tr').dataset.gameid;
+    joinGameWithPlayer(gameID, _nickname);
+}
+
+function joinGameWithPlayer(gameID, playerName)
+{
+    const playerObject = {
+        playerName: playerName
+    };
+
+    fetchFromServer(`/games/${gameID}/players`, 'POST', playerObject)
+        .then(response => _token = response.token)
+        .catch(errorHandler);
 }
 
 function switchVisibleDivs(idOfDivToHide, idOfDivToShow)
