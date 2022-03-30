@@ -12,9 +12,8 @@ body {
 
 #login {
     background-color: lightgray;
-    margin-left: 22rem;
-    margin-right: 22rem;
-    margin-top: 10rem;
+    width: 60%;
+    margin: 10rem auto 0 auto;
     padding: 10rem 1rem 10rem 1rem;
     border-radius: 2rem;
     text-align: center;
