@@ -34,7 +34,7 @@ function createGame()
 function createGameList()
 {
     const $container = document.querySelector('#game-list tbody');
-    fetchFromServer(`/games?numberOfPlayers=${_amountPlayers}`,'GET')
+    fetchFromServer(`/games?started=false&numberOfPlayers=${_amountPlayers}&prefix=${_config.prefix}`,'GET')
         .then(games =>
         {
             games.forEach(game => addGameToContainer($container, game));
