@@ -1,3 +1,10 @@
+body {
+    font-family: "Arial", "Helvetica", serif;
+    color: black;
+    background-color: white;
+    font-size: 1rem;
+}
+
 .hidden
 {
     display: none;
@@ -14,7 +21,6 @@
 }
 
 form > label {
-    font-family: "Arial", "Helvetica", serif;
     text-align: left;
     font-size: 1.9rem;
     float: left;
