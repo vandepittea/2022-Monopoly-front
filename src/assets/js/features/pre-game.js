@@ -24,7 +24,8 @@ function createGame()
        .then(game =>
        {
            joinGameWithPlayer(game.id, _nickname);
-       });
+       })
+       .catch(errorHandler);
 }
 
 function createGameList()
@@ -41,7 +42,6 @@ function createGameList()
 function addGameToContainer($container, game)
 {
     const $template = $container.querySelector('template').content.firstElementChild.cloneNode(true);
-    console.log($template);
     $template.dataset.gameid = game.id;
     game.players.forEach(player =>
     {
@@ -68,7 +68,8 @@ function joinGameWithPlayer(gameID, playerName)
     };
 
     fetchFromServer(`/games/${gameID}/players`, 'POST', playerObject)
-        .then(response => _token = response.token);
+        .then(response => _token = response.token)
+        .catch(errorHandler);
 }
 
 function switchVisibleDivs(idOfDivToHide, idOfDivToShow)
