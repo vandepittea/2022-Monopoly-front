@@ -5,12 +5,12 @@ function manageGame()
     fetchFromServer('/games/dummy', 'GET')
         .then (game =>
         {
-            manageBalance(game);
+            injectBalance(game);
         })
         .catch(errorHandler);
 }
 
-function manageBalance(game)
+function injectBalance(game)
 {
     const $balanceContainer = document.querySelector('#balance-container');
     //Using dummy data, need to change to own's player money.
