@@ -39,6 +39,7 @@ article#game-list{
     width: 75%;
     margin-left: auto;
     margin-right: auto;
+    padding: 3rem;
 }
 
 #login aside{
@@ -51,13 +52,19 @@ article#game-list{
 }
 
 /* font styling */
-#login h1{
+#login h1, #game-list h2{
     color: #DC143C;
     font-family: "nintendo", sans-serif;
     font-size: 4rem;
     text-align: center;
     text-shadow: 0 0.02rem 0.02rem #ffffff;
     margin-bottom: 5rem;
+}
+
+#game-list h2{
+    display: inline-block;
+    margin-bottom: 2rem;
+    float: left;
 }
 
 /* images */
@@ -139,7 +146,7 @@ input:focus, textarea:focus, select:focus{
 /* table */
 #table-container{
     box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    width: 90%;
+    width: 100%;
     height: 50vh;
     overflow-y: scroll;
     margin-left: auto;
@@ -154,6 +161,7 @@ thead{
     background-color: #DC143C;
     font-weight: bold;
     color: white;
+    line-height: 4rem;
 }
 
 tbody tr{
@@ -162,4 +170,18 @@ tbody tr{
 
 tbody tr:nth-of-type(odd){
     background-color: #e9e9e9;
+}
+
+#game-list button{
+    display: inline;
+    font-size: 1rem;
+    margin: 1rem;
+}
+
+button#create-game{
+    font-size: 1.5rem;
+    border-radius: 0;
+    display: inline-block;
+    vertical-align: top;
+    float: right;
 }
