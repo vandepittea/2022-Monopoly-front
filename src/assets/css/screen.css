@@ -12,6 +12,17 @@ body {
     font-size: 1rem;
 }
 
+#wrapper{
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main{
+    width: 100%;
+}
+
 #login {
     background-color: lightgray;
     width: 60%;

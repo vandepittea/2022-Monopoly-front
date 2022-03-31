@@ -23,50 +23,52 @@
 
 </head>
 <body>
-    <header>
-        <img src="images/cover.png" title="cover" alt="cover">
-    </header>
-    <main>
-        <article id="login">
-            <form>
-                <h1>Welcome to Super Mariopoly!</h1>
-                <label for="nickname">Please enter your nickname:</label>
-                <input type="text" id="nickname">
-                <label for="amount-players">Choose the amount of players:</label>
-                <input type="number" id="amount-players" min="2" max="8">
-                <button type="submit">Find a server</button>
-            </form>
-        </article>
-        <article id="game-list" class="hidden">
-            <table>
-                <thead>
-                <tr>
-                    <th>Players</th>
-                    <th>
-                        <button id="create-game" type="button">Create game!</button>
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <template>
+    <div id="wrapper">
+        <header>
+            <img src="images/cover.png" title="cover" alt="cover">
+        </header>
+        <main>
+            <article id="login">
+                <form>
+                    <h1>Welcome to Super Mariopoly!</h1>
+                    <label for="nickname">Please enter your nickname:</label>
+                    <input type="text" id="nickname">
+                    <label for="amount-players">Choose the amount of players:</label>
+                    <input type="number" id="amount-players" min="2" max="8">
+                    <button type="submit">Find a server</button>
+                </form>
+            </article>
+            <article id="game-list" class="hidden">
+                <table>
+                    <thead>
                     <tr>
-                        <td>
-                            <ul></ul>
-                        </td>
-                        <td>
-                            <button type="button">Join game!</button>
-                        </td>
+                        <th>Players</th>
+                        <th>
+                            <button id="create-game" type="button">Create game!</button>
+                        </th>
                     </tr>
-                </template>
-                </tbody>
-            </table>
-        </article>
-        <div id="waiting-screen" class="hidden">
-            <p><strong>WAITING FOR OTHER PLAYERS</strong></p>
-        </div>
-        <div class="errormessages">
-            <p></p>
-        </div>
-    </main>
+                    </thead>
+                    <tbody>
+                    <template>
+                        <tr>
+                            <td>
+                                <ul></ul>
+                            </td>
+                            <td>
+                                <button type="button">Join game!</button>
+                            </td>
+                        </tr>
+                    </template>
+                    </tbody>
+                </table>
+            </article>
+            <div id="waiting-screen" class="hidden">
+                <p><strong>WAITING FOR OTHER PLAYERS</strong></p>
+            </div>
+            <div class="errormessages">
+                <p></p>
+            </div>
+        </main>
+    </div>
 </body>
 </html>
