@@ -28,30 +28,43 @@ main{
     align-items: flex-end;
 }
 
-#login article {
+#login article, article#game-list {
     background-color: lightgray;
     padding: 10rem 1rem 10rem 1rem;
     border-radius: 2rem;
     text-align: center;
 }
 
+article#game-list{
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3rem;
+}
+
 #login aside{
     width: 22.5%;
 }
 
-.hidden
+#wrapper .hidden
 {
     display: none;
 }
 
 /* font styling */
-#login h1{
+#login h1, #game-list h2{
     color: #DC143C;
     font-family: "nintendo", sans-serif;
     font-size: 4rem;
     text-align: center;
     text-shadow: 0 0.02rem 0.02rem #ffffff;
     margin-bottom: 5rem;
+}
+
+#game-list h2{
+    display: inline-block;
+    margin-bottom: 2rem;
+    float: left;
 }
 
 /* images */
@@ -76,14 +89,6 @@ header img{
 }
 
 /* forms */
-input, textarea, select{
-    box-sizing: border-box;
-}
-
-input:focus, textarea:focus, select:focus{
-    outline: none;
-}
-
 label {
     display: inline-block;
     text-align: left;
@@ -128,5 +133,244 @@ button {
 button:hover{
     color: white;
     background-color: #DC143C;
+}
+
+input, textarea, select{
+    box-sizing: border-box;
+}
+
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+
+/* table */
+#table-container{
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    width: 100%;
+    height: 50vh;
+    overflow-y: scroll;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table{
+    width: 100%;
+}
+
+thead{
+    background-color: #DC143C;
+    font-weight: bold;
+    color: white;
+    line-height: 4rem;
+}
+
+tbody tr{
+    background-color: #f6f6f6;
+}
+
+tbody tr:nth-of-type(odd){
+    background-color: #e9e9e9;
+}
+
+#game-list button{
+    display: inline;
+    font-size: 1rem;
+    margin: 1rem;
+}
+
+button#create-game{
+    font-size: 1.5rem;
+    border-radius: 0;
+    display: inline-block;
+    vertical-align: top;
+    float: right;
+}
+
+/* Minimap CSS */
+#map-container {
+    background-image: url("../media/monopoly-board.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+    width: 25rem;
+    height: 25rem;
+
+    display: grid;
+    grid-template-rows: repeat(13, 1fr);
+    grid-template-columns: repeat(13, 1fr);
+    grid-template-areas:
+        "t20 t20 t21 t22 t23 t24 t25 t26 t27 t28 t29 t30 t30"
+        "t20 t20 t21 t22 t23 t24 t25 t26 t27 t28 t29 t30 t30"
+        "t19 t19 .   .   .   .   .   .   .   .   .   t31 t31"
+        "t18 t18 .   .   .   .   .   .   .   .   .   t32 t32"
+        "t17 t17 .   .   .   .   .   .   .   .   .   t33 t33"
+        "t16 t16 .   .   .   .   .   .   .   .   .   t34 t34"
+        "t15 t15 .   .   .   .   .   .   .   .   .   t35 t35"
+        "t14 t14 .   .   .   .   .   .   .   .   .   t36 t36"
+        "t13 t13 .   .   .   .   .   .   .   .   .   t37 t37"
+        "t12 t12 .   .   .   .   .   .   .   .   .   t38 t38"
+        "t11 t11 .   .   .   .   .   .   .   .   .   t39 t39"
+        "t10 t10 t9  t8  t7  t6  t5  t4  t3  t2  t1  t0  t0"
+        "t10 t10 t9  t8  t7  t6  t5  t4  t3  t2  t1  t0  t0";
+}
+
+#t0 {
+    grid-area: t0;
+}
+
+#t1 {
+    grid-area: t1;
+}
+
+#t2 {
+    grid-area: t2;
+}
+
+#t3 {
+    grid-area: t3;
+}
+
+#t4 {
+    grid-area: t4;
+}
+
+#t5 {
+    grid-area: t5;
+}
+
+#t6 {
+    grid-area: t6;
+}
+
+#t7 {
+    grid-area: t7;
+}
+
+#t8 {
+    grid-area: t8;
+}
+
+#t9 {
+    grid-area: t9;
+}
+
+#t10 {
+    grid-area: t10;
+}
+
+#t11 {
+    grid-area: t11;
+}
+
+#t12 {
+    grid-area: t12;
+}
+
+#t13 {
+    grid-area: t13;
+}
+
+#t14 {
+    grid-area: t14;
+}
+
+#t15 {
+    grid-area: t15;
+}
+
+#t16 {
+    grid-area: t16;
+}
+
+#t17 {
+    grid-area: t17;
+}
+
+#t18 {
+    grid-area: t18;
+}
+
+#t19 {
+    grid-area: t19;
+}
+
+#t20 {
+    grid-area: t20;
+}
+
+#t21 {
+    grid-area: t21;
+}
+
+#t22 {
+    grid-area: t22;
+}
+
+#t23 {
+    grid-area: t23;
+}
+
+#t24 {
+    grid-area: t24;
+}
+
+#t25 {
+    grid-area: t25;
+}
+
+#t26 {
+    grid-area: t26;
+}
+
+#t27 {
+    grid-area: t27;
+}
+
+#t28 {
+    grid-area: t28;
+}
+
+#t29 {
+    grid-area: t29;
+}
+
+#t30 {
+    grid-area: t30;
+}
+
+#t31 {
+    grid-area: t31;
+}
+
+#t32 {
+    grid-area: t32;
+}
+
+#t33 {
+    grid-area: t33;
+}
+
+#t34 {
+    grid-area: t34;
+}
+
+#t35 {
+    grid-area: t35;
+}
+
+#t36 {
+    grid-area: t36;
+}
+
+#t37 {
+    grid-area: t37;
+}
+
+#t38 {
+    grid-area: t38;
+}
+
+#t39 {
+    grid-area: t39;
 }
 
