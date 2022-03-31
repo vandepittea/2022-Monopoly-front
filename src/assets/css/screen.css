@@ -1,37 +1,15 @@
+/* fonts */
 @font-face {
     font-family: "nintendo";
     src: url("../fonts/Pretendo.ttf");
 }
 
+/* blocks */
 body {
     font-family: "Arial", "Helvetica", serif;
     color: black;
     background-color: white;
     font-size: 1rem;
-}
-
-#login h1{
-    color: #DC143C;
-    font-family: "nintendo", sans-serif;
-    font-size: 4rem;
-    text-align: center;
-    text-shadow: 0 0.02rem 0.02rem #ffffff;
-    margin-bottom: 5rem;
-}
-
-img{
-    max-width: 100%;
-}
-
-.hidden
-{
-    display: none;
-}
-
-header img{
-    display: block;
-    width: 60%;
-    margin: rem auto 0 auto;
 }
 
 #login {
@@ -42,6 +20,35 @@ header img{
     border-radius: 2rem;
     text-align: center;
 }
+
+.hidden
+{
+    display: none;
+}
+
+/* font styling */
+#login h1{
+    color: #DC143C;
+    font-family: "nintendo", sans-serif;
+    font-size: 4rem;
+    text-align: center;
+    text-shadow: 0 0.02rem 0.02rem #ffffff;
+    margin-bottom: 5rem;
+}
+
+/* images */
+
+img{
+    max-width: 100%;
+}
+
+header img{
+    display: block;
+    width: 60%;
+    margin: 1rem auto 0 auto;
+}
+
+/* forms */
 
 input, textarea, select{
     box-sizing: border-box;
