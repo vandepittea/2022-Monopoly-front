@@ -23,13 +23,13 @@ main{
     width: 100%;
 }
 
-#login {
-    background-color: lightgray;
-    width: 60%;
-    margin: 1rem auto 0 auto;
-    padding: 10rem 1rem 10rem 1rem;
-    border-radius: 2rem;
-    text-align: center;
+#login{
+    display: flex;
+    align-items: flex-end;
+}
+
+#login aside{
+    width: 22.5%;
 }
 
 .hidden
@@ -56,10 +56,25 @@ img{
 header img{
     display: block;
     width: 60%;
-    margin: 1rem auto 0 auto;
+    margin: 0 auto 1rem auto;
+}
+
+#login aside img{
+    width: 100%;
+}
+
+#mario-img{
+    margin-left: -4rem; /* Overlap with form */
+    z-index: 999;
 }
 
 /* forms */
+#login form {
+    background-color: lightgray;
+    padding: 10rem 1rem 10rem 1rem;
+    border-radius: 2rem;
+    text-align: center;
+}
 
 input, textarea, select{
     box-sizing: border-box;
@@ -91,7 +106,7 @@ input {
     margin-bottom: 2rem;
     margin-top: 0.2rem;
     border: none;
-    margin-left: -2%;
+    margin-left: -2%; /* Place input and label perfectly against each other */
 }
 
 button {
