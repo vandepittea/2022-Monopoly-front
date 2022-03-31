@@ -12,7 +12,10 @@ function init(){
     }
     else if (document.URL.includes("monopoly.html"))
     {
-        initMonopoly();
+        fetchFromServer("/tiles", "GET")
+            .then(response => _tiles = response)
+            .then(initMonopoly)
+            .catch(errorHandler);
     }
 }
 
