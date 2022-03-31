@@ -47,33 +47,35 @@
                 </aside>
             </div>
             <article id="game-list" class="hidden">
-                <h2>Temporary h2</h2>
-                <table aria-label="overview available games">
-                    <thead>
-                    <tr>
-                        <th>Game name</th>
-                        <th>Players</th>
-                        <th>Amount of players</th>
-                        <th>
-                            <button id="create-game" type="button">Create game!</button>
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <template>
+                <h2>Game selector</h2>
+                <div id="table-container">
+                    <table aria-label="overview available games">
+                        <thead>
                         <tr>
-                            <td>Come play with us</td>
-                            <td>
-                                <ul></ul>
-                            </td>
-                            <td>3 out of 4</td>
-                            <td>
-                                <button type="button">Join game!</button>
-                            </td>
+                            <th>Game name</th>
+                            <th>Players</th>
+                            <th>Amount of players</th>
+                            <th>
+                                <button id="create-game" type="button">Create game!</button>
+                            </th>
                         </tr>
-                    </template>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        <template>
+                            <tr>
+                                <td>Come play with us</td>
+                                <td>
+                                    <ul></ul>
+                                </td>
+                                <td>3 out of 4</td>
+                                <td>
+                                    <button type="button">Join game!</button>
+                                </td>
+                            </tr>
+                        </template>
+                        </tbody>
+                    </table>
+                </div>
             </article>
             <div id="waiting-screen" class="hidden">
                 <p><strong>WAITING FOR OTHER PLAYERS</strong></p>
