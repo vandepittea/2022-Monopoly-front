@@ -23,7 +23,7 @@ function createGame()
    fetchFromServer('/games', 'POST', bodyParams)
        .then(game =>
        {
-           joinGameWithPlayer(game.id, _nickname, "create-game");
+           joinGameWithPlayer(game.id, _nickname, "create-game-screen");
        })
        .catch(errorHandler);
 }
