@@ -23,7 +23,7 @@ function createGame()
    fetchFromServer('/games', 'POST', bodyParams)
        .then(game =>
        {
-           joinGameWithPlayer(game.id, _nickname);
+           joinGameWithPlayer(game.id, _nickname, "create-game");
        })
        .catch(errorHandler);
 }
@@ -58,10 +58,10 @@ function joinGame(e)
     }
 
     const gameID = e.target.closest('tr').dataset.gameid;
-    joinGameWithPlayer(gameID, _nickname);
+    joinGameWithPlayer(gameID, _nickname, "waiting-screen");
 }
 
-function joinGameWithPlayer(gameID, playerName)
+function joinGameWithPlayer(gameID, playerName, toSwitchScreen)
 {
     const playerObject = {
         playerName: playerName
@@ -71,7 +71,7 @@ function joinGameWithPlayer(gameID, playerName)
         .then(response =>
         {
             _token = response.token;
-            switchVisibleDivs("game-list", "waiting-screen");
+            switchVisibleDivs("game-list", toSwitchScreen);
         })
         .catch(errorHandler);
 }
