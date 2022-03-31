@@ -23,46 +23,61 @@
 
 </head>
 <body>
-    <h1>Monopoly</h1>
-    <p>Create your wonderful and magical interface here &gt;3 </p>
-    <div id="login">
-        <form>
-            <label for="nickname">Enter your nickname!</label>
-            <input type="text" id="nickname">
-            <label for="amount-players">Enter amount of players!</label>
-            <input type="number" id="amount-players" min="2" max="8">
-            <button type="submit">Find a server</button>
-        </form>
-    </div>
-    <div id="game-list" class="hidden">
-        <table>
-            <thead>
-            <tr>
-                <th>Players</th>
-                <th>
-                    <button id="create-game" type="button">Create game!</button>
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            <template>
-                <tr>
-                    <td>
-                        <ul></ul>
-                    </td>
-                    <td>
-                        <button type="button">Join game!</button>
-                    </td>
-                </tr>
-            </template>
-            </tbody>
-        </table>
-    </div>
-    <div id="waiting-screen" class="hidden">
-        <p><strong>WAITING FOR OTHER PLAYERS</strong></p>
-    </div>
-    <div class="errormessages">
-        <p></p>
+    <div id="wrapper">
+        <header>
+            <img src="images/cover.png" title="cover" alt="cover">
+        </header>
+        <main>
+            <div id="login">
+                <aside aria-label="decorative image">
+                    <img src="images/mario-pixel.png" title="Pixel Mario" alt="Pixel Mario">
+                </aside>
+                <article>
+                    <h1>Welcome to Super Mariopoly!</h1>
+                    <form>
+                        <label for="nickname">Please enter your nickname:</label>
+                        <input type="text" id="nickname">
+                        <label for="amount-players">Choose the amount of players:</label>
+                        <input type="number" id="amount-players" min="2" max="8">
+                        <button type="submit">Find a server</button>
+                    </form>
+                </article>
+                <aside aria-label="decorative image">
+                    <img id="mario-img" src="images/mario.webp" title="Mario" alt="Mario">
+                </aside>
+            </div>
+            <article id="game-list" class="hidden">
+                <h2>Temporary h2</h2>
+                <table aria-label="overview available games">
+                    <thead>
+                    <tr>
+                        <th>Players</th>
+                        <th>
+                            <button id="create-game" type="button">Create game!</button>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <template>
+                        <tr>
+                            <td>
+                                <ul></ul>
+                            </td>
+                            <td>
+                                <button type="button">Join game!</button>
+                            </td>
+                        </tr>
+                    </template>
+                    </tbody>
+                </table>
+            </article>
+            <div id="waiting-screen" class="hidden">
+                <p><strong>WAITING FOR OTHER PLAYERS</strong></p>
+            </div>
+            <div class="errormessages">
+                <p></p>
+            </div>
+        </main>
     </div>
 </body>
 </html>
