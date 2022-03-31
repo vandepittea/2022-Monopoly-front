@@ -49,8 +49,8 @@ form > label {
     background-size: 100%;
     background-repeat: no-repeat;
 
-    width: 50rem;
-    height: 50rem;
+    width: 25rem;
+    height: 25rem;
 
     display: grid;
     grid-template-rows: repeat(13, 1fr);
