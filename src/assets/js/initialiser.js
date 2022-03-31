@@ -25,7 +25,7 @@ function initPreGame()
 
 function initMonopoly()
 {
-    manageBalance();
+    manageGame();
 }
 
 function testConnection(){
