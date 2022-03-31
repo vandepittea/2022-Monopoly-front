@@ -28,6 +28,13 @@ main{
     align-items: flex-end;
 }
 
+#login article {
+    background-color: lightgray;
+    padding: 10rem 1rem 10rem 1rem;
+    border-radius: 2rem;
+    text-align: center;
+}
+
 #login aside{
     width: 22.5%;
 }
@@ -69,13 +76,6 @@ header img{
 }
 
 /* forms */
-#login form {
-    background-color: lightgray;
-    padding: 10rem 1rem 10rem 1rem;
-    border-radius: 2rem;
-    text-align: center;
-}
-
 input, textarea, select{
     box-sizing: border-box;
 }
