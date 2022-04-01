@@ -58,7 +58,7 @@ function joinGame(e)
     }
 
     const gameID = e.target.closest('tr').dataset.gameid;
-    joinGameWithPlayer(gameID, _nickname, "waiting-screen");
+    joinGameWithPlayer(gameID, _nickname, "character-screen");
 }
 
 function joinGameWithPlayer(gameID, playerName, toSwitchScreen)

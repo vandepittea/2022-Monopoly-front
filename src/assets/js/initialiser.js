@@ -32,6 +32,7 @@ function initMonopoly()
 
     fillProperties();
     manageGame();
+    document.querySelector("#roll-dice").addEventListener("click", getGameState);
 }
 
 function testConnection(){
