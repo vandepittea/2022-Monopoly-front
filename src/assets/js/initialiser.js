@@ -28,6 +28,7 @@ function initPreGame()
 
 function initMonopoly()
 {
+    fillProperties();
     manageGame();
 }
 
