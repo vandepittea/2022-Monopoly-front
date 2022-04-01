@@ -77,6 +77,14 @@ article#waiting-screen{
     margin-top: 2rem;
 }
 
+#waiting-screen figcaption{
+    font-family: "nintendo", sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 0 0.5rem 0;
+}
+
 /* images */
 
 img{
