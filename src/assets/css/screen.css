@@ -80,10 +80,10 @@ article#waiting-screen{
 
 #waiting-screen figcaption{
     font-family: "nintendo", sans-serif;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
     text-align: center;
-    margin: 0 0 0.5rem 0;
+    margin: 0.8rem 0 0.5rem 0;
 }
 
 /* images */
@@ -113,6 +113,7 @@ header img{
     width: 45%;
     margin-left: auto;
     margin-right: auto;
+    justify-content: space-between;
 }
 
 #character-screen img{
@@ -122,16 +123,12 @@ header img{
 }
 
 #waiting-screen figure{
-    flex: 1 1 23%;
+    flex: 1 1 19%;
     width: 1rem;
     margin: 0.4rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-}
-
-#waiting-screen h2{
-
 }
 
 /* forms */
