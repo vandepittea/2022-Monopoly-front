@@ -12,13 +12,13 @@ function fillProperties()
         {
             case "street":
                 const $container = $propertiesCont.querySelector(`[data-streettype='${tile.streetColor.toLowerCase()}'] ul`);
-                $container.insertAdjacentHTML('beforeend', `<li data-name="${tile.name}"><img src="../images/tiles/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
+                $container.insertAdjacentHTML('beforeend', `<li data-name="${tile.name}"><img src="../images/deeds/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
                 break;
             case "railroad":
-                $railroadCont.insertAdjacentHTML('beforeend', `<li data-name="${tile.name}"><img src="../images/tiles/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
+                $railroadCont.insertAdjacentHTML('beforeend', `<li data-name="${tile.name}"><img src="../images/deeds/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
                 break;
             case "utility":
-                $utilitiesCont.insertAdjacentHTML('beforeend', `<li data-name="${tile.name}"><img src="../images/tiles/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
+                $utilitiesCont.insertAdjacentHTML('beforeend', `<li data-name="${tile.name}"><img src="../images/deeds/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
                 break;
             default:
                 console.log("something else");

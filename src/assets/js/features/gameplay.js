@@ -7,7 +7,6 @@ function manageGame()
         .then (game =>
         {
             _currentGameState = game;
-            activateProperties(game.players[0]);
             injectProperties(game);
             injectBalance(game);
         })
@@ -41,7 +40,7 @@ function injectPropertyInContainer($container, property)
         if (property.property === tile.name)
         {
             const $template = $container.querySelector('template').content.firstElementChild.cloneNode(true);
-            $template.setAttribute('src', `../images/tiles/${tile.nameAsPathParameter}.jpg`);
+            $template.setAttribute('src', `../images/deeds/${tile.nameAsPathParameter}.jpg`);
             $template.setAttribute('alt', `${tile.name}`);
             $template.setAttribute('name', `${tile.name}`);
 
