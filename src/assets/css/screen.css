@@ -17,6 +17,8 @@ body {
     height: 100vh;
     flex-direction: column;
     justify-content: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
 }
 
 main{
@@ -42,6 +44,12 @@ article#game-list, article#create-game-screen, article#character-screen{
     padding: 3rem;
 }
 
+article#waiting-screen{
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #login aside{
     width: 22.5%;
 }
@@ -52,7 +60,7 @@ article#game-list, article#create-game-screen, article#character-screen{
 }
 
 /* font styling */
-#login h1, #game-list h2, #create-game-screen h2, #character-screen h2{
+#login h1, #game-list h2, #create-game-screen h2, #character-screen h2, #waiting-screen h2{
     color: #DC143C;
     font-family: "nintendo", sans-serif;
     font-size: 4rem;
@@ -65,6 +73,19 @@ article#game-list, article#create-game-screen, article#character-screen{
     display: inline-block;
     margin-bottom: 2rem;
     float: left;
+}
+
+#waiting-screen h2{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+#waiting-screen figcaption{
+    font-family: "nintendo", sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 0.8rem 0 0.5rem 0;
 }
 
 /* images */
@@ -88,18 +109,28 @@ header img{
     z-index: 999;
 }
 
-#character-screen div{
+#character-screen div, #waiting-screen div{
     display: flex;
     flex-flow: wrap;
     width: 45%;
     margin-left: auto;
     margin-right: auto;
+    justify-content: space-between;
 }
 
 #character-screen img{
     flex: 1 1 18%;
     width: 1rem;
     margin: 0.4rem;
+}
+
+#waiting-screen figure{
+    flex: 1 1 19%;
+    width: 1rem;
+    margin: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 /* forms */
