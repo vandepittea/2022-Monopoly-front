@@ -17,6 +17,13 @@ function init(){
             .then(initMonopoly)
             .catch(errorHandler);
     }
+
+    /* temporary solution */
+    document.querySelectorAll("#character-screen img").forEach(image => image.addEventListener("click", temporarySolution));
+}
+
+function temporarySolution(){
+    switchVisibleDivs("character-screen", "waiting-screen");
 }
 
 function initPreGame()
