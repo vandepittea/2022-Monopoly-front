@@ -28,14 +28,14 @@ main{
     align-items: flex-end;
 }
 
-#login article, article#game-list {
+#login article, article#game-list, article#create-game-screen {
     background-color: lightgray;
     padding: 10rem 1rem 10rem 1rem;
     border-radius: 2rem;
     text-align: center;
 }
 
-article#game-list{
+article#game-list, article#create-game-screen{
     width: 75%;
     margin-left: auto;
     margin-right: auto;
@@ -52,7 +52,7 @@ article#game-list{
 }
 
 /* font styling */
-#login h1, #game-list h2{
+#login h1, #game-list h2, #create-game-screen h2{
     color: #DC143C;
     font-family: "nintendo", sans-serif;
     font-size: 4rem;
