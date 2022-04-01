@@ -7,11 +7,8 @@ body
     font-size: 1rem;
 }
 
-#small-property-container
+#property-view
 {
-    display: flex;
-    flex-flow: row nowrap;
-
     width: 60%;
 }
 
@@ -20,6 +17,27 @@ body
     width: 20%;
     margin-right: 2rem;
     clip-path: inset(0 0 80% 0);
+}
+
+.flex
+{
+    display: flex;
+}
+
+#properties-container
+{
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+#properties-container article
+{
+    flex: 1 1 30%;
+}
+
+.hidden
+{
+    display: none;
 }
 
 /* Minimap CSS */
