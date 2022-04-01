@@ -44,7 +44,7 @@ article#game-list, article#create-game-screen, article#character-screen{
     padding: 3rem;
 }
 
-article#waiting-screen{
+article#waiting-screen, article#launch-screen{
     width: 75%;
     margin-left: auto;
     margin-right: auto;
@@ -80,7 +80,7 @@ article#waiting-screen{
     margin-bottom: 2rem;
 }
 
-#waiting-screen figcaption{
+#waiting-screen figcaption, #launch-screen figcaption{
     font-family: "nintendo", sans-serif;
     font-size: 1rem;
     font-weight: bold;
@@ -131,6 +131,19 @@ header img{
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+}
+
+#launch-screen div{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+#launch-screen div img{
+    width: 5rem;
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
 }
 
 /* forms */
