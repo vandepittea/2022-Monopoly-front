@@ -28,14 +28,14 @@ main{
     align-items: flex-end;
 }
 
-#login article, article#game-list, article#create-game-screen {
+#login article, article#game-list, article#create-game-screen, article#character-screen {
     background-color: lightgray;
     padding: 10rem 1rem 10rem 1rem;
     border-radius: 2rem;
     text-align: center;
 }
 
-article#game-list, article#create-game-screen{
+article#game-list, article#create-game-screen, article#character-screen{
     width: 75%;
     margin-left: auto;
     margin-right: auto;
@@ -52,7 +52,7 @@ article#game-list, article#create-game-screen{
 }
 
 /* font styling */
-#login h1, #game-list h2, #create-game-screen h2{
+#login h1, #game-list h2, #create-game-screen h2, #character-screen h2{
     color: #DC143C;
     font-family: "nintendo", sans-serif;
     font-size: 4rem;
@@ -86,6 +86,20 @@ header img{
 #mario-img{
     margin-left: -4rem; /* Overlap with form */
     z-index: 999;
+}
+
+#character-screen div{
+    display: flex;
+    flex-flow: wrap;
+    width: 45%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#character-screen img{
+    flex: 1 1 18%;
+    width: 1rem;
+    margin: 0.4rem;
 }
 
 /* forms */
