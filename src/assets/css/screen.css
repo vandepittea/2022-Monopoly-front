@@ -125,6 +125,13 @@ header img{
     flex: 1 1 23%;
     width: 1rem;
     margin: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+#waiting-screen h2{
+
 }
 
 /* forms */
