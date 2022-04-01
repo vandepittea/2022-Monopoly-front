@@ -5,6 +5,7 @@ function manageGame()
     fetchFromServer('/games/dummy', 'GET')
         .then (game =>
         {
+            activateProperties(game.players[0]);
             injectProperties(game);
             injectBalance(game);
         })
