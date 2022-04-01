@@ -24,6 +24,7 @@ function init(){
 
 function temporarySolution(){
     switchVisibleDivs("character-screen", "waiting-screen");
+    setTimeout(() => switchVisibleDivs("waiting-screen", "launch-screen"), 10000);
 }
 
 function initPreGame()
