@@ -15,6 +15,7 @@
     <script src="../assets/js/initialiser.js"></script>
     <script src="../assets/js/helpers.js"></script>
     <script src="../assets/js/features/gameplay.js"></script>
+    <script src="../assets/js/features/property-functionality.js"></script>
 </head>
 <body>
 <header>
@@ -22,7 +23,77 @@
     <p>Create your wonderful and magical interface here &gt;3 </p>
 </header>
 <main>
+    <article id="properties" class="hidden">
+        <h2>Properties</h2>
+        <div id="properties-container" class="flex">
+            <article data-streettype="purple">
+                <h3>Purple</h3>
+                <ul class="flex">
 
+                </ul>
+            </article>
+            <article data-streettype="lightblue">
+                <h3>Lightblue</h3>
+                <ul class="flex">
+
+                </ul>
+            </article>
+            <article data-streettype="violet">
+                <h3>Hotpink</h3>
+                <ul class="flex">
+
+                </ul>
+            </article>
+            <article data-streettype="orange">
+                <h3>Orange</h3>
+                <ul class="flex">
+
+                </ul>
+            </article>
+            <article data-streettype="red">
+                <h3>Red</h3>
+                <ul class="flex">
+
+                </ul>
+            </article>
+            <article data-streettype="yellow">
+                <h3>Yellow</h3>
+                <ul class="flex">
+
+                </ul>
+            </article>
+            <article data-streettype="darkgreen">
+                <h3>Darkgreen</h3>
+                <ul class="flex">
+
+                </ul>
+            </article>
+            <article data-streettype="darkblue">
+                <h3>Darkblue</h3>
+                <ul class="flex">
+
+                </ul>
+            </article>
+            <article data-streettype="railroad">
+                <h3>Railroad</h3>
+                <ul class="flex">
+
+                </ul>
+            </article>
+            <article data-streettype="utilities">
+                <h3>Utilities</h3>
+                <ul class="flex">
+
+                </ul>
+            </article>
+            <article data-streettype="jailcards">
+                <h3>Jailcards</h3>
+                <ul class="flex">
+
+                </ul>
+            </article>
+        </div>
+    </article>
 </main>
 <aside id="map-container">
     <div id="t0"></div>
@@ -68,10 +139,13 @@
 </aside>
 <button type="button" id="roll-dice">Roll Dice</button>
 <footer>
-    <div id="small-property-container">
-        <template>
-            <img src="" alt="" title="">
-        </template>
+    <div id="property-view">
+        <div id="small-property-container" class="flex">
+            <template>
+                <img src="" alt="" title="">
+            </template>
+        </div>
+        <button type="button">Show Properties</button>
     </div>
     <section id="balance">
         <h3><span id="balance-container">1500 (PH)</span></h3>

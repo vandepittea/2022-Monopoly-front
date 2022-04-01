@@ -38,6 +38,9 @@ function initPreGame()
 
 function initMonopoly()
 {
+    document.querySelector("#property-view button").addEventListener('click', () => activateProperties(_currentGameState.players[0]));
+
+    fillProperties();
     manageGame();
     document.querySelector("#roll-dice").addEventListener("click", getGameState);
 }
