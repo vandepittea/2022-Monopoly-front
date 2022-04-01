@@ -31,6 +31,9 @@ function initPreGame()
     document.querySelector("form").addEventListener("submit", showGames);
     document.querySelector("#create-game").addEventListener("click", createGame);
     document.querySelector("tbody").addEventListener("click", joinGame);
+    document.querySelector("#amount-players").addEventListener("keyup", enableFindServer);
+    document.querySelector("#amount-players").addEventListener("click", enableFindServer);
+    document.querySelector("#nickname").addEventListener("keyup", enableFindServer);
 }
 
 function initMonopoly()

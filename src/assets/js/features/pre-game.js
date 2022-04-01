@@ -75,3 +75,17 @@ function joinGameWithPlayer(gameID, playerName, toSwitchScreen)
         })
         .catch(errorHandler);
 }
+
+function enableFindServer (){
+    const $button = document.querySelector("#login button");
+    const $amountPlayers = document.querySelector("#amount-players");
+    const $nickname = document.querySelector("#nickname");
+
+    if ($amountPlayers.value !== ""){
+        $button.disabled = $nickname.value === "";
+    }
+    else
+    {
+        $button.disabled = true;
+    }
+}
