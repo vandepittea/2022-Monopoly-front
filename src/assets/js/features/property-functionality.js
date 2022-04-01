@@ -29,15 +29,24 @@ function fillProperties()
 
 function activateProperties(player)
 {
-    const $properties = document.querySelectorAll('#properties-container ul li');
-    $properties.forEach($property =>
+    const $properties = document.querySelector('#properties');
+    if ($properties.classList.contains("hidden"))
     {
-        $property.classList.remove("owned");
-    });
+        $properties.classList.remove("hidden");
+        const $propertiesContainer = document.querySelectorAll('#properties-container ul li');
+        $propertiesContainer.forEach($property =>
+        {
+            $property.classList.remove("owned");
+        });
 
-    player.properties.forEach(property =>
+        player.properties.forEach(property =>
+        {
+            const $property = document.querySelector(`#properties-container ul li[data-name='${property.property}']`);
+            $property.classList.add("owned");
+        });
+    }
+    else
     {
-        const $property = document.querySelector(`#properties-container ul li[data-name='${property.property}']`);
-        $property.classList.add("owned");
-    });
+        $properties.classList.add("hidden");
+    }
 }

@@ -1,10 +1,12 @@
 "use strict";
+let _currentGameState = null;
 
 function manageGame()
 {
     fetchFromServer('/games/dummy', 'GET')
         .then (game =>
         {
+            _currentGameState = game;
             activateProperties(game.players[0]);
             injectProperties(game);
             injectBalance(game);
