@@ -58,7 +58,7 @@ article#waiting-screen, div#launch-screen{
 }
 
 /* font styling */
-#login h1, #game-list h2, #create-game-screen h2, #character-screen h2, #waiting-screen h2{
+h1, h2{
     color: #DC143C;
     font-family: "nintendo", sans-serif;
     font-size: 4rem;
