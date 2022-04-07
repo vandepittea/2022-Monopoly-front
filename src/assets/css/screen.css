@@ -88,6 +88,10 @@ article#waiting-screen, article#launch-screen{
     margin: 0.8rem 0 0.5rem 0;
 }
 
+#launch-button-and-current-player figcaption{
+    font-size: 1.5rem;
+}
+
 /* images */
 
 img{
@@ -140,10 +144,21 @@ header img{
     margin-top: 1rem;
 }
 
+#launch-screen #launch-button-and-current-player{
+    width: 40%;
+    margin: 5rem auto 5rem auto;
+    justify-content: center;
+    align-items: center;
+}
+
 #launch-screen div img{
     width: 5rem;
     margin-right: 1.5rem;
     margin-left: 1.5rem;
+}
+
+#launch-screen #launch-button-and-current-player img{
+    width: 12rem;
 }
 
 /* forms */
