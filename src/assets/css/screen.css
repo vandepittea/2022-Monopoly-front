@@ -30,24 +30,22 @@ main{
     align-items: flex-end;
 }
 
-#login article, article#game-list, article#create-game-screen, article#character-screen {
+article {
     background-color: lightgray;
     padding: 10rem 1rem 10rem 1rem;
     border-radius: 2rem;
     text-align: center;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 article#game-list, article#create-game-screen, article#character-screen{
-    width: 75%;
-    margin-left: auto;
-    margin-right: auto;
     padding: 3rem;
 }
 
-article#waiting-screen, article#launch-screen{
-    width: 75%;
-    margin-left: auto;
-    margin-right: auto;
+article#waiting-screen, div#launch-screen{
+    background-color: inherit;
 }
 
 #login aside{
