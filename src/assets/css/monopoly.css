@@ -12,8 +12,9 @@ body {
 
 footer{
     position: absolute; /* relative wrapper */
-    left: 28rem; /* width of minimap: 25rem */
+    left: 22vw; /* width of minimap: 20vw */
     bottom: 1rem;
+    width: 77vw;
 }
 
 #property-view {
@@ -65,12 +66,12 @@ footer{
 #map-container {
     position: absolute; /* relative wrapper */
     bottom: 1rem;
-    left: 1rem;
+    left: 1vw;
     background-image: url("../media/monopoly-board.png");
     background-size: 100%;
     background-repeat: no-repeat;
-    width: 25rem;
-    height: 25rem;
+    width: 20vw;
+    height: 20vw;
     display: grid;
     grid-template-rows: repeat(13, 1fr);
     grid-template-columns: repeat(13, 1fr);
