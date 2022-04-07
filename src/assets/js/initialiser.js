@@ -28,11 +28,11 @@ function temporarySolution(){
 
 function initPreGame()
 {
-    document.querySelector("form").addEventListener("submit", showGames);
+    document.querySelector("#login form").addEventListener("submit", showGames);
     document.querySelector("#create-game").addEventListener("click", createGame);
-    document.querySelector("tbody").addEventListener("click", joinGame);
-    document.querySelector("#amount-players").addEventListener("keyup", enableFindServer);
-    document.querySelector("#amount-players").addEventListener("click", enableFindServer);
+    document.querySelector("#game-list tbody").addEventListener("click", joinGame);
+    document.querySelector("#login #amount-players").addEventListener("keyup", enableFindServer);
+    document.querySelector("#login #amount-players").addEventListener("click", enableFindServer);
     document.querySelector("#nickname").addEventListener("keyup", enableFindServer);
 }
 
