@@ -1,6 +1,7 @@
 "use strict";
 let _nickname = null;
 let _amountPlayers = null;
+let _gameID = null;
 
 const allDivIds = ["login", "game-list", "create-game-screen", "character-screen", "waiting-screen"];
 
@@ -31,7 +32,8 @@ function createGame(e)
     fetchFromServer('/games', 'POST', bodyParams)
         .then(game =>
         {
-           joinGameWithPlayer(game.id, _nickname);
+            _gameID = game.id;
+           makeVisibleByID("character-screen", allDivIds);
         })
         .catch(errorHandler);
 
@@ -39,7 +41,7 @@ function createGame(e)
 
 function createGameList()
 {
-    if (_token === null)
+    if (_config.token === null)
     {
         const $container = document.querySelector('#game-list tbody');
         const $templateNode = $container.querySelector('template');
@@ -83,21 +85,22 @@ function joinGame(e)
         return;
     }
 
-    const gameID = e.target.closest('tr').dataset.gameid;
-    joinGameWithPlayer(gameID, _nickname);
+    _gameID = e.target.closest('tr').dataset.gameid;
+    makeVisibleByID("character-screen", allDivIds);
 }
 
-function joinGameWithPlayer(gameID, playerName)
+function joinGameWithPlayer()
 {
     const playerObject = {
-        playerName: playerName
+        playerName: _nickname
     };
 
-    fetchFromServer(`/games/${gameID}/players`, 'POST', playerObject)
+    fetchFromServer(`/games/${_gameID}/players`, 'POST', playerObject)
         .then(response =>
         {
-            _token = response;
-            makeVisibleByID("character-screen", allDivIds);
+            _config.token = response;
+            makeVisibleByID("waiting-screen", allDivIds);
+            waitForPlayers();
         })
         .catch(errorHandler);
 }
@@ -113,5 +116,45 @@ function enableFindServer (){
     else
     {
         $button.disabled = true;
+    }
+}
+
+function waitForPlayers()
+{
+    fetchFromServer(`/games/${_gameID}`, 'GET')
+        .then(game =>
+        {
+            if (game.started)
+            {
+                makeVisibleByID("launch-screen", allDivIds);
+            }
+            else
+            {
+                addPlayersToWaitingScreen(game);
+                setTimeout(waitForPlayers, 1500);
+            }
+        });
+}
+
+function addPlayersToWaitingScreen(game)
+{
+    const $templateNode = document.querySelector("#waiting-screen template");
+    const $container = document.querySelector("#waiting-screen div");
+
+    $container.innerHTML = "";
+    $container.insertAdjacentElement('afterbegin', $templateNode);
+
+    game.players.forEach(player =>
+    {
+        const $template = $templateNode.content.firstElementChild.cloneNode(true);
+        $template.querySelector("img").setAttribute('src', "images/characters/mario.webp");
+        $template.querySelector("figcaption").innerText = player.name;
+        $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+    });
+
+    for (let i = 0; i < (game.numberOfPlayers - game.players.length); i++)
+    {
+        const $template = $templateNode.content.firstElementChild.cloneNode(true);
+        $container.insertAdjacentHTML('beforeend', $template.outerHTML);
     }
 }
