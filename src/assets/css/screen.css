@@ -125,10 +125,6 @@ header img{
     margin: 0 auto 1rem auto;
 }
 
-#login aside img{
-    width: 100%;
-}
-
 #mario-img{
     margin-left: -4rem; /* Overlap with form */
     z-index: 999;
@@ -157,6 +153,10 @@ header img{
 
 #launch-screen #launch-button-and-current-player img{
     width: 14rem;
+}
+
+#login aside img{
+    width: 100%;
 }
 
 /* forms */
@@ -201,6 +201,11 @@ button {
     background-color: white;
 }
 
+button:hover{
+    color: white;
+    background-color: #DC143C;
+}
+
 button#create-game{
     font-size: 1.5rem;
     border-radius: 0;
@@ -218,11 +223,6 @@ button#create-game{
 #launch-button-and-current-player button{
     border-radius: 0;
     font-size: 3rem;
-}
-
-button:hover{
-    color: white;
-    background-color: #DC143C;
 }
 
 input, textarea, select{
