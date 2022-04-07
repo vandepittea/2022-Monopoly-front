@@ -51,6 +51,7 @@ article#game-list, article#create-game-screen, article#character-screen{
 
 article#waiting-screen, div#launch-screen{
     background-color: inherit;
+    padding: 0;
 }
 
 #login aside{
