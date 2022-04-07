@@ -126,7 +126,7 @@ function waitForPlayers()
         {
             if (game.started)
             {
-                console.log("Start Game");
+                makeVisibleByID("launch-screen", allDivIds);
             }
             else
             {
