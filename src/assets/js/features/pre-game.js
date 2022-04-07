@@ -11,12 +11,12 @@ function showGames(e){
 
     createGameList();
 
-    activateID("game-list", allDivIds);
+    makeVisibleByID("game-list", allDivIds);
 }
 
 function showGameCreationScreen()
 {
-    activateID("create-game-screen", allDivIds);
+    makeVisibleByID("create-game-screen", allDivIds);
 }
 
 function createGame(e)
@@ -97,7 +97,7 @@ function joinGameWithPlayer(gameID, playerName)
         .then(response =>
         {
             _token = response;
-            activateID("character-screen", allDivIds);
+            makeVisibleByID("character-screen", allDivIds);
         })
         .catch(errorHandler);
 }
