@@ -5,6 +5,11 @@ body {
     font-size: 1rem;
 }
 
+#wrapper{
+    min-height: 100vh;
+    position: relative;
+}
+
 #property-view {
     width: 60%;
 }
@@ -50,8 +55,11 @@ body {
     display: none;
 }
 
-/* Minimap CSS */
+/* minimap */
 #map-container {
+    position: absolute; /* relative wrapper */
+    bottom: 1rem;
+    left: 1rem;
     background-image: url("../media/monopoly-board.png");
     background-size: 100%;
     background-repeat: no-repeat;
