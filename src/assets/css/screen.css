@@ -146,7 +146,7 @@ header img{
 
 #launch-screen #launch-button-and-current-player{
     width: 60%;
-    margin: 5rem auto 5rem auto;
+    margin: 3rem auto 0 auto;
     justify-content: center;
     align-items: center;
 }
@@ -163,7 +163,7 @@ header img{
 }
 
 #launch-screen #launch-button-and-current-player img{
-    width: 12rem;
+    width: 14rem;
 }
 
 /* forms */
