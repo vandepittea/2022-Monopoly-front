@@ -17,12 +17,26 @@ footer{
     width: 77vw;
 }
 
-#property-view {
-    width: 60%;
+#property-view{
+    display: inline-block;
+    width: 85%;
+}
+
+#balance{
+    display: inline-block;
+}
+
+#small-property-container{
+    display: inline-block;
+    width: 80%;
+}
+
+#small-property-container button{
+    display: inline-block;
 }
 
 #small-property-container img {
-    width: 20%;
+    width: 30%;
     margin-right: 2rem;
     clip-path: inset(0 0 80% 0);
 }
