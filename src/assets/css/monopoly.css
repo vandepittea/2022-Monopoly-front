@@ -1,8 +1,8 @@
 body {
     font-family: "Arial", "Helvetica", serif;
     color: black;
-    font-family: sans-serif;
     font-size: 1rem;
+    background-color: white;
 }
 
 #wrapper{
@@ -28,11 +28,21 @@ footer{
 
 #small-property-container{
     display: inline-block;
+    position: relative;
     width: 80%;
+    height: 4.5rem;
+    overflow: hidden;
+    margin-bottom: -0.5rem /* negative value for correction of position */
 }
 
 #small-property-container button{
     display: inline-block;
+}
+
+#partially-of-screen-images{
+    position: absolute; /* relative #small-property-container */
+    top: 0;
+    left: 0;
 }
 
 #small-property-container img {
