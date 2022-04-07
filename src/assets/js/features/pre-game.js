@@ -26,27 +26,45 @@ function createGame()
            joinGameWithPlayer(game.id, _nickname, "create-game-screen");
        })
        .catch(errorHandler);
+
 }
 
 function createGameList()
 {
-    const $container = document.querySelector('#game-list tbody');
-    fetchFromServer(`/games?started=false&numberOfPlayers=${_amountPlayers}&prefix=${_config.prefix}`,'GET')
-        .then(games =>
-        {
-            games.forEach(game => addGameToContainer($container, game));
-        })
-        .catch(errorHandler);
+    if (_token === null)
+    {
+        const $container = document.querySelector('#game-list tbody');
+        const $templateNode = $container.querySelector('template');
+
+        fetchFromServer(`/games?started=false&numberOfPlayers=${_amountPlayers}&prefix=${_config.prefix}`,'GET')
+            .then(games =>
+            {
+                $container.innerHTML = "";
+                $container.insertAdjacentElement('beforeend', $templateNode);
+                games.forEach(game => addGameToContainer($container, $templateNode, game));
+            })
+            .catch(errorHandler);
+
+        setTimeout(createGameList, 1500);
+    }
+    else
+    {
+        console.log("Go to game");
+    }
 }
 
-function addGameToContainer($container, game)
+function addGameToContainer($container, $templateNode, game)
 {
-    const $template = $container.querySelector('template').content.firstElementChild.cloneNode(true);
+    const $template = $templateNode.content.firstElementChild.cloneNode(true);
     $template.dataset.gameid = game.id;
+
     game.players.forEach(player =>
     {
         $template.querySelector('ul').insertAdjacentHTML('beforeend', `<li>${player.name}</li>`);
     });
+    $template.querySelector('#active-players').innerText = game.players.length;
+    $template.querySelector('#max-players').innerText = game.numberOfPlayers;
+
     $container.insertAdjacentHTML('beforeend', $template.outerHTML);
 }
 
@@ -70,7 +88,7 @@ function joinGameWithPlayer(gameID, playerName, toSwitchScreen)
     fetchFromServer(`/games/${gameID}/players`, 'POST', playerObject)
         .then(response =>
         {
-            _token = response.token;
+            _token = response;
             switchVisibleDivs("game-list", toSwitchScreen);
         })
         .catch(errorHandler);
