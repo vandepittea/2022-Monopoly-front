@@ -1,6 +1,7 @@
 "use strict";
 let _nickname = null;
 let _amountPlayers = null;
+let _gameID = null;
 
 const allDivIds = ["login", "game-list", "create-game-screen", "character-screen", "waiting-screen"];
 
@@ -31,7 +32,8 @@ function createGame(e)
     fetchFromServer('/games', 'POST', bodyParams)
         .then(game =>
         {
-           joinGameWithPlayer(game.id, _nickname);
+            _gameID = game.id;
+           makeVisibleByID("character-screen", allDivIds);
         })
         .catch(errorHandler);
 
@@ -83,21 +85,21 @@ function joinGame(e)
         return;
     }
 
-    const gameID = e.target.closest('tr').dataset.gameid;
-    joinGameWithPlayer(gameID, _nickname);
+    _gameID = e.target.closest('tr').dataset.gameid;
+    makeVisibleByID("character-screen", allDivIds);
 }
 
-function joinGameWithPlayer(gameID, playerName)
+function joinGameWithPlayer()
 {
     const playerObject = {
-        playerName: playerName
+        playerName: _nickname
     };
 
-    fetchFromServer(`/games/${gameID}/players`, 'POST', playerObject)
+    fetchFromServer(`/games/${_gameID}/players`, 'POST', playerObject)
         .then(response =>
         {
             _config.token = response;
-            makeVisibleByID("character-screen", allDivIds);
+            makeVisibleByID("waiting-screen", allDivIds);
         })
         .catch(errorHandler);
 }

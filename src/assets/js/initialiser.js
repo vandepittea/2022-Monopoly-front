@@ -16,13 +16,6 @@ function init(){
             .then(initMonopoly)
             .catch(errorHandler);
     }
-
-    /* temporary solution */
-    document.querySelectorAll("#character-screen img").forEach(image => image.addEventListener("click", temporarySolution));
-}
-
-function temporarySolution(){
-    switchVisibleDivs("character-screen", "waiting-screen");
 }
 
 function initPreGame()
@@ -34,6 +27,7 @@ function initPreGame()
     document.querySelector("#login #amount-players").addEventListener("click", enableFindServer);
     document.querySelector("#nickname").addEventListener("keyup", enableFindServer);
     document.querySelector("#create-game-screen form").addEventListener('submit', createGame);
+    document.querySelectorAll("#character-screen img").forEach(image => image.addEventListener("click", joinGameWithPlayer));
 }
 
 function initMonopoly()
