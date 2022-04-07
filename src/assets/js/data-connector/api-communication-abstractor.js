@@ -24,8 +24,8 @@ function constructOptions(httpVerb, requestBody){
         };
     options.headers["Content-Type"] = "application/json";
 
-    if(_token !== null) {
-        options.headers["Authorization"] = "Bearer " + _token.token;
+    if(_config.token !== null) {
+        options.headers["Authorization"] = "Bearer " + _config.token.token;
     }
     // Don't forget to add data to the body when needed
     options.body = JSON.stringify(requestBody);

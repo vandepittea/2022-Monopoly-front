@@ -1,7 +1,10 @@
 "use strict";
 
-function switchVisibleDivs(idOfDivToHide, idOfDivToShow)
+function makeVisibleByID(idToActivate, allIDs)
 {
-    document.querySelector(`#${idOfDivToHide}`).classList.add("hidden");
-    document.querySelector(`#${idOfDivToShow}`).classList.remove("hidden");
+    allIDs.forEach(id =>
+    {
+        document.querySelector(`#${id}`).classList.add("hidden");
+    });
+    document.querySelector(`#${idToActivate}`).classList.remove("hidden");
 }
