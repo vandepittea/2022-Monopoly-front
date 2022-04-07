@@ -10,6 +10,12 @@ body {
     position: relative;
 }
 
+footer{
+    position: absolute; /* relative wrapper */
+    left: 28rem; /* width of minimap: 25rem */
+    bottom: 1rem;
+}
+
 #property-view {
     width: 60%;
 }
