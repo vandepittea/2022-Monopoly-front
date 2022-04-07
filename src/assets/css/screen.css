@@ -21,6 +21,11 @@ body {
     margin-bottom: 3rem;
 }
 
+#wrapper .hidden
+{
+    display: none;
+}
+
 main{
     width: 100%;
 }
@@ -52,9 +57,27 @@ article#waiting-screen, div#launch-screen{
     width: 22.5%;
 }
 
-#wrapper .hidden
-{
-    display: none;
+#character-screen div, #waiting-screen div{
+    display: flex;
+    flex-flow: wrap;
+    width: 45%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+}
+
+#launch-screen div{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+#launch-screen #launch-button-and-current-player{
+    width: 60%;
+    margin: 3rem auto 0 auto;
+    justify-content: center;
+    align-items: center;
 }
 
 /* font styling */
@@ -111,15 +134,6 @@ header img{
     z-index: 999;
 }
 
-#character-screen div, #waiting-screen div{
-    display: flex;
-    flex-flow: wrap;
-    width: 45%;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: space-between;
-}
-
 #character-screen img{
     flex: 1 1 18%;
     width: 1rem;
@@ -133,25 +147,6 @@ header img{
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-}
-
-#launch-screen div{
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    margin-top: 1rem;
-}
-
-#launch-screen #launch-button-and-current-player{
-    width: 60%;
-    margin: 3rem auto 0 auto;
-    justify-content: center;
-    align-items: center;
-}
-
-#launch-button-and-current-player button{
-    border-radius: 0;
-    font-size: 3rem;
 }
 
 #launch-screen div img{
@@ -206,6 +201,25 @@ button {
     background-color: white;
 }
 
+button#create-game{
+    font-size: 1.5rem;
+    border-radius: 0;
+    display: inline-block;
+    vertical-align: top;
+    float: right;
+}
+
+#game-list button{
+    display: inline;
+    font-size: 1rem;
+    margin: 1rem;
+}
+
+#launch-button-and-current-player button{
+    border-radius: 0;
+    font-size: 3rem;
+}
+
 button:hover{
     color: white;
     background-color: #DC143C;
@@ -246,18 +260,4 @@ tbody tr{
 
 tbody tr:nth-of-type(odd){
     background-color: #e9e9e9;
-}
-
-#game-list button{
-    display: inline;
-    font-size: 1rem;
-    margin: 1rem;
-}
-
-button#create-game{
-    font-size: 1.5rem;
-    border-radius: 0;
-    display: inline-block;
-    vertical-align: top;
-    float: right;
 }
