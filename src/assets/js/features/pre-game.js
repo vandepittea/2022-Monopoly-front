@@ -121,5 +121,40 @@ function enableFindServer (){
 
 function waitForPlayers()
 {
-    console.log("Waiting");
+    fetchFromServer(`/games/${_gameID}`, 'GET')
+        .then(game =>
+        {
+            if (game.started)
+            {
+                console.log("Start Game");
+            }
+            else
+            {
+                addPlayersToWaitingScreen(game);
+                setTimeout(waitForPlayers, 1500);
+            }
+        });
+}
+
+function addPlayersToWaitingScreen(game)
+{
+    const $templateNode = document.querySelector("#waiting-screen template");
+    const $container = document.querySelector("#waiting-screen div");
+
+    $container.innerHTML = "";
+    $container.insertAdjacentElement('afterbegin', $templateNode);
+
+    game.players.forEach(player =>
+    {
+        const $template = $templateNode.content.firstElementChild.cloneNode(true);
+        $template.querySelector("img").setAttribute('src', "images/characters/mario.webp");
+        $template.querySelector("figcaption").innerText = player.name;
+        $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+    });
+
+    for (let i = 0; i < (game.numberOfPlayers - game.players.length); i++)
+    {
+        const $template = $templateNode.content.firstElementChild.cloneNode(true);
+        $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+    }
 }
