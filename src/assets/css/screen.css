@@ -151,6 +151,11 @@ header img{
     align-items: center;
 }
 
+#launch-button-and-current-player button{
+    border-radius: 0;
+    font-size: 3rem;
+}
+
 #launch-screen div img{
     width: 5rem;
     margin-right: 1.5rem;
