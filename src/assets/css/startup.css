@@ -146,6 +146,10 @@ header img{
     justify-content: flex-end;
 }
 
+#login aside img{
+    width: 100%;
+}
+
 #launch-screen div img{
     width: 5rem;
     margin-right: 1.5rem;
@@ -154,10 +158,6 @@ header img{
 
 #launch-screen #launch-button-and-current-player img{
     width: 14rem;
-}
-
-#login aside img{
-    width: 100%;
 }
 
 /* forms */
