@@ -2,6 +2,8 @@
 let _nickname = null;
 let _amountPlayers = null;
 
+const allDivIds = ["login", "game-list", "create-game-screen", "character-screen", "waiting-screen"];
+
 function showGames(e){
     e.preventDefault();
     _nickname = e.target.querySelector("#nickname").value;
@@ -9,23 +11,29 @@ function showGames(e){
 
     createGameList();
 
-    switchVisibleDivs("login", "game-list");
+    makeVisibleByID("game-list", allDivIds);
 }
 
-function createGame()
+function showGameCreationScreen()
 {
-   console.log("Create game");
-   const bodyParams = {
+    makeVisibleByID("create-game-screen", allDivIds);
+}
+
+function createGame(e)
+{
+    e.preventDefault();
+
+    const bodyParams = {
        prefix: _config.prefix,
        numberOfPlayers: parseInt(_amountPlayers)
-   };
+    };
 
-   fetchFromServer('/games', 'POST', bodyParams)
-       .then(game =>
-       {
-           joinGameWithPlayer(game.id, _nickname, "create-game-screen");
-       })
-       .catch(errorHandler);
+    fetchFromServer('/games', 'POST', bodyParams)
+        .then(game =>
+        {
+           joinGameWithPlayer(game.id, _nickname);
+        })
+        .catch(errorHandler);
 
 }
 
@@ -76,10 +84,10 @@ function joinGame(e)
     }
 
     const gameID = e.target.closest('tr').dataset.gameid;
-    joinGameWithPlayer(gameID, _nickname, "character-screen");
+    joinGameWithPlayer(gameID, _nickname);
 }
 
-function joinGameWithPlayer(gameID, playerName, toSwitchScreen)
+function joinGameWithPlayer(gameID, playerName)
 {
     const playerObject = {
         playerName: playerName
@@ -89,7 +97,7 @@ function joinGameWithPlayer(gameID, playerName, toSwitchScreen)
         .then(response =>
         {
             _token = response;
-            switchVisibleDivs("game-list", toSwitchScreen);
+            makeVisibleByID("character-screen", allDivIds);
         })
         .catch(errorHandler);
 }
