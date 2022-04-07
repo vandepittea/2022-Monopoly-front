@@ -15,7 +15,7 @@ body {
     clip-path: inset(0 0 80% 0);
 }
 
-.flex {
+#properties-container ul {
     display: flex;
 }
 
