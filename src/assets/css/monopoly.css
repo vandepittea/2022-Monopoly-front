@@ -28,8 +28,13 @@ footer{
 
 #small-property-container{
     display: inline-block;
-    position: relative;
     width: 80%;
+}
+
+.partially-of-screen{
+    display: inline-block;
+    width: 32%;
+    position: relative;
     height: 4.5rem;
     overflow: hidden;
     margin-bottom: -0.5rem /* negative value for correction of position */
@@ -39,16 +44,25 @@ footer{
     display: inline-block;
 }
 
-#partially-of-screen-images{
+.partially-of-screen-images{
     position: absolute; /* relative #small-property-container */
     top: 0;
     left: 0;
 }
 
 #small-property-container img {
-    width: 30%;
+    width: 100%;
     margin-right: 2rem;
     clip-path: inset(0 0 80% 0);
+}
+
+#small-property-container img:hover {
+    clip-path: inherit;
+}
+
+.partially-of-screen:hover {
+    overflow: inherit;
+    height: 22rem;
 }
 
 #properties-container ul {
