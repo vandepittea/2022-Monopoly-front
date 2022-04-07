@@ -39,7 +39,7 @@ function createGame(e)
 
 function createGameList()
 {
-    if (_token === null)
+    if (_config.token === null)
     {
         const $container = document.querySelector('#game-list tbody');
         const $templateNode = $container.querySelector('template');
@@ -96,7 +96,7 @@ function joinGameWithPlayer(gameID, playerName)
     fetchFromServer(`/games/${gameID}/players`, 'POST', playerObject)
         .then(response =>
         {
-            _token = response;
+            _config.token = response;
             makeVisibleByID("character-screen", allDivIds);
         })
         .catch(errorHandler);
