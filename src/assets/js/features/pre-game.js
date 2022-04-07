@@ -26,32 +26,45 @@ function createGame()
            joinGameWithPlayer(game.id, _nickname, "create-game-screen");
        })
        .catch(errorHandler);
+
 }
 
 function createGameList()
 {
-    const $container = document.querySelector('#game-list tbody');
-    const $templateNode = $container.querySelector('template');
+    if (_token === null)
+    {
+        const $container = document.querySelector('#game-list tbody');
+        const $templateNode = $container.querySelector('template');
 
-    $container.innerHTML = "";
-    $container.insertAdjacentElement('beforeend', $templateNode);
+        fetchFromServer(`/games?started=false&numberOfPlayers=${_amountPlayers}&prefix=${_config.prefix}`,'GET')
+            .then(games =>
+            {
+                $container.innerHTML = "";
+                $container.insertAdjacentElement('beforeend', $templateNode);
+                games.forEach(game => addGameToContainer($container, $templateNode, game));
+            })
+            .catch(errorHandler);
 
-    fetchFromServer(`/games?started=false&numberOfPlayers=${_amountPlayers}&prefix=${_config.prefix}`,'GET')
-        .then(games =>
-        {
-            games.forEach(game => addGameToContainer($container, $templateNode, game));
-        })
-        .catch(errorHandler);
+        setTimeout(createGameList, 1500);
+    }
+    else
+    {
+        console.log("Go to game");
+    }
 }
 
 function addGameToContainer($container, $templateNode, game)
 {
     const $template = $templateNode.content.firstElementChild.cloneNode(true);
     $template.dataset.gameid = game.id;
+
     game.players.forEach(player =>
     {
         $template.querySelector('ul').insertAdjacentHTML('beforeend', `<li>${player.name}</li>`);
     });
+    $template.querySelector('#active-players').innerText = game.players.length;
+    $template.querySelector('#max-players').innerText = game.numberOfPlayers;
+
     $container.insertAdjacentHTML('beforeend', $template.outerHTML);
 }
 
