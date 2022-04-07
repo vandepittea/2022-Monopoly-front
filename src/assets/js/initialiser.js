@@ -29,11 +29,12 @@ function temporarySolution(){
 function initPreGame()
 {
     document.querySelector("#login form").addEventListener("submit", showGames);
-    document.querySelector("#create-game").addEventListener("click", createGame);
+    document.querySelector("#game-list #create-game").addEventListener("click", showGameCreationScreen);
     document.querySelector("#game-list tbody").addEventListener("click", joinGame);
     document.querySelector("#login #amount-players").addEventListener("keyup", enableFindServer);
     document.querySelector("#login #amount-players").addEventListener("click", enableFindServer);
     document.querySelector("#nickname").addEventListener("keyup", enableFindServer);
+    document.querySelector("#create-game-screen form").addEventListener('submit', createGame);
 }
 
 function initMonopoly()
