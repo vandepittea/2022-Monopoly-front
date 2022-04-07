@@ -100,6 +100,7 @@ function joinGameWithPlayer()
         {
             _config.token = response;
             makeVisibleByID("waiting-screen", allDivIds);
+            waitForPlayers();
         })
         .catch(errorHandler);
 }
@@ -116,4 +117,9 @@ function enableFindServer (){
     {
         $button.disabled = true;
     }
+}
+
+function waitForPlayers()
+{
+    console.log("Waiting");
 }
