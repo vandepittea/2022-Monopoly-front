@@ -33,7 +33,17 @@ function initPreGame()
 
 function initMonopoly()
 {
-    _gameData = loadFromStorage("gameData");
+    const tempData = loadFromStorage("gameData");
+    if (tempData === null)
+    {
+        _gameData.gameID = null;
+        _gameData.playerName = null;
+        _gameData.token = null;
+    }
+    else
+    {
+        _gameData = tempData;
+    }
     document.querySelector("#property-view button").addEventListener('click', () => activateProperties(_currentGameState.players[0]));
 
     fillProperties();

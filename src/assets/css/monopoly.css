@@ -405,3 +405,16 @@ aside#map-container {
 #t39 {
     grid-area: t39;
 }
+
+/* temporary so we don't have merge conflicts */
+#moves-container
+{
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+#moves-container img
+{
+    max-width: 5%;
+    margin-right: 0.5rem;
+}
