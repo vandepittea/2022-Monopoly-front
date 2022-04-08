@@ -12,7 +12,7 @@ function diceRoll() {
         .catch(errorHandler);
 }
 
-function goneBankrupt(state) {
+function goneBankrupt() {
 
     fetchFromServer('/games/dummy', 'GET')
         .then(state => {
