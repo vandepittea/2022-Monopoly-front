@@ -15,19 +15,31 @@ footer{
     left: 22vw; /* width of minimap: 20vw */
     bottom: 1rem;
     width: 77vw;
+    display: flex;
+    align-items: flex-end;
 }
 
 #property-view{
-    display: inline-block;
+    display: flex;
+    align-items: flex-end;
     width: 85%;
 }
 
 #balance{
-    display: inline-block;
+    width: 14%;
+}
+
+#balance h3{
+    background: linear-gradient(180deg, rgba(196, 196, 196, 0) 0%, rgba(196, 196, 196, 0.5) 100%);
+    border: 0.01rem rgba(0, 0, 0, 0.5) solid;
+    box-sizing: border-box;
+    border-radius: 10px;
+    width: 100%;
+    padding: 5rem 1rem 5rem 1rem;
+    text-align: center;
 }
 
 #small-property-container{
-    display: inline-block;
     width: 80%;
 }
 
@@ -37,7 +49,6 @@ footer{
     position: relative;
     height: 4.5rem;
     overflow: hidden;
-    margin-bottom: -0.5rem /* negative value for correction of position */
 }
 
 button {
@@ -62,12 +73,11 @@ button:hover{
 }
 
 #property-view button{
-    display: inline-block;
     font-size: 8rem;
     background: none;
     border: none;
-    outline: inherit;
     padding: 0;
+    height: 8.5rem;
 }
 
 #property-view button:hover{
@@ -76,7 +86,7 @@ button:hover{
 }
 
 .partially-of-screen-images{
-    position: absolute; /* relative #small-property-container */
+    position: absolute; /* relative .partially-of-screen */
     top: 0;
     left: 0;
 }
