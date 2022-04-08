@@ -28,10 +28,12 @@ function initPreGame()
     document.querySelector("#nickname").addEventListener("keyup", enableFindServer);
     document.querySelector("#create-game-screen form").addEventListener('submit', createGame);
     document.querySelectorAll("#character-screen img").forEach(image => image.addEventListener("click", joinGameWithPlayer));
+    document.querySelector("#launch-button-and-current-player button").addEventListener('click', goToGame);
 }
 
 function initMonopoly()
 {
+    _gameData = loadFromStorage("gameData");
     document.querySelector("#property-view button").addEventListener('click', () => activateProperties(_currentGameState.players[0]));
 
     fillProperties();
