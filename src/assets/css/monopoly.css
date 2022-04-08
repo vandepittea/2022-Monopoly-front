@@ -1,3 +1,4 @@
+/* blocks */
 body {
     font-family: "Arial", "Helvetica", serif;
     color: black;
@@ -10,6 +11,39 @@ body {
     position: relative;
 }
 
+aside#other-players{
+    position: absolute; /* relative wrapper */
+    right: 1rem;
+    top: 15%;
+}
+
+article#properties {
+    width: 70%;
+}
+
+article #properties-container {
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+article #properties-container article {
+    flex: 1 1 30%;
+}
+
+article #properties-container ul {
+    display: flex;
+}
+
+article #properties-container article ul li {
+    flex: 0 0 25%;
+    margin-right: 1rem;
+    filter: grayscale(100%);
+}
+
+article #properties-container article ul li.owned {
+    filter: grayscale(0%);
+}
+
 footer{
     position: absolute; /* relative wrapper */
     left: 22vw; /* width of minimap: 20vw */
@@ -19,26 +53,53 @@ footer{
     align-items: flex-end;
 }
 
-#property-view{
+footer #property-view{
     display: flex;
     align-items: flex-end;
     width: 85%;
 }
 
-#balance{
+footer #small-property-container{
+    width: 80%;
+}
+
+footer .partially-of-screen{
+    display: inline-block;
+    width: 32%;
+    position: relative;
+    height: 4.5rem;
+    overflow: hidden;
+}
+
+footer .partially-of-screen:hover {
+    overflow: inherit;
+    height: 22rem;
+}
+
+footer .partially-of-screen-images{
+    position: absolute; /* relative .partially-of-screen */
+    top: 0;
+    left: 0;
+}
+
+footer #balance{
     width: 14%;
 }
 
-#other-players h2{
+.hidden {
+    display: none;
+}
+
+/* font styling */
+aside#other-players h2{
     color: #DC143C;
-    font-family: "nintendo", sans-serif;
     font-size: 3rem;
     text-align: center;
     text-shadow: 0 0.02rem 0.02rem #ffffff;
     margin-bottom: 1rem;
 }
 
-#balance h3{
+footer #balance h3{
     background: linear-gradient(180deg, rgba(196, 196, 196, 0) 0%, rgba(196, 196, 196, 0.5) 100%);
     border: 0.01rem rgba(0, 0, 0, 0.5) solid;
     box-sizing: border-box;
@@ -49,25 +110,28 @@ footer{
     font-size: 2rem;
 }
 
-#balance h3 span{
-    background: url("../media/coin.png") no-repeat;
+/* images */
+article #properties-container article ul li img {
+    max-width: 100%;
+}
+
+footer #small-property-container img {
+    width: 100%;
+    margin-right: 2rem;
+    clip-path: inset(0 0 80% 0);
+}
+
+footer #small-property-container img:hover {
+    clip-path: inherit;
+}
+
+footer #balance h3 span{
+    background: url("../media/coin.png") no-repeat left center;
     background-size: 4rem 4rem;
-    background-position: left center;
     padding: 2rem 0rem 2rem 4.8rem;
 }
 
-#small-property-container{
-    width: 80%;
-}
-
-.partially-of-screen{
-    display: inline-block;
-    width: 32%;
-    position: relative;
-    height: 4.5rem;
-    overflow: hidden;
-}
-
+/* forms */
 button {
     display: block;
     color: #DC143C;
@@ -89,7 +153,14 @@ button:hover{
     background-color: #DC143C;
 }
 
-#property-view button{
+aside#other-players button{
+    border-radius: 0;
+    margin-bottom: 0.5rem;
+    margin-right: 0;
+    width: 16rem;
+}
+
+footer #property-view button{
     font-size: 8rem;
     background: none;
     border: none;
@@ -98,81 +169,13 @@ button:hover{
     margin: 0;
 }
 
-#property-view button:hover{
+footer #property-view button:hover{
     color: initial;
     background-color: inherit;
 }
 
-#other-players button{
-    border-radius: 0;
-    margin-bottom: 0.5rem;
-    margin-right: 0;
-}
-
-#other-players{
-    position: absolute; /* relative wrapper */
-    right: 1rem;
-    top: 15%;
-}
-
-.partially-of-screen-images{
-    position: absolute; /* relative .partially-of-screen */
-    top: 0;
-    left: 0;
-}
-
-#small-property-container img {
-    width: 100%;
-    margin-right: 2rem;
-    clip-path: inset(0 0 80% 0);
-}
-
-#small-property-container img:hover {
-    clip-path: inherit;
-}
-
-.partially-of-screen:hover {
-    overflow: inherit;
-    height: 22rem;
-}
-
-#properties-container ul {
-    display: flex;
-}
-
-#properties {
-    width: 70%;
-}
-
-#properties-container {
-    flex-flow: row wrap;
-    justify-content: space-between;
-}
-
-#properties-container article {
-    flex: 1 1 30%;
-}
-
-#properties-container article ul li {
-    flex: 0 0 25%;
-    margin-right: 1rem;
-    filter: grayscale(100%);
-}
-
-#properties-container article ul li.owned {
-    filter: grayscale(0%);
-}
-
-#properties-container article ul li img {
-    max-width: 100%;
-}
-
-.hidden {
-    display: none;
-}
-
 /* minimap */
-#map-container {
+aside#map-container {
     position: absolute; /* relative wrapper */
     bottom: 1rem;
     left: 1vw;
