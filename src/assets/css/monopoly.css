@@ -94,6 +94,11 @@ button:hover{
     background-color: inherit;
 }
 
+#other-players button{
+    border-radius: 0;
+    margin-bottom: 0.5rem;
+}
+
 #other-players{
     position: absolute; /* relative wrapper */
     right: 1rem;
