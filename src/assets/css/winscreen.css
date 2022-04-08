@@ -6,7 +6,39 @@
 body {
     font-family: "Arial", "Helvetica", serif;
     color: black;
-    background-color: white;
+    background-color: rgba(120, 144, 248, 1);
     font-size: 1rem;
+
 }
+
+h1 {
+    font-family: "nintendo", sans-serif;
+    text-align: center;
+    font-size: 5rem;
+    margin-top: 1rem;
+}
+
+button {
+    font-family: "nintendo", sans-serif;
+    font-size: 1.5rem;
+    padding: 1rem 1rem;
+    margin-right: 10rem;
+    margin-left: 10rem;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
+
+div {
+    text-align: center;
+    background-image: url("../../images/winscreen/super-mario-bros-level-completed-wall.png");
+    background-size: 50%;
+    padding-top: 1.5rem;
+    padding-bottom: 1.6rem;
+}
+
 
