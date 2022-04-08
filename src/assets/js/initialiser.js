@@ -36,7 +36,8 @@ function initMonopoly()
 
     fillProperties();
     manageGame();
-    document.querySelector("#roll-dice").addEventListener("click", getGameState);
+    document.querySelector("#roll-dice").addEventListener("click", diceRoll);
+    document.querySelector("#bankruptcy").addEventListener("click", goneBankrupt);
 }
 
 function testConnection(){

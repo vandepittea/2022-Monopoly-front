@@ -5,6 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="../assets/css/reset.css">
     <link rel="stylesheet" href="../assets/css/monopoly.css">
+    <link rel="stylesheet" href="../assets/css/bankrupt.css">
 
     <script src="../assets/js/config.js"></script>
 
@@ -15,6 +16,7 @@
     <script src="../assets/js/initialiser.js"></script>
     <script src="../assets/js/helpers.js"></script>
     <script src="../assets/js/features/gameplay.js"></script>
+    <script src="../assets/js/features/take-turn.js"></script>
     <script src="../assets/js/features/property-functionality.js"></script>
 </head>
 <body>
@@ -137,7 +139,9 @@
     <div id="t38"></div>
     <div id="t39"></div>
 </aside>
-<button type="button" id="roll-dice">Roll Dice</button>
+<div id="overlay">
+    <img src="../images/bankrupt/too_bad.jpg" alt="">
+</div>
 <footer>
     <div id="property-view">
         <div id="small-property-container" class="flex">
@@ -146,6 +150,8 @@
             </template>
         </div>
         <button type="button">Show Properties</button>
+        <button type="button" id="roll-dice">Roll Dice</button>
+        <button type="button" id="bankruptcy">Declare Bankruptcy</button>
     </div>
     <section id="balance">
         <h3><span id="balance-container">1500 (PH)</span></h3>
