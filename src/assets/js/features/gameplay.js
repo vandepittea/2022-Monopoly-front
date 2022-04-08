@@ -63,5 +63,27 @@ function injectPropertyInContainer($container, property)
 
 function injectPossibleTiles(game)
 {
-    console.log(game);
+    const $container = document.querySelector("#moves-container");
+    const $templateNode = $container.querySelector("template");
+    const activePlayer = getPlayerObject(game, game.currentPlayer);
+    const currentTile = activePlayer.currentTile;
+
+    let currentTileIdx = 0;
+    _tiles.forEach(tile =>
+    {
+        if (tile.name === currentTile)
+        {
+            currentTileIdx = tile.position;
+        }
+    });
+
+    $container.innerHTML = "";
+    $container.insertAdjacentElement('beforeend', $templateNode);
+
+    for (let i = 0; i < 12; i++)
+    {
+        const $template = $templateNode.content.firstElementChild.cloneNode(true);
+        $template.setAttribute('src', `../images/tiles/${_tiles[(currentTileIdx + i) % _tiles.length].nameAsPathParameter}.jpg`);
+        $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+    }
 }
