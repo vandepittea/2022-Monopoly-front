@@ -11,6 +11,11 @@ body {
     position: relative;
 }
 
+header{
+    width: 70%;
+    margin: 1rem auto;
+}
+
 aside#other-players{
     position: absolute; /* relative wrapper */
     right: 1rem;
