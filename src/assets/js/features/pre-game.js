@@ -41,7 +41,7 @@ function createGame(e)
 
 function createGameList()
 {
-    if (_config.token === null)
+    if (_gameData.token === null)
     {
         const $container = document.querySelector('#game-list tbody');
         const $templateNode = $container.querySelector('template');
@@ -98,7 +98,7 @@ function joinGameWithPlayer()
     fetchFromServer(`/games/${_gameID}/players`, 'POST', playerObject)
         .then(response =>
         {
-            _config.token = response;
+            _gameData.token = response;
             makeVisibleByID("waiting-screen", allDivIds);
             waitForPlayers();
         })
@@ -126,7 +126,7 @@ function waitForPlayers()
         {
             if (game.started)
             {
-                makeVisibleByID("launch-screen", allDivIds);
+                goToWaitingScreen(game);
             }
             else
             {
@@ -147,7 +147,7 @@ function addPlayersToWaitingScreen(game)
     game.players.forEach(player =>
     {
         const $template = $templateNode.content.firstElementChild.cloneNode(true);
-        $template.querySelector("img").setAttribute('src', "images/characters/mario.webp");
+        $template.querySelector("img").setAttribute('src', "images/characters/waluigi.webp");
         $template.querySelector("figcaption").innerText = player.name;
         $container.insertAdjacentHTML('beforeend', $template.outerHTML);
     });
@@ -157,4 +157,38 @@ function addPlayersToWaitingScreen(game)
         const $template = $templateNode.content.firstElementChild.cloneNode(true);
         $container.insertAdjacentHTML('beforeend', $template.outerHTML);
     }
+}
+
+function goToWaitingScreen(game)
+{
+    const $templateNode = document.querySelector('#launch-screen template');
+    const $playerContainer = document.querySelector('#other-players');
+
+    game.players.forEach(player =>
+    {
+        const $template = $templateNode.content.firstElementChild.cloneNode(true);
+        $template.querySelector('figcaption').innerText = player.name;
+        // TODO: add pawn here when our API is done
+
+        if (player.name === _nickname)
+        {
+            document.querySelector('#launch-button-and-current-player').insertAdjacentHTML('afterbegin', $template.outerHTML);
+        }
+        else
+        {
+            $playerContainer.insertAdjacentHTML('beforeend', $template.outerHTML);
+        }
+    });
+
+    makeVisibleByID("launch-screen", allDivIds);
+}
+
+function goToGame()
+{
+    _gameData.playerName = _nickname;
+    _gameData.gameID = _gameID;
+
+    saveToStorage("gameData", _gameData);
+
+    window.location.replace("pages/monopoly.html");
 }

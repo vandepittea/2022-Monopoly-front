@@ -3,7 +3,18 @@ let _currentGameState = null;
 
 function manageGame()
 {
-    fetchFromServer('/games/dummy', 'GET')
+    // TODO: delete this if-else, this exists for testing with dummy data
+    let url = null;
+    if (_gameData.gameID === null)
+    {
+        url = '/games/dummy';
+    }
+    else
+    {
+        url = `/games/${_gameData.gameID}`;
+    }
+
+    fetchFromServer(url, 'GET')
         .then (game =>
         {
             _currentGameState = game;
