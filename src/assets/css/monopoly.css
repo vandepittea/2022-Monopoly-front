@@ -96,6 +96,14 @@ footer #balance{
 }
 
 /* font styling */
+header h1{
+    color: #DC143C;
+    font-size: 1rem;
+    text-align: center;
+    text-shadow: 0 0.02rem 0.02rem #ffffff;
+    margin-bottom: 0.2rem;
+}
+
 aside#other-players h2{
     color: #DC143C;
     font-size: 3rem;
