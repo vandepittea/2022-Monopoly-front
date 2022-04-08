@@ -106,6 +106,7 @@ button:hover{
 #other-players button{
     border-radius: 0;
     margin-bottom: 0.5rem;
+    margin-right: 0;
 }
 
 #other-players{
