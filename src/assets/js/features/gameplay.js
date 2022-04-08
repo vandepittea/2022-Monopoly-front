@@ -55,7 +55,11 @@ function injectPropertyInContainer($container, property)
             $template.setAttribute('alt', `${tile.name}`);
             $template.setAttribute('name', `${tile.name}`);
 
-            $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+            const image = $template.outerHTML;
+            $container.insertAdjacentHTML('beforeend',
+                `<div class="partially-of-screen">
+                        <div class="partially-of-screen-images">${image}</div>
+                 </div>`);
         }
     });
 }

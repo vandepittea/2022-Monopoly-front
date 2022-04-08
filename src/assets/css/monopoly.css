@@ -1,76 +1,209 @@
-body
-{
-    background-color: white;
+/* blocks */
+body {
+    font-family: "Arial", "Helvetica", serif;
     color: black;
-
-    font-family: sans-serif;
     font-size: 1rem;
+    background-color: white;
 }
 
-#property-view
-{
-    width: 60%;
+#wrapper{
+    min-height: 100vh;
+    position: relative;
 }
 
-#small-property-container img
-{
-    width: 20%;
-    margin-right: 2rem;
-    clip-path: inset(0 0 80% 0);
+header{
+    width: 70%;
+    margin: 1rem auto;
 }
 
-.flex
-{
+main{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
 }
 
-#properties
-{
+aside#other-players{
+    position: absolute; /* relative wrapper */
+    right: 1rem;
+    top: 15%;
+}
+
+article#properties {
     width: 70%;
 }
 
-#properties-container
-{
+article #properties-container {
     flex-flow: row wrap;
     justify-content: space-between;
 }
 
-#properties-container article
-{
+article #properties-container article {
     flex: 1 1 30%;
 }
 
-#properties-container article ul li
-{
+article #properties-container ul {
+    display: flex;
+}
+
+article #properties-container article ul li {
     flex: 0 0 25%;
     margin-right: 1rem;
     filter: grayscale(100%);
 }
 
-#properties-container article ul li.owned
-{
+article #properties-container article ul li.owned {
     filter: grayscale(0%);
 }
 
-#properties-container article ul li img
-{
-    max-width: 100%;
+footer{
+    position: absolute; /* relative wrapper */
+    left: 22vw; /* width of minimap: 20vw */
+    bottom: 1rem;
+    width: 77vw;
+    display: flex;
+    align-items: flex-end;
 }
 
-.hidden
-{
+footer #property-view{
+    display: flex;
+    align-items: flex-end;
+    width: 85%;
+}
+
+footer #small-property-container{
+    width: 80%;
+}
+
+footer .partially-of-screen{
+    display: inline-block;
+    width: 32%;
+    position: relative;
+    height: 4.5rem;
+    overflow: hidden;
+}
+
+footer .partially-of-screen:hover {
+    overflow: inherit;
+    height: 22rem;
+}
+
+footer .partially-of-screen-images{
+    position: absolute; /* relative .partially-of-screen */
+    top: 0;
+    left: 0;
+}
+
+footer #balance{
+    width: 14%;
+}
+
+.hidden {
     display: none;
 }
 
-/* Minimap CSS */
-#map-container {
+/* font styling */
+header h1{
+    color: #DC143C;
+    font-size: 1rem;
+    text-align: center;
+    text-shadow: 0 0.02rem 0.02rem #ffffff;
+    margin-bottom: 0.2rem;
+}
+
+aside#other-players h2{
+    color: #DC143C;
+    font-size: 3rem;
+    text-align: center;
+    text-shadow: 0 0.02rem 0.02rem #ffffff;
+    margin-bottom: 1rem;
+}
+
+footer #balance h3{
+    background: linear-gradient(180deg, rgba(196, 196, 196, 0) 0%, rgba(196, 196, 196, 0.5) 100%);
+    border: 0.01rem rgba(0, 0, 0, 0.5) solid;
+    box-sizing: border-box;
+    border-radius: 10px;
+    width: 100%;
+    padding: 5rem 1rem 5rem 1rem;
+    text-align: center;
+    font-size: 2rem;
+}
+
+/* images */
+#properties-container ul img {
+    max-width: 100%;
+}
+
+footer #small-property-container img {
+    width: 100%;
+    margin-right: 2rem;
+    clip-path: inset(0 0 80% 0);
+}
+
+footer #small-property-container img:hover {
+    clip-path: inherit;
+}
+
+footer #balance h3 span{
+    background: url("../media/coin.png") no-repeat left center;
+    background-size: 4rem 4rem;
+    padding: 2rem 0rem 2rem 4.8rem;
+}
+
+/* forms */
+button {
+    display: block;
+    color: #DC143C;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 1.25rem;
+    border-style: solid;
+    border-width: 0.125rem;
+    border-color: #DC143C;
+    padding: 0.35rem 0.75rem;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+}
+
+button:hover{
+    color: white;
+    background-color: #DC143C;
+}
+
+aside#other-players button{
+    border-radius: 0;
+    margin-bottom: 0.5rem;
+    margin-right: 0;
+    width: 16rem;
+}
+
+footer #property-view button{
+    font-size: 8rem;
+    background: none;
+    border: none;
+    padding: 0;
+    height: 8.5rem;
+    margin: 0;
+}
+
+footer #property-view button:hover{
+    color: initial;
+    background-color: inherit;
+}
+
+/* minimap */
+aside#map-container {
+    position: absolute; /* relative wrapper */
+    bottom: 1rem;
+    left: 1vw;
     background-image: url("../media/monopoly-board.png");
     background-size: 100%;
     background-repeat: no-repeat;
-
-    width: 25rem;
-    height: 25rem;
-
+    width: 20vw;
+    height: 20vw;
     display: grid;
     grid-template-rows: repeat(13, 1fr);
     grid-template-columns: repeat(13, 1fr);
