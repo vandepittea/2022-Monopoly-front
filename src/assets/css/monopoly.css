@@ -94,6 +94,12 @@ button:hover{
     background-color: inherit;
 }
 
+#other-players{
+    position: absolute; /* relative wrapper */
+    right: 1rem;
+    top: 15%;
+}
+
 .partially-of-screen-images{
     position: absolute; /* relative .partially-of-screen */
     top: 0;
