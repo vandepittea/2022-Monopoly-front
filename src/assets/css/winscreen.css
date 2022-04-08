@@ -1,0 +1,12 @@
+@font-face {
+    font-family: "nintendo";
+    src: url("../fonts/Pretendo.ttf");
+}
+
+body {
+    font-family: "Arial", "Helvetica", serif;
+    color: black;
+    background-color: white;
+    font-size: 1rem;
+}
+
