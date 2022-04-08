@@ -37,6 +37,14 @@ footer{
     width: 100%;
     padding: 5rem 1rem 5rem 1rem;
     text-align: center;
+    font-size: 2rem;
+}
+
+#balance h3 span{
+    background: url("../media/coin.png") no-repeat;
+    background-size: 4rem 4rem;
+    background-position: left center;
+    padding: 2rem 0rem 2rem 4.8rem;
 }
 
 #small-property-container{
