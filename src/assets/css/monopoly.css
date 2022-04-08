@@ -29,6 +29,15 @@ footer{
     width: 14%;
 }
 
+#other-players h2{
+    color: #DC143C;
+    font-family: "nintendo", sans-serif;
+    font-size: 3rem;
+    text-align: center;
+    text-shadow: 0 0.02rem 0.02rem #ffffff;
+    margin-bottom: 1rem;
+}
+
 #balance h3{
     background: linear-gradient(180deg, rgba(196, 196, 196, 0) 0%, rgba(196, 196, 196, 0.5) 100%);
     border: 0.01rem rgba(0, 0, 0, 0.5) solid;
