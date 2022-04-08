@@ -1,0 +1,43 @@
+@font-face {
+    font-family: "nintendo";
+    src: url("../fonts/Pretendo.ttf");
+}
+
+body {
+    font-family: "nintendo", sans-serif;
+    color: black;
+    background-color: rgba(120, 144, 248, 1);
+    font-size: 1rem;
+
+}
+
+h1 {
+    text-align: center;
+    font-size: 5rem;
+    margin-top: 1rem;
+}
+
+button {
+    font-size: 1.5rem;
+    padding: 1rem 1rem;
+    margin-right: 10rem;
+    margin-left: 10rem;
+    border-radius: 0.5rem;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
+
+div {
+    text-align: center;
+    background-image: url("../media/super-mario-bros-level-completed-wall.png");
+    background-size: 50%;
+    padding-top: 1.5rem;
+    padding-bottom: 1.6rem;
+}
+
+
