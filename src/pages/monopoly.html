@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Monopoly</title>
     <link rel="stylesheet" href="../assets/css/reset.css">
     <link rel="stylesheet" href="../assets/css/monopoly.css">
 
@@ -18,144 +18,161 @@
     <script src="../assets/js/features/gameplay.js"></script>
     <script src="../assets/js/features/property-functionality.js"></script>
 </head>
+
 <body>
-<header>
-    <h1>Monopoly</h1>
-    <p>Create your wonderful and magical interface here &gt;3 </p>
-    <div id="moves-container">
-        <template>
-            <img src="../images/tiles/Atlantic.jpg" alt="Atlantic" title="Atlantic">
-        </template>
-    </div>
-</header>
-<main>
+<div id="wrapper">
+    <!-- part of game board for moves OR buttons for auctions and history -->
+    <header>
+        <h1>Monopoly</h1>
+        <div id="moves-container">
+            <template>
+                <img src="../images/tiles/Atlantic.jpg" alt="Atlantic" title="Atlantic">
+            </template>
+        </div>
+    </header>
+
+    <!-- show where the current player is on the game board (only for other players) -->
+    <aside id="current-place-on-game-board">
+
+    </aside>
+
+    <!-- load gameplay dynamically here (js) -->
+    <main>
+        <button type="button" id="roll-dice">Roll Dice</button>
+    </main>
+
+    <!-- properties and money of other players -->
+    <aside id="other-players">
+        <h2>Players</h2>
+        <button type="button">James_2008</button>
+        <button type="button">GroteBozeWolf</button>
+        <button type="button">CacheCache</button>
+        <button type="button">James_2008</button>
+        <button type="button">GroteBozeWolf</button>
+        <button type="button">CacheCache</button>
+        <button type="button">James_2008</button>
+    </aside>
+
+    <!-- minimap -->
+    <aside id="map-container">
+        <div id="t0"></div>
+        <div id="t1"></div>
+        <div id="t2"></div>
+        <div id="t3"></div>
+        <div id="t4"></div>
+        <div id="t5"></div>
+        <div id="t6"></div>
+        <div id="t7"></div>
+        <div id="t8"></div>
+        <div id="t9"></div>
+        <div id="t10"></div>
+        <div id="t11"></div>
+        <div id="t12"></div>
+        <div id="t13"></div>
+        <div id="t14"></div>
+        <div id="t15"></div>
+        <div id="t16"></div>
+        <div id="t17"></div>
+        <div id="t18"></div>
+        <div id="t19"></div>
+        <div id="t20"></div>
+        <div id="t21"></div>
+        <div id="t22"></div>
+        <div id="t23"></div>
+        <div id="t24"></div>
+        <div id="t25"></div>
+        <div id="t26"></div>
+        <div id="t27"></div>
+        <div id="t28"></div>
+        <div id="t29"></div>
+        <div id="t30"></div>
+        <div id="t31"></div>
+        <div id="t32"></div>
+        <div id="t33"></div>
+        <div id="t34"></div>
+        <div id="t35"></div>
+        <div id="t36"></div>
+        <div id="t37"></div>
+        <div id="t38"></div>
+        <div id="t39"></div>
+    </aside>
+
+    <!-- REPLACE TO JS: LOAD DYNAMICALLY IN!! -->
     <article id="properties" class="hidden">
         <h2>Properties</h2>
         <div id="properties-container" class="flex">
             <article data-streettype="purple">
                 <h3>Purple</h3>
-                <ul class="flex">
-
+                <ul>
                 </ul>
             </article>
             <article data-streettype="lightblue">
                 <h3>Lightblue</h3>
-                <ul class="flex">
-
+                <ul>
                 </ul>
             </article>
             <article data-streettype="violet">
                 <h3>Hotpink</h3>
-                <ul class="flex">
-
+                <ul>
                 </ul>
             </article>
             <article data-streettype="orange">
                 <h3>Orange</h3>
-                <ul class="flex">
-
+                <ul>
                 </ul>
             </article>
             <article data-streettype="red">
                 <h3>Red</h3>
-                <ul class="flex">
-
+                <ul>
                 </ul>
             </article>
             <article data-streettype="yellow">
                 <h3>Yellow</h3>
-                <ul class="flex">
-
+                <ul>
                 </ul>
             </article>
             <article data-streettype="darkgreen">
                 <h3>Darkgreen</h3>
-                <ul class="flex">
-
+                <ul>
                 </ul>
             </article>
             <article data-streettype="darkblue">
                 <h3>Darkblue</h3>
-                <ul class="flex">
-
+                <ul>
                 </ul>
             </article>
             <article data-streettype="railroad">
                 <h3>Railroad</h3>
-                <ul class="flex">
-
+                <ul>
                 </ul>
             </article>
             <article data-streettype="utilities">
                 <h3>Utilities</h3>
-                <ul class="flex">
-
+                <ul>
                 </ul>
             </article>
             <article data-streettype="jailcards">
                 <h3>Jailcards</h3>
-                <ul class="flex">
-
+                <ul>
                 </ul>
             </article>
         </div>
     </article>
-</main>
-<aside id="map-container">
-    <div id="t0"></div>
-    <div id="t1"></div>
-    <div id="t2"></div>
-    <div id="t3"></div>
-    <div id="t4"></div>
-    <div id="t5"></div>
-    <div id="t6"></div>
-    <div id="t7"></div>
-    <div id="t8"></div>
-    <div id="t9"></div>
-    <div id="t10"></div>
-    <div id="t11"></div>
-    <div id="t12"></div>
-    <div id="t13"></div>
-    <div id="t14"></div>
-    <div id="t15"></div>
-    <div id="t16"></div>
-    <div id="t17"></div>
-    <div id="t18"></div>
-    <div id="t19"></div>
-    <div id="t20"></div>
-    <div id="t21"></div>
-    <div id="t22"></div>
-    <div id="t23"></div>
-    <div id="t24"></div>
-    <div id="t25"></div>
-    <div id="t26"></div>
-    <div id="t27"></div>
-    <div id="t28"></div>
-    <div id="t29"></div>
-    <div id="t30"></div>
-    <div id="t31"></div>
-    <div id="t32"></div>
-    <div id="t33"></div>
-    <div id="t34"></div>
-    <div id="t35"></div>
-    <div id="t36"></div>
-    <div id="t37"></div>
-    <div id="t38"></div>
-    <div id="t39"></div>
-</aside>
-<button type="button" id="roll-dice">Roll Dice</button>
-<footer>
-    <div id="property-view">
-        <div id="small-property-container" class="flex">
-            <template>
-                <img src="" alt="" title="">
-            </template>
+
+    <!-- own properties and money -->
+    <footer>
+        <div id="property-view">
+            <div id="small-property-container" class="flex">
+                <template>
+                            <img src="" alt="" title="">
+                </template>
+            </div>
+            <button type="button">&hellip;</button>
         </div>
-        <button type="button">Show Properties</button>
-    </div>
-    <section id="balance">
-        <h3><span id="balance-container">1500 (PH)</span></h3>
-    </section>
-</footer>
+        <section id="balance">
+            <h3><span id="balance-container">1</span></h3>
+        </section>
+    </footer>
+</div>
 </body>
 </html>

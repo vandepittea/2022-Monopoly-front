@@ -56,13 +56,16 @@ function injectPropertyInContainer($container, property)
             $template.setAttribute('alt', `${tile.name}`);
             $template.setAttribute('name', `${tile.name}`);
 
-            $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+            const image = $template.outerHTML;
+            $container.insertAdjacentHTML('beforeend',
+                `<div class="partially-of-screen">
+                        <div class="partially-of-screen-images">${image}</div>
+                 </div>`);
         }
     });
 }
 
-function injectPossibleTiles(game)
-{
+function injectPossibleTiles(game) {
     const $container = document.querySelector("#moves-container");
     const $templateNode = $container.querySelector("template");
     const activePlayer = getPlayerObject(game, game.currentPlayer);
@@ -83,7 +86,11 @@ function injectPossibleTiles(game)
     for (let i = 0; i < 12; i++)
     {
         const $template = $templateNode.content.firstElementChild.cloneNode(true);
-        $template.setAttribute('src', `../images/tiles/${_tiles[(currentTileIdx + i) % _tiles.length].nameAsPathParameter}.jpg`);
+        const tile = _tiles[(currentTileIdx + i) % _tiles.length];
+
+        $template.setAttribute('src', `../images/tiles/${tile.nameAsPathParameter}.jpg`);
+        $template.setAttribute('alt', `${tile.name}`);
+        $template.setAttribute('title', `${tile.name}`);
         $container.insertAdjacentHTML('beforeend', $template.outerHTML);
     }
 }
