@@ -86,6 +86,7 @@ button:hover{
     border: none;
     padding: 0;
     height: 8.5rem;
+    margin: 0;
 }
 
 #property-view button:hover{
