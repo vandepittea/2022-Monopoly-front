@@ -131,7 +131,7 @@ footer #balance h3{
 }
 
 /* images */
-article #properties-container article ul li img {
+#properties-container ul img {
     max-width: 100%;
 }
 
