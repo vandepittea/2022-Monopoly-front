@@ -3,7 +3,18 @@ let _currentGameState = null;
 
 function manageGame()
 {
-    fetchFromServer('/games/dummy', 'GET')
+    // TODO: delete this if-else, this exists for testing with dummy data
+    let url = null;
+    if (_gameData.gameID === null)
+    {
+        url = '/games/dummy';
+    }
+    else
+    {
+        url = `/games/${_gameData.gameID}`;
+    }
+
+    fetchFromServer(url, 'GET')
         .then (game =>
         {
             _currentGameState = game;
@@ -44,7 +55,11 @@ function injectPropertyInContainer($container, property)
             $template.setAttribute('alt', `${tile.name}`);
             $template.setAttribute('name', `${tile.name}`);
 
-            $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+            const image = $template.outerHTML;
+            $container.insertAdjacentHTML('beforeend',
+                `<div class="partially-of-screen">
+                        <div class="partially-of-screen-images">${image}</div>
+                 </div>`);
         }
     });
 }
