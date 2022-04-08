@@ -40,8 +40,39 @@ footer{
     margin-bottom: -0.5rem /* negative value for correction of position */
 }
 
-#small-property-container button{
+button {
+    display: block;
+    color: #DC143C;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 1.25rem;
+    border-style: solid;
+    border-width: 0.125rem;
+    border-color: #DC143C;
+    padding: 0.35rem 0.75rem;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+}
+
+button:hover{
+    color: white;
+    background-color: #DC143C;
+}
+
+#property-view button{
     display: inline-block;
+    font-size: 8rem;
+    background: none;
+    border: none;
+    outline: inherit;
+    padding: 0;
+}
+
+#property-view button:hover{
+    color: initial;
+    background-color: inherit;
 }
 
 .partially-of-screen-images{
