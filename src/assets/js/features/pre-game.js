@@ -41,7 +41,7 @@ function createGame(e)
 
 function createGameList()
 {
-    if (_config.token === null)
+    if (_gameData.token === null)
     {
         const $container = document.querySelector('#game-list tbody');
         const $templateNode = $container.querySelector('template');
@@ -98,7 +98,7 @@ function joinGameWithPlayer()
     fetchFromServer(`/games/${_gameID}/players`, 'POST', playerObject)
         .then(response =>
         {
-            _config.token = response;
+            _gameData.token = response;
             makeVisibleByID("waiting-screen", allDivIds);
             waitForPlayers();
         })
@@ -181,4 +181,14 @@ function goToWaitingScreen(game)
     });
 
     makeVisibleByID("launch-screen", allDivIds);
+}
+
+function goToGame()
+{
+    _gameData.playerName = _nickname;
+    _gameData.gameID = _gameID;
+
+    saveToStorage("gameData", _gameData);
+
+    window.location.replace("pages/monopoly.html");
 }
