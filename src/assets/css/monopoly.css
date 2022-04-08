@@ -16,6 +16,10 @@ header{
     margin: 1rem auto;
 }
 
+main{
+
+}
+
 aside#other-players{
     position: absolute; /* relative wrapper */
     right: 1rem;
