@@ -9,7 +9,7 @@ function makeVisibleByID(idToActivate, allIDs)
     document.querySelector(`#${idToActivate}`).classList.remove("hidden");
 }
 
-function getYourPlayerObject(game)
+function getPlayerObject(game, playerName)
 {
     if (_gameData.token === null)
     {
@@ -17,15 +17,15 @@ function getYourPlayerObject(game)
     }
     else
     {
-        let ownPlayer = null;
+        let playerObject = null;
         game.players.forEach(player =>
         {
-           if (player.name === _gameData.playerName)
+           if (playerName === _gameData.playerName)
            {
-               ownPlayer = player;
+               playerObject = player;
            }
         });
-        return ownPlayer;
+        return playerObject;
     }
 }
 

@@ -18,6 +18,7 @@ function manageGame()
         .then (game =>
         {
             _currentGameState = game;
+            injectPossibleTiles(game);
             injectProperties(game);
             injectBalance(game);
         })
@@ -28,14 +29,14 @@ function injectBalance(game)
 {
     const $balanceContainer = document.querySelector('#balance-container');
     //Using dummy data, need to change to own's player money.
-    $balanceContainer.innerHTML = getYourPlayerObject(game).money;
+    $balanceContainer.innerHTML = getPlayerObject(game, _gameData.playerName).money;
     console.log("added the balance of the dummy game");
 }
 
 function injectProperties(game)
 {
     const $smallPropertyContainer = document.querySelector('#small-property-container');
-    getYourPlayerObject(game).properties.forEach(function(property, index)
+    getPlayerObject(game, _gameData.playerName).properties.forEach(function(property, index)
     {
         if (index < 3)
         {
