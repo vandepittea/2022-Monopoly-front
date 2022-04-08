@@ -126,7 +126,7 @@ function waitForPlayers()
         {
             if (game.started)
             {
-                makeVisibleByID("launch-screen", allDivIds);
+                goToWaitingScreen(game);
             }
             else
             {
@@ -147,7 +147,7 @@ function addPlayersToWaitingScreen(game)
     game.players.forEach(player =>
     {
         const $template = $templateNode.content.firstElementChild.cloneNode(true);
-        $template.querySelector("img").setAttribute('src', "images/characters/mario.webp");
+        $template.querySelector("img").setAttribute('src', "images/characters/waluigi.webp");
         $template.querySelector("figcaption").innerText = player.name;
         $container.insertAdjacentHTML('beforeend', $template.outerHTML);
     });
@@ -157,4 +157,28 @@ function addPlayersToWaitingScreen(game)
         const $template = $templateNode.content.firstElementChild.cloneNode(true);
         $container.insertAdjacentHTML('beforeend', $template.outerHTML);
     }
+}
+
+function goToWaitingScreen(game)
+{
+    const $templateNode = document.querySelector('#launch-screen template');
+    const $playerContainer = document.querySelector('#other-players');
+
+    game.players.forEach(player =>
+    {
+        const $template = $templateNode.content.firstElementChild.cloneNode(true);
+        $template.querySelector('figcaption').innerText = player.name;
+        // TODO: add pawn here when our API is done
+
+        if (player.name === _nickname)
+        {
+            document.querySelector('#launch-button-and-current-player').insertAdjacentHTML('afterbegin', $template.outerHTML);
+        }
+        else
+        {
+            $playerContainer.insertAdjacentHTML('beforeend', $template.outerHTML);
+        }
+    });
+
+    makeVisibleByID("launch-screen", allDivIds);
 }
