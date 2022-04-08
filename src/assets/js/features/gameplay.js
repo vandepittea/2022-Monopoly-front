@@ -5,7 +5,7 @@ function manageGame()
 {
     // TODO: delete this if-else, this exists for testing with dummy data
     let url = null;
-    if (_gameData.gameID === null)
+    if (_gameData.token === null)
     {
         url = '/games/dummy';
     }
@@ -28,14 +28,14 @@ function injectBalance(game)
 {
     const $balanceContainer = document.querySelector('#balance-container');
     //Using dummy data, need to change to own's player money.
-    $balanceContainer.innerHTML = game.players[0].money;
+    $balanceContainer.innerHTML = getYourPlayerObject(game).money;
     console.log("added the balance of the dummy game");
 }
 
 function injectProperties(game)
 {
     const $smallPropertyContainer = document.querySelector('#small-property-container');
-    game.players[0].properties.forEach(function(property, index)
+    getYourPlayerObject(game).properties.forEach(function(property, index)
     {
         if (index < 3)
         {
@@ -58,4 +58,9 @@ function injectPropertyInContainer($container, property)
             $container.insertAdjacentHTML('beforeend', $template.outerHTML);
         }
     });
+}
+
+function injectPossibleTiles(game)
+{
+    console.log(game);
 }
