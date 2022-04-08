@@ -21,6 +21,11 @@ body {
     margin-bottom: 3rem;
 }
 
+#wrapper .hidden
+{
+    display: none;
+}
+
 main{
     width: 100%;
 }
@@ -30,37 +35,54 @@ main{
     align-items: flex-end;
 }
 
-#login article, article#game-list, article#create-game-screen, article#character-screen {
+article {
     background-color: lightgray;
     padding: 10rem 1rem 10rem 1rem;
     border-radius: 2rem;
     text-align: center;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 article#game-list, article#create-game-screen, article#character-screen{
-    width: 75%;
-    margin-left: auto;
-    margin-right: auto;
     padding: 3rem;
 }
 
-article#waiting-screen{
-    width: 75%;
-    margin-left: auto;
-    margin-right: auto;
+article#waiting-screen, div#launch-screen{
+    background-color: inherit;
+    padding: 0;
 }
 
 #login aside{
     width: 22.5%;
 }
 
-#wrapper .hidden
-{
-    display: none;
+#character-screen div, #waiting-screen div{
+    display: flex;
+    flex-flow: wrap;
+    width: 45%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+}
+
+#launch-screen div{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+#launch-screen #launch-button-and-current-player{
+    width: 60%;
+    margin: 3rem auto 0 auto;
+    justify-content: center;
+    align-items: center;
 }
 
 /* font styling */
-#login h1, #game-list h2, #create-game-screen h2, #character-screen h2, #waiting-screen h2{
+h1, h2{
     color: #DC143C;
     font-family: "nintendo", sans-serif;
     font-size: 4rem;
@@ -80,12 +102,16 @@ article#waiting-screen{
     margin-bottom: 2rem;
 }
 
-#waiting-screen figcaption{
+figcaption{
     font-family: "nintendo", sans-serif;
     font-size: 1rem;
     font-weight: bold;
     text-align: center;
     margin: 0.8rem 0 0.5rem 0;
+}
+
+#launch-button-and-current-player figcaption{
+    font-size: 1.5rem;
 }
 
 /* images */
@@ -100,22 +126,9 @@ header img{
     margin: 0 auto 1rem auto;
 }
 
-#login aside img{
-    width: 100%;
-}
-
 #mario-img{
     margin-left: -4rem; /* Overlap with form */
     z-index: 999;
-}
-
-#character-screen div, #waiting-screen div{
-    display: flex;
-    flex-flow: wrap;
-    width: 45%;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: space-between;
 }
 
 #character-screen img{
@@ -125,12 +138,26 @@ header img{
 }
 
 #waiting-screen figure{
-    flex: 1 1 19%;
+    flex: 0 0 19%;
     width: 1rem;
     margin: 0.4rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+}
+
+#login aside img{
+    width: 100%;
+}
+
+#launch-screen div img{
+    width: 5rem;
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
+}
+
+#launch-screen #launch-button-and-current-player img{
+    width: 14rem;
 }
 
 /* forms */
@@ -180,6 +207,25 @@ button:hover{
     background-color: #DC143C;
 }
 
+button#create-game{
+    font-size: 1.5rem;
+    border-radius: 0;
+    display: inline-block;
+    vertical-align: top;
+    float: right;
+}
+
+#game-list button{
+    display: inline;
+    font-size: 1rem;
+    margin: 1rem;
+}
+
+#launch-button-and-current-player button{
+    border-radius: 0;
+    font-size: 3rem;
+}
+
 input, textarea, select{
     box-sizing: border-box;
 }
@@ -217,16 +263,6 @@ tbody tr:nth-of-type(odd){
     background-color: #e9e9e9;
 }
 
-#game-list button{
-    display: inline;
-    font-size: 1rem;
-    margin: 1rem;
-}
-
-button#create-game{
-    font-size: 1.5rem;
-    border-radius: 0;
-    display: inline-block;
-    vertical-align: top;
-    float: right;
+tbody td li{
+    margin-bottom: 1.5rem;
 }

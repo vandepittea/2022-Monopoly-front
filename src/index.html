@@ -10,12 +10,14 @@
 
 
     <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/screen.css">
+    <link rel="stylesheet" href="assets/css/startup.css">
 
     <script src="assets/js/config.js"></script>
 
     <script src="assets/js/data-connector/error-handler.js"></script>
     <script src="assets/js/data-connector/api-communication-abstractor.js"></script>
+    <script src="assets/js/data-connector/local-storage-abstractor.js"></script>
+    <script src="assets/js/data.js"></script>
 
     <script src="assets/js/initialiser.js"></script>
     <script src="assets/js/helpers.js"></script>
@@ -68,7 +70,7 @@
                                 <td>
                                     <ul></ul>
                                 </td>
-                                <td>3 out of 4</td>
+                                <td><span id="active-players">3</span> out of <span id="max-players">4</span></td>
                                 <td>
                                     <button type="button">Join game</button>
                                 </td>
@@ -104,38 +106,31 @@
             <article id="waiting-screen" class="hidden">
                 <h2>Wait for other players</h2>
                 <div>
-                    <figure>
-                        <img src="images/characters/mario.webp" title="Mario" alt="Mario">
-                        <figcaption>Timixo</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="images/characters/toad.webp" title="Toad" alt="Toad">
-                        <figcaption>CacheCache</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="images/characters/princess-peach.webp" title="Princess Peach" alt="Princess Peach">
-                        <figcaption>GroteBozeWolf</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="images/characters/toadette.webp" title="Toadette" alt="Toadette">
-                        <figcaption>JanAlleMan</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="images/characters/waluigi.webp" title="Waluigi" alt="Waluigi">
-                        <figcaption>MariMerio</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="images/characters/mario-waiting.png" title="Mario" alt="Mario">
-                        <figcaption></figcaption>
-                    </figure>
-                    <figure>
-
-                    </figure>
-                    <figure>
-
-                    </figure>
+                    <template>
+                        <figure>
+                            <img src="images/characters/mario-waiting.png" title="player" alt="player">
+                            <figcaption></figcaption>
+                        </figure>
+                    </template>
                 </div>
             </article>
+            <div id="launch-screen" class="hidden">
+                <template>
+                    <figure>
+                        <img src="images/characters/waluigi.webp" title="Waluigi" alt="Waluigi">
+                        <figcaption>Timixo</figcaption>
+                    </figure>
+                </template>
+                <div id="launch-button-and-current-player">
+
+
+                    <button type="button">Launch game</button>
+                </div>
+
+                <div id="other-players">
+
+                </div>
+            </div>
             <div class="errormessages">
                 <p></p>
             </div>

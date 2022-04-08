@@ -1,7 +1,31 @@
 "use strict";
 
-function switchVisibleDivs(idOfDivToHide, idOfDivToShow)
+function makeVisibleByID(idToActivate, allIDs)
 {
-    document.querySelector(`#${idOfDivToHide}`).classList.add("hidden");
-    document.querySelector(`#${idOfDivToShow}`).classList.remove("hidden");
+    allIDs.forEach(id =>
+    {
+        document.querySelector(`#${id}`).classList.add("hidden");
+    });
+    document.querySelector(`#${idToActivate}`).classList.remove("hidden");
 }
+
+function getPlayerObject(game, playerName)
+{
+    if (_gameData.token === null)
+    {
+        return game.players[0];
+    }
+    else
+    {
+        let playerObject = null;
+        game.players.forEach(player =>
+        {
+           if (playerName === _gameData.playerName)
+           {
+               playerObject = player;
+           }
+        });
+        return playerObject;
+    }
+}
+
