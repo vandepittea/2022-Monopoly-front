@@ -3,8 +3,6 @@
 document.addEventListener('DOMContentLoaded',init);
 
 function init(){
-    testConnection();
-
     if (document.URL.includes("index.html"))
     {
         initPreGame();
@@ -50,8 +48,4 @@ function initMonopoly()
     manageGame();
     document.querySelector("#roll-dice").addEventListener("click", diceRoll);
     document.querySelector("#bankruptcy").addEventListener("click", goneBankrupt);
-}
-
-function testConnection(){
-    fetchFromServer('/tiles','GET').then(tiles => console.log(tiles)).catch(errorHandler);
 }
