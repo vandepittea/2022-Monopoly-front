@@ -95,28 +95,27 @@ function injectPossibleTiles(game) {
     }
 }
 
-function fillPlayerButtons()
-{
+function fillPlayerButtons() {
     let url = null;
-    if (_gameData.token === null)
-    {
+    if (_gameData.token === null) {
         url = '/games/dummy';
     }
-    else
-    {
+    else {
         url = `/games/${_gameData.gameID}`;
     }
 
     fetchFromServer(url, 'GET')
-        .then(game =>
-        {
+        .then(game => {
             const $container = document.querySelector("#other-players div");
             const $templateNode = document.querySelector("#other-players template");
-            game.players.forEach(player =>
-            {
-                const $template = $templateNode.content.firstElementChild.cloneNode(true);
-                $template.innerText = player.name;
-                $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+            game.players.forEach(player => {
+                if (player.name !== _gameData.playerName)
+                {
+                    const $template = $templateNode.content.firstElementChild.cloneNode(true);
+                    $template.dataset.player = player.name;
+                    $template.innerText = player.name;
+                    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+                }
             });
         })
         .catch(errorHandler);
@@ -129,5 +128,5 @@ function showPlayerInfo(e)
         return;
     }
 
-    console.log(`Showing info of player ${e.target.innerText}`);
+    console.log(`Showing info of player ${e.target.dataset.player}`);
 }
