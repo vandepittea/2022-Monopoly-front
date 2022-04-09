@@ -29,14 +29,14 @@ function fillProperties()
 
 function activateCurrentPlayersProperties()
 {
-    if (_gameData.token === null)
-    {
-        activateProperties(_currentGameState.players[0]);
-    }
-    else
-    {
-        activateProperties(getPlayerObject(_currentGameState, _gameData.playerName));
-    }
+    activateProperties(getPlayerObject(_currentGameState, _gameData.playerName));
+}
+
+function activatePlayerProperties(e)
+{
+    const player = getPlayerObject(_currentGameState, e.target.closest("article").dataset.player);
+    document.querySelector("#other-player-overview").classList.add("hidden");
+    activateProperties(player);
 }
 
 function activateProperties(player)

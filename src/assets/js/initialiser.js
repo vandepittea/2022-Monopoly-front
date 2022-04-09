@@ -47,6 +47,7 @@ function initMonopoly()
     // This doesn't work because the #bankruptcy is not in the html anymore
     //document.querySelector("#bankruptcy").addEventListener("click", goneBankrupt);
     document.querySelector("#other-players div").addEventListener("click", showPlayerInfo);
+    document.querySelector("#other-player-overview button").addEventListener("click", activatePlayerProperties);
 
     fillProperties();
     fillPlayerButtons();
