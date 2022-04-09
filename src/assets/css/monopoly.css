@@ -186,8 +186,10 @@ button {
     border-width: 0.125rem;
     border-color: #DC143C;
     padding: 0.35rem 0.75rem;
+    /*
     margin-left: auto;
     margin-right: auto;
+     */
     background-color: white;
 }
 

@@ -128,5 +128,20 @@ function showPlayerInfo(e)
         return;
     }
 
-    console.log(`Showing info of player ${e.target.dataset.player}`);
+    const $otherPlayerWindow = document.querySelector("#other-player-overview");
+
+    if (!$otherPlayerWindow.classList.contains("hidden"))
+    {
+        $otherPlayerWindow.classList.add("hidden");
+    }
+    else
+    {
+        $otherPlayerWindow.classList.remove("hidden");
+
+        const playerName = e.target.dataset.player;
+        $otherPlayerWindow.dataset.player = playerName;
+        const player = getPlayerObject(_currentGameState, playerName);
+        $otherPlayerWindow.querySelector("h2").innerText = player.name;
+        $otherPlayerWindow.querySelector("p").innerText = player.money;
+    }
 }
