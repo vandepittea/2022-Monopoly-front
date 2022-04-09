@@ -24,6 +24,8 @@ function manageGame()
             syncPlayersToMinimap(game);
         })
         .catch(errorHandler);
+
+    setTimeout(manageGame, 1500);
 }
 
 function injectBalance(game)
@@ -37,22 +39,27 @@ function injectBalance(game)
 function injectProperties(game)
 {
     const $smallPropertyContainer = document.querySelector('#small-property-container');
+    const $templateNode = $smallPropertyContainer.querySelector("template");
+
+    $smallPropertyContainer.innerHTML = "";
+    $smallPropertyContainer.insertAdjacentElement('afterbegin', $templateNode);
+
     getPlayerObject(game, _gameData.playerName).properties.forEach(function(property, index)
     {
         if (index < 3)
         {
-            injectPropertyInContainer($smallPropertyContainer, property);
+            injectPropertyInContainer($smallPropertyContainer, $templateNode, property);
         }
     });
 }
 
-function injectPropertyInContainer($container, property)
+function injectPropertyInContainer($container, $templateNode, property)
 {
     _tiles.forEach(tile =>
     {
         if (property.property === tile.name)
         {
-            const $template = $container.querySelector('template').content.firstElementChild.cloneNode(true);
+            const $template = $templateNode.content.firstElementChild.cloneNode(true);
             $template.setAttribute('src', `../images/deeds/${tile.nameAsPathParameter}.jpg`);
             $template.setAttribute('alt', `${tile.name}`);
             $template.setAttribute('name', `${tile.name}`);
