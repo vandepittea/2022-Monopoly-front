@@ -27,6 +27,18 @@ function fillProperties()
     });
 }
 
+function activateCurrentPlayersProperties()
+{
+    if (_gameData.token === null)
+    {
+        activateProperties(_currentGameState.players[0]);
+    }
+    else
+    {
+        activateProperties(getPlayerObject(_currentGameState, _gameData.playerName));
+    }
+}
+
 function activateProperties(player)
 {
     const $properties = document.querySelector('#properties');

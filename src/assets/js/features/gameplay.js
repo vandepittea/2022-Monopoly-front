@@ -94,3 +94,40 @@ function injectPossibleTiles(game) {
         $container.insertAdjacentHTML('beforeend', $template.outerHTML);
     }
 }
+
+function fillPlayerButtons()
+{
+    let url = null;
+    if (_gameData.token === null)
+    {
+        url = '/games/dummy';
+    }
+    else
+    {
+        url = `/games/${_gameData.gameID}`;
+    }
+
+    fetchFromServer(url, 'GET')
+        .then(game =>
+        {
+            const $container = document.querySelector("#other-players div");
+            const $templateNode = document.querySelector("#other-players template");
+            game.players.forEach(player =>
+            {
+                const $template = $templateNode.content.firstElementChild.cloneNode(true);
+                $template.innerText = player.name;
+                $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+            });
+        })
+        .catch(errorHandler);
+}
+
+function showPlayerInfo(e)
+{
+    if (e.target.nodeName.toLowerCase() !== "button")
+    {
+        return;
+    }
+
+    console.log(`Showing info of player ${e.target.innerText}`);
+}
