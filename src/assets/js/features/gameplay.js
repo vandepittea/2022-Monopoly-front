@@ -121,24 +121,22 @@ function fillPlayerButtons() {
         .catch(errorHandler);
 }
 
-function showPlayerInfo(e)
-{
+function showPlayerInfo(e) {
     if (e.target.nodeName.toLowerCase() !== "button")
     {
         return;
     }
 
     const $otherPlayerWindow = document.querySelector("#other-player-overview");
+    const playerName = e.target.dataset.player;
 
-    if (!$otherPlayerWindow.classList.contains("hidden"))
+    if (!$otherPlayerWindow.classList.contains("hidden") && ($otherPlayerWindow.dataset.player === playerName))
     {
         $otherPlayerWindow.classList.add("hidden");
     }
     else
     {
         $otherPlayerWindow.classList.remove("hidden");
-
-        const playerName = e.target.dataset.player;
         $otherPlayerWindow.dataset.player = playerName;
         const player = getPlayerObject(_currentGameState, playerName);
         $otherPlayerWindow.querySelector("h2").innerText = player.name;
