@@ -21,6 +21,7 @@ function manageGame()
             injectPossibleTiles(game);
             injectProperties(game);
             injectBalance(game);
+            syncPlayersToMinimap(game);
         })
         .catch(errorHandler);
 }
@@ -69,16 +70,8 @@ function injectPossibleTiles(game) {
     const $container = document.querySelector("#moves-container");
     const $templateNode = $container.querySelector("template");
     const activePlayer = getPlayerObject(game, game.currentPlayer);
-    const currentTile = activePlayer.currentTile;
 
-    let currentTileIdx = 0;
-    _tiles.forEach(tile =>
-    {
-        if (tile.name === currentTile)
-        {
-            currentTileIdx = tile.position;
-        }
-    });
+    const currentTileIdx = getTileIdx(activePlayer.currentTile);
 
     $container.innerHTML = "";
     $container.insertAdjacentElement('beforeend', $templateNode);

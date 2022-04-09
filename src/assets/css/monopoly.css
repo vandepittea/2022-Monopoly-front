@@ -418,3 +418,13 @@ aside#map-container {
     max-width: 5%;
     margin-right: 0.5rem;
 }
+
+#map-container div
+{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: bold;
+}
