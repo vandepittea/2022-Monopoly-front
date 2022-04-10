@@ -62,9 +62,17 @@ article #properties-container ul {
 }
 
 article #properties-container article ul li {
-    flex: 0 0 20%;
+    flex: 0 0 30%;
     margin-right: 1rem;
     filter: grayscale(100%);
+}
+
+article #properties-container article.two-cards ul li {
+    flex: 0 0 45%;
+}
+
+article #properties-container article.#railroad ul li {
+    flex: 0 0 22.5%;
 }
 
 article #properties-container article ul li.owned {
