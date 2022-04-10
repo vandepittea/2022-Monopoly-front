@@ -60,20 +60,27 @@ article #properties-container article {
 
 article #properties-container ul {
     display: flex;
+    background-color: rgba(196, 196, 196, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 1rem;
 }
 
 article #properties-container article ul li {
-    flex: 0 0 30%;
+    flex: 0 0 30.5%;
     margin-right: 1rem;
     filter: grayscale(100%);
 }
 
+article #properties-container article ul li:last-of-type {
+    margin-right: 0;
+}
+
 article #properties-container article.two-cards ul li {
-    flex: 0 0 45%;
+    flex: 0 0 47.5%;
 }
 
 article #properties-container article[data-streettype="railroad"] ul li {
-    flex: 0 0 22.5%;
+    flex: 0 0 23%;
 }
 
 article #properties-container article ul li.owned {
@@ -202,12 +209,6 @@ article #properties-container article[data-streettype="railroad"] h3{
 
 article #properties-container article[data-streettype="jailcards"] h3{
     background-color: gray;
-}
-
-article #properties-container ul{
-    background-color: rgba(196, 196, 196, 0.2);
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    padding: 1rem;
 }
 
 /* images */
