@@ -11,7 +11,7 @@ function makeVisibleByID(idToActivate, allIDs)
 
 function getPlayerObject(game, playerName)
 {
-    if (_gameData.token === null)
+    if (playerName === null)
     {
         return game.players[0];
     }
@@ -20,7 +20,7 @@ function getPlayerObject(game, playerName)
         let playerObject = null;
         game.players.forEach(player =>
         {
-           if (playerName === _gameData.playerName)
+           if (playerName === player.name)
            {
                playerObject = player;
            }
@@ -29,3 +29,15 @@ function getPlayerObject(game, playerName)
     }
 }
 
+function getTileIdx(tileName)
+{
+    let tileIdx = 0;
+    _tiles.forEach(tile =>
+    {
+        if (tile.name === tileName)
+        {
+            tileIdx = tile.position;
+        }
+    });
+    return tileIdx;
+}

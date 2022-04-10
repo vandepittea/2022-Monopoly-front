@@ -3,8 +3,6 @@
 document.addEventListener('DOMContentLoaded',init);
 
 function init(){
-    testConnection();
-
     if (document.URL.includes("index.html"))
     {
         initPreGame();
@@ -44,14 +42,25 @@ function initMonopoly()
     {
         _gameData = tempData;
     }
-    document.querySelector("#property-view button").addEventListener('click', () => activateProperties(_currentGameState.players[0]));
+    document.querySelector("#property-view button").addEventListener('click', activateCurrentPlayersProperties);
+    document.querySelector("#roll-dice").addEventListener("click", diceRoll);
+    // This doesn't work because the #bankruptcy is not in the html anymore
+    //document.querySelector("#bankruptcy").addEventListener("click", goneBankrupt);
+    document.querySelector("#other-players div").addEventListener("click", showPlayerInfo);
+    document.querySelector("#other-player-overview button").addEventListener("click", activatePlayerProperties);
+    document.querySelector("#properties button").addEventListener("click", activateProperties);
 
     fillProperties();
+    fillPlayerButtons();
     manageGame();
+<<<<<<< HEAD
     document.querySelector("#roll-dice").addEventListener("click", diceRoll);
-    document.querySelector("#bankruptcy").addEventListener("click", goneBankrupt);
+    // This line errors because there is no bankruptcy id, Yani should look into this
+    // document.querySelector("#bankruptcy").addEventListener("click", goneBankrupt);
 }
 
 function testConnection(){
     fetchFromServer('/tiles','GET').then(tiles => console.log(tiles)).catch(errorHandler);
+=======
+>>>>>>> bb66789aa8154392aa1b3277cc9cf4d89d8a4506
 }
