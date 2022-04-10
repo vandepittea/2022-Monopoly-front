@@ -27,6 +27,18 @@ function fillProperties()
     });
 }
 
+function activateCurrentPlayersProperties()
+{
+    activateProperties(getPlayerObject(_currentGameState, _gameData.playerName));
+}
+
+function activatePlayerProperties(e)
+{
+    const player = getPlayerObject(_currentGameState, e.target.closest("article").dataset.player);
+    document.querySelector("#other-player-overview").classList.add("hidden");
+    activateProperties(player);
+}
+
 function activateProperties(player)
 {
     const $properties = document.querySelector('#properties');
