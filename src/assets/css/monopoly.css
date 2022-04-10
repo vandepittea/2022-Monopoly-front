@@ -16,7 +16,7 @@ header{
     margin: 1rem auto;
 }
 
-header #moves-container {
+header #moves-container-and-auctions-and-history {
     display: flex;
     flex-flow: row nowrap;
     height: 10rem;
@@ -33,6 +33,13 @@ aside#other-players{
     position: absolute; /* relative wrapper */
     right: 1rem;
     top: 15%;
+}
+
+aside#current-place-on-game-board{
+    position: absolute; /* relative wrapper */
+    left: 1rem;
+    top: 0;
+    width: 15rem;
 }
 
 article#properties {
@@ -137,12 +144,11 @@ footer #balance h3{
 }
 
 /* images */
-#properties-container ul img {
+img{
     max-width: 100%;
 }
 
 footer #small-property-container img {
-    width: 100%;
     margin-right: 2rem;
     clip-path: inset(0 0 80% 0);
 }
@@ -177,6 +183,13 @@ button {
 button:hover{
     color: white;
     background-color: #DC143C;
+}
+
+header button{
+    width: 40%;
+    height: 3rem;
+    border-radius: 0;
+    margin-top: 1rem;
 }
 
 aside#other-players button{
