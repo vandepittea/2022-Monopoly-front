@@ -124,7 +124,7 @@ header h1{
     margin-bottom: 0.2rem;
 }
 
-aside#other-players h2{
+aside#other-players h2, #properties h2{
     color: #DC143C;
     font-size: 3rem;
     text-align: center;
