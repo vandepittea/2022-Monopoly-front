@@ -26,16 +26,19 @@
     <!-- part of game board for moves OR buttons for auctions and history -->
     <header>
         <h1>Monopoly</h1>
-        <div id="moves-container">
+        <div id="moves-container-and-auctions-and-history">
             <template>
                 <img src="../images/tiles/Atlantic.jpg" alt="Atlantic" title="Atlantic">
             </template>
+
+            <button type="button">Auctions</button>
+            <button type="button">History</button>
         </div>
     </header>
 
     <!-- show where the current player is on the game board (only for other players) -->
     <aside id="current-place-on-game-board">
-
+        <img src="../images/tiles/Atlantic.jpg" alt="Atlantic" title="Atlantic"/>
     </aside>
 
     <!-- load gameplay dynamically here (js) -->
