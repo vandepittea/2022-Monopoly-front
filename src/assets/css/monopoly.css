@@ -157,8 +157,51 @@ footer #balance h3{
 article #properties-container h3{
     text-align: center;
     color: white;
-    background-color: #D73A95;
     line-height: 3rem;
+}
+
+article #properties-container article[data-streettype="purple"] h3{
+    background-color: #D73A95;
+}
+
+article #properties-container article[data-streettype="darkblue"] h3{
+    background-color: #0072BB;
+}
+
+article #properties-container article[data-streettype="utilities"] h3{
+    background-color: black;
+}
+
+article #properties-container article[data-streettype="lightblue"] h3{
+    background-color: #81c9ec;
+}
+
+article #properties-container article[data-streettype="violet"] h3{
+    background-color: #8F00FF;
+}
+
+article #properties-container article[data-streettype="orange"] h3{
+    background-color: #F7941D;
+}
+
+article #properties-container article[data-streettype="red"] h3{
+    background-color: #ED1B24;
+}
+
+article #properties-container article[data-streettype="yellow"] h3{
+    background-color: #cbc105;
+}
+
+article #properties-container article[data-streettype="darkgreen"] h3{
+    background-color: #1FB25A;
+}
+
+article #properties-container article[data-streettype="railroad"] h3{
+    background-color: #676767;
+}
+
+article #properties-container article[data-streettype="jailcards"] h3{
+    background-color: gray;
 }
 
 article #properties-container ul{
@@ -166,7 +209,6 @@ article #properties-container ul{
     border: 1px solid rgba(0, 0, 0, 0.5);
     padding: 1rem;
 }
-
 
 /* images */
 img{
