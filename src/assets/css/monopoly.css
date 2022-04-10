@@ -35,6 +35,13 @@ aside#other-players{
     top: 15%;
 }
 
+aside#current-place-on-game-board{
+    position: absolute; /* relative wrapper */
+    left: 1rem;
+    top: 0;
+    width: 15rem;
+}
+
 article#properties {
     width: 70%;
 }
@@ -137,12 +144,11 @@ footer #balance h3{
 }
 
 /* images */
-#properties-container ul img {
+img{
     max-width: 100%;
 }
 
 footer #small-property-container img {
-    width: 100%;
     margin-right: 2rem;
     clip-path: inset(0 0 80% 0);
 }
