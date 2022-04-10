@@ -29,3 +29,15 @@ function getPlayerObject(game, playerName)
     }
 }
 
+function getTileIdx(tileName)
+{
+    let tileIdx = 0;
+    _tiles.forEach(tile =>
+    {
+        if (tile.name === tileName)
+        {
+            tileIdx = tile.position;
+        }
+    });
+    return tileIdx;
+}

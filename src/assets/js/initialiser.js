@@ -53,4 +53,14 @@ function initMonopoly()
     fillProperties();
     fillPlayerButtons();
     manageGame();
+<<<<<<< HEAD
+    document.querySelector("#roll-dice").addEventListener("click", diceRoll);
+    // This line errors because there is no bankruptcy id, Yani should look into this
+    // document.querySelector("#bankruptcy").addEventListener("click", goneBankrupt);
+}
+
+function testConnection(){
+    fetchFromServer('/tiles','GET').then(tiles => console.log(tiles)).catch(errorHandler);
+=======
+>>>>>>> bb66789aa8154392aa1b3277cc9cf4d89d8a4506
 }

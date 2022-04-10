@@ -408,3 +408,11 @@ aside#map-container {
     margin: auto;
     width: 40%;
 }
+
+#map-container div {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
