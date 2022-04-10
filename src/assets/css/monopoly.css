@@ -71,7 +71,7 @@ article #properties-container article.two-cards ul li {
     flex: 0 0 45%;
 }
 
-article #properties-container article.#railroad ul li {
+article #properties-container article#railroad ul li {
     flex: 0 0 22.5%;
 }
 
