@@ -44,6 +44,7 @@ aside#current-place-on-game-board{
 
 article#properties {
     width: 70%;
+    margin-bottom: 1rem;
 }
 
 article #properties-container {
@@ -260,7 +261,7 @@ header button{
     margin-top: 1rem;
 }
 
-article#properties button{
+article#properties > button{
     position: absolute; /* relative wrapper */
     top: 0;
     right: 1rem;
@@ -288,7 +289,13 @@ footer #property-view button{
     margin: 0;
 }
 
-footer #property-view button:hover, article#properties button:hover{
+article#properties #properties-container button{
+    height: 3rem;
+    align-self: flex-end;
+    z-index: 2;
+}
+
+footer #property-view button:hover, article#properties > button:hover{
     color: initial;
     background-color: inherit;
 }
