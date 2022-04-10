@@ -26,7 +26,7 @@
     <!-- part of game board for moves OR buttons for auctions and history -->
     <header>
         <h1>Monopoly</h1>
-        <div id="moves-container-and-auctions-and-history" class="hidden">
+        <div id="moves-container-and-auctions-and-history">
             <template>
                 <img src="../images/tiles/Atlantic.jpg" alt="Atlantic" title="Atlantic">
             </template>
@@ -43,7 +43,7 @@
 
     <!-- load gameplay dynamically here (js) -->
     <main>
-        <button type="button" id="roll-dice" class="hidden">Roll Dice</button>
+        <button type="button" id="roll-dice">Roll Dice</button>
 
         <!-- REPLACE TO JS: LOAD DYNAMICALLY IN!! -->
         <article id="properties">
@@ -129,7 +129,7 @@
     </aside>
 
     <!-- minimap -->
-    <aside id="map-container" class="hidden">
+    <aside id="map-container">
         <div id="t0"></div>
         <div id="t1"></div>
         <div id="t2"></div>
@@ -175,12 +175,12 @@
     <!-- own properties and money -->
     <footer>
         <div id="property-view">
-            <div id="small-property-container" class="flex" class="hidden">
+            <div id="small-property-container">
                 <template>
                             <img src="" alt="" title="">
                 </template>
             </div>
-            <button type="button" class="hidden">&hellip;</button>
+            <button type="button">&hellip;</button>
         </div>
         <section id="balance">
             <h3><span id="balance-container">1</span></h3>
