@@ -91,3 +91,52 @@ function injectPossibleTiles(game) {
         $container.insertAdjacentHTML('beforeend', $template.outerHTML);
     }
 }
+
+function fillPlayerButtons() {
+    let url = null;
+    if (_gameData.token === null) {
+        url = '/games/dummy';
+    }
+    else {
+        url = `/games/${_gameData.gameID}`;
+    }
+
+    fetchFromServer(url, 'GET')
+        .then(game => {
+            const $container = document.querySelector("#other-players div");
+            const $templateNode = document.querySelector("#other-players template");
+            game.players.forEach(player => {
+                if (player.name !== _gameData.playerName)
+                {
+                    const $template = $templateNode.content.firstElementChild.cloneNode(true);
+                    $template.dataset.player = player.name;
+                    $template.innerText = player.name;
+                    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+                }
+            });
+        })
+        .catch(errorHandler);
+}
+
+function showPlayerInfo(e) {
+    if (e.target.nodeName.toLowerCase() !== "button")
+    {
+        return;
+    }
+
+    const $otherPlayerWindow = document.querySelector("#other-player-overview");
+    const playerName = e.target.dataset.player;
+
+    if (!$otherPlayerWindow.classList.contains("hidden") && ($otherPlayerWindow.dataset.player === playerName))
+    {
+        $otherPlayerWindow.classList.add("hidden");
+    }
+    else
+    {
+        $otherPlayerWindow.classList.remove("hidden");
+        $otherPlayerWindow.dataset.player = playerName;
+        const player = getPlayerObject(_currentGameState, playerName);
+        $otherPlayerWindow.querySelector("h2").innerText = player.name;
+        $otherPlayerWindow.querySelector("p").innerText = player.money;
+    }
+}

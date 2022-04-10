@@ -41,18 +41,22 @@
     <!-- load gameplay dynamically here (js) -->
     <main>
         <button type="button" id="roll-dice">Roll Dice</button>
+        <article id="other-player-overview" class="hidden">
+            <h2>PlayerName</h2>
+            <p>1500</p>
+            <button type="button">Show Properties</button>
+        </article>
     </main>
 
     <!-- properties and money of other players -->
     <aside id="other-players">
         <h2>Players</h2>
-        <button type="button">James_2008</button>
-        <button type="button">GroteBozeWolf</button>
-        <button type="button">CacheCache</button>
-        <button type="button">James_2008</button>
-        <button type="button">GroteBozeWolf</button>
-        <button type="button">CacheCache</button>
-        <button type="button">James_2008</button>
+        <template>
+            <button type="button"></button>
+        </template>
+        <div>
+
+        </div>
     </aside>
 
     <!-- minimap -->
@@ -102,6 +106,7 @@
     <!-- REPLACE TO JS: LOAD DYNAMICALLY IN!! -->
     <article id="properties" class="hidden">
         <h2>Properties</h2>
+        <button type="button">Close property window</button>
         <div id="properties-container" class="flex">
             <article data-streettype="purple">
                 <h3>Purple</h3>
