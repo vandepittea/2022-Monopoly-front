@@ -111,7 +111,7 @@ footer #balance{
     width: 14%;
 }
 
-.hidden {
+body #wrapper .hidden {
     display: none;
 }
 
