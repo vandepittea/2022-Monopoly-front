@@ -29,9 +29,7 @@ function manageGame() {
 
 function injectBalance(game) {
     const $balanceContainer = document.querySelector('#balance-container');
-    //Using dummy data, need to change to own's player money.
     $balanceContainer.innerHTML = getPlayerObject(game, _gameData.playerName).money;
-    console.log("added the balance of the dummy game");
 }
 
 function injectProperties(game) {
@@ -84,5 +82,23 @@ function injectPossibleTiles(game) {
         $template.setAttribute('alt', `${tile.name}`);
         $template.setAttribute('title', `${tile.name}`);
         $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+    }
+}
+
+function rollDice()
+{
+    if (_gameData.token !== null)
+    {
+        if (_currentGameState.currentPlayer === _gameData.playerName)
+        {
+            fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/dice`, 'POST')
+                .then(response =>
+                {
+                    console.log(response);
+                    _currentGameState = response;
+                    console.log(`${_gameData.playerName} rolled a ${_currentGameState.lastDiceRoll[0]} and a ${_currentGameState.lastDiceRoll[1]}`);
+                })
+                .catch(errorHandler);
+        }
     }
 }
