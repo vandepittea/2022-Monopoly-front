@@ -21,6 +21,7 @@ function getPlayerObject(game, playerName)
         game.players.forEach(player =>
         {
            if (playerName === player.name)
+           if (player.name === playerName)
            {
                playerObject = player;
            }
