@@ -16,7 +16,7 @@ header{
     margin: 1rem auto;
 }
 
-header #moves-container {
+header #moves-container-and-auctions-and-history {
     display: flex;
     flex-flow: row nowrap;
     height: 10rem;
