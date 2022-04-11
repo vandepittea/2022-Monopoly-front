@@ -7,13 +7,14 @@ body {
 }
 
 #wrapper{
-    min-height: 100vh;
+    min-height: 99vh;
+    margin-bottom: 1vh;
     position: relative;
 }
 
 header{
     width: 70%;
-    margin: 1rem auto;
+    margin: 0 auto 1rem auto;
 }
 
 header #moves-container-and-auctions-and-history {
@@ -27,7 +28,7 @@ main{
     justify-content: center;
     align-items: center;
     min-height: 70vh;
-    padding-bottom: 10rem;
+    padding-bottom: 7rem;
 }
 
 aside#other-players{
