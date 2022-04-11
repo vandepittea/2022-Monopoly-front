@@ -13,21 +13,22 @@ function manageGame() {
     fetchFromServer(url, 'GET')
         .then(game => {
             _currentGameState = game;
-            if (game.currentPlayer === _gameData.playerName) {
-                //All things specific for the active player goes here
-                injectPossibleTiles(game);
-            } else {
-                //All things specific for non-active players go here
-            }
 
             //All things that needs to be shown for both go here
             injectProperties(game);
             injectBalance(game);
             syncPlayersToMinimap(game);
+            fillMain(game);
+
+            if (game.currentPlayer === _gameData.playerName) {
+                //All things specific for the active player goes here
+                injectPossibleTiles(game);
+            } else {
+                //All things specific for non-active players go here
+                setTimeout(manageGame, 1500);
+            }
         })
         .catch(errorHandler);
-
-    setTimeout(manageGame, 1500);
 }
 
 function injectBalance(game) {
@@ -70,7 +71,7 @@ function injectPropertyInContainer($container, $templateNode, property)
 }
 
 function injectPossibleTiles(game) {
-    const $container = document.querySelector("#moves-container");
+    const $container = document.querySelector("#moves-container-and-auctions-and-history");
     const $templateNode = $container.querySelector("template");
     const activePlayer = getPlayerObject(game, game.currentPlayer);
 
@@ -149,10 +150,72 @@ function rollDice()
                 .then(response =>
                 {
                     console.log(response);
+
+                    const $diceRoll = response.lastDiceRoll;
+                    console.log(`${_gameData.playerName} rolled a ${$diceRoll[0]} and a ${$diceRoll[1]}`);
+                    fillMain(response);
+
                     _currentGameState = response;
-                    console.log(`${_gameData.playerName} rolled a ${_currentGameState.lastDiceRoll[0]} and a ${_currentGameState.lastDiceRoll[1]}`);
                 })
                 .catch(errorHandler);
         }
+    }
+}
+
+function manageMainClick(e)
+{
+    e.preventDefault();
+
+    if (e.target.id === "roll-dice")
+    {
+        rollDice();
+    }
+}
+
+function fillMain(game)
+{
+    const $main = document.querySelector("main");
+    $main.innerHTML = "";
+    if (_gameData.playerName === game.currentPlayer)
+    {
+        if (game.canRoll)
+        {
+            $main.insertAdjacentHTML('beforeend', _htmlElements.rollDiceButton);
+        }
+        else
+        {
+            const lastTurn = game.turns[game.turns.length - 1];
+            const lastMove = lastTurn.moves[lastTurn.moves.length - 1];
+            const tileIdx = getTileIdx(lastMove.tile);
+            injectTileDeed($main, game, tileIdx);
+        }
+    }
+}
+
+function injectTileDeed($main, game, tileIdx) {
+    $main.insertAdjacentHTML('beforeend', _htmlElements.tileDeed);
+    const $tileDeed = $main.querySelector("#main-tile-deed");
+    const tile = _tiles[tileIdx];
+    const $tileImg = $tileDeed.querySelector("img");
+
+    $tileDeed.querySelector("h2").innerText = tile.name;
+    $tileDeed.querySelector("#main-deed-cost").innerText = tile.cost;
+    $tileImg.setAttribute("src", `../images/deeds/${tile.nameAsPathParameter}.jpg`);
+    $tileImg.setAttribute("alt", `${tile.name}`);
+    $tileImg.setAttribute("title", `${tile.name}`);
+
+    let propertyOwned = false;
+    game.players.forEach(player => {
+        player.properties.forEach(property =>
+        {
+            if (property.property === tile.name) {
+                propertyOwned = true;
+            }
+        });
+    });
+    if (propertyOwned) {
+        $tileDeed.insertAdjacentHTML("beforeend", `<p>Property owned by ${player.name}</p>`);
+    } else {
+        $tileDeed.insertAdjacentHTML("beforeend", _htmlElements.tileDeedButtons);
     }
 }
