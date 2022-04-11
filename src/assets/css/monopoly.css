@@ -7,14 +7,13 @@ body {
 }
 
 #wrapper{
-    min-height: 99vh;
-    margin-bottom: 1vh;
+    min-height: 98.5vh;
     position: relative;
 }
 
 header{
     width: 70%;
-    margin: 0 auto 1rem auto;
+    margin: 1rem auto;
 }
 
 header #moves-container-and-auctions-and-history {
@@ -324,11 +323,12 @@ aside#other-players button{
 }
 
 footer #property-view button{
-    font-size: 8rem;
+    font-size: 5rem;
+    line-height: 1rem;
     background: none;
     border: none;
     padding: 0;
-    height: 8.5rem;
+    height: 5rem;
     margin: 0;
 }
 
