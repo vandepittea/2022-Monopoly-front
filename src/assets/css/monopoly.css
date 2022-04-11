@@ -516,3 +516,9 @@ aside#map-container {
     align-items: center;
     font-weight: bold;
 }
+
+main button
+{
+    margin-left: 0;
+    margin-right: 0;
+}
