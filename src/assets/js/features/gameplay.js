@@ -192,7 +192,32 @@ function fillMain(game)
     }
 }
 
-function injectTileDeed($main, game, tileIdx)
-{
+function injectTileDeed($main, game, tileIdx) {
     $main.insertAdjacentHTML('beforeend', _htmlElements.tileDeed);
+
+    const $tileDeed = $main.querySelector("#main-tile-deed");
+    const tile = _tiles[tileIdx];
+    const $tileImg = $tileDeed.querySelector("img");
+
+    $tileDeed.querySelector("h2").innerText = tile.name;
+    $tileImg.setAttribute("src", `../images/deeds/${tile.nameAsPathParameter}.jpg`);
+    $tileImg.setAttribute("alt", `${tile.name}`);
+    $tileImg.setAttribute("title", `${tile.name}`);
+
+    let propertyOwned = false;
+    game.players.forEach(player => {
+        player.properties.forEach(property =>
+        {
+            if (property.property === tile.name) {
+                propertyOwned = true;
+            }
+        });
+    });
+
+    if (propertyOwned) {
+        $tileDeed.insertAdjacentHTML("beforeend", `<p>Property owned by ${player.name}</p>`);
+    }
+    else {
+        $tileDeed.insertAdjacentHTML("beforeend", _htmlElements.tileDeedButtons);
+    }
 }
