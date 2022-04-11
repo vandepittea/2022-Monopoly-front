@@ -83,5 +83,17 @@ const _htmlElements =
             <p>1500</p>
             <button type="button">Show Properties</button>
         </article>
+        `,
+        tileDeed:
+        `
+        <article id="main-tile-deed">
+            <h2>DeedName</h2>
+            <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
+        </article>
+        `,
+        tileDeedButtons:
+        `
+        <button type="button" id="main-property-buy">Buy Property</button>
+        <button type="button" id="main-property-auction">Auction property</button>
         `
     };

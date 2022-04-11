@@ -13,21 +13,22 @@ function manageGame() {
     fetchFromServer(url, 'GET')
         .then(game => {
             _currentGameState = game;
-            if (game.currentPlayer === _gameData.playerName) {
-                //All things specific for the active player goes here
-                injectPossibleTiles(game);
-            } else {
-                //All things specific for non-active players go here
-            }
 
             //All things that needs to be shown for both go here
             injectProperties(game);
             injectBalance(game);
             syncPlayersToMinimap(game);
+            fillMain(game);
+
+            if (game.currentPlayer === _gameData.playerName) {
+                //All things specific for the active player goes here
+                injectPossibleTiles(game);
+            } else {
+                //All things specific for non-active players go here
+                setTimeout(manageGame, 1500);
+            }
         })
         .catch(errorHandler);
-
-    setTimeout(manageGame, 1500);
 }
 
 function injectBalance(game) {
@@ -149,9 +150,12 @@ function rollDice()
                 .then(response =>
                 {
                     console.log(response);
-                    _currentGameState = response;
-                    const $diceRoll = _currentGameState.lastDiceRoll;
+
+                    const $diceRoll = response.lastDiceRoll;
                     console.log(`${_gameData.playerName} rolled a ${$diceRoll[0]} and a ${$diceRoll[1]}`);
+                    fillMain(response);
+
+                    _currentGameState = response;
                 })
                 .catch(errorHandler);
         }
@@ -160,5 +164,35 @@ function rollDice()
 
 function manageMainClick(e)
 {
-    console.log("clicked main");
+    e.preventDefault();
+
+    if (e.target.id === "roll-dice")
+    {
+        rollDice();
+    }
+}
+
+function fillMain(game)
+{
+    const $main = document.querySelector("main");
+    $main.innerHTML = "";
+    if (_gameData.playerName === game.currentPlayer)
+    {
+        if (game.canRoll)
+        {
+            $main.insertAdjacentHTML('beforeend', _htmlElements.rollDiceButton);
+        }
+        else
+        {
+            const lastTurn = game.turns[game.turns.length - 1];
+            const lastMove = lastTurn.moves[lastTurn.moves.length - 1];
+            const tileIdx = getTileIdx(lastMove.tile);
+            injectTileDeed($main, game, tileIdx);
+        }
+    }
+}
+
+function injectTileDeed($main, game, tileIdx)
+{
+    $main.insertAdjacentHTML('beforeend', _htmlElements.tileDeed);
 }
