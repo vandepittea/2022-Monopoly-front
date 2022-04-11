@@ -14,11 +14,11 @@ body {
 
 #wrapper{
     display: flex;
-    height: 100vh;
+    height: 94vh;
     flex-direction: column;
     justify-content: center;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
 }
 
 #wrapper .hidden
