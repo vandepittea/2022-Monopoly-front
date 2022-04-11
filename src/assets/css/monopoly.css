@@ -50,8 +50,9 @@ article#main-tile-deed{
     margin-right: auto;
 }
 
-article#main-tile-deed div:first-child{
+article#main-tile-deed div:first-of-type{
     width: 50%;
+    align-self: center;
 }
 
 article#main-tile-deed div:last-child{
@@ -165,6 +166,10 @@ aside#other-players h2, #properties h2, #main-tile-deed h2{
     text-align: center;
     text-shadow: 0 0.02rem 0.02rem #ffffff;
     margin-bottom: 1rem;
+}
+
+#main-tile-deed h2{
+    text-align: left;
 }
 
 footer #balance h3{
