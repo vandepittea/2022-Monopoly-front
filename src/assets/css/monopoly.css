@@ -27,6 +27,7 @@ main{
     justify-content: center;
     align-items: center;
     min-height: 70vh;
+    padding-bottom: 10rem;
 }
 
 aside#other-players{
@@ -40,6 +41,26 @@ aside#current-place-on-game-board{
     left: 1rem;
     top: 0;
     width: 15rem;
+}
+
+article#main-tile-deed{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+article#main-tile-deed div:first-of-type{
+    width: 50%;
+    align-self: center;
+}
+
+article#main-tile-deed div:last-child{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
 }
 
 article#properties {
@@ -93,6 +114,7 @@ footer{
     left: 22vw; /* width of minimap: 20vw */
     bottom: 1rem;
     width: 77vw;
+    height: 5rem;
     display: flex;
     align-items: flex-end;
 }
@@ -143,12 +165,16 @@ header h1{
     margin-bottom: 0.2rem;
 }
 
-aside#other-players h2, #properties h2{
+aside#other-players h2, article#properties h2, article#main-tile-deed h2{
     color: #DC143C;
     font-size: 3rem;
     text-align: center;
     text-shadow: 0 0.02rem 0.02rem #ffffff;
     margin-bottom: 1rem;
+}
+
+article#main-tile-deed h2{
+    text-align: left;
 }
 
 footer #balance h3{
@@ -212,9 +238,19 @@ article #properties-container article[data-streettype="jailcards"] h3{
     background-color: gray;
 }
 
+#main-tile-deed p{
+    color: #DC143C;
+    font-size: 2rem;
+    text-shadow: 0 0.02rem 0.02rem #ffffff;
+}
+
 /* images */
 img{
     max-width: 100%;
+}
+
+article#main-tile-deed img{
+    width: 50%;
 }
 
 footer #small-property-container img {
@@ -249,16 +285,22 @@ button {
     background-color: white;
 }
 
-button:hover{
-    color: white;
-    background-color: #DC143C;
-}
-
 header button{
     width: 40%;
     height: 3rem;
     border-radius: 0;
     margin-top: 1rem;
+}
+
+button:hover{
+    color: white;
+    background-color: #DC143C;
+}
+
+article#main-tile-deed button
+{
+    margin-left: 0;
+    margin-right: 0;
 }
 
 article#properties > button{
@@ -289,15 +331,15 @@ footer #property-view button{
     margin: 0;
 }
 
+article#properties > button:hover, footer #property-view button:hover{
+    color: initial;
+    background-color: inherit;
+}
+
 article#properties #properties-container button{
     height: 3rem;
     align-self: flex-end;
     z-index: 2;
-}
-
-footer #property-view button:hover, article#properties > button:hover{
-    color: initial;
-    background-color: inherit;
 }
 
 /* minimap */
@@ -515,10 +557,4 @@ aside#map-container {
     justify-content: center;
     align-items: center;
     font-weight: bold;
-}
-
-main button
-{
-    margin-left: 0;
-    margin-right: 0;
 }
