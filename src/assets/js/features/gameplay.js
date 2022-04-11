@@ -157,3 +157,8 @@ function rollDice()
         }
     }
 }
+
+function manageMainClick(e)
+{
+    console.log("clicked main");
+}
