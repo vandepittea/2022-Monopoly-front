@@ -43,20 +43,12 @@ function initMonopoly()
         _gameData = tempData;
     }
     document.querySelector("#property-view button").addEventListener('click', activateCurrentPlayersProperties);
-    document.querySelector("#roll-dice").addEventListener("click", diceRoll);
+    document.querySelector("main").addEventListener("click", manageMainClick);
     // This doesn't work because the #bankruptcy is not in the html anymore
     //document.querySelector("#bankruptcy").addEventListener("click", goneBankrupt);
     document.querySelector("#other-players div").addEventListener("click", showPlayerInfo);
-    document.querySelector("#other-player-overview button").addEventListener("click", activatePlayerProperties);
-    document.querySelector("#properties button").addEventListener("click", activateProperties);
 
     fillProperties();
     fillPlayerButtons();
     manageGame();
-    document.querySelector("#roll-dice").addEventListener("click", diceRoll);
-    document.querySelector("#bankruptcy").addEventListener("click", goneBankrupt);
-}
-
-function testConnection(){
-    fetchFromServer('/tiles','GET').then(tiles => console.log(tiles)).catch(errorHandler);
 }
