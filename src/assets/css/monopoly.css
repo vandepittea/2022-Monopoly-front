@@ -27,7 +27,7 @@ main{
     justify-content: center;
     align-items: center;
     min-height: 70vh;
-    z-index: 2;
+    padding-bottom: 10rem;
 }
 
 aside#other-players{
@@ -49,7 +49,6 @@ article#main-tile-deed{
     width: 50%;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 8rem;
 }
 
 article#main-tile-deed div:first-of-type{
@@ -115,6 +114,7 @@ footer{
     left: 22vw; /* width of minimap: 20vw */
     bottom: 1rem;
     width: 77vw;
+    height: 5rem;
     display: flex;
     align-items: flex-end;
 }
