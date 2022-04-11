@@ -159,10 +159,10 @@ function jailed(game) {
                 return true;
             } else {
                 console.log(`${_gameData.playerName} is not in jail`);
-                return false;
             }
         }
     }
+    return false;
 }
 
 function manageMainClick(e) {
