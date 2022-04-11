@@ -159,7 +159,7 @@ header h1{
     margin-bottom: 0.2rem;
 }
 
-aside#other-players h2, #properties h2{
+aside#other-players h2, #properties h2, #main-tile-deed h2{
     color: #DC143C;
     font-size: 3rem;
     text-align: center;
@@ -226,6 +226,12 @@ article #properties-container article[data-streettype="railroad"] h3{
 
 article #properties-container article[data-streettype="jailcards"] h3{
     background-color: gray;
+}
+
+#main-tile-deed p{
+    color: #DC143C;
+    font-size: 2rem;
+    text-shadow: 0 0.02rem 0.02rem #ffffff;
 }
 
 /* images */
