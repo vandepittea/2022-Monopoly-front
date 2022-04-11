@@ -25,7 +25,7 @@ function manageGame() {
                 injectPossibleTiles(game);
             } else {
                 //All things specific for non-active players go here
-                //setTimeout(manageGame, 1500);
+                setTimeout(manageGame, 1500);
             }
         })
         .catch(errorHandler);
