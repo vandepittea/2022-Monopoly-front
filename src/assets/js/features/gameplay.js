@@ -50,12 +50,9 @@ function injectProperties(game) {
     });
 }
 
-function injectPropertyInContainer($container, $templateNode, property)
-{
-    _tiles.forEach(tile =>
-    {
-        if (property.property === tile.name)
-        {
+function injectPropertyInContainer($container, $templateNode, property) {
+    _tiles.forEach(tile => {
+        if (property.property === tile.name) {
             const $template = $templateNode.content.firstElementChild.cloneNode(true);
             $template.setAttribute('src', `../images/deeds/${tile.nameAsPathParameter}.jpg`);
             $template.setAttribute('alt', `${tile.name}`);
@@ -95,8 +92,7 @@ function fillPlayerButtons() {
     let url = null;
     if (_gameData.token === null) {
         url = '/games/dummy';
-    }
-    else {
+    } else {
         url = `/games/${_gameData.gameID}`;
     }
 
@@ -105,8 +101,7 @@ function fillPlayerButtons() {
             const $container = document.querySelector("#other-players div");
             const $templateNode = document.querySelector("#other-players template");
             game.players.forEach(player => {
-                if (player.name !== _gameData.playerName)
-                {
+                if (player.name !== _gameData.playerName) {
                     const $template = $templateNode.content.firstElementChild.cloneNode(true);
                     $template.dataset.player = player.name;
                     $template.innerText = player.name;
@@ -118,20 +113,16 @@ function fillPlayerButtons() {
 }
 
 function showPlayerInfo(e) {
-    if (e.target.nodeName.toLowerCase() !== "button")
-    {
+    if (e.target.nodeName.toLowerCase() !== "button") {
         return;
     }
 
     const $otherPlayerWindow = document.querySelector("#other-player-overview");
     const playerName = e.target.dataset.player;
 
-    if (!$otherPlayerWindow.classList.contains("hidden") && ($otherPlayerWindow.dataset.player === playerName))
-    {
+    if (!$otherPlayerWindow.classList.contains("hidden") && ($otherPlayerWindow.dataset.player === playerName)) {
         $otherPlayerWindow.classList.add("hidden");
-    }
-    else
-    {
+    } else {
         $otherPlayerWindow.classList.remove("hidden");
         $otherPlayerWindow.dataset.player = playerName;
         const player = getPlayerObject(_currentGameState, playerName);
@@ -140,15 +131,11 @@ function showPlayerInfo(e) {
     }
 }
 
-function rollDice()
-{
-    if (_gameData.token !== null)
-    {
-        if (_currentGameState.currentPlayer === _gameData.playerName)
-        {
+function rollDice() {
+    if (_gameData.token !== null) {
+        if (_currentGameState.currentPlayer === _gameData.playerName) {
             fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/dice`, 'POST')
-                .then(response =>
-                {
+                .then(response => {
                     console.log(response);
 
                     const $diceRoll = response.lastDiceRoll;
@@ -162,28 +149,39 @@ function rollDice()
     }
 }
 
-function manageMainClick(e)
-{
+function jailed(game) {
+    const activePlayer = getPlayerObject(game, game.currentPlayer);
+    if (_gameData.token !== null) {
+        if (_currentGameState.currentPlayer === _gameData.playerName) {
+            const $jailed = activePlayer.jailed;
+            if ($jailed) {
+                console.log(`${_gameData.playerName} is in jail`);
+                return true;
+            } else {
+                console.log(`${_gameData.playerName} is not in jail`);
+                return false;
+            }
+        }
+    }
+}
+
+function manageMainClick(e) {
     e.preventDefault();
 
-    if (e.target.id === "roll-dice")
-    {
+    if (e.target.id === "roll-dice") {
         rollDice();
     }
 }
 
-function fillMain(game)
-{
+function fillMain(game) {
     const $main = document.querySelector("main");
     $main.innerHTML = "";
-    if (_gameData.playerName === game.currentPlayer)
-    {
-        if (game.canRoll)
-        {
+    if (_gameData.playerName === game.currentPlayer) {
+        if (jailed(game)) {
+            //current player is in jail, show correct UI
+        } else if (game.canRoll) {
             $main.insertAdjacentHTML('beforeend', _htmlElements.rollDiceButton);
-        }
-        else
-        {
+        } else {
             const lastTurn = game.turns[game.turns.length - 1];
             const lastMove = lastTurn.moves[lastTurn.moves.length - 1];
             const tileIdx = getTileIdx(lastMove.tile);
@@ -206,8 +204,7 @@ function injectTileDeed($main, game, tileIdx) {
 
     let propertyOwned = false;
     game.players.forEach(player => {
-        player.properties.forEach(property =>
-        {
+        player.properties.forEach(property => {
             if (property.property === tile.name) {
                 propertyOwned = true;
             }
