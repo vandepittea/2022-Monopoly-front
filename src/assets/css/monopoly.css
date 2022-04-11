@@ -50,8 +50,12 @@ article#main-tile-deed{
     margin-right: auto;
 }
 
-article#main-tile-deed div{
+article#main-tile-deed div:first-child{
     width: 50%;
+}
+
+article#main-tile-deed div:last-child{
+    width: 100%;
 }
 
 article#properties {
