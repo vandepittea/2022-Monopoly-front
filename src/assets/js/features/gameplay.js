@@ -70,7 +70,7 @@ function injectPropertyInContainer($container, $templateNode, property)
 }
 
 function injectPossibleTiles(game) {
-    const $container = document.querySelector("#moves-container");
+    const $container = document.querySelector("#moves-container-and-auctions-and-history");
     const $templateNode = $container.querySelector("template");
     const activePlayer = getPlayerObject(game, game.currentPlayer);
 
@@ -150,7 +150,8 @@ function rollDice()
                 {
                     console.log(response);
                     _currentGameState = response;
-                    console.log(`${_gameData.playerName} rolled a ${_currentGameState.lastDiceRoll[0]} and a ${_currentGameState.lastDiceRoll[1]}`);
+                    const $diceRoll = _currentGameState.lastDiceRoll;
+                    console.log(`${_gameData.playerName} rolled a ${$diceRoll[0]} and a ${$diceRoll[1]}`);
                 })
                 .catch(errorHandler);
         }

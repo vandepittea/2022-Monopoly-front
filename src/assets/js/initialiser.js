@@ -53,10 +53,4 @@ function initMonopoly()
     fillProperties();
     fillPlayerButtons();
     manageGame();
-    document.querySelector("#roll-dice").addEventListener("click", diceRoll);
-    document.querySelector("#bankruptcy").addEventListener("click", goneBankrupt);
-}
-
-function testConnection(){
-    fetchFromServer('/tiles','GET').then(tiles => console.log(tiles)).catch(errorHandler);
 }
