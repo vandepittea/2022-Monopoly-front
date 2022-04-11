@@ -57,6 +57,9 @@ article#main-tile-deed div:first-of-type{
 
 article#main-tile-deed div:last-child{
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
 }
 
 article#properties {
