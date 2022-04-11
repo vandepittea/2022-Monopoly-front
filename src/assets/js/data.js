@@ -88,6 +88,7 @@ const _htmlElements =
         `
         <article id="main-tile-deed">
             <h2>DeedName</h2>
+            <p>Cost: <span id="main-deed-cost">100</span></p>
             <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
         </article>
         `,

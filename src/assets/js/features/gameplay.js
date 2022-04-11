@@ -194,12 +194,12 @@ function fillMain(game)
 
 function injectTileDeed($main, game, tileIdx) {
     $main.insertAdjacentHTML('beforeend', _htmlElements.tileDeed);
-
     const $tileDeed = $main.querySelector("#main-tile-deed");
     const tile = _tiles[tileIdx];
     const $tileImg = $tileDeed.querySelector("img");
 
     $tileDeed.querySelector("h2").innerText = tile.name;
+    $tileDeed.querySelector("#main-deed-cost").innerText = tile.cost;
     $tileImg.setAttribute("src", `../images/deeds/${tile.nameAsPathParameter}.jpg`);
     $tileImg.setAttribute("alt", `${tile.name}`);
     $tileImg.setAttribute("title", `${tile.name}`);
@@ -213,11 +213,9 @@ function injectTileDeed($main, game, tileIdx) {
             }
         });
     });
-
     if (propertyOwned) {
         $tileDeed.insertAdjacentHTML("beforeend", `<p>Property owned by ${player.name}</p>`);
-    }
-    else {
+    } else {
         $tileDeed.insertAdjacentHTML("beforeend", _htmlElements.tileDeedButtons);
     }
 }
