@@ -15,7 +15,6 @@ function fillProperties()
     });
 
     _htmlElements.propertyView = $main.innerHTML;
-    console.log(_htmlElements.propertyView);
     $main.innerHTML = "";
 }
 
