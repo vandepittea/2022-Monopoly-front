@@ -165,7 +165,7 @@ header h1{
     margin-bottom: 0.2rem;
 }
 
-aside#other-players h2, #properties h2, #main-tile-deed h2{
+aside#other-players h2, article#properties h2, article#main-tile-deed h2{
     color: #DC143C;
     font-size: 3rem;
     text-align: center;
@@ -173,7 +173,7 @@ aside#other-players h2, #properties h2, #main-tile-deed h2{
     margin-bottom: 1rem;
 }
 
-#main-tile-deed h2{
+article#main-tile-deed h2{
     text-align: left;
 }
 
@@ -285,16 +285,16 @@ button {
     background-color: white;
 }
 
-button:hover{
-    color: white;
-    background-color: #DC143C;
-}
-
 header button{
     width: 40%;
     height: 3rem;
     border-radius: 0;
     margin-top: 1rem;
+}
+
+button:hover{
+    color: white;
+    background-color: #DC143C;
 }
 
 article#main-tile-deed button
@@ -331,15 +331,15 @@ footer #property-view button{
     margin: 0;
 }
 
+article#properties > button:hover, footer #property-view button:hover{
+    color: initial;
+    background-color: inherit;
+}
+
 article#properties #properties-container button{
     height: 3rem;
     align-self: flex-end;
     z-index: 2;
-}
-
-footer #property-view button:hover, article#properties > button:hover{
-    color: initial;
-    background-color: inherit;
 }
 
 /* minimap */
