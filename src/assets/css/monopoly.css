@@ -42,6 +42,10 @@ aside#current-place-on-game-board{
     width: 15rem;
 }
 
+article#main-tile-deed{
+    display: flex;
+}
+
 article#properties {
     width: 70%;
     margin-bottom: 1rem;
@@ -217,6 +221,10 @@ img{
     max-width: 100%;
 }
 
+article#main-tile-deed img{
+    width: 50%;
+}
+
 footer #small-property-container img {
     margin-right: 2rem;
     clip-path: inset(0 0 80% 0);
@@ -259,6 +267,12 @@ header button{
     height: 3rem;
     border-radius: 0;
     margin-top: 1rem;
+}
+
+article#main-tile-deed button
+{
+    margin-left: 0;
+    margin-right: 0;
 }
 
 article#properties > button{
@@ -515,10 +529,4 @@ aside#map-container {
     justify-content: center;
     align-items: center;
     font-weight: bold;
-}
-
-main button
-{
-    margin-left: 0;
-    margin-right: 0;
 }
