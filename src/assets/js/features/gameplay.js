@@ -106,7 +106,7 @@ function injectPossibleTiles(game) {
     $container.innerHTML = "";
     $container.insertAdjacentElement('beforeend', $templateNode);
 
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 13; i++) {
         const $template = $templateNode.content.firstElementChild.cloneNode(true);
         const tile = _tiles[(currentTileIdx + i) % _tiles.length];
 
