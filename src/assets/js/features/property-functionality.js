@@ -69,6 +69,7 @@ function buyProperty(propertyName) {
     fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}`, 'POST')
         .then(result => {
             console.log(result);
+            manageGame();
         })
         .catch(errorHandler);
 }
@@ -77,6 +78,7 @@ function auctionProperty(propertyName) {
     fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}`, 'DELETE')
         .then(result => {
             console.log(result);
+            manageGame();
         })
         .catch(errorHandler);
 }

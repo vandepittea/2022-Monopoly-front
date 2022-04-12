@@ -140,7 +140,8 @@ function rollDice() {
 
                     const $diceRoll = response.lastDiceRoll;
                     console.log(`${_gameData.playerName} rolled a ${$diceRoll[0]} and a ${$diceRoll[1]}`);
-                    fillMain(response);
+                    syncPlayersToMinimap(response);
+                    manageGame();
 
                     _currentGameState = response;
                 })
