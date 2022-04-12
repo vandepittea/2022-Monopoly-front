@@ -53,9 +53,16 @@ function activatePlayerProperties(e)
 function activateProperties(player)
 {
     const $properties = document.querySelector('#properties');
-    if ($properties.classList.contains("hidden"))
+    if ($properties !== null)
     {
-        $properties.classList.remove("hidden");
+        fillMain(_currentGameState);
+    }
+    else
+    {
+        const $main = document.querySelector("main");
+        $main.innerHTML = "";
+        $main.insertAdjacentHTML("beforeend", _htmlElements.propertyView);
+
         const $propertiesContainer = document.querySelectorAll('#properties-container ul li');
         $propertiesContainer.forEach($property =>
         {
@@ -67,9 +74,5 @@ function activateProperties(player)
             const $property = document.querySelector(`#properties-container ul li[data-name='${property.property}']`);
             $property.classList.add("owned");
         });
-    }
-    else
-    {
-        $properties.classList.add("hidden");
     }
 }

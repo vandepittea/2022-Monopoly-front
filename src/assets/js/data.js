@@ -90,7 +90,7 @@ const _htmlElements =
             <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
             <div>
                     <h2>DeedName</h2>
-                    <p>Price: <span id="main-deed-cost">100</span> coins</p>
+                    <p>Price: <span>100</span> coins</p>
             </div>
         </article>
         `,
