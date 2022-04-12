@@ -76,3 +76,13 @@ function activateProperties(player)
         });
     }
 }
+
+function buyProperty()
+{
+    console.log("Buy property");
+}
+
+function auctionProperty()
+{
+    console.log("Auction property");
+}

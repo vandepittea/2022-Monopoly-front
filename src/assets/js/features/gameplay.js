@@ -175,6 +175,12 @@ function manageMainClick(e) {
             case "roll-dice":
                 rollDice();
                 break;
+            case "main-property-buy":
+                buyProperty();
+                break;
+            case "main-property-auction":
+                auctionProperty();
+                break;
             default:
                 if (e.target.closest("article").id === "properties")
                 {
