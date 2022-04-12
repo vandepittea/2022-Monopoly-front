@@ -213,20 +213,28 @@ function manageMainClick(e) {
             case "main-property-auction":
                 auctionProperty(e.target.closest("#main-tile-deed").dataset.name);
                 break;
+            case "collect-rent":
+                collectRent(_currentGameState);
+                break;
             default:
-                const $closestArticle = e.target.closest("article");
-                switch ($closestArticle.id) {
-                    case "properties":
-                        fillMain(_currentGameState);
-                        break;
-                    case "other-player-overview":
-                        activateProperties($closestArticle.dataset.player);
-                        break;
-                    default:
-                        break;
-                }
+                manageIdLessButtonClicks(e);
                 break;
         }
+    }
+}
+
+function manageIdLessButtonClicks(e)
+{
+    const $closestArticle = e.target.closest("article");
+    switch ($closestArticle.id) {
+        case "properties":
+            fillMain(_currentGameState);
+            break;
+        case "other-player-overview":
+            activateProperties($closestArticle.dataset.player);
+            break;
+        default:
+            break;
     }
 }
 

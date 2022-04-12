@@ -75,7 +75,7 @@ const _htmlElements =
             </div>
         </article>
         `,
-        rentButton: "<button type=\"button\">Get rent</button>",
+        rentButton: "<button type=\"button\" id=\"collect-rent\">Get rent</button>",
         playerOverview:
             `
         <article id="other-player-overview">

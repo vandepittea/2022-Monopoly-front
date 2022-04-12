@@ -83,3 +83,21 @@ function auctionProperty(propertyName) {
         })
         .catch(errorHandler);
 }
+
+function collectRent(game) {
+    const ownedProperties = getPlayerObject(game, _gameData.playerName).properties;
+
+    game.players.forEach(player => {
+        if (player.name !== _gameData.playerName) {
+            ownedProperties.forEach(property => {
+                if (property.property === player.currentTile) {
+                    fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property.property}/visitors/${player.name}/rent`, 'DELETE')
+                        .then(response => {
+                            console.log(response);
+                        })
+                        .catch(errorHandler);
+                }
+            });
+        }
+    });
+}
