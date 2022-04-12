@@ -12,7 +12,7 @@ const _htmlElements =
     {
         rollDiceButton: "<button type=\"button\" id=\"roll-dice\">Roll Dice</button>",
         propertyView:
-        `
+            `
         <article id="properties">
             <h2>Your properties</h2>
             <button type="button">&#10007;</button>
@@ -72,12 +72,12 @@ const _htmlElements =
                     <ul>
                     </ul>
                 </article>
-                <button type="button">Get rent</button>
             </div>
         </article>
         `,
+        rentButton: "<button type=\"button\">Get rent</button>",
         playerOverview:
-        `
+            `
         <article id="other-player-overview">
             <h2>PlayerName</h2>
             <p>1500</p>
@@ -85,7 +85,7 @@ const _htmlElements =
         </article>
         `,
         tileDeed:
-        `
+            `
         <article id="main-tile-deed" data-name="Atlantic">
             <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
             <div>
@@ -95,7 +95,7 @@ const _htmlElements =
         </article>
         `,
         tileDeedButtons:
-        `<div>
+            `<div>
                 <button type="button" id="main-property-buy">Buy property</button>
                 <button type="button" id="main-property-auction">Don't buy property</button>
         </div>`

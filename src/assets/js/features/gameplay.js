@@ -31,8 +31,7 @@ function manageGame() {
         .catch(errorHandler);
 }
 
-function refreshGame()
-{
+function refreshGame() {
     let url = null;
     if (_gameData.token === null) {
         url = '/games/dummy';
@@ -147,7 +146,11 @@ function showPlayerInfo(e) {
         return;
     }
 
-    const $otherPlayerWindow = document.querySelector("#other-player-overview");
+    const $main = document.querySelector("main");
+    $main.innerHTML = "";
+    $main.insertAdjacentHTML('beforeend', _htmlElements.playerOverview);
+
+    const $otherPlayerWindow = $main.querySelector("#other-player-overview");
     const playerName = e.target.dataset.player;
 
     if (!$otherPlayerWindow.classList.contains("hidden") && ($otherPlayerWindow.dataset.player === playerName)) {
@@ -211,8 +214,16 @@ function manageMainClick(e) {
                 auctionProperty(e.target.closest("#main-tile-deed").dataset.name);
                 break;
             default:
-                if (e.target.closest("article").id === "properties") {
-                    fillMain(_currentGameState);
+                const $closestArticle = e.target.closest("article");
+                switch ($closestArticle.id) {
+                    case "properties":
+                        fillMain(_currentGameState);
+                        break;
+                    case "other-player-overview":
+                        activateProperties($closestArticle.dataset.player);
+                        break;
+                    default:
+                        break;
                 }
                 break;
         }
