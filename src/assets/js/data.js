@@ -86,7 +86,7 @@ const _htmlElements =
         `,
         tileDeed:
         `
-        <article id="main-tile-deed">
+        <article id="main-tile-deed" data-name="Atlantic">
             <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
             <div>
                     <h2>DeedName</h2>
@@ -96,7 +96,7 @@ const _htmlElements =
         `,
         tileDeedButtons:
         `<div>
-                <button type="button" id="main-property-buy">Buy Property</button>
-                <button type="button" id="main-property-auction">Auction property</button>
+                <button type="button" id="main-property-buy">Buy property</button>
+                <button type="button" id="main-property-auction">Don't buy property</button>
         </div>`
     };

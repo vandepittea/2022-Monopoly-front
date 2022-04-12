@@ -168,22 +168,19 @@ function jailed(game) {
 function manageMainClick(e) {
     e.preventDefault();
 
-    if (e.target.nodeName.toLowerCase() === "button")
-    {
-        switch (e.target.id)
-        {
+    if (e.target.nodeName.toLowerCase() === "button") {
+        switch (e.target.id) {
             case "roll-dice":
                 rollDice();
                 break;
             case "main-property-buy":
-                buyProperty();
+                buyProperty(e.target.closest("#main-tile-deed").dataset.name);
                 break;
             case "main-property-auction":
-                auctionProperty();
+                auctionProperty(e.target.closest("#main-tile-deed").dataset.name);
                 break;
             default:
-                if (e.target.closest("article").id === "properties")
-                {
+                if (e.target.closest("article").id === "properties") {
                     fillMain(_currentGameState);
                 }
                 break;
@@ -216,6 +213,7 @@ function injectTileDeed($main, game, tileIdx) {
 
     $tileDeed.querySelector("h2").innerText = tile.name;
     $tileDeed.querySelector("span").innerText = tile.cost;
+    $tileDeed.dataset.name = tile.name;
     $tileImg.setAttribute("src", `../images/deeds/${tile.nameAsPathParameter}.jpg`);
     $tileImg.setAttribute("alt", `${tile.name}`);
     $tileImg.setAttribute("title", `${tile.name}`);
