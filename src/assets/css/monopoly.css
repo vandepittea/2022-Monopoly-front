@@ -195,6 +195,13 @@ article#other-player-overview h2{
     margin-bottom: 0;
 }
 
+article#other-player-overview h3{
+    font-size: 2rem;
+    background: url("../media/coin.png") no-repeat left center;
+    background-size: 4rem 4rem;
+    padding: 2rem 0 2rem 4.8rem;
+}
+
 footer #balance h3{
     background: linear-gradient(180deg, rgba(196, 196, 196, 0) 0%, rgba(196, 196, 196, 0.5) 100%);
     border: 0.01rem rgba(0, 0, 0, 0.5) solid;
@@ -321,10 +328,6 @@ article#main-tile-deed button
     margin-right: 0;
 }
 
-article#other-player-overview button{
-    margin: 0;
-}
-
 article#properties > button{
     position: absolute; /* relative wrapper */
     top: 0;
@@ -354,7 +357,7 @@ footer #property-view button{
     margin: 0;
 }
 
-article#properties > button:hover, footer #property-view button:hover{
+article#properties > button:hover, footer #property-view button:hover, article#other-player-overview div:first-child button:hover{
     color: initial;
     background-color: inherit;
 }
