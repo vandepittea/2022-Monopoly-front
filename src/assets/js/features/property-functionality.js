@@ -36,6 +36,7 @@ function addTile(tile, $propertiesCont, $railroadCont, $utilitiesCont) {
 
 function activateCurrentPlayersProperties() {
     activateProperties(getPlayerObject(_currentGameState, _gameData.playerName));
+    document.querySelector("#properties-container").insertAdjacentHTML('beforeend', _htmlElements.rentButton);
 }
 
 function activatePlayerProperties(e) {
@@ -81,4 +82,22 @@ function auctionProperty(propertyName) {
             manageGame();
         })
         .catch(errorHandler);
+}
+
+function collectRent(game) {
+    const ownedProperties = getPlayerObject(game, _gameData.playerName).properties;
+
+    game.players.forEach(player => {
+        if (player.name !== _gameData.playerName) {
+            ownedProperties.forEach(property => {
+                if (property.property === player.currentTile) {
+                    fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property.property}/visitors/${player.name}/rent`, 'DELETE')
+                        .then(response => {
+                            console.log(response);
+                        })
+                        .catch(errorHandler);
+                }
+            });
+        }
+    });
 }

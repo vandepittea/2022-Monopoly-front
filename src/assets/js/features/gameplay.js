@@ -31,8 +31,7 @@ function manageGame() {
         .catch(errorHandler);
 }
 
-function refreshGame()
-{
+function refreshGame() {
     let url = null;
     if (_gameData.token === null) {
         url = '/games/dummy';
@@ -107,7 +106,7 @@ function injectPossibleTiles(game) {
     $container.innerHTML = "";
     $container.insertAdjacentElement('beforeend', $templateNode);
 
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 13; i++) {
         const $template = $templateNode.content.firstElementChild.cloneNode(true);
         const tile = _tiles[(currentTileIdx + i) % _tiles.length];
 
@@ -147,7 +146,11 @@ function showPlayerInfo(e) {
         return;
     }
 
-    const $otherPlayerWindow = document.querySelector("#other-player-overview");
+    const $main = document.querySelector("main");
+    $main.innerHTML = "";
+    $main.insertAdjacentHTML('beforeend', _htmlElements.playerOverview);
+
+    const $otherPlayerWindow = $main.querySelector("#other-player-overview");
     const playerName = e.target.dataset.player;
 
     if (!$otherPlayerWindow.classList.contains("hidden") && ($otherPlayerWindow.dataset.player === playerName)) {
@@ -210,12 +213,28 @@ function manageMainClick(e) {
             case "main-property-auction":
                 auctionProperty(e.target.closest("#main-tile-deed").dataset.name);
                 break;
+            case "collect-rent":
+                collectRent(_currentGameState);
+                break;
             default:
-                if (e.target.closest("article").id === "properties") {
-                    fillMain(_currentGameState);
-                }
+                manageIdLessButtonClicks(e);
                 break;
         }
+    }
+}
+
+function manageIdLessButtonClicks(e)
+{
+    const $closestArticle = e.target.closest("article");
+    switch ($closestArticle.id) {
+        case "properties":
+            fillMain(_currentGameState);
+            break;
+        case "other-player-overview":
+            activateProperties($closestArticle.dataset.player);
+            break;
+        default:
+            break;
     }
 }
 

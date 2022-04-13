@@ -21,9 +21,6 @@ function initPreGame()
     document.querySelector("#login form").addEventListener("submit", showGames);
     document.querySelector("#game-list #create-game").addEventListener("click", showGameCreationScreen);
     document.querySelector("#game-list tbody").addEventListener("click", joinGame);
-    document.querySelector("#login #amount-players").addEventListener("keyup", enableFindServer);
-    document.querySelector("#login #amount-players").addEventListener("click", enableFindServer);
-    document.querySelector("#nickname").addEventListener("keyup", enableFindServer);
     document.querySelector("#create-game-screen form").addEventListener('submit', createGame);
     document.querySelectorAll("#character-screen img").forEach(image => image.addEventListener("click", joinGameWithPlayer));
     document.querySelector("#launch-button-and-current-player button").addEventListener('click', goToGame);

@@ -7,6 +7,12 @@ const allDivIds = ["login", "game-list", "create-game-screen", "character-screen
 
 function showGames(e){
     e.preventDefault();
+
+    if ((e.target.querySelector("#nickname").value === "") || (e.target.querySelector("#amount-players").value === ""))
+    {
+        return;
+    }
+
     _nickname = e.target.querySelector("#nickname").value;
     _amountPlayers = e.target.querySelector("#amount-players").value;
 
@@ -103,20 +109,6 @@ function joinGameWithPlayer()
             waitForPlayers();
         })
         .catch(errorHandler);
-}
-
-function enableFindServer (){
-    const $button = document.querySelector("#login button");
-    const $amountPlayers = document.querySelector("#amount-players");
-    const $nickname = document.querySelector("#nickname");
-
-    if ($amountPlayers.value !== ""){
-        $button.disabled = $nickname.value === "";
-    }
-    else
-    {
-        $button.disabled = true;
-    }
 }
 
 function waitForPlayers()
