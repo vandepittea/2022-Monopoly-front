@@ -223,24 +223,9 @@ function manageMainClick(e) {
             case "other-player-overview-trade":
                 break;
             default:
-                manageIdLessButtonClicks(e);
+                fillMain(_currentGameState);
                 break;
         }
-    }
-}
-
-function manageIdLessButtonClicks(e)
-{
-    const $closestArticle = e.target.closest("article");
-    switch ($closestArticle.id) {
-        case "properties":
-            fillMain(_currentGameState);
-            break;
-        case "other-player-overview":
-            activateProperties($closestArticle.dataset.player);
-            break;
-        default:
-            break;
     }
 }
 
