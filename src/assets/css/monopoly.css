@@ -197,6 +197,9 @@ article#other-player-overview h2{
 
 article#other-player-overview h3{
     font-size: 2rem;
+    background: url("../media/coin.png") no-repeat left center;
+    background-size: 4rem 4rem;
+    padding: 2rem 0 2rem 4.8rem;
 }
 
 footer #balance h3{
@@ -284,7 +287,7 @@ footer #small-property-container img:hover {
     clip-path: inherit;
 }
 
-article#other-player-overview h3, footer #balance h3 span{
+footer #balance h3 span{
     background: url("../media/coin.png") no-repeat left center;
     background-size: 4rem 4rem;
     padding: 2rem 0 2rem 4.8rem;
