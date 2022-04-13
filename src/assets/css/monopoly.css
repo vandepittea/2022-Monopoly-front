@@ -36,6 +36,20 @@ aside#other-players{
     top: 15%;
 }
 
+article#other-player-overview{
+    display: flex;
+}
+
+article#other-player-overview div:first-child{
+    margin-right: 3rem;
+}
+
+article#other-player-overview div:last-child{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 aside#current-place-on-game-board{
     position: absolute; /* relative wrapper */
     left: 1rem;
@@ -165,7 +179,7 @@ header h1{
     margin-bottom: 0.2rem;
 }
 
-aside#other-players h2, article#properties h2, article#main-tile-deed h2{
+aside#other-players h2, article#properties h2, article#main-tile-deed h2, article#other-player-overview h2{
     color: #DC143C;
     font-size: 3rem;
     text-align: center;
@@ -175,6 +189,10 @@ aside#other-players h2, article#properties h2, article#main-tile-deed h2{
 
 article#main-tile-deed h2{
     text-align: left;
+}
+
+article#other-player-overview h2{
+    margin-bottom: 0;
 }
 
 footer #balance h3{
@@ -301,6 +319,10 @@ article#main-tile-deed button
 {
     margin-left: 0;
     margin-right: 0;
+}
+
+article#other-player-overview button{
+    margin: 0;
 }
 
 article#properties > button{
