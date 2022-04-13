@@ -216,6 +216,12 @@ function manageMainClick(e) {
             case "collect-rent":
                 collectRent(_currentGameState);
                 break;
+            case "other-player-overview-property":
+                const $closestArticle = e.target.closest("article");
+                activateProperties($closestArticle.dataset.player);
+                break;
+            case "other-player-overview-trade":
+                break;
             default:
                 manageIdLessButtonClicks(e);
                 break;
