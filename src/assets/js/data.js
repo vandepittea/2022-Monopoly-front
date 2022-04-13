@@ -86,17 +86,17 @@ const _htmlElements =
         `,
         tileDeed:
         `
-        <article id="main-tile-deed">
+        <article id="main-tile-deed" data-name="Atlantic">
             <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
             <div>
                     <h2>DeedName</h2>
-                    <p>Price: <span id="main-deed-cost">100</span> coins</p>
+                    <p>Price: <span>100</span> coins</p>
             </div>
         </article>
         `,
         tileDeedButtons:
         `<div>
-                <button type="button" id="main-property-buy">Buy Property</button>
-                <button type="button" id="main-property-auction">Auction property</button>
+                <button type="button" id="main-property-buy">Buy property</button>
+                <button type="button" id="main-property-auction">Don't buy property</button>
         </div>`
     };
