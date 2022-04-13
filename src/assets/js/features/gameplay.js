@@ -1,5 +1,6 @@
 "use strict";
 let _currentGameState = null;
+let _previousCyclePlayer = null;
 
 function manageGame() {
     // TODO: delete this if-else, this exists for testing with dummy data
@@ -18,43 +19,16 @@ function manageGame() {
             injectProperties(game);
             injectBalance(game);
             syncPlayersToMinimap(game);
-            fillMain(game);
 
-            if (game.currentPlayer === _gameData.playerName) {
+            if ((game.currentPlayer === _gameData.playerName) && (_previousCyclePlayer === _gameData.playerName)) {
                 //All things specific for the active player goes here
                 injectPossibleTiles(game);
+                fillActivePlayerMain(game);
             } else {
                 //All things specific for non-active players go here
-                setTimeout(refreshGame, 1500);
-            }
-        })
-        .catch(errorHandler);
-}
-
-function refreshGame() {
-    let url = null;
-    if (_gameData.token === null) {
-        url = '/games/dummy';
-    } else {
-        url = `/games/${_gameData.gameID}`;
-    }
-
-    fetchFromServer(url, 'GET')
-        .then(game => {
-            _currentGameState = game;
-
-            //All things that needs to be shown for both go here
-            injectProperties(game);
-            injectBalance(game);
-            syncPlayersToMinimap(game);
-
-            if (game.currentPlayer === _gameData.playerName) {
-                //All things specific for the active player goes here
-                injectPossibleTiles(game);
-                fillMain(game);
-            } else {
-                //All things specific for non-active players go here
-                setTimeout(refreshGame, 1500);
+                fillOtherPlayerMain(game);
+                _previousCyclePlayer = game.currentPlayer;
+                setTimeout(manageGame, 1500);
             }
         })
         .catch(errorHandler);
@@ -223,12 +197,11 @@ function manageMainClick(e) {
     }
 }
 
-function manageIdLessButtonClicks(e)
-{
+function manageIdLessButtonClicks(e) {
     const $closestArticle = e.target.closest("article");
     switch ($closestArticle.id) {
         case "properties":
-            fillMain(_currentGameState);
+            fillActivePlayerMain(_currentGameState);
             break;
         case "other-player-overview":
             activateProperties($closestArticle.dataset.player);
@@ -238,7 +211,7 @@ function manageIdLessButtonClicks(e)
     }
 }
 
-function fillMain(game) {
+function fillActivePlayerMain(game) {
     const $main = document.querySelector("main");
     $main.innerHTML = "";
     if (_gameData.playerName === game.currentPlayer) {
@@ -253,6 +226,32 @@ function fillMain(game) {
             injectTileDeed($main, game, tileIdx);
         }
     }
+}
+
+function fillOtherPlayerMain(game) {
+    const $main = document.querySelector("main");
+    const $mainContent = $main.querySelector("article");
+    if ($mainContent !== null) {
+        if (($mainContent.id === "properties") || ($mainContent.id === "other-player-overview")) {
+            return;
+        }
+    }
+
+    $main.innerHTML = "";
+    if (game.turns.length === 0){
+        return;
+    }
+
+    const lastTurn = game.turns[game.turns.length - 1];
+    if (lastTurn.player === _gameData.playerName) {
+        return;
+    }
+
+    $main.insertAdjacentHTML('beforeend',
+        `
+        <p>${lastTurn.player} rolled a ${lastTurn.roll[0]} and a ${lastTurn.roll[1]} and landed on ${lastTurn.moves[lastTurn.moves.length - 1].tile}</p>
+        <p>${lastTurn.moves[lastTurn.moves.length - 1].description}</p>
+        `);
 }
 
 function injectTileDeed($main, game, tileIdx) {
