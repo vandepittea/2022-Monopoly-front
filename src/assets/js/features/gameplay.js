@@ -216,25 +216,16 @@ function manageMainClick(e) {
             case "collect-rent":
                 collectRent(_currentGameState);
                 break;
+            case "other-player-overview-property":
+                const $closestArticle = e.target.closest("article");
+                activateProperties($closestArticle.dataset.player);
+                break;
+            case "other-player-overview-trade":
+                break;
             default:
-                manageIdLessButtonClicks(e);
+                fillMain(_currentGameState);
                 break;
         }
-    }
-}
-
-function manageIdLessButtonClicks(e)
-{
-    const $closestArticle = e.target.closest("article");
-    switch ($closestArticle.id) {
-        case "properties":
-            fillMain(_currentGameState);
-            break;
-        case "other-player-overview":
-            activateProperties($closestArticle.dataset.player);
-            break;
-        default:
-            break;
     }
 }
 
