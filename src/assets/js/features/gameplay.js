@@ -282,3 +282,18 @@ function injectTileDeed($main, game, tileIdx) {
         $tileDeed.insertAdjacentHTML("beforeend", _htmlElements.tileDeedButtons);
     }
 }
+
+
+
+
+    function declareBankrupt() {
+
+        const $button = document.querySelector("#bankrupt");
+        $button.addEventListener("click", declareBankrupt);
+
+        fetchFromServer('/games/${_gameData.gameId}/players/{playerName}/bankruptcy', 'GET', )
+            .then(response =>
+                console.log(response))
+
+            console.log(`${_gameData.playerName} is bankrupt!`);
+}
