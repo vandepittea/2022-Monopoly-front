@@ -3,16 +3,16 @@
 document.addEventListener('DOMContentLoaded',init);
 
 function init(){
-    if (document.URL.includes("index.html"))
-    {
-        initPreGame();
-    }
-    else if (document.URL.includes("monopoly.html"))
+    if (document.URL.includes("monopoly.html"))
     {
         fetchFromServer("/tiles", "GET")
             .then(response => _tiles = response)
             .then(initMonopoly)
             .catch(errorHandler);
+    }
+    else
+    {
+        initPreGame();
     }
 }
 
