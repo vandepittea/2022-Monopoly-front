@@ -84,7 +84,7 @@ const _htmlElements =
                     <h2>PlayerName</h2>
             </div>
             <div>
-                    <p>1500</p>
+                    <h3>1500</h3>
                     <button type="button">Properties</button>
                     <button type="button">Trade</button>
             </div>

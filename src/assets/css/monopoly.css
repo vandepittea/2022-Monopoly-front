@@ -195,6 +195,10 @@ article#other-player-overview h2{
     margin-bottom: 0;
 }
 
+article#other-player-overview h3{
+    font-size: 2rem;
+}
+
 footer #balance h3{
     background: linear-gradient(180deg, rgba(196, 196, 196, 0) 0%, rgba(196, 196, 196, 0.5) 100%);
     border: 0.01rem rgba(0, 0, 0, 0.5) solid;
@@ -280,7 +284,7 @@ footer #small-property-container img:hover {
     clip-path: inherit;
 }
 
-footer #balance h3 span{
+article#other-player-overview h3, footer #balance h3 span{
     background: url("../media/coin.png") no-repeat left center;
     background-size: 4rem 4rem;
     padding: 2rem 0 2rem 4.8rem;
