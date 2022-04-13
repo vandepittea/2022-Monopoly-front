@@ -79,9 +79,15 @@ const _htmlElements =
         playerOverview:
             `
         <article id="other-player-overview">
-            <h2>PlayerName</h2>
-            <p>1500</p>
-            <button type="button">Show Properties</button>
+            <div>
+                    <img src="../images/characters/waluigi.webp" alt="Waluigi" title="Waluigi"/>
+                    <h2>PlayerName</h2>
+            </div>
+            <div>
+                    <p>1500</p>
+                    <button type="button">Properties</button>
+                    <button type="button">Trade</button>
+            </div>
         </article>
         `,
         tileDeed:
