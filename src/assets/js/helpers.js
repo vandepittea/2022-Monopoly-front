@@ -20,7 +20,6 @@ function getPlayerObject(game, playerName)
         let playerObject = null;
         game.players.forEach(player =>
         {
-           if (playerName === player.name)
            if (player.name === playerName)
            {
                playerObject = player;

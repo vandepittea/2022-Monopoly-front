@@ -25,7 +25,36 @@ function manageGame() {
                 injectPossibleTiles(game);
             } else {
                 //All things specific for non-active players go here
-                setTimeout(manageGame, 1500);
+                setTimeout(refreshGame, 1500);
+            }
+        })
+        .catch(errorHandler);
+}
+
+function refreshGame() {
+    let url = null;
+    if (_gameData.token === null) {
+        url = '/games/dummy';
+    } else {
+        url = `/games/${_gameData.gameID}`;
+    }
+
+    fetchFromServer(url, 'GET')
+        .then(game => {
+            _currentGameState = game;
+
+            //All things that needs to be shown for both go here
+            injectProperties(game);
+            injectBalance(game);
+            syncPlayersToMinimap(game);
+
+            if (game.currentPlayer === _gameData.playerName) {
+                //All things specific for the active player goes here
+                injectPossibleTiles(game);
+                fillMain(game);
+            } else {
+                //All things specific for non-active players go here
+                setTimeout(refreshGame, 1500);
             }
         })
         .catch(errorHandler);
@@ -77,7 +106,7 @@ function injectPossibleTiles(game) {
     $container.innerHTML = "";
     $container.insertAdjacentElement('beforeend', $templateNode);
 
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 13; i++) {
         const $template = $templateNode.content.firstElementChild.cloneNode(true);
         const tile = _tiles[(currentTileIdx + i) % _tiles.length];
 
@@ -117,7 +146,11 @@ function showPlayerInfo(e) {
         return;
     }
 
-    const $otherPlayerWindow = document.querySelector("#other-player-overview");
+    const $main = document.querySelector("main");
+    $main.innerHTML = "";
+    $main.insertAdjacentHTML('beforeend', _htmlElements.playerOverview);
+
+    const $otherPlayerWindow = $main.querySelector("#other-player-overview");
     const playerName = e.target.dataset.player;
 
     if (!$otherPlayerWindow.classList.contains("hidden") && ($otherPlayerWindow.dataset.player === playerName)) {
@@ -140,7 +173,8 @@ function rollDice() {
 
                     const $diceRoll = response.lastDiceRoll;
                     console.log(`${_gameData.playerName} rolled a ${$diceRoll[0]} and a ${$diceRoll[1]}`);
-                    fillMain(response);
+                    syncPlayersToMinimap(response);
+                    manageGame();
 
                     _currentGameState = response;
                 })
@@ -168,8 +202,39 @@ function jailed(game) {
 function manageMainClick(e) {
     e.preventDefault();
 
-    if (e.target.id === "roll-dice") {
-        rollDice();
+    if (e.target.nodeName.toLowerCase() === "button") {
+        switch (e.target.id) {
+            case "roll-dice":
+                rollDice();
+                break;
+            case "main-property-buy":
+                buyProperty(e.target.closest("#main-tile-deed").dataset.name);
+                break;
+            case "main-property-auction":
+                auctionProperty(e.target.closest("#main-tile-deed").dataset.name);
+                break;
+            case "collect-rent":
+                collectRent(_currentGameState);
+                break;
+            default:
+                manageIdLessButtonClicks(e);
+                break;
+        }
+    }
+}
+
+function manageIdLessButtonClicks(e)
+{
+    const $closestArticle = e.target.closest("article");
+    switch ($closestArticle.id) {
+        case "properties":
+            fillMain(_currentGameState);
+            break;
+        case "other-player-overview":
+            activateProperties($closestArticle.dataset.player);
+            break;
+        default:
+            break;
     }
 }
 
@@ -197,7 +262,8 @@ function injectTileDeed($main, game, tileIdx) {
     const $tileImg = $tileDeed.querySelector("img");
 
     $tileDeed.querySelector("h2").innerText = tile.name;
-    $tileDeed.querySelector("#main-deed-cost").innerText = tile.cost;
+    $tileDeed.querySelector("span").innerText = tile.cost;
+    $tileDeed.dataset.name = tile.name;
     $tileImg.setAttribute("src", `../images/deeds/${tile.nameAsPathParameter}.jpg`);
     $tileImg.setAttribute("alt", `${tile.name}`);
     $tileImg.setAttribute("title", `${tile.name}`);
