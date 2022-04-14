@@ -14,11 +14,9 @@ body {
 
 #wrapper{
     display: flex;
-    height: 94vh;
+    height: 67.5rem;
     flex-direction: column;
     justify-content: center;
-    margin-top: 3vh;
-    margin-bottom: 3vh;
 }
 
 #wrapper .hidden
