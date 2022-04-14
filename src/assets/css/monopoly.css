@@ -32,7 +32,7 @@ main{
 aside#other-players{
     position: absolute; /* relative wrapper */
     right: 1rem;
-    top: 15%;
+    top: 16rem;
 }
 
 article#other-player-overview{
@@ -271,6 +271,10 @@ article #properties-container article[data-streettype="jailcards"] h3{
 /* images */
 img{
     max-width: 100%;
+}
+
+#moves-container-and-auctions-and-history img{
+    width: 100%;
 }
 
 article#main-tile-deed img{
