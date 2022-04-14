@@ -7,7 +7,7 @@ body {
 }
 
 #wrapper{
-    height: 66.5rem;
+    min-height: 66.5rem;
     position: relative;
 }
 
@@ -26,8 +26,7 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 70vh;
-    padding-bottom: 7rem;
+    min-height: 50rem;
 }
 
 aside#other-players{
