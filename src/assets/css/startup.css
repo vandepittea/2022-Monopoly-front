@@ -130,9 +130,14 @@ header img{
 }
 
 #character-screen img{
-    flex: 1 1 18%;
+    flex: 0 0 18%;
     width: 1rem;
-    margin: 0.4rem;
+    padding: 0.4rem;
+}
+
+#character-screen img:hover{
+    border-radius: 5%;
+    background-color: #DC143C;
 }
 
 #waiting-screen figure{
