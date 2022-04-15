@@ -6,12 +6,12 @@ body {
     background-color: white;
 }
 
-#wrapper{
+#wrapper {
     min-height: 98.5vh;
     position: relative;
 }
 
-header{
+header {
     width: 70%;
     margin: 1rem auto;
 }
@@ -22,7 +22,7 @@ header #moves-container-and-auctions-and-history {
     height: 10rem;
 }
 
-main{
+main {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,34 +30,34 @@ main{
     padding-bottom: 7rem;
 }
 
-aside#other-players{
+aside#other-players {
     position: absolute; /* relative wrapper */
     right: 1rem;
     top: 15%;
 }
 
-article#other-player-overview{
+article#other-player-overview {
     display: flex;
 }
 
-article#other-player-overview div:first-child{
+article#other-player-overview div:first-child {
     margin-right: 3rem;
 }
 
-article#other-player-overview div:last-child{
+article#other-player-overview div:last-child {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-aside#current-place-on-game-board{
+aside#current-place-on-game-board {
     position: absolute; /* relative wrapper */
     left: 1rem;
     top: 0;
     width: 15rem;
 }
 
-article#main-tile-deed{
+article#main-tile-deed {
     display: flex;
     flex-wrap: wrap;
     width: 50%;
@@ -65,12 +65,12 @@ article#main-tile-deed{
     margin-right: auto;
 }
 
-article#main-tile-deed div:first-of-type{
+article#main-tile-deed div:first-of-type {
     width: 50%;
     align-self: center;
 }
 
-article#main-tile-deed div:last-child{
+article#main-tile-deed div:last-child {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -123,7 +123,7 @@ article #properties-container article ul li.owned {
     filter: grayscale(0%);
 }
 
-footer{
+footer {
     position: absolute; /* relative wrapper */
     left: 22vw; /* width of minimap: 20vw */
     bottom: 1rem;
@@ -133,17 +133,17 @@ footer{
     align-items: flex-end;
 }
 
-footer #property-view{
+footer #property-view {
     display: flex;
     align-items: flex-end;
     width: 85%;
 }
 
-footer #small-property-container{
+footer #small-property-container {
     width: 80%;
 }
 
-footer .partially-of-screen{
+footer .partially-of-screen {
     display: inline-block;
     width: 32%;
     position: relative;
@@ -156,13 +156,13 @@ footer .partially-of-screen:hover {
     height: 22rem;
 }
 
-footer .partially-of-screen-images{
+footer .partially-of-screen-images {
     position: absolute; /* relative .partially-of-screen */
     top: 0;
     left: 0;
 }
 
-footer #balance{
+footer #balance {
     width: 14%;
 }
 
@@ -171,7 +171,7 @@ body #wrapper .hidden {
 }
 
 /* font styling */
-header h1{
+header h1 {
     color: #DC143C;
     font-size: 1rem;
     text-align: center;
@@ -179,7 +179,7 @@ header h1{
     margin-bottom: 0.2rem;
 }
 
-aside#other-players h2, article#properties h2, article#main-tile-deed h2, article#other-player-overview h2{
+aside#other-players h2, article#properties h2, article#main-tile-deed h2, article#other-player-overview h2 {
     color: #DC143C;
     font-size: 3rem;
     text-align: center;
@@ -187,22 +187,22 @@ aside#other-players h2, article#properties h2, article#main-tile-deed h2, articl
     margin-bottom: 1rem;
 }
 
-article#main-tile-deed h2{
+article#main-tile-deed h2 {
     text-align: left;
 }
 
-article#other-player-overview h2{
+article#other-player-overview h2 {
     margin-bottom: 0;
 }
 
-article#other-player-overview h3{
+article#other-player-overview h3 {
     font-size: 2rem;
     background: url("../media/coin.png") no-repeat left center;
     background-size: 4rem 4rem;
     padding: 2rem 0 2rem 4.8rem;
 }
 
-footer #balance h3{
+footer #balance h3 {
     background: linear-gradient(180deg, rgba(196, 196, 196, 0) 0%, rgba(196, 196, 196, 0.5) 100%);
     border: 0.01rem rgba(0, 0, 0, 0.5) solid;
     box-sizing: border-box;
@@ -213,68 +213,68 @@ footer #balance h3{
     font-size: 2rem;
 }
 
-article #properties-container h3{
+article #properties-container h3 {
     text-align: center;
     color: white;
     line-height: 3rem;
 }
 
-article #properties-container article[data-streettype="purple"] h3{
+article #properties-container article[data-streettype="purple"] h3 {
     background-color: #D73A95;
 }
 
-article #properties-container article[data-streettype="darkblue"] h3{
+article #properties-container article[data-streettype="darkblue"] h3 {
     background-color: #0072BB;
 }
 
-article #properties-container article[data-streettype="utilities"] h3{
+article #properties-container article[data-streettype="utilities"] h3 {
     background-color: black;
 }
 
-article #properties-container article[data-streettype="lightblue"] h3{
+article #properties-container article[data-streettype="lightblue"] h3 {
     background-color: #81c9ec;
 }
 
-article #properties-container article[data-streettype="violet"] h3{
+article #properties-container article[data-streettype="violet"] h3 {
     background-color: #8F00FF;
 }
 
-article #properties-container article[data-streettype="orange"] h3{
+article #properties-container article[data-streettype="orange"] h3 {
     background-color: #F7941D;
 }
 
-article #properties-container article[data-streettype="red"] h3{
+article #properties-container article[data-streettype="red"] h3 {
     background-color: #ED1B24;
 }
 
-article #properties-container article[data-streettype="yellow"] h3{
+article #properties-container article[data-streettype="yellow"] h3 {
     background-color: #cbc105;
 }
 
-article #properties-container article[data-streettype="darkgreen"] h3{
+article #properties-container article[data-streettype="darkgreen"] h3 {
     background-color: #1FB25A;
 }
 
-article #properties-container article[data-streettype="railroad"] h3{
+article #properties-container article[data-streettype="railroad"] h3 {
     background-color: #676767;
 }
 
-article #properties-container article[data-streettype="jailcards"] h3{
+article #properties-container article[data-streettype="jailcards"] h3 {
     background-color: gray;
 }
 
-#main-tile-deed p{
+#main-tile-deed p {
     color: #DC143C;
     font-size: 2rem;
     text-shadow: 0 0.02rem 0.02rem #ffffff;
 }
 
 /* images */
-img{
+img {
     max-width: 100%;
 }
 
-article#main-tile-deed img{
+article#main-tile-deed img {
     width: 50%;
 }
 
@@ -287,7 +287,7 @@ footer #small-property-container img:hover {
     clip-path: inherit;
 }
 
-footer #balance h3 span{
+footer #balance h3 span {
     background: url("../media/coin.png") no-repeat left center;
     background-size: 4rem 4rem;
     padding: 2rem 0 2rem 4.8rem;
@@ -310,29 +310,28 @@ button {
     background-color: white;
 }
 
-header button{
+header button {
     width: 40%;
     height: 3rem;
     border-radius: 0;
     margin-top: 1rem;
 }
 
-button:hover{
+button:hover {
     color: white;
     background-color: #DC143C;
 }
 
-article#main-tile-deed button
-{
+article#main-tile-deed button {
     margin-left: 0;
     margin-right: 0;
 }
 
-article#other-player-overview button{
+article#other-player-overview button {
     margin: 0;
 }
 
-article#properties > button, article#other-player-overview div:first-child button{
+article#properties > button, article#other-player-overview div:first-child button {
     position: absolute; /* relative wrapper */
     top: 0;
     right: 1rem;
@@ -344,19 +343,19 @@ article#properties > button, article#other-player-overview div:first-child butto
     margin: 0;
 }
 
-article#other-player-overview div:first-child button{
+article#other-player-overview div:first-child button {
     top: 14rem;
     right: 28rem;
 }
 
-aside#other-players button{
+aside#other-players button {
     border-radius: 0;
     margin-bottom: 0.5rem;
     margin-right: 0;
     width: 16rem;
 }
 
-footer #property-view button{
+footer #property-view button {
     font-size: 5rem;
     line-height: 1rem;
     background: none;
@@ -366,12 +365,12 @@ footer #property-view button{
     margin: 0;
 }
 
-article#properties > button:hover, footer #property-view button:hover, article#other-player-overview div:first-child button:hover{
+article#properties > button:hover, footer #property-view button:hover, article#other-player-overview div:first-child button:hover {
     color: initial;
     background-color: inherit;
 }
 
-article#properties #properties-container button{
+article#properties #properties-container button {
     height: 3rem;
     align-self: flex-end;
     z-index: 2;
@@ -576,7 +575,7 @@ aside#map-container {
     justify-content: center;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
 
@@ -593,3 +592,51 @@ aside#map-container {
     align-items: center;
     font-weight: bold;
 }
+
+/*Auction Tabel*/
+#ongoingAuctions {
+    border-radius: 2.8rem;
+    background-color: #C4C4C4;
+    padding: 0.01rem;
+    max-width: 70vw;
+    min-width: 55vw;
+    min-height: 20vh;
+    empty-cells: show;
+    table-layout: fixed;
+}
+
+#ongoingAuctions thead {
+    overflow: auto;
+}
+
+#ongoingAuctions tbody {
+    overflow: scroll;
+}
+
+#ongoingAuctions th {
+    padding: 1rem;
+    background-color: #808080;
+}
+
+#ongoingAuctions td {
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0.5rem;
+}
+
+#ongoingAuctions th + th {
+    border-left: 2px solid black;
+}
+
+#ongoingAuctions td + td {
+    border-left: 2px solid black;
+}
+
+#coin {
+    max-height: 20%;
+    max-width: 20%;
+    vertical-align: middle;
+    padding: 0.5rem;
+}
+
