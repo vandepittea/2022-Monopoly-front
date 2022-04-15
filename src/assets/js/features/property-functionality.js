@@ -1,4 +1,5 @@
 "use strict";
+const _divsToToggle = ["small-property-container", "property-view button", "map-container", "moves-container-and-auctions-and-history"];
 
 function fillProperties() {
     const $main = document.querySelector("main");
@@ -46,24 +47,21 @@ function activatePlayerProperties(e) {
 }
 
 function activateProperties(player) {
-    const $properties = document.querySelector('#properties');
-    if ($properties !== null) {
-        fillMain(_currentGameState);
-    } else {
-        const $main = document.querySelector("main");
-        $main.innerHTML = "";
-        $main.insertAdjacentHTML("beforeend", _htmlElements.propertyView);
+    toggleVisibilityByID(_divsToToggle, true);
 
-        const $propertiesContainer = document.querySelectorAll('#properties-container ul li');
-        $propertiesContainer.forEach($property => {
-            $property.classList.remove("owned");
-        });
+    const $main = document.querySelector("main");
+    $main.innerHTML = "";
+    $main.insertAdjacentHTML("beforeend", _htmlElements.propertyView);
 
-        player.properties.forEach(property => {
-            const $property = document.querySelector(`#properties-container ul li[data-name='${property.property}']`);
-            $property.classList.add("owned");
-        });
-    }
+    const $propertiesContainer = document.querySelectorAll('#properties-container ul li');
+    $propertiesContainer.forEach($property => {
+        $property.classList.remove("owned");
+    });
+
+    player.properties.forEach(property => {
+        const $property = document.querySelector(`#properties-container ul li[data-name='${property.property}']`);
+        $property.classList.add("owned");
+    });
 }
 
 function buyProperty(propertyName) {

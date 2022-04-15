@@ -232,6 +232,7 @@ function manageMainClick(e) {
 function fillMain(game) {
     const $main = document.querySelector("main");
     $main.innerHTML = "";
+    toggleVisibilityByID(_divsToToggle, false);
     if (_gameData.playerName === game.currentPlayer) {
         if (jailed(game)) {
             //current player is in jail, show correct UI

@@ -41,3 +41,15 @@ function getTileIdx(tileName)
     });
     return tileIdx;
 }
+
+function toggleVisibilityByID(idsToToggle, hidden)
+{
+    idsToToggle.forEach(id => {
+        if (hidden){
+            document.querySelector(`#${id}`).classList.add("hidden");
+        }
+        else{
+            document.querySelector(`#${id}`).classList.remove("hidden");
+        }
+    });
+}
