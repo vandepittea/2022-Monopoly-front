@@ -48,7 +48,7 @@ function activatePlayerProperties(e) {
 function activateProperties(player) {
     const $properties = document.querySelector('#properties');
     if ($properties !== null) {
-        fillMain(_currentGameState);
+        fillActivePlayerMain(_currentGameState);
     } else {
         const $main = document.querySelector("main");
         $main.innerHTML = "";
