@@ -247,11 +247,9 @@ function fillOtherPlayerMain(game) {
         return;
     }
 
-    $main.insertAdjacentHTML('beforeend',
-        `
-        <p>${lastTurn.player} rolled a ${lastTurn.roll[0]} and a ${lastTurn.roll[1]} and landed on ${lastTurn.moves[lastTurn.moves.length - 1].tile}</p>
-        <p>${lastTurn.moves[lastTurn.moves.length - 1].description}</p>
-        `);
+    lastTurn.moves.forEach(move =>{
+        $main.insertAdjacentHTML('beforeend', _htmlElements.playerAction);
+    });
 }
 
 function injectTileDeed($main, game, tileIdx) {

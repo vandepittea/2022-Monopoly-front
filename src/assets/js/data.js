@@ -98,5 +98,13 @@ const _htmlElements =
             `<div>
                 <button type="button" id="main-property-buy">Buy property</button>
                 <button type="button" id="main-property-auction">Don't buy property</button>
-        </div>`
+        </div>`,
+        playerAction:
+            `
+        <article>
+            <h2>TileName</h2>
+            <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
+            <p>Description</p>
+        </article>
+        `
     };
