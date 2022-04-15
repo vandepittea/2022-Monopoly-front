@@ -247,8 +247,23 @@ function fillOtherPlayerMain(game) {
         return;
     }
 
-    lastTurn.moves.forEach(move =>{
+    injectTurnInMain(lastTurn, $main);
+}
+
+function injectTurnInMain(turn, $main)
+{
+    turn.moves.forEach(move =>{
         $main.insertAdjacentHTML('beforeend', _htmlElements.playerAction);
+        const tile = getTile(move.tile);
+        const $lastMove = $main.lastElementChild;
+
+        $lastMove.querySelector('h2').innerText = move.tile;
+        $lastMove.querySelector('p').innerText = move.description;
+
+        const $img = $lastMove.querySelector('img');
+        $img.setAttribute('src', `../images/${(tile.type === "street" ? "deeds" : "tiles")}/${tile.nameAsPathParameter}.jpg`);
+        $img.setAttribute('alt', `${move.tile}`);
+        $img.setAttribute('title', `${move.tile}`);
     });
 }
 

@@ -1,43 +1,36 @@
 "use strict";
 
-function makeVisibleByID(idToActivate, allIDs)
-{
-    allIDs.forEach(id =>
-    {
+function makeVisibleByID(idToActivate, allIDs) {
+    allIDs.forEach(id => {
         document.querySelector(`#${id}`).classList.add("hidden");
     });
     document.querySelector(`#${idToActivate}`).classList.remove("hidden");
 }
 
-function getPlayerObject(game, playerName)
-{
-    if (playerName === null)
-    {
+function getPlayerObject(game, playerName) {
+    if (playerName === null) {
         return game.players[0];
-    }
-    else
-    {
+    } else {
         let playerObject = null;
-        game.players.forEach(player =>
-        {
-           if (player.name === playerName)
-           {
-               playerObject = player;
-           }
+        game.players.forEach(player => {
+            if (player.name === playerName) {
+                playerObject = player;
+            }
         });
         return playerObject;
     }
 }
 
-function getTileIdx(tileName)
-{
-    let tileIdx = 0;
-    _tiles.forEach(tile =>
-    {
-        if (tile.name === tileName)
-        {
-            tileIdx = tile.position;
+function getTileIdx(tileName) {
+    return getTile(tileName).position;
+}
+
+function getTile(tileName) {
+    let tileObject = null;
+    _tiles.forEach(tile =>{
+        if (tile.name === tileName){
+            tileObject = tile;
         }
     });
-    return tileIdx;
+    return tileObject;
 }
