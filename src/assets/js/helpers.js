@@ -34,3 +34,15 @@ function getTile(tileName) {
     });
     return tileObject;
 }
+
+function toggleVisibilityByID(idsToToggle, hidden)
+{
+    idsToToggle.forEach(id => {
+        if (hidden){
+            document.querySelector(`#${id}`).classList.add("hidden");
+        }
+        else{
+            document.querySelector(`#${id}`).classList.remove("hidden");
+        }
+    });
+}

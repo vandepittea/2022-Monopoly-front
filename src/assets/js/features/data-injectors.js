@@ -105,6 +105,8 @@ function showPlayerInfo(e) {
 }
 
 function fillActivePlayerMain(game) {
+    toggleVisibilityByID(_divsToToggle, false);
+
     const $main = document.querySelector("main");
     $main.innerHTML = "";
     if (_gameData.playerName === game.currentPlayer) {
@@ -122,6 +124,8 @@ function fillActivePlayerMain(game) {
 }
 
 function fillOtherPlayerMain(game) {
+    toggleVisibilityByID(_divsToToggle, false);
+
     const $main = document.querySelector("main");
     const $mainContent = $main.querySelector("article");
     if ($mainContent !== null) {

@@ -93,7 +93,7 @@ function manageMainClick(e) {
             case "other-player-overview-trade":
                 break;
             default:
-                fillMain(_currentGameState);
+                fillActivePlayerMain(_currentGameState);
                 break;
         }
     }
