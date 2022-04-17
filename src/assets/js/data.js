@@ -98,5 +98,43 @@ const _htmlElements =
             `<div>
                 <button type="button" id="main-property-buy">Buy property</button>
                 <button type="button" id="main-property-auction">Don't buy property</button>
+<<<<<<< HEAD
         </div>`
+<<<<<<< Updated upstream
+=======
+        ,
+        auctionTable:
+            `
+            <table id="ongoingAuctions">
+                <thead>
+                <tr>
+                    <th>Auction host</th>
+                    <th>Auctioned Property</th>
+                    <th>Current Price</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <!-- This is test data for table layout -->
+                    <tr>
+                        <td>Mr. Random</td>
+                        <td>Uw moeder</td>
+                        <td><img src="../images/coin.png" alt="Coin" title="Coin" id="coin"/>69</td>
+                        <td><button id="joinAuction1" type="button">Join Auction</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            `
+=======
+        </div>`,
+        playerAction:
+            `
+        <article>
+            <h2>TileName</h2>
+            <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
+            <p>Description</p>
+        </article>
+        `
+>>>>>>> 66047f43c99914fc675e793e90064a554094aded
+>>>>>>> Stashed changes
     };

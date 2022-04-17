@@ -1,5 +1,6 @@
 "use strict";
 let _currentGameState = null;
+let _previousCyclePlayer = null;
 
 function manageGame() {
     // TODO: delete this if-else, this exists for testing with dummy data
@@ -18,19 +19,22 @@ function manageGame() {
             injectProperties(game);
             injectBalance(game);
             syncPlayersToMinimap(game);
-            fillMain(game);
 
-            if (game.currentPlayer === _gameData.playerName) {
+            if ((game.currentPlayer === _gameData.playerName) && (_previousCyclePlayer === _gameData.playerName)) {
                 //All things specific for the active player goes here
                 injectPossibleTiles(game);
+                fillActivePlayerMain(game);
             } else {
                 //All things specific for non-active players go here
-                setTimeout(refreshGame, 1500);
+                fillOtherPlayerMain(game);
+                _previousCyclePlayer = game.currentPlayer;
+                setTimeout(manageGame, 1500);
             }
         })
         .catch(errorHandler);
 }
 
+<<<<<<< Updated upstream
 function refreshGame() {
     let url = null;
     if (_gameData.token === null) {
@@ -164,6 +168,8 @@ function showPlayerInfo(e) {
     }
 }
 
+=======
+>>>>>>> Stashed changes
 function rollDice() {
     if (_gameData.token !== null) {
         if (_currentGameState.currentPlayer === _gameData.playerName) {
@@ -216,12 +222,27 @@ function manageMainClick(e) {
             case "collect-rent":
                 collectRent(_currentGameState);
                 break;
+<<<<<<< Updated upstream
             default:
                 manageIdLessButtonClicks(e);
+=======
+            case "other-player-overview-property":
+                const $closestArticle = e.target.closest("article");
+                activateProperties($closestArticle.dataset.player);
+                break;
+            case "other-player-overview-trade":
+                break;
+            case "player-bankrupt" :
+                declareBankrupt();
+                break;
+            default:
+                fillActivePlayerMain(_currentGameState);
+>>>>>>> Stashed changes
                 break;
         }
     }
 }
+<<<<<<< HEAD
 
 function manageIdLessButtonClicks(e)
 {
@@ -284,6 +305,7 @@ function injectTileDeed($main, game, tileIdx) {
 }
 
 
+<<<<<<< Updated upstream
 
 
     function declareBankrupt() {
@@ -296,4 +318,49 @@ function injectTileDeed($main, game, tileIdx) {
                 console.log(response))
 
             console.log(`${_gameData.playerName} is bankrupt!`);
+}
+=======
+function currentAuctions() {
+    const $main = document.querySelector("main");
+    $main.innerText = "";
+    $main.insertAdjacentHTML("beforeend", _htmlElements.auctionTable);
+    fetchFromServer(url, 'GET')
+        .then(game => {
+            game.players.forEach(player => {
+                if (player.name !== _gameData.playerName) {
+                    //get all ongoing auctions by player
+                    fetchFromServer(`/games/${_gameData.gameID}/players/${player.name}/auctions`, 'GET')
+                        .then(response => {
+                            console.log(response);
+                            if (response.auctions.length > 0) {
+                                //show all ongoing auctions in a table on html
+                                const $auctionTableBody = $main.querySelector("#ongoingAuctions tbody");
+                                $auctionTableBody.insertAdjacentHTML("beforeend",
+                                    `<tr>
+                                            <td>${response.playerName}</td>
+                                            <td>${response.property}</td>
+                                            <td><img src="../images/coin.png" alt="Coin" title="Coin" id="coin"/>${response.price}</td>
+                                            <td>
+                                                <button id="joinAuction1" type="button">Join Auction</button>
+                                            </td>
+                                          </tr>`
+                                );
+                            }
+
+
+                        })
+                        .catch(errorHandler);
+                }
+            });
+        })
+        .catch(errorHandler);
+}
+
+function declareBankrupt() {
+
+    fetchFromServer(`/games/${_gameData.gameID}/players/${player.name}/bankruptcy', 'POST'`)
+        .then(response =>
+            console.log(response))
+
+    console.log(`${_gameData.playerName} is bankrupt!`);
 }
