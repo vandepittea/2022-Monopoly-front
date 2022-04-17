@@ -79,9 +79,16 @@ const _htmlElements =
         playerOverview:
             `
         <article id="other-player-overview">
-            <h2>PlayerName</h2>
-            <p>1500</p>
-            <button type="button">Show Properties</button>
+            <div>
+                    <button type="button">&#10007;</button>
+                    <img src="../images/characters/waluigi.webp" alt="Waluigi" title="Waluigi"/>
+                    <h2>PlayerName</h2>
+            </div>
+            <div>
+                    <h3>1500</h3>
+                    <button type="button" id="other-player-overview-property">Properties</button>
+                    <button type="button" id="other-player-overview-trade">Trade</button>
+            </div>
         </article>
         `,
         tileDeed:
@@ -98,34 +105,6 @@ const _htmlElements =
             `<div>
                 <button type="button" id="main-property-buy">Buy property</button>
                 <button type="button" id="main-property-auction">Don't buy property</button>
-<<<<<<< HEAD
-        </div>`
-<<<<<<< Updated upstream
-=======
-        ,
-        auctionTable:
-            `
-            <table id="ongoingAuctions">
-                <thead>
-                <tr>
-                    <th>Auction host</th>
-                    <th>Auctioned Property</th>
-                    <th>Current Price</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                    <!-- This is test data for table layout -->
-                    <tr>
-                        <td>Mr. Random</td>
-                        <td>Uw moeder</td>
-                        <td><img src="../images/coin.png" alt="Coin" title="Coin" id="coin"/>69</td>
-                        <td><button id="joinAuction1" type="button">Join Auction</button></td>
-                    </tr>
-                </tbody>
-            </table>
-            `
-=======
         </div>`,
         playerAction:
             `
@@ -135,6 +114,4 @@ const _htmlElements =
             <p>Description</p>
         </article>
         `
->>>>>>> 66047f43c99914fc675e793e90064a554094aded
->>>>>>> Stashed changes
     };
