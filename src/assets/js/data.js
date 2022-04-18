@@ -114,28 +114,30 @@ const _htmlElements =
             <p>Description</p>
         </article>
         `
-        </div>`
         ,
         auctionTable:
             `
-            <table id="ongoingAuctions">
-                <thead>
-                <tr>
-                    <th>Auction host</th>
-                    <th>Auctioned Property</th>
-                    <th>Current Price</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                    <!-- This is test data for table layout -->
-                    <tr>
-                        <td>Mr. Random</td>
-                        <td>Uw moeder</td>
-                        <td><img src="../images/coin.png" alt="Coin" title="Coin" id="coin"/>69</td>
-                        <td><button id="joinAuction1" type="button">Join Auction</button></td>
-                    </tr>
-                </tbody>
-            </table>
+                <article id="ongoing-auctions">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Auction host</th>
+                            <th>Auctioned Property</th>
+                            <th>Current Price</th>
+                            <th><button type="button">&#10007;</button></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <!-- This is test data for table layout -->
+                            <tr>
+                                <td>Marika</td>
+                                <td>Leyndell Capital</td>
+                                <td><img src="../images/coin.png" alt="Coin" title="Coin" id="coin"/>69</td>
+                                <td><button id="join-auction" type="button">Join Auction</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
+            
             `
     };

@@ -117,12 +117,12 @@ function currentAuctions() {
                                 //show all ongoing auctions in a table on html
                                 const $auctionTableBody = $main.querySelector("#ongoingAuctions tbody");
                                 $auctionTableBody.insertAdjacentHTML("beforeend",
-                                    `<tr>
+                                    `<tr data-player="${response.playerName}" data-property="${response.property}">
                                             <td>${response.playerName}</td>
                                             <td>${response.property}</td>
                                             <td><img src="../images/coin.png" alt="Coin" title="Coin" id="coin"/>${response.price}</td>
                                             <td>
-                                                <button id="joinAuction1" type="button">Join Auction</button>
+                                                <button id="join-auction" type="button">Join Auction</button>
                                             </td>
                                           </tr>`
                                 );
