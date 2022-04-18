@@ -11,7 +11,7 @@ body {
     position: relative;
 }
 
-header{
+header {
     width: 70%;
     margin: 1rem auto;
 }
@@ -22,41 +22,41 @@ header #moves-container-and-auctions-and-history {
     height: 10rem;
 }
 
-main{
+main {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 50rem;
 }
 
-aside#other-players{
+aside#other-players {
     position: absolute; /* relative wrapper */
     right: 1rem;
     top: 16rem;
 }
 
-article#other-player-overview{
+article#other-player-overview {
     display: flex;
 }
 
-article#other-player-overview div:first-child{
+article#other-player-overview div:first-child {
     margin-right: 3rem;
 }
 
-article#other-player-overview div:last-child{
+article#other-player-overview div:last-child {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-aside#current-place-on-game-board{
+aside#current-place-on-game-board {
     position: absolute; /* relative wrapper */
     left: 1rem;
     top: 0;
     width: 15rem;
 }
 
-article#main-tile-deed{
+article#main-tile-deed {
     display: flex;
     flex-wrap: wrap;
     width: 50%;
@@ -64,12 +64,12 @@ article#main-tile-deed{
     margin-right: auto;
 }
 
-article#main-tile-deed div:first-of-type{
+article#main-tile-deed div:first-of-type {
     width: 50%;
     align-self: center;
 }
 
-article#main-tile-deed div:last-child{
+article#main-tile-deed div:last-child {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -122,7 +122,7 @@ article #properties-container article ul li.owned {
     filter: grayscale(0%);
 }
 
-footer{
+footer {
     position: absolute; /* relative wrapper */
     left: 22vw; /* width of minimap: 20vw */
     bottom: 1rem;
@@ -132,17 +132,17 @@ footer{
     align-items: flex-end;
 }
 
-footer #property-view{
+footer #property-view {
     display: flex;
     align-items: flex-end;
     width: 85%;
 }
 
-footer #small-property-container{
+footer #small-property-container {
     width: 80%;
 }
 
-footer .partially-of-screen{
+footer .partially-of-screen {
     display: inline-block;
     width: 32%;
     position: relative;
@@ -155,13 +155,13 @@ footer .partially-of-screen:hover {
     height: 22rem;
 }
 
-footer .partially-of-screen-images{
+footer .partially-of-screen-images {
     position: absolute; /* relative .partially-of-screen */
     top: 0;
     left: 0;
 }
 
-footer #balance{
+footer #balance {
     width: 14%;
 }
 
@@ -170,7 +170,7 @@ body #wrapper .hidden {
 }
 
 /* font styling */
-header h1{
+header h1 {
     color: #DC143C;
     font-size: 1rem;
     text-align: center;
@@ -178,7 +178,7 @@ header h1{
     margin-bottom: 0.2rem;
 }
 
-aside#other-players h2, article#properties h2, article#main-tile-deed h2, article#other-player-overview h2{
+aside#other-players h2, article#properties h2, article#main-tile-deed h2, article#other-player-overview h2 {
     color: #DC143C;
     font-size: 3rem;
     text-align: center;
@@ -186,22 +186,22 @@ aside#other-players h2, article#properties h2, article#main-tile-deed h2, articl
     margin-bottom: 1rem;
 }
 
-article#main-tile-deed h2{
+article#main-tile-deed h2 {
     text-align: left;
 }
 
-article#other-player-overview h2{
+article#other-player-overview h2 {
     margin-bottom: 0;
 }
 
-article#other-player-overview h3{
+article#other-player-overview h3 {
     font-size: 2rem;
     background: url("../media/coin.png") no-repeat left center;
     background-size: 4rem 4rem;
     padding: 2rem 0 2rem 4.8rem;
 }
 
-footer #balance h3{
+footer #balance h3 {
     background: linear-gradient(180deg, rgba(196, 196, 196, 0) 0%, rgba(196, 196, 196, 0.5) 100%);
     border: 0.01rem rgba(0, 0, 0, 0.5) solid;
     box-sizing: border-box;
@@ -212,33 +212,33 @@ footer #balance h3{
     font-size: 2rem;
 }
 
-article #properties-container h3{
+article #properties-container h3 {
     text-align: center;
     color: white;
     line-height: 3rem;
 }
 
-article #properties-container article[data-streettype="purple"] h3{
+article #properties-container article[data-streettype="purple"] h3 {
     background-color: #D73A95;
 }
 
-article #properties-container article[data-streettype="darkblue"] h3{
+article #properties-container article[data-streettype="darkblue"] h3 {
     background-color: #0072BB;
 }
 
-article #properties-container article[data-streettype="utilities"] h3{
+article #properties-container article[data-streettype="utilities"] h3 {
     background-color: black;
 }
 
-article #properties-container article[data-streettype="lightblue"] h3{
+article #properties-container article[data-streettype="lightblue"] h3 {
     background-color: #81c9ec;
 }
 
-article #properties-container article[data-streettype="violet"] h3{
+article #properties-container article[data-streettype="violet"] h3 {
     background-color: #8F00FF;
 }
 
-article #properties-container article[data-streettype="orange"] h3{
+article #properties-container article[data-streettype="orange"] h3 {
     background-color: #F7941D;
 }
 
