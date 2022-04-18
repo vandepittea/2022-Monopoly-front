@@ -139,10 +139,10 @@ function currentAuctions() {
 }
 
 function declareBankrupt() {
-
-    fetchFromServer(`/games/${_gameData.gameID}/players/${player.name}/bankruptcy', 'POST'`)
-        .then(response =>
-            console.log(response))
-
-    console.log(`${_gameData.playerName} is bankrupt!`);
+    fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/bankruptcy'`, 'POST')
+        .then(response =>{
+            console.log(response);
+            console.log(`${_gameData.playerName} is bankrupt!`);
+        })
+        .catch(errorHandler);
 }
