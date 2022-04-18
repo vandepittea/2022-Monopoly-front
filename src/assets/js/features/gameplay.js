@@ -92,6 +92,9 @@ function manageMainClick(e) {
                 break;
             case "other-player-overview-trade":
                 break;
+            case "player-bankrupt" :
+                declareBankrupt();
+                break;
             default:
                 fillActivePlayerMain(_currentGameState);
                 break;
@@ -138,11 +141,10 @@ function currentAuctions() {
 }
 
 function declareBankrupt() {
-    fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/bankruptcy`, 'POST')
-        .then(response =>{
-            console.log(response);
-            console.log(`${_gameData.playerName} is bankrupt!`);
-        })
-        .catch(errorHandler);
-}
 
+    fetchFromServer(`/games/${_gameData.gameID}/players/${player.name}/bankruptcy', 'POST'`)
+        .then(response =>
+            console.log(response))
+
+    console.log(`${_gameData.playerName} is bankrupt!`);
+}
