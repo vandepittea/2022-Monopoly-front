@@ -95,6 +95,12 @@ function manageMainClick(e) {
                 break;
             case "other-player-overview-trade":
                 break;
+            case "pay-fine":
+                payJailFine();
+                break;
+            case "jail-card":
+                useJailCards();
+                break;
             default:
                 fillActivePlayerMain(_currentGameState);
                 break;
@@ -143,6 +149,26 @@ function declareBankrupt() {
         .then(response =>{
             console.log(response);
             console.log(`${_gameData.playerName} is bankrupt!`);
+        })
+        .catch(errorHandler);
+}
+
+function payJailFine() {
+    fetchFromServer(`/games/${_gameData.gameID}/prison/${_gameData.playerName}/fine`, 'POST')
+        .then(response =>{
+            console.log(response);
+            console.log(`${_gameData.playerName} is out of jail!`);
+            manageGame();
+        })
+        .catch(errorHandler);
+}
+
+function useJailCards() {
+    fetchFromServer(`/games/${_gameData.gameID}/prison/${_gameData.playerName}/free`, 'POST')
+        .then(response =>{
+            console.log(response);
+            console.log(`${_gameData.playerName} is out of jail!`);
+            manageGame();
         })
         .catch(errorHandler);
 }
