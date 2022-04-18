@@ -19,6 +19,7 @@
     <script src="../assets/js/features/take-turn.js"></script>
     <script src="../assets/js/features/property-functionality.js"></script>
     <script src="../assets/js/features/minimap-functionality.js"></script>
+    <script src="../assets/js/features/data-injectors.js"></script>
 </head>
 
 <body>
@@ -31,7 +32,7 @@
                 <img src="../images/tiles/Atlantic.jpg" alt="Atlantic" title="Atlantic">
             </template>
 
-            <button id="showAuctions" type="button">Auctions</button>
+            <button id="show-auctions" type="button">Auctions</button>
             <button type="button">History</button>
         </div>
     </header>
@@ -43,12 +44,13 @@
 
     <!-- load gameplay dynamically here (js) -->
     <main>
-        <div id="overlay">
-            <img src="../images/bankrupt/too_bad.jpg" alt="too bad" title="too bad">
-        </div>
+
 
     </main>
 
+    <div id="overlay">
+        <img src="../images/bankrupt/too_bad.jpg" alt="too bad" title="too bad">
+    </div>
     <!-- properties and money of other players -->
     <aside id="other-players">
         <h2>Players</h2>
