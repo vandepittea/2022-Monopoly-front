@@ -238,34 +238,34 @@ article #properties-container article[data-streettype="orange"] h3 {
     background-color: #F7941D;
 }
 
-article #properties-container article[data-streettype="red"] h3{
+article #properties-container article[data-streettype="red"] h3 {
     background-color: #ED1B24;
 }
 
-article #properties-container article[data-streettype="yellow"] h3{
+article #properties-container article[data-streettype="yellow"] h3 {
     background-color: #cbc105;
 }
 
-article #properties-container article[data-streettype="darkgreen"] h3{
+article #properties-container article[data-streettype="darkgreen"] h3 {
     background-color: #1FB25A;
 }
 
-article #properties-container article[data-streettype="railroad"] h3{
+article #properties-container article[data-streettype="railroad"] h3 {
     background-color: #676767;
 }
 
-article #properties-container article[data-streettype="jailcards"] h3{
+article #properties-container article[data-streettype="jailcards"] h3 {
     background-color: gray;
 }
 
-#main-tile-deed p{
+#main-tile-deed p {
     color: #DC143C;
     font-size: 2rem;
     text-shadow: 0 0.02rem 0.02rem #ffffff;
 }
 
 /* images */
-img{
+img {
     max-width: 100%;
 }
 
@@ -286,7 +286,7 @@ footer #small-property-container img:hover {
     clip-path: inherit;
 }
 
-footer #balance h3 span{
+footer #balance h3 span {
     background: url("../media/coin.png") no-repeat left center;
     background-size: 4rem 4rem;
     padding: 2rem 0 2rem 4.8rem;
@@ -309,28 +309,27 @@ button {
     background-color: white;
 }
 
-header button{
+header button {
     width: 40%;
     border-radius: 0;
     margin-top: 1rem;
 }
 
-button:hover{
+button:hover {
     color: white;
     background-color: #DC143C;
 }
 
-article#main-tile-deed button
-{
+article#main-tile-deed button {
     margin-left: 0;
     margin-right: 0;
 }
 
-article#other-player-overview button{
+article#other-player-overview button {
     margin: 0;
 }
 
-article#properties > button, article#other-player-overview div:first-child button{
+article#properties > button, article#other-player-overview div:first-child button {
     position: absolute; /* relative wrapper */
     top: 0;
     right: 1rem;
@@ -342,19 +341,19 @@ article#properties > button, article#other-player-overview div:first-child butto
     margin: 0;
 }
 
-article#other-player-overview div:first-child button{
+article#other-player-overview div:first-child button {
     top: 14rem;
     right: 28rem;
 }
 
-aside#other-players button{
+aside#other-players button {
     border-radius: 0;
     margin-bottom: 0.5rem;
     margin-right: 0;
     width: 16rem;
 }
 
-footer #property-view button{
+footer #property-view button {
     font-size: 5rem;
     line-height: 1rem;
     background: none;
@@ -364,12 +363,12 @@ footer #property-view button{
     margin: 0;
 }
 
-article#properties > button:hover, footer #property-view button:hover, article#other-player-overview div:first-child button:hover{
+article#properties > button:hover, footer #property-view button:hover, article#other-player-overview div:first-child button:hover {
     color: initial;
     background-color: inherit;
 }
 
-article#properties #properties-container button{
+article#properties #properties-container button {
     height: 3rem;
     align-self: flex-end;
     z-index: 2;
@@ -570,7 +569,7 @@ aside#map-container {
     justify-content: center;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
 
@@ -587,3 +586,51 @@ aside#map-container {
     align-items: center;
     font-weight: bold;
 }
+
+/*Auction Tabel*/
+#ongoing-auctions table {
+    border-radius: 2.8rem;
+    background-color: #C4C4C4;
+    padding: 0.01rem;
+    max-width: 70vw;
+    min-width: 55vw;
+    min-height: 20vh;
+    empty-cells: show;
+    table-layout: fixed;
+}
+
+#ongoing-auctions table thead {
+    overflow: auto;
+}
+
+#ongoing-auctions table tbody {
+    overflow: scroll;
+}
+
+#ongoing-auctions table th {
+    padding: 1rem;
+    background-color: #808080;
+}
+
+#ongoing-auctions table td {
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0.5rem;
+}
+
+#ongoing-auctions table th + th {
+    border-left: 2px solid black;
+}
+
+#ongoing-auctions table td + td {
+    border-left: 2px solid black;
+}
+
+#coin {
+    max-height: 20%;
+    max-width: 20%;
+    vertical-align: middle;
+    padding: 0.5rem;
+}
+

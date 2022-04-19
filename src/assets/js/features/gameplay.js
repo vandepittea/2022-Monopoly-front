@@ -77,9 +77,6 @@ function manageMainClick(e) {
             case "roll-dice":
                 rollDice();
                 break;
-            case "showAuctions":
-                currentAuctions();
-                break;
             case "main-property-buy":
                 buyProperty(e.target.closest("#main-tile-deed").dataset.name);
                 break;
@@ -95,6 +92,9 @@ function manageMainClick(e) {
                 break;
             case "other-player-overview-trade":
                 break;
+            case "player-bankrupt" :
+                declareBankrupt();
+                break;
             case "pay-fine":
                 payJailFine();
                 break;
@@ -107,6 +107,8 @@ function manageMainClick(e) {
         }
     }
 }
+
+//code needed to show ongoing auctions
 
 function currentAuctions() {
     const $main = document.querySelector("main");
@@ -124,12 +126,12 @@ function currentAuctions() {
                                 //show all ongoing auctions in a table on html
                                 const $auctionTableBody = $main.querySelector("#ongoingAuctions tbody");
                                 $auctionTableBody.insertAdjacentHTML("beforeend",
-                                    `<tr>
+                                    `<tr data-player="${response.playerName}" data-property="${response.property}">
                                             <td>${response.playerName}</td>
                                             <td>${response.property}</td>
                                             <td><img src="../images/coin.png" alt="Coin" title="Coin" id="coin"/>${response.price}</td>
                                             <td>
-                                                <button id="joinAuction1" type="button">Join Auction</button>
+                                                <button id="join-auction" type="button">Join Auction</button>
                                             </td>
                                           </tr>`
                                 );
@@ -146,11 +148,10 @@ function currentAuctions() {
 
 function declareBankrupt() {
     fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/bankruptcy`, 'POST')
-        .then(response =>{
+        .then(response => {
             console.log(response);
             console.log(`${_gameData.playerName} is bankrupt!`);
-        })
-        .catch(errorHandler);
+        });
 }
 
 function payJailFine() {
