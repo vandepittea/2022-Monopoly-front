@@ -106,6 +106,28 @@ const _htmlElements =
                 <button type="button" id="main-property-buy">Buy property</button>
                 <button type="button" id="main-property-auction">Don't buy property</button>
         </div>`,
+        auctionTable:
+        `
+            <table id="ongoingAuctions">
+                <thead>
+                <tr>
+                    <th>Auction host</th>
+                    <th>Auctioned Property</th>
+                    <th>Current Price</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <!-- This is test data for table layout -->
+                    <tr>
+                        <td>Mr. Random</td>
+                        <td>Uw moeder</td>
+                        <td><img src="../images/coin.png" alt="Coin" title="Coin" id="coin"/>69</td>
+                        <td><button id="joinAuction1" type="button">Join Auction</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            `,
         playerAction:
             `
         <article>
@@ -113,5 +135,13 @@ const _htmlElements =
             <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
             <p>Description</p>
         </article>
+        `,
+        jailFineButton:
         `
+        <button type="button" id="pay-fine">Pay Fine</button>
+        `,
+         jailCardButton:
+         `
+         <button type="button" id="jail-card">Use your get out of jail card!</button>
+         `
     };

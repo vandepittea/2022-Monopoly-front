@@ -77,6 +77,9 @@ function manageMainClick(e) {
             case "roll-dice":
                 rollDice();
                 break;
+            case "showAuctions":
+                currentAuctions();
+                break;
             case "main-property-buy":
                 buyProperty(e.target.closest("#main-tile-deed").dataset.name);
                 break;
@@ -92,9 +95,80 @@ function manageMainClick(e) {
                 break;
             case "other-player-overview-trade":
                 break;
+            case "pay-fine":
+                payJailFine();
+                break;
+            case "jail-card":
+                useJailCards();
+                break;
             default:
                 fillActivePlayerMain(_currentGameState);
                 break;
         }
     }
+}
+
+function currentAuctions() {
+    const $main = document.querySelector("main");
+    $main.innerText = "";
+    $main.insertAdjacentHTML("beforeend", _htmlElements.auctionTable);
+    fetchFromServer(url, 'GET')
+        .then(game => {
+            game.players.forEach(player => {
+                if (player.name !== _gameData.playerName) {
+                    //get all ongoing auctions by player
+                    fetchFromServer(`/games/${_gameData.gameID}/players/${player.name}/auctions`, 'GET')
+                        .then(response => {
+                            console.log(response);
+                            if (response.auctions.length > 0) {
+                                //show all ongoing auctions in a table on html
+                                const $auctionTableBody = $main.querySelector("#ongoingAuctions tbody");
+                                $auctionTableBody.insertAdjacentHTML("beforeend",
+                                    `<tr>
+                                            <td>${response.playerName}</td>
+                                            <td>${response.property}</td>
+                                            <td><img src="../images/coin.png" alt="Coin" title="Coin" id="coin"/>${response.price}</td>
+                                            <td>
+                                                <button id="joinAuction1" type="button">Join Auction</button>
+                                            </td>
+                                          </tr>`
+                                );
+                            }
+
+
+                        })
+                        .catch(errorHandler);
+                }
+            });
+        })
+        .catch(errorHandler);
+}
+
+function declareBankrupt() {
+    fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/bankruptcy`, 'POST')
+        .then(response =>{
+            console.log(response);
+            console.log(`${_gameData.playerName} is bankrupt!`);
+        })
+        .catch(errorHandler);
+}
+
+function payJailFine() {
+    fetchFromServer(`/games/${_gameData.gameID}/prison/${_gameData.playerName}/fine`, 'POST')
+        .then(response =>{
+            console.log(response);
+            console.log(`${_gameData.playerName} is out of jail!`);
+            manageGame();
+        })
+        .catch(errorHandler);
+}
+
+function useJailCards() {
+    fetchFromServer(`/games/${_gameData.gameID}/prison/${_gameData.playerName}/free`, 'POST')
+        .then(response =>{
+            console.log(response);
+            console.log(`${_gameData.playerName} is out of jail!`);
+            manageGame();
+        })
+        .catch(errorHandler);
 }

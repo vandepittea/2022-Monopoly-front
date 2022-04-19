@@ -111,7 +111,14 @@ function fillActivePlayerMain(game) {
     $main.innerHTML = "";
     if (_gameData.playerName === game.currentPlayer) {
         if (jailed(game)) {
-            //current player is in jail, show correct UI
+            $main.insertAdjacentHTML('beforeend', "<article></article>");
+            const $article = $main.firstElementChild;
+            $article.insertAdjacentHTML('beforeend', "<h2>You are in jail :'-(</h2>");
+            $article.insertAdjacentHTML('beforeend', _htmlElements.rollDiceButton);
+            $article.insertAdjacentHTML('beforeend', _htmlElements.jailFineButton);
+            if (getPlayerObject(game, _gameData.playerName).getOutOfJailFreeCards > 0){
+                $article.insertAdjacentHTML('beforeend', _htmlElements.jailCardButton);
+            }
         } else if (game.canRoll) {
             $main.insertAdjacentHTML('beforeend', _htmlElements.rollDiceButton);
         } else {
