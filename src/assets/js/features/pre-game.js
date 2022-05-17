@@ -182,5 +182,5 @@ function goToGame()
 
     saveToStorage("gameData", _gameData);
 
-    window.location.replace("pages/monopoly.html");
+    window.location.replace("pages/game.html");
 }

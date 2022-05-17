@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>Monopoly</title>
     <link rel="stylesheet" href="../assets/css/reset.css">
-    <link rel="stylesheet" href="../assets/css/monopoly.css">
+    <link rel="stylesheet" href="../assets/css/game/game.css">
+    <link rel="stylesheet" href="../assets/css/forms.css">
+    <link rel="stylesheet" href="../assets/css/game/minimap.css">
 
     <script src="../assets/js/config.js"></script>
 
@@ -37,24 +39,19 @@
         </div>
     </header>
 
-    <!-- show where the current player is on the game board (only for other players) -->
+    <!-- show where the current player is on the game board -->
     <aside id="current-place-on-game-board">
         <img src="../images/tiles/Atlantic.jpg" alt="Atlantic" title="Atlantic"/>
     </aside>
 
-    <!-- load gameplay dynamically here (js) -->
+    <!-- load content dynamically here -->
     <main>
-
 
     </main>
 
-    <div id="overlay">
-        <img src="../images/bankrupt/too_bad.jpg" alt="too bad" title="too bad">
-    </div>
-
     <!-- properties and money of other players -->
     <aside id="other-players">
-        <h2>Players</h2>
+        <h2>Other players</h2>
         <template>
             <button type="button"></button>
         </template>

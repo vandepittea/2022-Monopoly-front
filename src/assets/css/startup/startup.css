@@ -1,7 +1,7 @@
 /* fonts */
 @font-face {
     font-family: "nintendo";
-    src: url("../fonts/Pretendo.ttf");
+    src: url("../../fonts/Pretendo.ttf");
 }
 
 /* blocks */
@@ -125,7 +125,8 @@ header img{
 }
 
 #mario-img{
-    margin-left: -4rem; /* Overlap with form */
+    position: relative;
+    left: -6rem; /* Overlap with form */
     z-index: 999;
 }
 
@@ -133,6 +134,16 @@ header img{
     flex: 0 0 18%;
     width: 1rem;
     padding: 0.4rem;
+}
+
+#login aside img{
+    width: 100%;
+}
+
+#launch-screen div img{
+    width: 5rem;
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
 }
 
 #character-screen img:hover{
@@ -149,123 +160,6 @@ header img{
     justify-content: flex-end;
 }
 
-#login aside img{
-    width: 100%;
-}
-
-#launch-screen div img{
-    width: 5rem;
-    margin-right: 1.5rem;
-    margin-left: 1.5rem;
-}
-
 #launch-screen #launch-button-and-current-player img{
     width: 14rem;
-}
-
-/* forms */
-label {
-    display: inline-block;
-    text-align: left;
-    font-size: 1.2rem;
-    width: 30%;
-    background-color: #DC143C;
-    color: white;
-    border-radius: 0.5rem 0 0 0.5rem;
-    line-height: 2rem;
-    padding-left: 0.5rem;
-}
-
-input {
-    display: inline-block;
-    width: 40%;
-    height: 2rem;
-    font-size: 1.2rem;
-    border-radius: 0 0.5rem 0.5rem 0;
-    padding-left: 0.5rem;
-    margin-bottom: 2rem;
-    margin-top: 0.2rem;
-    border: none;
-    margin-left: -2%; /* Place input and label perfectly against each other */
-}
-
-button {
-    display: block;
-    color: #DC143C;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    border-radius: 1.25rem;
-    border-style: solid;
-    border-width: 0.125rem;
-    border-color: #DC143C;
-    padding: 0.35rem 0.75rem;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: white;
-}
-
-button:hover{
-    color: white;
-    background-color: #DC143C;
-}
-
-button#create-game{
-    font-size: 1.5rem;
-    border-radius: 0;
-    display: inline-block;
-    vertical-align: top;
-    float: right;
-}
-
-#game-list button{
-    display: inline;
-    font-size: 1rem;
-    margin: 1rem;
-}
-
-#launch-button-and-current-player button{
-    border-radius: 0;
-    font-size: 3rem;
-}
-
-input, textarea, select{
-    box-sizing: border-box;
-}
-
-input:focus, textarea:focus, select:focus{
-    outline: none;
-}
-
-/* table */
-#table-container{
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    width: 100%;
-    height: 50vh;
-    overflow-y: scroll;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-table{
-    width: 100%;
-}
-
-thead{
-    background-color: #DC143C;
-    font-weight: bold;
-    color: white;
-    line-height: 4rem;
-}
-
-tbody tr{
-    background-color: #f6f6f6;
-}
-
-tbody tr:nth-of-type(odd){
-    background-color: #e9e9e9;
-}
-
-tbody td li{
-    margin-bottom: 1.5rem;
 }
