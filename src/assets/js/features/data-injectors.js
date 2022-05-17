@@ -136,7 +136,7 @@ function fillOtherPlayerMain(game) {
     const $main = document.querySelector("main");
     const $mainContent = $main.querySelector("article");
     if ($mainContent !== null) {
-        if (($mainContent.id === "properties") || ($mainContent.id === "other-player-overview")) {
+        if (($mainContent.id === "properties") || ($mainContent.id === "other-player-overview") || ($mainContent.id === "ongoing-auctions")) {
             return;
         }
     }

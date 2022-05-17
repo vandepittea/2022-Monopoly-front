@@ -139,7 +139,35 @@ const _htmlElements =
         jailFineButton:
         `
         <button type="button" id="pay-fine">Pay Fine</button>
-        `,
+        `
+        ,
+        auctionTable:
+            `
+                <article id="ongoing-auctions">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Auction host</th>
+                            <th>Auctioned Property</th>
+                            <th>Current Price</th>
+                            <th><button type="button">&#10007;</button></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <!-- This is test data for table layout -->
+                            <tr>
+                                <td>Marika</td>
+                                <td>Leyndell Capital</td>
+                                <td><img src="../images/coin.png" alt="Coin" title="Coin" id="coin"/>69</td>
+                                <td><button id="join-auction" type="button">Join Auction</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
+            
+            `
+        ,
+        
          jailCardButton:
          `
          <button type="button" id="jail-card">Use your get out of jail card!</button>

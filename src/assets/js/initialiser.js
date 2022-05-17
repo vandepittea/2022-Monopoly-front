@@ -41,6 +41,7 @@ function initMonopoly()
     }
     document.querySelector("#property-view button").addEventListener('click', activateCurrentPlayersProperties);
     document.querySelector("main").addEventListener("click", manageMainClick);
+    document.querySelector("#show-auctions").addEventListener("click", currentAuctions);
     // This doesn't work because the #bankruptcy is not in the html anymore
     //document.querySelector("#bankruptcy").addEventListener("click", goneBankrupt);
     document.querySelector("#other-players div").addEventListener("click", showPlayerInfo);
