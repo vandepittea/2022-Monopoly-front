@@ -177,7 +177,7 @@ h2 {
 }
 
 article#main-tile-deed h2 {
-    text-align: left;
+    text-align: right;
 }
 
 article#other-player-overview h2 {
@@ -262,6 +262,7 @@ article #properties-container article[data-streettype="jailcards"] h3 {
     color: #DC143C;
     font-size: 2rem;
     text-shadow: 0 0.02rem 0.02rem #ffffff;
+    text-align: right;
 }
 
 /* images */
