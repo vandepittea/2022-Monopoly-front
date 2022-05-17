@@ -13,7 +13,6 @@ body {
     grid-template-columns: 15rem 10rem auto 18rem;
     grid-template-rows: 10rem 5rem 10rem auto 10rem 8rem 7rem;
     column-gap: 1rem;
-    position: relative;
 }
 
 header {
@@ -33,6 +32,7 @@ main {
     justify-content: center;
     align-items: center;
     z-index: 1;
+    position: relative;
 }
 
 aside#other-players {
@@ -142,7 +142,6 @@ footer #small-property-container {
 footer .partially-of-screen {
     display: inline-block;
     width: 32%;
-    position: relative;
     height: 4.5rem;
     overflow: hidden;
 }
@@ -153,9 +152,7 @@ footer .partially-of-screen:hover {
 }
 
 footer .partially-of-screen-images {
-    position: absolute; /* relative .partially-of-screen */
-    top: 0;
-    left: 0;
+
 }
 
 footer #balance {
@@ -331,9 +328,9 @@ article#other-player-overview button {
 }
 
 article#properties > button, article#other-player-overview div:first-child button {
-    position: absolute; /* relative wrapper */
-    top: 0;
-    right: 1rem;
+    position: absolute; /* relative main */
+    top: -2rem;
+    right: 3rem;
     font-size: 3rem;
     background: none;
     border: none;
@@ -343,8 +340,7 @@ article#properties > button, article#other-player-overview div:first-child butto
 }
 
 article#other-player-overview div:first-child button {
-    top: 14rem;
-    right: 28rem;
+    top: 5rem;
 }
 
 aside#other-players button {
