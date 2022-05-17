@@ -147,8 +147,8 @@ footer .partially-of-screen {
 }
 
 footer .partially-of-screen:hover {
-    overflow: inherit;
-    height: 22rem;
+    height: 15rem;
+    overflow: visible;
 }
 
 footer #balance {
@@ -280,9 +280,4 @@ article#main-tile-deed img{
 
 footer #small-property-container img {
     margin-right: 2rem;
-    clip-path: inset(0 0 80% 0);
-}
-
-footer #small-property-container img:hover {
-    clip-path: inherit;
 }
