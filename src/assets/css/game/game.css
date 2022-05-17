@@ -285,3 +285,9 @@ footer #small-property-container img {
 footer #small-property-container img:hover {
     clip-path: inherit;
 }
+
+/* extra */
+article#properties > button:hover, footer #property-view button:hover, article#other-player-overview div:first-child button:hover {
+    color: initial;
+    background-color: inherit;
+}
