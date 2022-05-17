@@ -108,7 +108,7 @@ const _htmlElements =
         </div>`,
         auctionTable:
         `
-            <table id="ongoingAuctions">
+            <table id="ongoing-auctions">
                 <thead>
                 <tr>
                     <th>Auction host</th>
@@ -130,7 +130,7 @@ const _htmlElements =
             `,
         playerAction:
             `
-        <article>
+        <article id="player-action">
             <h2>TileName</h2>
             <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
             <p>Description</p>
