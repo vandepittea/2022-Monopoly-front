@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded',init);
 
 function init(){
-    if (document.URL.includes("monopoly.html"))
+    if (document.URL.includes("game.html"))
     {
         fetchFromServer("/tiles", "GET")
             .then(response => _tiles = response)

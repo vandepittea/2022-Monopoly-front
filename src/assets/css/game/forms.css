@@ -1,3 +1,33 @@
+label {
+    display: inline-block;
+    text-align: left;
+    font-size: 1.2rem;
+    width: 30%;
+    background-color: #DC143C;
+    color: white;
+    border-radius: 0.5rem 0 0 0.5rem;
+    line-height: 2rem;
+    padding-left: 0.5rem;
+}
+
+input {
+    display: inline-block;
+    width: 40%;
+    height: 2rem;
+    font-size: 1.2rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    padding-left: 0.5rem;
+    margin-bottom: 2rem;
+    margin-top: 0.2rem;
+    border: none;
+    position: relative;
+    left: -0.4%; /* Place input and label perfectly against each other */
+}
+
+input, textarea, select{
+    box-sizing: border-box;
+}
+
 button {
     display: block;
     color: #DC143C;
@@ -14,19 +44,27 @@ button {
     background-color: white;
 }
 
+button:hover {
+    color: white;
+    background-color: #DC143C;
+}
+
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+
 header button {
     width: 40%;
     border-radius: 0;
     margin-top: 1rem;
 }
 
-footer > button{
-    margin-right: 1rem;
-}
-
-button:hover {
-    color: white;
-    background-color: #DC143C;
+button#create-game{
+    font-size: 1.5rem;
+    border-radius: 0;
+    display: inline-block;
+    vertical-align: top;
+    float: right;
 }
 
 article#main-tile-deed button {
@@ -36,6 +74,10 @@ article#main-tile-deed button {
 
 article#other-player-overview button {
     margin: 0;
+}
+
+footer > button{
+    margin-right: 1rem;
 }
 
 aside#other-players button {
@@ -75,4 +117,15 @@ article#properties #properties-container button {
     height: 3rem;
     align-self: flex-end;
     z-index: 2;
+}
+
+#game-list button{
+    display: inline;
+    font-size: 1rem;
+    margin: 1rem;
+}
+
+#launch-button-and-current-player button{
+    border-radius: 0;
+    font-size: 3rem;
 }
