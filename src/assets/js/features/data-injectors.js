@@ -1,5 +1,7 @@
 "use strict";
 
+const mainIdToNotRefresh = ["properties", "other-player-overview", "ongoing-auctions"];
+
 function injectBalance(game) {
     const $balanceContainer = document.querySelector('#balance-container');
     $balanceContainer.innerHTML = getPlayerObject(game, _gameData.playerName).money;
@@ -58,7 +60,7 @@ function injectPossibleTiles(game) {
 }
 
 function fillPlayerButtons() {
-    let url = null;
+    let url;
     if (_gameData.token === null) {
         url = '/games/dummy';
     } else {
@@ -136,7 +138,7 @@ function fillOtherPlayerMain(game) {
     const $main = document.querySelector("main");
     const $mainContent = $main.querySelector("article");
     if ($mainContent !== null) {
-        if (($mainContent.id === "properties") || ($mainContent.id === "other-player-overview") || ($mainContent.id === "ongoing-auctions")) {
+        if (mainIdToNotRefresh.findIndex($mainContent.id) !== -1) {
             return;
         }
     }
