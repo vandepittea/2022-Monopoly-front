@@ -391,6 +391,14 @@ aside#map-container {
         "t10 t10 t9  t8  t7  t6  t5  t4  t3  t2  t1  t0  t0";
 }
 
+aside#map-container div {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
 #t0 {
     grid-area: t0;
 }
@@ -552,14 +560,6 @@ aside#map-container {
 }
 
 /* temporary location for code */
-#map-container div {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-}
-
 /*Auction Tabel*/
 #ongoing-auctions table {
     border-radius: 2.8rem;
