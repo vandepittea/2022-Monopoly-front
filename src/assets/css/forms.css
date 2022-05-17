@@ -48,11 +48,6 @@ button {
     background-color: white;
 }
 
-#wrapper button:hover {
-    color: white;
-    background-color: #DC143C;
-}
-
 header button {
     width: 40%;
     border-radius: 0;
@@ -61,6 +56,11 @@ header button {
 
 footer > button{
     margin-right: 1rem;
+}
+
+button:hover {
+    color: white;
+    background-color: #DC143C;
 }
 
 article#game-list button{
