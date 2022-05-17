@@ -89,7 +89,8 @@ article#other-player-overview button {
 article #properties-container button {
     height: 3rem;
     align-self: flex-end;
-    z-index: 2;
+    margin-bottom: 2rem;
+    margin-right: 1.5rem;
 }
 
 div#launch-button-and-current-player button{
