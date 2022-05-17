@@ -174,7 +174,7 @@ function useJailCards() {
         .catch(errorHandler);
 }
 
-function switchTaxSystem() {
+function switchTaxSystem(e) {
     const player = getPlayerObject(_currentGameState, _gameData.playerName);
     if (player.taxSystem === 'COMPUTE') {
         fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/tax/estimate`, 'POST')
@@ -191,5 +191,11 @@ function switchTaxSystem() {
             })
             .catch(errorHandler)
 
+    }
+    if(e.target.innerText === "ESTIMATE"){
+        e.target.innerText = "compute"
+    }
+    else{
+        e.target.innerText = "estimate"
     }
 }
