@@ -151,10 +151,6 @@ footer .partially-of-screen:hover {
     height: 22rem;
 }
 
-footer .partially-of-screen-images {
-
-}
-
 footer #balance {
     width: 15%;
 }
@@ -318,6 +314,10 @@ button:hover {
     background-color: #DC143C;
 }
 
+footer > button{
+    margin-right: 1rem;
+}
+
 article#main-tile-deed button {
     margin-left: 0;
     margin-right: 0;
@@ -325,6 +325,10 @@ article#main-tile-deed button {
 
 article#other-player-overview button {
     margin: 0;
+}
+
+article#other-player-overview div:first-child button {
+    top: 5rem;
 }
 
 article#properties > button, article#other-player-overview div:first-child button {
@@ -339,8 +343,9 @@ article#properties > button, article#other-player-overview div:first-child butto
     margin: 0;
 }
 
-article#other-player-overview div:first-child button {
-    top: 5rem;
+article#properties > button:hover, footer #property-view button:hover, article#other-player-overview div:first-child button:hover {
+    color: initial;
+    background-color: inherit;
 }
 
 aside#other-players button {
@@ -360,19 +365,10 @@ footer #property-view button {
     margin: 0;
 }
 
-article#properties > button:hover, footer #property-view button:hover, article#other-player-overview div:first-child button:hover {
-    color: initial;
-    background-color: inherit;
-}
-
 article#properties #properties-container button {
     height: 3rem;
     align-self: flex-end;
     z-index: 2;
-}
-
-footer > button{
-    margin-right: 1rem;
 }
 
 /* minimap */
@@ -561,25 +557,6 @@ aside#map-container {
 }
 
 /* temporary location for code */
-#overlay {
-    position: fixed; /* Place overlay in a fixed location across the entire page */
-    top: 0;
-    left: 0;
-    z-index: 999; /* Always place overlay in front of all other elements of the html */
-    display: none;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-}
-
-#overlay img {
-    display: block;
-    margin: auto;
-    width: 40%;
-}
-
 #map-container div {
     display: flex;
     flex-flow: row wrap;
