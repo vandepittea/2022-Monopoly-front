@@ -303,19 +303,24 @@ button {
     background-color: white;
 }
 
+button:hover {
+    color: initial;
+    background-color: inherit;
+}
+
 header button {
     width: 40%;
     border-radius: 0;
     margin-top: 1rem;
 }
 
+footer > button{
+    margin-right: 1rem;
+}
+
 button:hover {
     color: white;
     background-color: #DC143C;
-}
-
-footer > button{
-    margin-right: 1rem;
 }
 
 article#main-tile-deed button {
@@ -325,10 +330,6 @@ article#main-tile-deed button {
 
 article#other-player-overview button {
     margin: 0;
-}
-
-article#other-player-overview div:first-child button {
-    top: 5rem;
 }
 
 article#properties > button, article#other-player-overview div:first-child button {
@@ -343,9 +344,8 @@ article#properties > button, article#other-player-overview div:first-child butto
     margin: 0;
 }
 
-article#properties > button:hover, footer #property-view button:hover, article#other-player-overview div:first-child button:hover {
-    color: initial;
-    background-color: inherit;
+article#other-player-overview div:first-child button {
+    top: 5rem;
 }
 
 aside#other-players button {
