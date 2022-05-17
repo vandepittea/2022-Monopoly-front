@@ -11,7 +11,7 @@ body {
     min-height: 99vh;
     display: grid;
     grid-template-columns: 15rem 10rem auto 18rem;
-    grid-template-rows: 10rem 5rem 10rem auto 10rem 14rem 1rem;
+    grid-template-rows: 10rem 5rem 10rem auto 10rem 10rem 5rem;
     column-gap: 1rem;
 }
 
@@ -35,10 +35,6 @@ main {
     position: relative;
 }
 
-aside#other-players {
-    grid-area: 3 / 4 / 6 / 5;
-}
-
 article#other-player-overview {
     display: flex;
 }
@@ -51,10 +47,6 @@ article#other-player-overview div:last-child {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
-
-aside#current-place-on-game-board {
-    grid-area: 1 / 1 / 4 / 2;
 }
 
 article#main-tile-deed {
@@ -101,14 +93,18 @@ article #properties-container ul {
     padding: 1rem;
 }
 
-article #properties-container article ul li {
+article #properties-container ul li {
     flex: 0 0 30.5%;
     margin-right: 1rem;
     filter: grayscale(100%);
 }
 
-article #properties-container article ul li:last-of-type {
+article #properties-container ul li:last-of-type {
     margin-right: 0;
+}
+
+article #properties-container ul li.owned {
+    filter: grayscale(0%);
 }
 
 article #properties-container article.two-cards ul li {
@@ -119,8 +115,12 @@ article #properties-container article[data-streettype="railroad"] ul li {
     flex: 0 0 23%;
 }
 
-article #properties-container article ul li.owned {
-    filter: grayscale(0%);
+aside#other-players {
+    grid-area: 3 / 4 / 6 / 5;
+}
+
+aside#current-place-on-game-board {
+    grid-area: 1 / 1 / 4 / 2;
 }
 
 footer {
@@ -160,7 +160,7 @@ body #wrapper .hidden {
 }
 
 /* font styling */
-header h1 {
+h1 {
     color: #DC143C;
     font-size: 1rem;
     text-align: center;
@@ -168,7 +168,7 @@ header h1 {
     margin-bottom: 0.2rem;
 }
 
-aside#other-players h2, article#properties h2, article#main-tile-deed h2, article#other-player-overview h2 {
+h2 {
     color: #DC143C;
     font-size: 3rem;
     text-align: center;
@@ -189,17 +189,6 @@ article#other-player-overview h3 {
     background: url("../../media/coin.png") no-repeat left center;
     background-size: 4rem 4rem;
     padding: 2rem 0 2rem 4.8rem;
-}
-
-footer #balance h3 {
-    background: linear-gradient(180deg, rgba(196, 196, 196, 0) 0%, rgba(196, 196, 196, 0.5) 100%);
-    border: 0.01rem rgba(0, 0, 0, 0.5) solid;
-    box-sizing: border-box;
-    border-radius: 10px;
-    width: 100%;
-    padding: 5rem 1rem 5rem 1rem;
-    text-align: center;
-    font-size: 2rem;
 }
 
 article #properties-container h3 {
@@ -252,6 +241,23 @@ article #properties-container article[data-streettype="jailcards"] h3 {
     background-color: gray;
 }
 
+footer #balance h3 {
+    background: linear-gradient(180deg, rgba(196, 196, 196, 0) 0%, rgba(196, 196, 196, 0.5) 100%);
+    border: 0.01rem rgba(0, 0, 0, 0.5) solid;
+    box-sizing: border-box;
+    border-radius: 10px;
+    width: 100%;
+    padding: 5rem 1rem 5rem 1rem;
+    text-align: center;
+    font-size: 2rem;
+}
+
+footer #balance h3 span {
+    background: url("../../media/coin.png") no-repeat left center;
+    background-size: 4rem 4rem;
+    padding: 2rem 0 2rem 4.8rem;
+}
+
 #main-tile-deed p {
     color: #DC143C;
     font-size: 2rem;
@@ -263,7 +269,7 @@ img {
     max-width: 100%;
 }
 
-#moves-container-and-auctions-and-history img{
+header #moves-container-and-auctions-and-history img{
     max-width: 7.69%;
 }
 
@@ -278,10 +284,4 @@ footer #small-property-container img {
 
 footer #small-property-container img:hover {
     clip-path: inherit;
-}
-
-footer #balance h3 span {
-    background: url("../../media/coin.png") no-repeat left center;
-    background-size: 4rem 4rem;
-    padding: 2rem 0 2rem 4.8rem;
 }
