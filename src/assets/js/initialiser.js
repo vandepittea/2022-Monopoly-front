@@ -46,6 +46,7 @@ function initMonopoly()
     //document.querySelector("#bankruptcy").addEventListener("click", goneBankrupt);
     document.querySelector("#other-players div").addEventListener("click", showPlayerInfo);
     document.querySelector("#bankrupt").addEventListener("click", declareBankrupt);
+    document.querySelector("#taxSystem").addEventListener("click", switchTaxSystem);
 
     fillProperties();
     fillPlayerButtons();
