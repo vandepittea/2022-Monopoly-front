@@ -136,6 +136,16 @@ header img{
     padding: 0.4rem;
 }
 
+#login aside img{
+    width: 100%;
+}
+
+#launch-screen div img{
+    width: 5rem;
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
+}
+
 #character-screen img:hover{
     border-radius: 5%;
     background-color: #DC143C;
@@ -148,16 +158,6 @@ header img{
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-}
-
-#login aside img{
-    width: 100%;
-}
-
-#launch-screen div img{
-    width: 5rem;
-    margin-right: 1.5rem;
-    margin-left: 1.5rem;
 }
 
 #launch-screen #launch-button-and-current-player img{
