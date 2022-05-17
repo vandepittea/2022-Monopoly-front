@@ -303,11 +303,6 @@ button {
     background-color: white;
 }
 
-button:hover {
-    color: initial;
-    background-color: inherit;
-}
-
 header button {
     width: 40%;
     border-radius: 0;
@@ -332,22 +327,6 @@ article#other-player-overview button {
     margin: 0;
 }
 
-article#properties > button, article#other-player-overview div:first-child button {
-    position: absolute; /* relative main */
-    top: -2rem;
-    right: 3rem;
-    font-size: 3rem;
-    background: none;
-    border: none;
-    padding: 0;
-    height: 8.5rem;
-    margin: 0;
-}
-
-article#other-player-overview div:first-child button {
-    top: 5rem;
-}
-
 aside#other-players button {
     border-radius: 0;
     margin-bottom: 0.5rem;
@@ -363,6 +342,22 @@ footer #property-view button {
     padding: 0;
     height: 5rem;
     margin: 0;
+}
+
+article#properties > button, article#other-player-overview div:first-child button {
+    position: absolute; /* relative main */
+    top: -2rem;
+    right: 3rem;
+    font-size: 3rem;
+    background: none;
+    border: none;
+    padding: 0;
+    height: 8.5rem;
+    margin: 0;
+}
+
+article#other-player-overview div:first-child button {
+    top: 5rem;
 }
 
 article#properties #properties-container button {
