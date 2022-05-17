@@ -127,12 +127,12 @@ article#properties > button, article#other-player-overview div:first-child butto
     margin: 0;
 }
 
-article#properties > button:hover, footer #property-view button:hover, article#other-player-overview div:first-child button:hover {
-    color: initial;
-    background-color: inherit;
-}
-
 article#other-player-overview div:first-child button {
     top: 5rem;
     right: 17rem;
+}
+
+article#properties > button:hover, footer #property-view button:hover, article#other-player-overview div:first-child button:hover { //NOSONAR: /* We ignore Sonar because it cannot be solved. We have multiple selectors on one line. It is useless to split them up as they are repeating code. */
+    color: initial;
+    background-color: inherit;
 }
