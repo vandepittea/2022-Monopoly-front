@@ -28,6 +28,10 @@ input, textarea, select{
     box-sizing: border-box;
 }
 
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+
 button {
     display: block;
     color: #DC143C;
@@ -44,6 +48,11 @@ button {
     background-color: white;
 }
 
+button:hover {
+    color: white;
+    background-color: #DC143C;
+}
+
 header button {
     width: 40%;
     border-radius: 0;
@@ -52,15 +61,6 @@ header button {
 
 footer > button{
     margin-right: 1rem;
-}
-
-button:hover {
-    color: white;
-    background-color: #DC143C;
-}
-
-input:focus, textarea:focus, select:focus{
-    outline: none;
 }
 
 article#game-list button{
