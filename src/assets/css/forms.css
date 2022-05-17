@@ -48,7 +48,7 @@ button {
     background-color: white;
 }
 
-button:hover {
+#wrapper button:hover {
     color: white;
     background-color: #DC143C;
 }
