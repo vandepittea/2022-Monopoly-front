@@ -173,3 +173,13 @@ function useJailCards() {
         })
         .catch(errorHandler);
 }
+
+function switchTaxSystem() {
+    if(){
+    fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/tax/estimate`, 'POST')
+        .then(response =>{
+            console.log(response);
+            console.log(`${_gameData.playerName} switched tax system to estimate`)
+        })
+    }
+}
