@@ -125,7 +125,8 @@ header img{
 }
 
 #mario-img{
-    margin-left: -4rem; /* Overlap with form */
+    position: relative;
+    left: -6rem; /* Overlap with form */
     z-index: 999;
 }
 
@@ -186,7 +187,8 @@ input {
     margin-bottom: 2rem;
     margin-top: 0.2rem;
     border: none;
-    margin-left: -2%; /* Place input and label perfectly against each other */
+    position: relative;
+    left: -0.4%; /* Place input and label perfectly against each other */
 }
 
 button {
