@@ -38,6 +38,7 @@ function addTile(tile, $propertiesCont, $railroadCont, $utilitiesCont) {
 function activateCurrentPlayersProperties() {
     activateProperties(getPlayerObject(_currentGameState, _gameData.playerName));
     document.querySelector("#properties-container").insertAdjacentHTML('beforeend', _htmlElements.rentButton);
+    $main.querySelector("#collect-rent").addEventListener("click", () => collectRent(_currentGameState));
 }
 
 function activatePlayerProperties(e) {

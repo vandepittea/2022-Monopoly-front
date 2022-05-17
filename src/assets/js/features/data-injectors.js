@@ -91,6 +91,7 @@ function showPlayerInfo(e) {
     const $main = document.querySelector("main");
     $main.innerHTML = "";
     $main.insertAdjacentHTML('beforeend', _htmlElements.playerOverview);
+    $main.querySelector("#other-player-overview-property").addEventListener("click", () => activateProperties(e.target.dataset.player));
 
     const $otherPlayerWindow = $main.querySelector("#other-player-overview");
     const playerName = e.target.dataset.player;
@@ -117,12 +118,16 @@ function fillActivePlayerMain(game) {
             const $article = $main.firstElementChild;
             $article.insertAdjacentHTML('beforeend', "<h2>You are in jail :'-(</h2>");
             $article.insertAdjacentHTML('beforeend', _htmlElements.rollDiceButton);
+            $main.querySelector("#roll-dice").addEventListener("click", rollDice);
             $article.insertAdjacentHTML('beforeend', _htmlElements.jailFineButton);
+            $main.querySelector("#pay-fine").addEventListener("click", payJailFine);
             if (getPlayerObject(game, _gameData.playerName).getOutOfJailFreeCards > 0){
                 $article.insertAdjacentHTML('beforeend', _htmlElements.jailCardButton);
+                $main.querySelector("#jail-card").addEventListener("click", useJailCards);
             }
         } else if (game.canRoll) {
             $main.insertAdjacentHTML('beforeend', _htmlElements.rollDiceButton);
+            $main.querySelector("#roll-dice").addEventListener("click", rollDice);
         } else {
             const lastTurn = game.turns[game.turns.length - 1];
             const lastMove = lastTurn.moves[lastTurn.moves.length - 1];
@@ -198,5 +203,7 @@ function injectTileDeed($main, game, tileIdx) {
         $tileDeed.insertAdjacentHTML("beforeend", `<p>Property owned by ${player.name}</p>`);
     } else {
         $tileDeed.insertAdjacentHTML("beforeend", _htmlElements.tileDeedButtons);
+        $main.querySelector("#main-property-buy").addEventListener("click", () => buyProperty($tileDeed.dataset.name));
+        $main.querySelector("#main-property-auction").addEventListener("click", () => buyProperty($tileDeed.dataset.name));
     }
 }
