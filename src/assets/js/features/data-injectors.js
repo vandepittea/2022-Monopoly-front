@@ -59,6 +59,14 @@ function injectPossibleTiles(game) {
     }
 }
 
+function injectTopButtons() {
+    const $container = document.querySelector("#moves-container-and-auctions-and-history");
+    const $templateNode = $container.querySelector("template");
+    $container.innerHTML = "";
+    $container.insertAdjacentElement('beforeend', $templateNode);
+    $container.insertAdjacentHTML('beforeend', _htmlElements.topButtons);
+}
+
 function fillPlayerButtons() {
     let url;
     if (_gameData.token === null) {
@@ -134,8 +142,6 @@ function fillActivePlayerMain(game) {
 }
 
 function fillOtherPlayerMain(game) {
-    toggleVisibilityByID(_divsToToggle, false);
-
     const $main = document.querySelector("main");
     const $mainContent = $main.querySelector("article");
     if ($mainContent !== null) {
@@ -143,6 +149,9 @@ function fillOtherPlayerMain(game) {
             return;
         }
     }
+
+    toggleVisibilityByID(_divsToToggle, false);
+    injectTopButtons();
 
     $main.innerHTML = "";
     if (game.turns.length === 0){
