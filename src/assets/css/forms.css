@@ -109,6 +109,10 @@ aside#other-players button {
     width: 16rem;
 }
 
+footer #bankrupt-and-tax button:first-of-type{
+    margin-bottom: 0.5rem;
+}
+
 footer #property-view button {
     font-size: 5rem;
     line-height: 1rem;
