@@ -132,7 +132,7 @@ aside#other-players {
     grid-area: 3 / 4 / 6 / 5;
 }
 
-aside#current-place-on-game-board {
+aside#current-place-on-game-board-or-actions-as-text {
     grid-area: 1 / 1 / 4 / 2;
 }
 
@@ -291,6 +291,13 @@ article#main-tile-deed p, article#player-action p {
 
 article#main-tile-deed p{
     text-align: right;
+}
+
+aside#current-place-on-game-board-or-actions-as-text p{
+    margin-top: 2rem;
+    color: #DC143C;
+    font-weight: bold;
+    line-height: 1.3rem;
 }
 
 /* images */
