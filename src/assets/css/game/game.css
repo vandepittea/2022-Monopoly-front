@@ -271,7 +271,7 @@ article #properties-container article[data-streettype="jailcards"] h3 {
     background-color: gray;
 }
 
-#main-tile-deed p, article#player-action p {
+article#main-tile-deed p, article#player-action p {
     color: #DC143C;
     font-size: 2rem;
     text-shadow: 0 0.02rem 0.02rem #ffffff;
