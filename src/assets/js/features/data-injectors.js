@@ -39,7 +39,7 @@ function injectPropertyInContainer($container, $templateNode, property) {
 }
 
 function injectPossibleTiles(game) {
-    const $container = document.querySelector("#moves-container-and-auctions-and-history");
+    const $container = document.querySelector("#moves-container-and-history");
     const $templateNode = $container.querySelector("template");
     const activePlayer = getPlayerObject(game, game.currentPlayer);
 
@@ -60,7 +60,7 @@ function injectPossibleTiles(game) {
 }
 
 function injectTopButtons() {
-    const $container = document.querySelector("#moves-container-and-auctions-and-history");
+    const $container = document.querySelector("#moves-container-and-history");
     const $templateNode = $container.querySelector("template");
     $container.innerHTML = "";
     $container.insertAdjacentElement('beforeend', $templateNode);

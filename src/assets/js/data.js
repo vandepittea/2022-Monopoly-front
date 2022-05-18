@@ -154,7 +154,6 @@ const _htmlElements =
             `,
         topButtons:
             `
-            <button id="show-auctions" type="button">Auctions</button>
             <button type="button">History</button>
             `
     };
