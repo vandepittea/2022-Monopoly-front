@@ -98,4 +98,24 @@ function collectRent(game) {
             });
         }
     });
+
+function improveProperty(Property) {
+
+        case "buy house":
+            fetchFromServer(`/games/{gameId}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/houses`, 'POST')
+                .then(response =>{
+                    console.log(response);
+                    console.log(`${_gameData.playerName} bought a house`);
+                });
+            break;
+        case "sell house":
+            fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/houses`, 'DELETE')
+                .then(response =>{
+                console.log(response);
+                console.log(`${_gameData.playerName} sold a house`);
+                });
+            break;
+
+
 }
+
