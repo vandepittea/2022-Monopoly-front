@@ -15,7 +15,7 @@ const _htmlElements =
             `
         <article id="properties">
             <h2>Your properties</h2>
-            <button type="button">&#10007;</button>
+            <button type="button" id="close-screen">&#10007;</button>
             <div id="properties-container">
                 <article data-streettype="purple" class="two-cards">
                     <h3>Purple</h3>
@@ -80,7 +80,7 @@ const _htmlElements =
             `
         <article id="other-player-overview">
             <div>
-                    <button type="button">&#10007;</button>
+                    <button type="button" id="close-screen">&#10007;</button>
                     <img src="../images/characters/waluigi.webp" alt="Waluigi" title="Waluigi"/>
                     <h2>PlayerName</h2>
             </div>

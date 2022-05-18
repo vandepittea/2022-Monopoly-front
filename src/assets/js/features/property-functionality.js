@@ -38,12 +38,11 @@ function addTile(tile, $propertiesCont, $railroadCont, $utilitiesCont) {
 function activateCurrentPlayersProperties() {
     activateProperties(getPlayerObject(_currentGameState, _gameData.playerName));
     document.querySelector("#properties-container").insertAdjacentHTML('beforeend', _htmlElements.rentButton);
-    $main.querySelector("#collect-rent").addEventListener("click", () => collectRent(_currentGameState));
+    document.querySelector("main #collect-rent").addEventListener("click", () => collectRent(_currentGameState));
 }
 
 function activatePlayerProperties(e) {
     const player = getPlayerObject(_currentGameState, e.target.closest("article").dataset.player);
-    document.querySelector("#other-player-overview").classList.add("hidden");
     activateProperties(player);
 }
 
@@ -53,6 +52,7 @@ function activateProperties(player) {
     const $main = document.querySelector("main");
     $main.innerHTML = "";
     $main.insertAdjacentHTML("beforeend", _htmlElements.propertyView);
+    $main.querySelector("#close-screen").addEventListener("click", clearMain);
 
     const $propertiesContainer = document.querySelectorAll('#properties-container ul li');
     $propertiesContainer.forEach($property => {
@@ -93,6 +93,7 @@ function collectRent(game) {
                     fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property.property}/visitors/${player.name}/rent`, 'DELETE')
                         .then(response => {
                             console.log(response);
+                            manageGame();
                         })
                         .catch(errorHandler);
                 }
