@@ -49,7 +49,7 @@ article#other-player-overview div:last-child {
     justify-content: space-between;
 }
 
-article#main-tile-deed {
+article#main-tile-deed, article#player-action {
     display: flex;
     flex-wrap: wrap;
     width: 50%;
@@ -57,7 +57,7 @@ article#main-tile-deed {
     margin-right: auto;
 }
 
-article#main-tile-deed div:first-of-type {
+article#main-tile-deed div:first-of-type, article#player-action div {
     width: 50%;
     align-self: center;
 }
@@ -176,7 +176,7 @@ h2 {
     margin-bottom: 1rem;
 }
 
-article#main-tile-deed h2 {
+article#main-tile-deed h2, article#player-action h2 {
     text-align: right;
 }
 
@@ -258,7 +258,7 @@ article #properties-container article[data-streettype="jailcards"] h3 {
     background-color: gray;
 }
 
-#main-tile-deed p {
+#main-tile-deed p, article#player-action p {
     color: #DC143C;
     font-size: 2rem;
     text-shadow: 0 0.02rem 0.02rem #ffffff;
