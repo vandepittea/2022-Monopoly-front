@@ -111,6 +111,20 @@ function showPlayerInfo(e) {
     $otherPlayerWindow.querySelector("p").innerText = player.money;
 }
 
+function insertJailedMain($main, game) {
+    $main.insertAdjacentHTML('beforeend', "<article></article>");
+    const $article = $main.firstElementChild;
+    $article.insertAdjacentHTML('beforeend', "<h2>You are in jail :'-(</h2>");
+    $article.insertAdjacentHTML('beforeend', _htmlElements.rollDiceButton);
+    $main.querySelector("#roll-dice").addEventListener("click", rollDice);
+    $article.insertAdjacentHTML('beforeend', _htmlElements.jailFineButton);
+    $main.querySelector("#pay-fine").addEventListener("click", payJailFine);
+    if (getPlayerObject(game, _gameData.playerName).getOutOfJailFreeCards > 0) {
+        $article.insertAdjacentHTML('beforeend', _htmlElements.jailCardButton);
+        $main.querySelector("#jail-card").addEventListener("click", useJailCards);
+    }
+}
+
 function fillActivePlayerMain(game) {
     toggleVisibilityByID(_divsToToggle, false);
 
@@ -118,17 +132,7 @@ function fillActivePlayerMain(game) {
     $main.innerHTML = "";
     if (_gameData.playerName === game.currentPlayer) {
         if (jailed(game)) {
-            $main.insertAdjacentHTML('beforeend', "<article></article>");
-            const $article = $main.firstElementChild;
-            $article.insertAdjacentHTML('beforeend', "<h2>You are in jail :'-(</h2>");
-            $article.insertAdjacentHTML('beforeend', _htmlElements.rollDiceButton);
-            $main.querySelector("#roll-dice").addEventListener("click", rollDice);
-            $article.insertAdjacentHTML('beforeend', _htmlElements.jailFineButton);
-            $main.querySelector("#pay-fine").addEventListener("click", payJailFine);
-            if (getPlayerObject(game, _gameData.playerName).getOutOfJailFreeCards > 0){
-                $article.insertAdjacentHTML('beforeend', _htmlElements.jailCardButton);
-                $main.querySelector("#jail-card").addEventListener("click", useJailCards);
-            }
+            insertJailedMain($main, game);
         } else if (game.canRoll) {
             $main.insertAdjacentHTML('beforeend', _htmlElements.rollDiceButton);
             $main.querySelector("#roll-dice").addEventListener("click", rollDice);
