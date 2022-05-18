@@ -99,21 +99,13 @@ function collectRent(game) {
         }
     });
 
-function improveProperty(property) {
-
-    switch (property.type){
+function improveBuildings(property) {
+    switch (){
         case "buy house":
             fetchFromServer(`/games/{gameId}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/houses`, 'POST')
                 .then(response =>{
                     console.log(response);
                     console.log(`${_gameData.playerName} bought a house`);
-                });
-            break;
-        case "sell house":
-            fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/houses`, 'DELETE')
-                .then(response =>{
-                console.log(response);
-                console.log(`${_gameData.playerName} sold a house`);
                 });
             break;
         case "buy hotel":
@@ -123,15 +115,27 @@ function improveProperty(property) {
                 console.log(`${_gameData.playerName} bought a hotel`);
                 });
             break;
+
+        }
+    }
+
+function removeBuildings(property){
+    switch(){
+        case "sell house":
+            fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/houses`, 'DELETE')
+                .then(response =>{
+                    console.log(response);
+                    console.log(`${_gameData.playerName} sold a house`);
+                });
+            break;
         case "sell hotel":
             fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/hotel`, 'DELETE')
                 .then(response =>{
-                console.log(response);
-                console.log(`${_gameData.playerName} sold a hotel`);
+                    console.log(response);
+                    console.log(`${_gameData.playerName} sold a hotel`);
                 });
             break;
+        }
     }
-}
-
 }
 
