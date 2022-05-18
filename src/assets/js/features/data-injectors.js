@@ -196,7 +196,8 @@ function injectTileDeed($main, game, tileIdx) {
     $tileImg.setAttribute("alt", `${tile.name}`);
     $tileImg.setAttribute("title", `${tile.name}`);
 
-    let propertyOwned = false;
+    let propertyOwned = game.players.find(player => player.properties.find(property => property.property === tile.name));
+    /*
     game.players.forEach(player => {
         player.properties.forEach(property => {
             if (property.property === tile.name) {
@@ -204,6 +205,8 @@ function injectTileDeed($main, game, tileIdx) {
             }
         });
     });
+
+     */
     if (propertyOwned) {
         $tileDeed.insertAdjacentHTML("beforeend", `<p>Property owned by ${player.name}</p>`);
     } else {
