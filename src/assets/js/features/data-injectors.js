@@ -206,3 +206,11 @@ function injectTileDeed($main, game, tileIdx) {
         $main.querySelector("#main-property-auction").addEventListener("click", () => auctionProperty($tileDeed.dataset.name));
     }
 }
+
+function makeMiniMapDivs() {
+    const $miniMapAside = document.querySelector("#map-container");
+    $miniMapAside.innerHTML = "";
+    for (let i = 0; i < _tiles.length; i++) {
+        $miniMapAside.insertAdjacentHTML('beforeend', `<div id="t${i}"> </div>`);
+    }
+}

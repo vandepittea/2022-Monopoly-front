@@ -44,6 +44,7 @@ function initMonopoly()
     document.querySelector("#bankrupt").addEventListener("click", declareBankrupt);
     document.querySelector("#tax-system").addEventListener("click", switchTaxSystem);
 
+    makeMiniMapDivs();
     fillProperties();
     fillPlayerButtons();
     manageGame();
