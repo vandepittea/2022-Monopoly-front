@@ -122,6 +122,13 @@ function improveProperty(Property) {
                 console.log(`${_gameData.playerName} bought a hotel`);
                 });
             break;
+        case "sell hotel":
+            fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/hotel`, 'DELETE')
+                .then(response =>{
+                console.log(response);
+                console.log(`${_gameData.playerName} sold a hotel`);
+                });
+            break;
 
 }
 
