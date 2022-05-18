@@ -87,7 +87,6 @@ const _htmlElements =
                 <div>
                     <h3>1500</h3>
                     <button type="button" id="other-player-overview-property">Properties</button>
-                    <button type="button" id="other-player-overview-trade">Trade</button>
                 </div>
             </article>
             `,

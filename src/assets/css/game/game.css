@@ -46,7 +46,7 @@ article#other-player-overview div:first-child {
 article#other-player-overview div:last-child {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 div#multiple-player-actions{
