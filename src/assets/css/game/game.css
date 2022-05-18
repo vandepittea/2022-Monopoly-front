@@ -49,7 +49,20 @@ article#other-player-overview div:last-child {
     justify-content: space-between;
 }
 
-article#main-tile-deed, article#player-action {
+div#multiple-player-actions{
+    display: flex;
+    flex: 1 1 30%;
+    max-width: 70%;
+}
+
+article#player-action{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+article#main-tile-deed {
     display: flex;
     flex-wrap: wrap;
     width: 50%;
@@ -57,7 +70,7 @@ article#main-tile-deed, article#player-action {
     margin-right: auto;
 }
 
-article#main-tile-deed div:first-of-type, article#player-action div {
+article#main-tile-deed div:first-of-type {
     width: 50%;
     align-self: center;
 }
@@ -176,7 +189,7 @@ h2 {
     margin-bottom: 1rem;
 }
 
-article#main-tile-deed h2, article#player-action h2 {
+article#main-tile-deed h2 {
     text-align: right;
 }
 
@@ -262,6 +275,10 @@ article #properties-container article[data-streettype="jailcards"] h3 {
     color: #DC143C;
     font-size: 2rem;
     text-shadow: 0 0.02rem 0.02rem #ffffff;
+    text-align: center;
+}
+
+#main-tile-deed p{
     text-align: right;
 }
 
@@ -272,6 +289,10 @@ img {
 
 header #moves-container-and-auctions-and-history img{
     max-width: 7.69%;
+}
+
+article#player-action img{
+    max-height: 60vh;
 }
 
 article#main-tile-deed img{
