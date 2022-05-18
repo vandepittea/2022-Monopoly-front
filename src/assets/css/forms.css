@@ -48,6 +48,10 @@ button {
     background-color: white;
 }
 
+button#close-screen:hover , #property-view button:hover {
+    color: inherit;
+}
+
 header button {
     width: 40%;
     border-radius: 0;
