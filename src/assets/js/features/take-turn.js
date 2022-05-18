@@ -22,7 +22,7 @@ function goneBankrupt() {
                     //show bankrupt screen to current player for 5 seconds.
                     //Move the code below out of the for to test.
                     document.querySelector("#overlay").style.display = "flex";
-                    setTimeout(function (){
+                    setTimeout(function () {
                         document.querySelector("#overlay").style.display = "none";
                     }, 5000);
                 }

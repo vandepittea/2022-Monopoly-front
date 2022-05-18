@@ -126,8 +126,8 @@ function removeBuildings(property) {
     let message = ``;
     let houseCount = player.properties.houseCount;
     let hotelCount = player.properties.hotelCount;
-    if (hotelCount === 1) {return null;}
-    if (houseCount < 4) {
+    if (houseCount === 0) {return null;}
+    if (hotelCount === 0) {
         link = `/games/{gameId}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/houses`;
         message = "sold a house";
     } else {

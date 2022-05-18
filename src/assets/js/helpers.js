@@ -27,21 +27,19 @@ function getTileIdx(tileName) {
 
 function getTile(tileName) {
     let tileObject = null;
-    _tiles.forEach(tile =>{
-        if (tile.name === tileName){
+    _tiles.forEach(tile => {
+        if (tile.name === tileName) {
             tileObject = tile;
         }
     });
     return tileObject;
 }
 
-function toggleVisibilityByID(idsToToggle, hidden)
-{
+function toggleVisibilityByID(idsToToggle, hidden) {
     idsToToggle.forEach(id => {
-        if (hidden){
+        if (hidden) {
             document.querySelector(`#${id}`).classList.add("hidden");
-        }
-        else{
+        } else {
             document.querySelector(`#${id}`).classList.remove("hidden");
         }
     });

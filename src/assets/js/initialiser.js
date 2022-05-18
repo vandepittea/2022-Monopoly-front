@@ -1,23 +1,19 @@
 "use strict";
 
-document.addEventListener('DOMContentLoaded',init);
+document.addEventListener('DOMContentLoaded', init);
 
-function init(){
-    if (document.URL.includes("game.html"))
-    {
+function init() {
+    if (document.URL.includes("game.html")) {
         fetchFromServer("/tiles", "GET")
             .then(response => _tiles = response)
             .then(initMonopoly)
             .catch(errorHandler);
-    }
-    else
-    {
+    } else {
         initPreGame();
     }
 }
 
-function initPreGame()
-{
+function initPreGame() {
     document.querySelector("#login form").addEventListener("submit", showGames);
     document.querySelector("#game-list #create-game").addEventListener("click", showGameCreationScreen);
     document.querySelector("#game-list tbody").addEventListener("click", joinGame);
@@ -26,17 +22,13 @@ function initPreGame()
     document.querySelector("#launch-button-and-current-player button").addEventListener('click', goToGame);
 }
 
-function initMonopoly()
-{
+function initMonopoly() {
     const tempData = loadFromStorage("gameData");
-    if (tempData === null)
-    {
+    if (tempData === null) {
         _gameData.gameID = null;
         _gameData.playerName = null;
         _gameData.token = null;
-    }
-    else
-    {
+    } else {
         _gameData = tempData;
     }
     document.querySelector("#property-view button").addEventListener('click', activateCurrentPlayersProperties);

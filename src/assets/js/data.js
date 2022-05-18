@@ -107,7 +107,7 @@ const _htmlElements =
                 <button type="button" id="main-property-auction">Don't buy property</button>
         </div>`,
         auctionTable:
-        `
+            `
             <table id="ongoingAuctions">
                 <thead>
                 <tr>
@@ -137,12 +137,12 @@ const _htmlElements =
         </article>
         `,
         jailFineButton:
-        `
+            `
         <button type="button" id="pay-fine">Pay Fine</button>
         `
         ,
-         jailCardButton:
-         `
+        jailCardButton:
+            `
          <button type="button" id="jail-card">Use your get out of jail card!</button>
          `
     };

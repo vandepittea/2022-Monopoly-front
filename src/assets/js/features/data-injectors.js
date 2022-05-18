@@ -116,7 +116,7 @@ function fillActivePlayerMain(game) {
             $article.insertAdjacentHTML('beforeend', "<h2>You are in jail :'-(</h2>");
             $article.insertAdjacentHTML('beforeend', _htmlElements.rollDiceButton);
             $article.insertAdjacentHTML('beforeend', _htmlElements.jailFineButton);
-            if (getPlayerObject(game, _gameData.playerName).getOutOfJailFreeCards > 0){
+            if (getPlayerObject(game, _gameData.playerName).getOutOfJailFreeCards > 0) {
                 $article.insertAdjacentHTML('beforeend', _htmlElements.jailCardButton);
             }
         } else if (game.canRoll) {
@@ -142,7 +142,7 @@ function fillOtherPlayerMain(game) {
     }
 
     $main.innerHTML = "";
-    if (game.turns.length === 0){
+    if (game.turns.length === 0) {
         return;
     }
 
@@ -154,9 +154,8 @@ function fillOtherPlayerMain(game) {
     injectTurnInMain(lastTurn, $main);
 }
 
-function injectTurnInMain(turn, $main)
-{
-    turn.moves.forEach(move =>{
+function injectTurnInMain(turn, $main) {
+    turn.moves.forEach(move => {
         $main.insertAdjacentHTML('beforeend', _htmlElements.playerAction);
         const tile = getTile(move.tile);
         const $lastMove = $main.lastElementChild;
