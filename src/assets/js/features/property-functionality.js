@@ -100,7 +100,7 @@ function collectRent(game) {
     });
 
 function improveBuildings(property) {
-    switch (){
+    switch (property){
         case "buy house":
             fetchFromServer(`/games/{gameId}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/houses`, 'POST')
                 .then(response =>{
@@ -120,7 +120,7 @@ function improveBuildings(property) {
     }
 
 function removeBuildings(property){
-    switch(){
+    switch(property){
         case "sell house":
             fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/houses`, 'DELETE')
                 .then(response =>{
