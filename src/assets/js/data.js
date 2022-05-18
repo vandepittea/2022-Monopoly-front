@@ -145,4 +145,15 @@ const _htmlElements =
          `
          <button type="button" id="jail-card">Use your get out of jail card!</button>
          `
+        ,
+        buyHouseButton:
+        `
+        <article id="deedCard">
+            <h2>TileName</h2>
+            <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
+            <button type="button" id="buy-house">houses</button>
+            <button type="button" id="mortgage">mortgage</button>
+            <button type="button" id="auction-property">auction property</button>
+        </article>
+        `
     };
