@@ -150,6 +150,7 @@ footer #property-view {
 
 footer #small-property-container {
     width: 80%;
+    z-index: 999;
 }
 
 footer .partially-of-screen {
