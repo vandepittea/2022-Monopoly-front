@@ -53,6 +53,7 @@ function activateProperties(player) {
     $main.innerHTML = "";
     $main.insertAdjacentHTML("beforeend", _htmlElements.propertyView);
     $main.querySelector("#close-screen").addEventListener("click", clearMain);
+    $main.querySelector("#properties h2").innerHTML = `${player.name}'s properties`;
 
     const $propertiesContainer = document.querySelectorAll('#properties-container ul li');
     $propertiesContainer.forEach($property => {

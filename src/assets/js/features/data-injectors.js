@@ -91,7 +91,7 @@ function showPlayerInfo(e) {
     const $main = document.querySelector("main");
     $main.innerHTML = "";
     $main.insertAdjacentHTML('beforeend', _htmlElements.playerOverview);
-    $main.querySelector("#other-player-overview-property").addEventListener("click", () => activateProperties(e.target.dataset.player));
+    $main.querySelector("#other-player-overview-property").addEventListener("click", activatePlayerProperties);
     $main.querySelector("#close-screen").addEventListener("click", clearMain);
 
     const $otherPlayerWindow = $main.querySelector("#other-player-overview");
