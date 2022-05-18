@@ -112,7 +112,7 @@ function showPlayerInfo(e) {
 }
 
 function insertJailedMain($main, game) {
-    $main.insertAdjacentHTML('beforeend', "<article></article>");
+    $main.insertAdjacentHTML('beforeend', "<article id='jail-choices'></article>");
     const $article = $main.firstElementChild;
     $article.insertAdjacentHTML('beforeend', "<h2>You are in jail :'-(</h2>");
     $article.insertAdjacentHTML('beforeend', _htmlElements.rollDiceButton);

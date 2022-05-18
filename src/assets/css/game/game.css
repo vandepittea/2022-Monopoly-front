@@ -197,6 +197,10 @@ article#other-player-overview h2 {
     margin-bottom: 0;
 }
 
+article#jail-choices h2{
+    margin-bottom: 2rem;
+}
+
 article#other-player-overview h3 {
     font-size: 2rem;
     background: url("../../media/coin.png") no-repeat left center;
@@ -292,7 +296,7 @@ header #moves-container-and-auctions-and-history img{
 }
 
 article#player-action img{
-    max-height: 60vh;
+    max-height: 55vh;
 }
 
 article#main-tile-deed img{
