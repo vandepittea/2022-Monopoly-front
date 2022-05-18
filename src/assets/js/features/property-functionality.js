@@ -38,11 +38,11 @@ function addTile(tile, $propertiesCont, $railroadCont, $utilitiesCont) {
 function activateCurrentPlayersProperties() {
     activateProperties(getPlayerObject(_currentGameState, _gameData.playerName));
     document.querySelector("#properties-container").insertAdjacentHTML('beforeend', _htmlElements.rentButton);
+    document.querySelector("main #collect-rent").addEventListener("click", () => collectRent(_currentGameState));
 }
 
 function activatePlayerProperties(e) {
     const player = getPlayerObject(_currentGameState, e.target.closest("article").dataset.player);
-    document.querySelector("#other-player-overview").classList.add("hidden");
     activateProperties(player);
 }
 
@@ -52,6 +52,8 @@ function activateProperties(player) {
     const $main = document.querySelector("main");
     $main.innerHTML = "";
     $main.insertAdjacentHTML("beforeend", _htmlElements.propertyView);
+    $main.querySelector("#close-screen").addEventListener("click", clearMain);
+    $main.querySelector("#properties h2").innerHTML = `${player.name}'s properties`;
 
     const $propertiesContainer = document.querySelectorAll('#properties-container ul li');
     $propertiesContainer.forEach($property => {
@@ -87,15 +89,13 @@ function collectRent(game) {
 
     game.players.forEach(player => {
         if (player.name !== _gameData.playerName) {
-            ownedProperties.forEach(property => {
-                if (property.property === player.currentTile) {
-                    fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property.property}/visitors/${player.name}/rent`, 'DELETE')
-                        .then(response => {
-                            console.log(response);
-                        })
-                        .catch(errorHandler);
-                }
-            });
+            const property = ownedProperties.find(property => property.property === player.currentTile);
+            fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property.property}/visitors/${player.name}/rent`, 'DELETE')
+                .then(response => {
+                    console.log(response);
+                    manageGame();
+                })
+                .catch(errorHandler);
         }
     });
 }

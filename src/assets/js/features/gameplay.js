@@ -4,7 +4,7 @@ let _previousCyclePlayer = null;
 
 function manageGame() {
     // TODO: delete this if-else, this exists for testing with dummy data
-    let url = null;
+    let url;
     if (_gameData.token === null) {
         url = '/games/dummy';
     } else {
@@ -67,45 +67,6 @@ function jailed(game) {
         }
     }
     return false;
-}
-
-function manageMainClick(e) {
-    e.preventDefault();
-
-    if (e.target.nodeName.toLowerCase() === "button") {
-        switch (e.target.id) {
-            case "roll-dice":
-                rollDice();
-                break;
-            case "main-property-buy":
-                buyProperty(e.target.closest("#main-tile-deed").dataset.name);
-                break;
-            case "main-property-auction":
-                auctionProperty(e.target.closest("#main-tile-deed").dataset.name);
-                break;
-            case "collect-rent":
-                collectRent(_currentGameState);
-                break;
-            case "other-player-overview-property":
-                const $closestArticle = e.target.closest("article");
-                activateProperties($closestArticle.dataset.player);
-                break;
-            case "other-player-overview-trade":
-                break;
-            case "player-bankrupt" :
-                declareBankrupt();
-                break;
-            case "pay-fine":
-                payJailFine();
-                break;
-            case "jail-card":
-                useJailCards();
-                break;
-            default:
-                fillActivePlayerMain(_currentGameState);
-                break;
-        }
-    }
 }
 
 //code needed to show ongoing auctions
@@ -180,22 +141,22 @@ function switchTaxSystem(e) {
         fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/tax/estimate`, 'POST')
             .then(response => {
                 console.log(response);
-                console.log(`${_gameData.playerName} switched tax system to estimate`)
+                console.log(`${_gameData.playerName} switched tax system to estimate`);
             })
-            .catch(errorHandler)
+            .catch(errorHandler);
     } else {
         fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/tax/compute`, 'POST')
             .then(response => {
                 console.log(response);
-                console.log(`${_gameData.playerName} switched tax system to compute`)
+                console.log(`${_gameData.playerName} switched tax system to compute`);
             })
-            .catch(errorHandler)
+            .catch(errorHandler);
 
     }
     if(e.target.innerText === "ESTIMATE"){
-        e.target.innerText = "compute"
+        e.target.innerText = "compute";
     }
     else{
-        e.target.innerText = "estimate"
+        e.target.innerText = "estimate";
     }
 }

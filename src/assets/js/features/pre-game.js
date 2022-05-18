@@ -92,11 +92,6 @@ function joinGame(e)
     }
 
     _gameID = e.target.closest('tr').dataset.gameid;
-    makeVisibleByID("character-screen", allDivIds);
-}
-
-function joinGameWithPlayer()
-{
     const playerObject = {
         playerName: _nickname
     };
@@ -105,10 +100,15 @@ function joinGameWithPlayer()
         .then(response =>
         {
             _gameData.token = response;
-            makeVisibleByID("waiting-screen", allDivIds);
+            makeVisibleByID("character-screen", allDivIds);
             waitForPlayers();
         })
         .catch(errorHandler);
+}
+
+function joinGameWithPlayer()
+{
+    makeVisibleByID("waiting-screen", allDivIds);
 }
 
 function waitForPlayers()
