@@ -99,8 +99,9 @@ function collectRent(game) {
         }
     });
 
-function improveProperty(Property) {
+function improveProperty(property) {
 
+    switch (property.type){
         case "buy house":
             fetchFromServer(`/games/{gameId}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/houses`, 'POST')
                 .then(response =>{
@@ -129,7 +130,7 @@ function improveProperty(Property) {
                 console.log(`${_gameData.playerName} sold a hotel`);
                 });
             break;
-
+    }
 }
 
 }
