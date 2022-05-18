@@ -105,7 +105,7 @@ function improveBuildings(property) {
     let message = ``;
     let houseCount = player.properties.houseCount;
     let hotelCount = player.properties.hotelCount;
-    if (hotelCount == 1) {return null;}
+    if (hotelCount === 1) {return null;}
     if (houseCount < 4) {
         link = `/games/{gameId}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/houses`;
         message = "bought a house";
@@ -126,7 +126,7 @@ function removeBuildings(property) {
     let message = ``;
     let houseCount = player.properties.houseCount;
     let hotelCount = player.properties.hotelCount;
-    if (hotelCount == 1) {return null;}
+    if (hotelCount === 1) {return null;}
     if (houseCount < 4) {
         link = `/games/{gameId}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/houses`;
         message = "sold a house";
