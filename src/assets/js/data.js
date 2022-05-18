@@ -132,11 +132,17 @@ const _htmlElements =
             `,
         playerAction:
             `
-            <article id="player-action">
-                <h2>TileName</h2>
-                <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
-                <p>Description</p>
-            </article>
+            <div id="multiple-player-actions">
+                <article id="player-action">
+                    <div>
+                        <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
+                    </div>
+                    <div>
+                        <h2>TileName</h2>
+                        <p>Description</p>
+                    </div>                    
+                </article>
+            </div>
             `,
         jailFineButton:
             `

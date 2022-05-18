@@ -49,6 +49,19 @@ article#other-player-overview div:last-child {
     justify-content: space-between;
 }
 
+div#multiple-player-actions{
+    display: flex;
+    flex: 1 1 30%;
+    max-width: 70%;
+}
+
+article#player-action{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 article#main-tile-deed {
     display: flex;
     flex-wrap: wrap;
@@ -258,10 +271,14 @@ article #properties-container article[data-streettype="jailcards"] h3 {
     background-color: gray;
 }
 
-#main-tile-deed p {
+article#main-tile-deed p, article#player-action p {
     color: #DC143C;
     font-size: 2rem;
     text-shadow: 0 0.02rem 0.02rem #ffffff;
+    text-align: center;
+}
+
+article#main-tile-deed p{
     text-align: right;
 }
 
@@ -272,6 +289,10 @@ img {
 
 header #moves-container-and-auctions-and-history img{
     max-width: 7.69%;
+}
+
+article#player-action img{
+    max-height: 60vh;
 }
 
 article#main-tile-deed img{
