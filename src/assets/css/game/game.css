@@ -278,7 +278,7 @@ article#main-tile-deed p, article#player-action p {
     text-align: center;
 }
 
-#main-tile-deed p{
+article#main-tile-deed p{
     text-align: right;
 }
 
