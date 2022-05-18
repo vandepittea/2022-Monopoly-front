@@ -83,6 +83,11 @@ function manageMainClick(e) {
             case "main-property-auction":
                 auctionProperty(e.target.closest("#main-tile-deed").dataset.name);
                 break;
+            case "buy-house":
+                improveBuildings();
+                break;
+            case "sell-house":
+                removeBuildings();
             case "collect-rent":
                 collectRent(_currentGameState);
                 break;

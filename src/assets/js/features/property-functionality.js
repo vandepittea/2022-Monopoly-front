@@ -98,44 +98,47 @@ function collectRent(game) {
             });
         }
     });
+}
 
 function improveBuildings(property) {
-    switch (property){
-        case "buy house":
-            fetchFromServer(`/games/{gameId}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/houses`, 'POST')
-                .then(response =>{
-                    console.log(response);
-                    console.log(`${_gameData.playerName} bought a house`);
-                });
-            break;
-        case "buy hotel":
-            fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/hotel`, 'POST')
-                .then(response =>{
-                console.log(response);
-                console.log(`${_gameData.playerName} bought a hotel`);
-                });
-            break;
-
-        }
+    let link = ``;
+    let message = ``;
+    let houseCount = player.properties.houseCount;
+    let hotelCount = player.properties.hotelCount;
+    if (hotelCount == 1) {return null;}
+    if (houseCount < 4) {
+        link = `/games/{gameId}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/houses`;
+        message = "bought a house";
+    } else {
+        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/hotel`;
+        message = "bought a hotel";
     }
+    fetchFromServer(link, 'POST')
+        .then(response => {
+            console.log(response);
+            console.log(`${_gameData.playerName} ` + message);
+        });
 
-function removeBuildings(property){
-    switch(property){
-        case "sell house":
-            fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/houses`, 'DELETE')
-                .then(response =>{
-                    console.log(response);
-                    console.log(`${_gameData.playerName} sold a house`);
-                });
-            break;
-        case "sell hotel":
-            fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/hotel`, 'DELETE')
-                .then(response =>{
-                    console.log(response);
-                    console.log(`${_gameData.playerName} sold a hotel`);
-                });
-            break;
-        }
+}
+
+function removeBuildings(property) {
+    let link = ``;
+    let message = ``;
+    let houseCount = player.properties.houseCount;
+    let hotelCount = player.properties.hotelCount;
+    if (hotelCount == 1) {return null;}
+    if (houseCount < 4) {
+        link = `/games/{gameId}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/houses`;
+        message = "sold a house";
+    } else {
+        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/hotel`;
+        message = "sold a hotel";
     }
+    fetchFromServer(link, 'DELETE')
+        .then(response => {
+            console.log(response);
+            console.log(`${_gameData.playerName} ` + message);
+        });
+
 }
 
