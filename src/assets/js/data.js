@@ -145,9 +145,8 @@ const _htmlElements =
             `,
         jailFineButton:
             `
-        <button type="button" id="pay-fine">Pay Fine</button>
-        `
-        ,
+            <button type="button" id="pay-fine">Pay Fine</button>
+            `,
         jailCardButton:
             `
             <button type="button" id="jail-card">Use your get out of jail card!</button>
