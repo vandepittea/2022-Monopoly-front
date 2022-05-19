@@ -43,6 +43,10 @@ article {
     margin-right: auto;
 }
 
+section{
+    margin-top: 1rem;
+}
+
 article#game-list, article#create-game-screen, article#character-screen{
     padding: 3rem;
 }
@@ -87,6 +91,12 @@ h1, h2{
     text-align: center;
     text-shadow: 0 0.02rem 0.02rem #ffffff;
     margin-bottom: 5rem;
+}
+
+p{
+    text-align: center;
+    color: #DC143C;
+    font-weight: bold;
 }
 
 #game-list h2{
