@@ -100,40 +100,66 @@ function collectRent(game) {
     });
 }
 
+function manageProperty(e) {
+    const $main = document.querySelector("main");
+    const $article = $main.querySelector("article");
+
+    if (($article.id !== "properties") && (e.target.nodeName.toLowerCase() !== "img")) {
+        return;
+    }
+
+    $main.innerHTML = "";
+    $main.insertAdjacentHTML("beforeend", _htmlElements.showDeedCard);
+    const $deed = $main.querySelector("#deedCard");
+    const tile = getTile(e.target.closest("li").dataset.name);
+    const $deedImg = $deed.querySelector("img");
+    $deed.querySelector("h2").innerText = tile.name;
+    $deed.dataset.name = tile.name;
+    $deedImg.setAttribute("src", `../images/deeds/${tile.nameAsPathParameter}.jpg`);
+    $deedImg.setAttribute("alt", `${tile.name}`);
+    $deedImg.setAttribute("title", `${tile.name}`);
+
+    $deed.querySelector("#buy-house").addEventListener("click", houseManager());
+}
+
+function houseManager() {
+    const $main = document.querySelector("main");
+    $main.innerHTML = "";
+    $main.insertAdjacentHTML("beforeend", _htmlElements/*still in process of making*/);
+}
+
+//improveBuildings(e.target.closest("#main-tile-deed").dataset.name);
 function improveBuildings(propertyName) {
+    const player = getPlayerObject(_currentGame, playerName);
+    const property = player.properties.find(property => property === propertyName);
+    let link = ``;
+    let houseCounter = property.houseCount;
+    let hotelCounter = property.hotelCount;
+    if (hotelCounter === 1) {return null;}
+    if (houseCounter < 4) {
+        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property}/houses`;
+    } else {
+        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property}/hotel`;
+    }
+    fetchFromServer(link, 'POST')
+        .then(response => {
+            console.log(response);
+        });
+}
+//removeBuildings(e.target.closest("#main-tile-deed").dataset.name);
+function removeBuildings(propertyName) {
     const player = getPlayerObject(_currentGame, playerName);
     const property = player.properties.find(property => property === propertyName);
     let link = ``;
     let message = ``;
     let houseCounter = property.houseCount;
     let hotelCounter = property.hotelCount;
-    if (hotelCounter === 1) {return null;}
-    if (houseCounter < 4) {
-        link = `/games/{gameId}/players/${_gameData.playerName}/properties/${property}/houses`;
-        message = "bought a house";
-    } else {
-        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property}/hotel`;
-        message = "bought a hotel";
-    }
-    fetchFromServer(link, 'POST')
-        .then(response => {
-            console.log(response);
-            console.log(`${_gameData.playerName} ` + message);
-        });
-
-}
-
-function removeBuildings(downgradingProperty) {
-    let link = ``;
-    let message = ``;
-    let houseCount = _gameData.playerName.property.housecount
-    let hotelCount = player.properties.hotelCount;
-    if (houseCount === 0) {return null;}
-    if (hotelCount === 0) {
-        link = `/games/{gameId}/players/${_gameData.playerName}/properties/${propertyName}/houses`;
+    if (houseCounter === 0) {return null;}
+    if (hotelCounter === 0) {
+        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property}/houses`;
         message = "sold a house";
     } else {
-        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}/hotel`;
+        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property}/hotel`;
         message = "sold a hotel";
     }
     fetchFromServer(link, 'DELETE')
@@ -141,6 +167,5 @@ function removeBuildings(downgradingProperty) {
             console.log(response);
             console.log(`${_gameData.playerName} ` + message);
         });
-
 }
 

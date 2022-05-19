@@ -105,8 +105,6 @@ function currentAuctions() {
                                           </tr>`
                                 );
                             }
-
-
                         })
                         .catch(errorHandler);
                 }
@@ -125,7 +123,7 @@ function declareBankrupt() {
 
 function payJailFine() {
     fetchFromServer(`/games/${_gameData.gameID}/prison/${_gameData.playerName}/fine`, 'POST')
-        .then(response =>{
+        .then(response => {
             console.log(response);
             console.log(`${_gameData.playerName} is out of jail!`);
             manageGame();
@@ -135,7 +133,7 @@ function payJailFine() {
 
 function useJailCards() {
     fetchFromServer(`/games/${_gameData.gameID}/prison/${_gameData.playerName}/free`, 'POST')
-        .then(response =>{
+        .then(response => {
             console.log(response);
             console.log(`${_gameData.playerName} is out of jail!`);
             manageGame();
@@ -149,22 +147,21 @@ function switchTaxSystem(e) {
         fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/tax/estimate`, 'POST')
             .then(response => {
                 console.log(response);
-                console.log(`${_gameData.playerName} switched tax system to estimate`);
+                console.log(`${_gameData.playerName} switched tax system to estimate`)
             })
-            .catch(errorHandler);
+            .catch(errorHandler)
     } else {
         fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/tax/compute`, 'POST')
             .then(response => {
                 console.log(response);
-                console.log(`${_gameData.playerName} switched tax system to compute`);
+                console.log(`${_gameData.playerName} switched tax system to compute`)
             })
-            .catch(errorHandler);
+            .catch(errorHandler)
 
     }
-    if(e.target.innerText === "ESTIMATE"){
-        e.target.innerText = "compute";
-    }
-    else{
-        e.target.innerText = "estimate";
+    if (e.target.innerText === "ESTIMATE") {
+        e.target.innerText = "compute"
+    } else {
+        e.target.innerText = "estimate"
     }
 }

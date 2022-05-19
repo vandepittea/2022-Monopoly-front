@@ -226,3 +226,5 @@ function injectPlayerRolling() {
     $main.innerText = "";
     $main.insertAdjacentHTML('beforeend', `<p>${_currentGameState.currentPlayer} is busy rolling.</p>`);
 }
+
+

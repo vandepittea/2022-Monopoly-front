@@ -164,5 +164,5 @@ const _htmlElements =
             <button type="button" id="mortgage">mortgage</button>
             <button type="button" id="auction-property">auction property</button>
         </article>
-        `,
+        `
     };
