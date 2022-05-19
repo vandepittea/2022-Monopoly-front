@@ -87,7 +87,6 @@ const _htmlElements =
                 <div>
                     <h3>1500</h3>
                     <button type="button" id="other-player-overview-property">Properties</button>
-                    <button type="button" id="other-player-overview-trade">Trade</button>
                 </div>
             </article>
             `,
@@ -124,16 +123,14 @@ const _htmlElements =
             `,
         jailFineButton:
             `
-        <button type="button" id="pay-fine">Pay Fine</button>
-        `
-        ,
+            <button type="button" id="pay-fine">Pay Fine</button>
+            `,
         jailCardButton:
             `
             <button type="button" id="jail-card">Use your get out of jail card!</button>
             `,
         topButtons:
             `
-            <button id="show-auctions" type="button">Auctions</button>
             <button type="button">History</button>
             `
     };

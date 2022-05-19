@@ -39,7 +39,7 @@ function injectPropertyInContainer($container, $templateNode, property) {
 }
 
 function injectPossibleTiles(game) {
-    const $container = document.querySelector("#moves-container-and-auctions-and-history");
+    const $container = document.querySelector("#moves-container-and-history");
     const $templateNode = $container.querySelector("template");
     const activePlayer = getPlayerObject(game, game.currentPlayer);
 
@@ -60,7 +60,7 @@ function injectPossibleTiles(game) {
 }
 
 function injectTopButtons() {
-    const $container = document.querySelector("#moves-container-and-auctions-and-history");
+    const $container = document.querySelector("#moves-container-and-history");
     const $templateNode = $container.querySelector("template");
     $container.innerHTML = "";
     $container.insertAdjacentElement('beforeend', $templateNode);
@@ -153,11 +153,12 @@ function fillOtherPlayerMain(game) {
             return;
         }
     }
+    $main.innerHTML = "";
 
     toggleVisibilityByID(_divsToToggle, false);
     injectTopButtons();
+    injectPlayerRolling();
 
-    $main.innerHTML = "";
     if (game.turns.length === 0){
         return;
     }
@@ -167,6 +168,7 @@ function fillOtherPlayerMain(game) {
         return;
     }
 
+    $main.innerHTML = "";
     injectTurnInMain(lastTurn, $main);
 }
 
@@ -217,4 +219,10 @@ function makeMiniMapDivs() {
     for (let i = 0; i < _tiles.length; i++) {
         $miniMapAside.insertAdjacentHTML('beforeend', `<div id="t${i}"> </div>`);
     }
+}
+
+function injectPlayerRolling() {
+    const $main = document.querySelector("main");
+    $main.innerText = "";
+    $main.insertAdjacentHTML('beforeend', `<p>${_currentGameState.currentPlayer} is busy rolling.</p>`);
 }
