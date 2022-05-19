@@ -43,10 +43,6 @@ article {
     margin-right: auto;
 }
 
-section{
-    margin-top: 1rem;
-}
-
 article#game-list, article#create-game-screen, article#character-screen{
     padding: 3rem;
 }
@@ -54,6 +50,10 @@ article#game-list, article#create-game-screen, article#character-screen{
 article#waiting-screen, div#launch-screen{
     background-color: inherit;
     padding: 0;
+}
+
+div#error{
+    margin-top: 1rem;
 }
 
 #login aside{
