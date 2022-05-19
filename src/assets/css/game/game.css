@@ -58,6 +58,7 @@ div#multiple-player-actions{
 article#player-action{
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin-left: auto;
     margin-right: auto;
 }
@@ -310,7 +311,9 @@ header #moves-container-and-history img{
 }
 
 article#player-action img{
-    max-height: 55vh;
+    max-height: 40vh;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 article#main-tile-deed img{
