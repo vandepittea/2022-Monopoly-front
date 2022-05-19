@@ -1,6 +1,6 @@
 "use strict";
 
-const mainIdToNotRefresh = ["properties", "other-player-overview", "ongoing-auctions"];
+const mainIdToNotRefresh = ["properties", "other-player-overview", "ongoing-auctions", "history"];
 
 function injectBalance(game) {
     const $balanceContainer = document.querySelector('#balance-container');
@@ -187,6 +187,27 @@ function injectTurnInMain(turn, $main)
         $img.setAttribute('alt', `${move.tile}`);
         $img.setAttribute('title', `${move.tile}`);
     });
+
+}
+
+function injectHistory(e){
+    e.preventDefault();
+
+    if(e.target.nodeName.toLowerCase() === "button"){
+        const $main = document.querySelector("main");
+        $main.innerHTML = "<article id='history'></article>";
+        const $history = document.querySelector("#history");
+
+        _currentGameState.turns.forEach(turn =>{
+            turn.moves.forEach(move =>{
+                $history.insertAdjacentHTML("beforeend", `
+                    <article>
+                        <h2>${move.tile}</h2>
+                        <p>${move.description}</p>
+                    </article>`);
+            });
+        });
+    }
 }
 
 function injectTileDeed($main, game, tileIdx) {
