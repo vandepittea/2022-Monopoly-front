@@ -153,11 +153,12 @@ function fillOtherPlayerMain(game) {
             return;
         }
     }
+    $main.innerHTML = "";
 
     toggleVisibilityByID(_divsToToggle, false);
     injectTopButtons();
+    injectPlayerRolling();
 
-    $main.innerHTML = "";
     if (game.turns.length === 0){
         return;
     }
@@ -167,6 +168,7 @@ function fillOtherPlayerMain(game) {
         return;
     }
 
+    $main.innerHTML = "";
     injectTurnInMain(lastTurn, $main);
 }
 
@@ -217,4 +219,11 @@ function makeMiniMapDivs() {
     for (let i = 0; i < _tiles.length; i++) {
         $miniMapAside.insertAdjacentHTML('beforeend', `<div id="t${i}"> </div>`);
     }
+}
+
+function injectPlayerRolling() {
+    const $main = document.querySelector("main");
+    $main.innerText = "";
+    $main.insertAdjacentHTML('beforeend', _htmlElements.playerRolling);
+    $main.querySelector("#player-name").innerText = _currentGameState.currentPlayer;
 }

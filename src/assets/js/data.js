@@ -146,9 +146,8 @@ const _htmlElements =
             `,
         jailFineButton:
             `
-        <button type="button" id="pay-fine">Pay Fine</button>
-        `
-        ,
+            <button type="button" id="pay-fine">Pay Fine</button>
+            `,
         jailCardButton:
             `
             <button type="button" id="jail-card">Use your get out of jail card!</button>
@@ -157,5 +156,9 @@ const _htmlElements =
             `
             <button id="show-auctions" type="button">Auctions</button>
             <button type="button">History</button>
+            `,
+        playerRolling:
+            `
+            <p><span id="player-name"></span> is busy rolling!</p>
             `
     };
