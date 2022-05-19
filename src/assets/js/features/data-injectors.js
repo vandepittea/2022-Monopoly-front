@@ -1,6 +1,8 @@
 "use strict";
 
-const mainIdToNotRefresh = ["properties", "other-player-overview", "ongoing-auctions"];
+const mainIdToNotRefresh = ["properties", "other-player-overview"];
+const idsToShowWhenCurrentPlayer = ["map-container"];
+const idsToShowWhenNotCurrentPlayer = ["current-place-on-game-board-image"];
 
 function injectBalance(game) {
     const $balanceContainer = document.querySelector('#balance-container');
@@ -127,6 +129,8 @@ function insertJailedMain($main, game) {
 
 function fillActivePlayerMain(game) {
     toggleVisibilityByID(_divsToToggle, false);
+    toggleVisibilityByID(idsToShowWhenCurrentPlayer, false);
+    toggleVisibilityByID(idsToShowWhenNotCurrentPlayer, true);
 
     const $main = document.querySelector("main");
     $main.innerHTML = "";
@@ -156,6 +160,8 @@ function fillOtherPlayerMain(game) {
     $main.innerHTML = "";
 
     toggleVisibilityByID(_divsToToggle, false);
+    toggleVisibilityByID(idsToShowWhenCurrentPlayer, true);
+    toggleVisibilityByID(idsToShowWhenNotCurrentPlayer, false);
     injectTopButtons();
     injectPlayerRolling();
 
