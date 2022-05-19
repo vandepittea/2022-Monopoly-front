@@ -107,28 +107,6 @@ const _htmlElements =
                 <button type="button" id="main-property-auction">Don't buy property</button>
             </div>
             `,
-        auctionTable:
-            `
-            <table id="ongoing-auctions">
-                <thead>
-                <tr>
-                    <th>Auction host</th>
-                    <th>Auctioned Property</th>
-                    <th>Current Price</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                    <!-- This is test data for table layout -->
-                    <tr>
-                        <td>Mr. Random</td>
-                        <td>Random Street</td>
-                        <td><img src="../images/coin.png" alt="Coin" title="Coin" id="coin"/>69</td>
-                        <td><button id="joinAuction1" type="button">Join Auction</button></td>
-                    </tr>
-                </tbody>
-            </table>
-            `,
         playerAction:
             `
             <div id="multiple-player-actions">
@@ -163,6 +141,41 @@ const _htmlElements =
             <button type="button" id="buy-house">houses</button>
             <button type="button" id="mortgage">mortgage</button>
             <button type="button" id="auction-property">auction property</button>
+        </article>
+        `,
+        manageHouses:
+        `
+        <div>
+            <wrapper>32 houses remaining</wrapper>
+        </div>
+        
+        <article>
+            <h2>Buy or sell houses</h2>
+            <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
+            <p>3</p>
+            <button type="button" id="buy-house">buy one house</button>
+            <button type="button" id="sell-house">sell one house</button>
+        </article>
+        
+        <article>
+            <article data-streettype="lightblue">
+                  <h3>Lightblue</h3>
+                  <ul>
+                  </ul>
+                  <p>3</p>     
+            </article>
+            <article data-streettype="lightblue">
+                  <h3>Lightblue</h3>
+                  <ul>
+                  </ul>
+                  <p>3</p>
+            </article>
+            <article data-streettype="lightblue">
+                  <h3>Lightblue</h3>
+                  <ul>
+                  </ul>
+                  <p>3</p>      
+            </article>
         </article>
         `
     };
