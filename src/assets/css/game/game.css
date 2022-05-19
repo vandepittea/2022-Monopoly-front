@@ -143,6 +143,10 @@ article#history article{
     margin-bottom: 3rem;
 }
 
+div#error{
+    margin-top: 0.5rem;
+}
+
 aside#other-players {
     grid-area: 3 / 4 / 6 / 5;
 }
@@ -308,11 +312,9 @@ article#main-tile-deed p{
     text-align: right;
 }
 
-aside#current-place-on-game-board-or-actions-as-text p{
-    margin-top: 2rem;
-    color: #DC143C;
+div#error p{
     font-weight: bold;
-    line-height: 1.3rem;
+    color: #DC143C;
 }
 
 /* images */
