@@ -195,12 +195,14 @@ function injectHistory(e){
 
     if(e.target.nodeName.toLowerCase() === "button"){
         const $main = document.querySelector("main");
-        $main.innerHTML = "<article id='history'></article>";
+        $main.innerHTML = `<div id='history-container'>
+                                <article id='history'></article>
+                           </div>`;
         const $history = document.querySelector("#history");
 
         _currentGameState.turns.forEach(turn =>{
             turn.moves.forEach(move =>{
-                $history.insertAdjacentHTML("beforeend", `
+                $history.insertAdjacentHTML("afterbegin", `
                     <article>
                         <h2>${move.tile}</h2>
                         <p>${move.description}</p>
