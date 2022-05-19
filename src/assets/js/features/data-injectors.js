@@ -169,8 +169,8 @@ function fillOtherPlayerMain(game) {
         return;
     }
 
-    const lastTurn = game.turns[game.turns.length - 1];
-    if (lastTurn.player === _gameData.playerName) {
+    const lastTurn = getLastTurn(game);
+    if ((lastTurn.player === _gameData.playerName) && (lastTurn.player !== game.currentPlayer)) {
         return;
     }
 
