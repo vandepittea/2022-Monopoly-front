@@ -226,3 +226,21 @@ function injectPlayerRolling() {
     $main.innerText = "";
     $main.insertAdjacentHTML('beforeend', `<p>${_currentGameState.currentPlayer} is busy rolling.</p>`);
 }
+
+
+function showDeedCard($main, game, tileIdx) {
+    $main.insertAdjacentHTML('beforeend', _htmlElements.showDeedCard);
+    const $tileDeed = $main.querySelector("#main-tile-deed");
+    const tile = _tiles[tileIdx];
+    const $tileImg = $tileDeed.querySelector("img");
+
+    const propertyOwned = game.players.find(player => player.properties.find(property => property.property === tile.name));
+    if(propertyOwned) {
+        $tileDeed.querySelector("h2").innerText = tile.name;
+
+        $tileImg.setAttribute("src", `../images/deeds/${tile.nameAsPathParameter}.jpg`);
+        $tileImg.setAttribute("alt", `${tile.name}`);
+        $tileImg.setAttribute("title", `${tile.name}`);
+
+    }
+}
