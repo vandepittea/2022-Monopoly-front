@@ -87,7 +87,6 @@ const _htmlElements =
                 <div>
                     <h3>1500</h3>
                     <button type="button" id="other-player-overview-property">Properties</button>
-                    <button type="button" id="other-player-overview-trade">Trade</button>
                 </div>
             </article>
             `,
@@ -155,7 +154,6 @@ const _htmlElements =
             `,
         topButtons:
             `
-            <button id="show-auctions" type="button">Auctions</button>
             <button type="button">History</button>
             `
     };
