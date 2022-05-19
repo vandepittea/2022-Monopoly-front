@@ -108,28 +108,6 @@ const _htmlElements =
                 <button type="button" id="main-property-auction">Don't buy property</button>
             </div>
             `,
-        auctionTable:
-            `
-            <table id="ongoing-auctions">
-                <thead>
-                <tr>
-                    <th>Auction host</th>
-                    <th>Auctioned Property</th>
-                    <th>Current Price</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                    <!-- This is test data for table layout -->
-                    <tr>
-                        <td>Mr. Random</td>
-                        <td>Uw moeder</td>
-                        <td><img src="../images/coin.png" alt="Coin" title="Coin" id="coin"/>69</td>
-                        <td><button id="joinAuction1" type="button">Join Auction</button></td>
-                    </tr>
-                </tbody>
-            </table>
-            `,
         playerAction:
             `
             <div id="multiple-player-actions">

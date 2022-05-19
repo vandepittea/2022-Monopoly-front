@@ -24,12 +24,10 @@ function getTile(tileName) {
 }
 
 function toggleVisibilityByID(idsToToggle, hidden) {
-    // Can't use toggle => this function get's called with hidden = false more than
     idsToToggle.forEach(id => {
+        document.querySelector(`#${id}`).classList.remove("hidden");
         if (hidden) {
             document.querySelector(`#${id}`).classList.add("hidden");
-        } else {
-            document.querySelector(`#${id}`).classList.remove("hidden");
         }
     });
 }
