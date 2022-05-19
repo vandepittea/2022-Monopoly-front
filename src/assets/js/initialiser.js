@@ -36,6 +36,7 @@ function initMonopoly() {
     document.querySelector("#bankrupt").addEventListener("click", declareBankrupt);
     document.querySelector("#tax-system").addEventListener("click", switchTaxSystem);
     document.querySelector("main").addEventListener("click", manageProperty);
+    document.querySelector("#moves-container-and-history").addEventListener("click", injectHistory);
 
     makeMiniMapDivs();
     fillProperties();
