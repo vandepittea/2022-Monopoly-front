@@ -39,7 +39,7 @@ function manageGame() {
 }
 
 function calculateTimeout(game) {
-    return 10000 / game.numberOfPlayers;
+    return 5000 / game.numberOfPlayers;
 }
 
 function rollDice() {

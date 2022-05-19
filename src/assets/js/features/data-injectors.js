@@ -150,6 +150,15 @@ function fillActivePlayerMain(game) {
 }
 
 function fillOtherPlayerMain(game) {
+    const $currentPlayerTile = document.querySelector("#current-place-on-game-board-image");
+    const lastTurn = getLastTurn(game);
+    const lastMove = lastTurn.moves[lastTurn.moves.length - 1];
+    const tile = getTile(lastMove.tile);
+
+    $currentPlayerTile.setAttribute('src', `../images/tiles/${tile.nameAsPathParameter}.jpg`);
+    $currentPlayerTile.setAttribute('alt', `${tile.name}`);
+    $currentPlayerTile.setAttribute('title', `${tile.name}`);
+
     const $main = document.querySelector("main");
     const $mainContent = $main.querySelector("article");
     if ($mainContent !== null) {
@@ -165,11 +174,10 @@ function fillOtherPlayerMain(game) {
     injectTopButtons();
     injectPlayerRolling();
 
-    if (game.turns.length === 0){
+    if (game.turns.length === 0) {
         return;
     }
 
-    const lastTurn = getLastTurn(game);
     if ((lastTurn.player === _gameData.playerName) && (lastTurn.player !== game.currentPlayer)) {
         return;
     }
@@ -178,9 +186,8 @@ function fillOtherPlayerMain(game) {
     injectTurnInMain(lastTurn, $main);
 }
 
-function injectTurnInMain(turn, $main)
-{
-    turn.moves.forEach(move =>{
+function injectTurnInMain(turn, $main) {
+    turn.moves.forEach(move => {
         $main.insertAdjacentHTML('beforeend', _htmlElements.playerAction);
         const tile = getTile(move.tile);
         const $lastMove = $main.lastElementChild;
