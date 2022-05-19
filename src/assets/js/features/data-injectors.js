@@ -149,7 +149,7 @@ function fillActivePlayerMain(game) {
     }
 }
 
-function fillOtherPlayerMain(game) {
+function injectTopLeftTile(game) {
     const $currentPlayerTile = document.querySelector("#current-place-on-game-board-image");
     const lastTurn = getLastTurn(game);
     const lastMove = lastTurn.moves[lastTurn.moves.length - 1];
@@ -158,6 +158,10 @@ function fillOtherPlayerMain(game) {
     $currentPlayerTile.setAttribute('src', `../images/tiles/${tile.nameAsPathParameter}.jpg`);
     $currentPlayerTile.setAttribute('alt', `${tile.name}`);
     $currentPlayerTile.setAttribute('title', `${tile.name}`);
+}
+
+function fillOtherPlayerMain(game) {
+    injectTopLeftTile(game);
 
     const $main = document.querySelector("main");
     const $mainContent = $main.querySelector("article");
@@ -167,7 +171,6 @@ function fillOtherPlayerMain(game) {
         }
     }
     $main.innerHTML = "";
-
     toggleVisibilityByID(_divsToToggle, false);
     toggleVisibilityByID(idsToShowWhenCurrentPlayer, true);
     toggleVisibilityByID(idsToShowWhenNotCurrentPlayer, false);
@@ -178,6 +181,7 @@ function fillOtherPlayerMain(game) {
         return;
     }
 
+    const lastTurn = getLastTurn(game);
     if ((lastTurn.player === _gameData.playerName) && (lastTurn.player !== game.currentPlayer)) {
         return;
     }
