@@ -18,7 +18,6 @@
     <script src="../assets/js/initialiser.js"></script>
     <script src="../assets/js/helpers.js"></script>
     <script src="../assets/js/features/gameplay.js"></script>
-    <script src="../assets/js/features/take-turn.js"></script>
     <script src="../assets/js/features/property-functionality.js"></script>
     <script src="../assets/js/features/minimap-functionality.js"></script>
     <script src="../assets/js/features/data-injectors.js"></script>
@@ -29,19 +28,17 @@
     <!-- part of game board for moves OR buttons for auctions and history -->
     <header>
         <h1>Monopoly</h1>
-        <div id="moves-container-and-auctions-and-history">
+        <div id="moves-container-and-history">
             <template>
                 <img src="../images/tiles/Atlantic.jpg" alt="Atlantic" title="Atlantic">
             </template>
-
-            <button id="show-auctions" type="button">Auctions</button>
-            <button type="button">History</button>
         </div>
     </header>
 
-    <!-- show where the current player is on the game board -->
-    <aside id="current-place-on-game-board">
+    <!-- show where the current player is on the game board OR show errors and actions as text -->
+    <aside id="current-place-on-game-board-or-actions-as-text">
         <img src="../images/tiles/Atlantic.jpg" alt="Atlantic" title="Atlantic"/>
+        <p>This is the place where the errors can be shown.</p>
     </aside>
 
     <!-- load content dynamically here -->
@@ -62,46 +59,7 @@
 
     <!-- minimap -->
     <aside id="map-container">
-        <div id="t0"></div>
-        <div id="t1"></div>
-        <div id="t2"></div>
-        <div id="t3"></div>
-        <div id="t4"></div>
-        <div id="t5"></div>
-        <div id="t6"></div>
-        <div id="t7"></div>
-        <div id="t8"></div>
-        <div id="t9"></div>
-        <div id="t10"></div>
-        <div id="t11"></div>
-        <div id="t12"></div>
-        <div id="t13"></div>
-        <div id="t14"></div>
-        <div id="t15"></div>
-        <div id="t16"></div>
-        <div id="t17"></div>
-        <div id="t18"></div>
-        <div id="t19"></div>
-        <div id="t20"></div>
-        <div id="t21"></div>
-        <div id="t22"></div>
-        <div id="t23"></div>
-        <div id="t24"></div>
-        <div id="t25"></div>
-        <div id="t26"></div>
-        <div id="t27"></div>
-        <div id="t28"></div>
-        <div id="t29"></div>
-        <div id="t30"></div>
-        <div id="t31"></div>
-        <div id="t32"></div>
-        <div id="t33"></div>
-        <div id="t34"></div>
-        <div id="t35"></div>
-        <div id="t36"></div>
-        <div id="t37"></div>
-        <div id="t38"></div>
-        <div id="t39"></div>
+
     </aside>
 
     <!-- own properties and money -->
@@ -114,8 +72,10 @@
             </div>
             <button type="button">&hellip;</button>
         </div>
-        <button type="button" id="bankrupt">bankrupt</button>
-        <button type="button" id="taxSystem">estimate</button>
+        <div id="bankrupt-and-tax">
+            <button type="button" id="tax-system">estimate</button>
+            <button type="button" id="bankrupt">bankrupt</button>
+        </div>
         <section id="balance">
             <h3><span id="balance-container">1</span></h3>
         </section>
