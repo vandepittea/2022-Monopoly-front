@@ -100,17 +100,19 @@ function collectRent(game) {
     });
 }
 
-function improveBuildings(property) {
+function improveBuildings(propertyName) {
+    const player = getPlayerObject(_currentGame, playerName);
+    const property = player.properties.find(property => property === propertyName);
     let link = ``;
     let message = ``;
-    let houseCount = player.properties.houseCount;
-    let hotelCount = player.properties.hotelCount;
-    if (hotelCount === 1) {return null;}
-    if (houseCount < 4) {
-        link = `/games/{gameId}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/houses`;
+    let houseCounter = property.houseCount;
+    let hotelCounter = property.hotelCount;
+    if (hotelCounter === 1) {return null;}
+    if (houseCounter < 4) {
+        link = `/games/{gameId}/players/${_gameData.playerName}/properties/${property}/houses`;
         message = "bought a house";
     } else {
-        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/hotel`;
+        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property}/hotel`;
         message = "bought a hotel";
     }
     fetchFromServer(link, 'POST')
@@ -121,17 +123,17 @@ function improveBuildings(property) {
 
 }
 
-function removeBuildings(property) {
+function removeBuildings(downgradingProperty) {
     let link = ``;
     let message = ``;
-    let houseCount = player.properties.houseCount;
+    let houseCount = _gameData.playerName.property.housecount
     let hotelCount = player.properties.hotelCount;
     if (houseCount === 0) {return null;}
     if (hotelCount === 0) {
-        link = `/games/{gameId}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/houses`;
+        link = `/games/{gameId}/players/${_gameData.playerName}/properties/${propertyName}/houses`;
         message = "sold a house";
     } else {
-        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${_gameData.propertyName}/hotel`;
+        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}/hotel`;
         message = "sold a hotel";
     }
     fetchFromServer(link, 'DELETE')

@@ -121,7 +121,7 @@ const _htmlElements =
                     <!-- This is test data for table layout -->
                     <tr>
                         <td>Mr. Random</td>
-                        <td>Uw moeder</td>
+                        <td>Random Street</td>
                         <td><img src="../images/coin.png" alt="Coin" title="Coin" id="coin"/>69</td>
                         <td><button id="joinAuction1" type="button">Join Auction</button></td>
                     </tr>
