@@ -153,12 +153,15 @@ function fillActivePlayerMain(game) {
 function injectTopLeftTile(game) {
     const $currentPlayerTile = document.querySelector("#current-place-on-game-board-image");
     const lastTurn = getLastTurn(game);
-    const lastMove = lastTurn.moves[lastTurn.moves.length - 1];
-    const tile = getTile(lastMove.tile);
 
-    $currentPlayerTile.setAttribute('src', `../images/tiles/${tile.nameAsPathParameter}.jpg`);
-    $currentPlayerTile.setAttribute('alt', `${tile.name}`);
-    $currentPlayerTile.setAttribute('title', `${tile.name}`);
+    if(lastTurn != undefined){
+        const lastMove = lastTurn.moves[lastTurn.moves.length - 1];
+        const tile = getTile(lastMove.tile);
+
+        $currentPlayerTile.setAttribute('src', `../images/tiles/${tile.nameAsPathParameter}.jpg`);
+        $currentPlayerTile.setAttribute('alt', `${tile.name}`);
+        $currentPlayerTile.setAttribute('title', `${tile.name}`);
+    }
 }
 
 function fillOtherPlayerMain(game) {

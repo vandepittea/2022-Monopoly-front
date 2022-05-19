@@ -90,12 +90,17 @@ function collectRent(game) {
     game.players.forEach(player => {
         if (player.name !== _gameData.playerName) {
             const property = ownedProperties.find(property => property.property === player.currentTile);
-            fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property.property}/visitors/${player.name}/rent`, 'DELETE')
-                .then(response => {
-                    console.log(response);
-                    manageGame();
-                })
-                .catch(errorHandler);
+            if(property != null){
+                fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property.property}/visitors/${player.name}/rent`, 'DELETE')
+                    .then(response => {
+                        console.log(response);
+                        manageGame();
+                    })
+                    .catch(errorHandler);
+            }
+            else{
+                addErrorMessage("You can't get rent from a player.");
+            }
         }
     });
 }
