@@ -30,7 +30,7 @@ function manageGame() {
                 if (game.currentPlayer !== _previousCyclePlayer) {
                     setTimeout(manageGame, calculateTimeout(game));
                 } else {
-                    setTimeout(manageGame, 1500);
+                    setTimeout(manageGame, 1000);
                 }
                 _previousCyclePlayer = game.currentPlayer;
             }
