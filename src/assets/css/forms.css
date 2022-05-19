@@ -48,6 +48,10 @@ button {
     background-color: white;
 }
 
+button#close-screen:hover , #property-view button:hover {
+    color: inherit;
+}
+
 header button {
     width: 40%;
     border-radius: 0;
@@ -86,6 +90,10 @@ article#other-player-overview button {
     margin: 0;
 }
 
+article#jail-choices button{
+    margin-bottom: 1rem;
+}
+
 article #properties-container button {
     height: 3rem;
     align-self: flex-end;
@@ -103,6 +111,10 @@ aside#other-players button {
     margin-bottom: 0.5rem;
     margin-right: 0;
     width: 16rem;
+}
+
+footer #bankrupt-and-tax button:first-of-type{
+    margin-bottom: 0.5rem;
 }
 
 footer #property-view button {

@@ -1,5 +1,7 @@
 "use strict";
 
+const mainIdToNotRefresh = ["properties", "other-player-overview", "ongoing-auctions"];
+
 function injectBalance(game) {
     const $balanceContainer = document.querySelector('#balance-container');
     $balanceContainer.innerHTML = getPlayerObject(game, _gameData.playerName).money;
@@ -37,7 +39,7 @@ function injectPropertyInContainer($container, $templateNode, property) {
 }
 
 function injectPossibleTiles(game) {
-    const $container = document.querySelector("#moves-container-and-auctions-and-history");
+    const $container = document.querySelector("#moves-container-and-history");
     const $templateNode = $container.querySelector("template");
     const activePlayer = getPlayerObject(game, game.currentPlayer);
 
@@ -57,8 +59,16 @@ function injectPossibleTiles(game) {
     }
 }
 
+function injectTopButtons() {
+    const $container = document.querySelector("#moves-container-and-history");
+    const $templateNode = $container.querySelector("template");
+    $container.innerHTML = "";
+    $container.insertAdjacentElement('beforeend', $templateNode);
+    $container.insertAdjacentHTML('beforeend', _htmlElements.topButtons);
+}
+
 function fillPlayerButtons() {
-    let url = null;
+    let url;
     if (_gameData.token === null) {
         url = '/games/dummy';
     } else {
@@ -89,18 +99,29 @@ function showPlayerInfo(e) {
     const $main = document.querySelector("main");
     $main.innerHTML = "";
     $main.insertAdjacentHTML('beforeend', _htmlElements.playerOverview);
+    $main.querySelector("#other-player-overview-property").addEventListener("click", activatePlayerProperties);
+    $main.querySelector("#close-screen").addEventListener("click", clearMain);
 
     const $otherPlayerWindow = $main.querySelector("#other-player-overview");
     const playerName = e.target.dataset.player;
 
-    if (!$otherPlayerWindow.classList.contains("hidden") && ($otherPlayerWindow.dataset.player === playerName)) {
-        $otherPlayerWindow.classList.add("hidden");
-    } else {
-        $otherPlayerWindow.classList.remove("hidden");
-        $otherPlayerWindow.dataset.player = playerName;
-        const player = getPlayerObject(_currentGameState, playerName);
-        $otherPlayerWindow.querySelector("h2").innerText = player.name;
-        $otherPlayerWindow.querySelector("p").innerText = player.money;
+    $otherPlayerWindow.dataset.player = playerName;
+    const player = getPlayerObject(_currentGameState, playerName);
+    $otherPlayerWindow.querySelector("h2").innerText = player.name;
+    $otherPlayerWindow.querySelector("p").innerText = player.money;
+}
+
+function insertJailedMain($main, game) {
+    $main.insertAdjacentHTML('beforeend', "<article id='jail-choices'></article>");
+    const $article = $main.firstElementChild;
+    $article.insertAdjacentHTML('beforeend', "<h2>You are in jail :'-(</h2>");
+    $article.insertAdjacentHTML('beforeend', _htmlElements.rollDiceButton);
+    $main.querySelector("#roll-dice").addEventListener("click", rollDice);
+    $article.insertAdjacentHTML('beforeend', _htmlElements.jailFineButton);
+    $main.querySelector("#pay-fine").addEventListener("click", payJailFine);
+    if (getPlayerObject(game, _gameData.playerName).getOutOfJailFreeCards > 0) {
+        $article.insertAdjacentHTML('beforeend', _htmlElements.jailCardButton);
+        $main.querySelector("#jail-card").addEventListener("click", useJailCards);
     }
 }
 
@@ -111,16 +132,10 @@ function fillActivePlayerMain(game) {
     $main.innerHTML = "";
     if (_gameData.playerName === game.currentPlayer) {
         if (jailed(game)) {
-            $main.insertAdjacentHTML('beforeend', "<article></article>");
-            const $article = $main.firstElementChild;
-            $article.insertAdjacentHTML('beforeend', "<h2>You are in jail :'-(</h2>");
-            $article.insertAdjacentHTML('beforeend', _htmlElements.rollDiceButton);
-            $article.insertAdjacentHTML('beforeend', _htmlElements.jailFineButton);
-            if (getPlayerObject(game, _gameData.playerName).getOutOfJailFreeCards > 0) {
-                $article.insertAdjacentHTML('beforeend', _htmlElements.jailCardButton);
-            }
+            insertJailedMain($main, game);
         } else if (game.canRoll) {
             $main.insertAdjacentHTML('beforeend', _htmlElements.rollDiceButton);
+            $main.querySelector("#roll-dice").addEventListener("click", rollDice);
         } else {
             const lastTurn = game.turns[game.turns.length - 1];
             const lastMove = lastTurn.moves[lastTurn.moves.length - 1];
@@ -131,18 +146,19 @@ function fillActivePlayerMain(game) {
 }
 
 function fillOtherPlayerMain(game) {
-    toggleVisibilityByID(_divsToToggle, false);
-
     const $main = document.querySelector("main");
     const $mainContent = $main.querySelector("article");
     if ($mainContent !== null) {
-        if (($mainContent.id === "properties") || ($mainContent.id === "other-player-overview") || ($mainContent.id === "ongoing-auctions")) {
+        if (mainIdToNotRefresh.findIndex(id => $mainContent.id === id) !== -1) {
             return;
         }
     }
 
+    toggleVisibilityByID(_divsToToggle, false);
+    injectTopButtons();
+
     $main.innerHTML = "";
-    if (game.turns.length === 0) {
+    if (game.turns.length === 0){
         return;
     }
 
@@ -154,8 +170,9 @@ function fillOtherPlayerMain(game) {
     injectTurnInMain(lastTurn, $main);
 }
 
-function injectTurnInMain(turn, $main) {
-    turn.moves.forEach(move => {
+function injectTurnInMain(turn, $main)
+{
+    turn.moves.forEach(move =>{
         $main.insertAdjacentHTML('beforeend', _htmlElements.playerAction);
         const tile = getTile(move.tile);
         const $lastMove = $main.lastElementChild;
@@ -183,17 +200,21 @@ function injectTileDeed($main, game, tileIdx) {
     $tileImg.setAttribute("alt", `${tile.name}`);
     $tileImg.setAttribute("title", `${tile.name}`);
 
-    let propertyOwned = false;
-    game.players.forEach(player => {
-        player.properties.forEach(property => {
-            if (property.property === tile.name) {
-                propertyOwned = true;
-            }
-        });
-    });
+    const propertyOwned = game.players.find(player => player.properties.find(property => property.property === tile.name));
+
     if (propertyOwned) {
         $tileDeed.insertAdjacentHTML("beforeend", `<p>Property owned by ${player.name}</p>`);
     } else {
         $tileDeed.insertAdjacentHTML("beforeend", _htmlElements.tileDeedButtons);
+        $main.querySelector("#main-property-buy").addEventListener("click", () => buyProperty($tileDeed.dataset.name));
+        $main.querySelector("#main-property-auction").addEventListener("click", () => auctionProperty($tileDeed.dataset.name));
+    }
+}
+
+function makeMiniMapDivs() {
+    const $miniMapAside = document.querySelector("#map-container");
+    $miniMapAside.innerHTML = "";
+    for (let i = 0; i < _tiles.length; i++) {
+        $miniMapAside.insertAdjacentHTML('beforeend', `<div id="t${i}"> </div>`);
     }
 }
