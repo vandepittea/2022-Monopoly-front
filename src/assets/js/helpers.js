@@ -25,10 +25,9 @@ function getTile(tileName) {
 
 function toggleVisibilityByID(idsToToggle, hidden) {
     idsToToggle.forEach(id => {
+        document.querySelector(`#${id}`).classList.remove("hidden");
         if (hidden) {
             document.querySelector(`#${id}`).classList.add("hidden");
-        } else {
-            document.querySelector(`#${id}`).classList.remove("hidden");
         }
     });
 }
@@ -36,4 +35,8 @@ function toggleVisibilityByID(idsToToggle, hidden) {
 function clearMain() {
     document.querySelector("main").innerHTML = "";
     manageGame();
+}
+
+function getLastTurn(game) {
+    return game.turns[game.turns.length - 1];
 }

@@ -39,7 +39,7 @@ function manageGame() {
 }
 
 function calculateTimeout(game) {
-    return 10000 / game.numberOfPlayers;
+    return 5000 / game.numberOfPlayers;
 }
 
 function rollDice() {
@@ -52,7 +52,12 @@ function rollDice() {
                     const $diceRoll = response.lastDiceRoll;
                     console.log(`${_gameData.playerName} rolled a ${$diceRoll[0]} and a ${$diceRoll[1]}`);
                     syncPlayersToMinimap(response);
-                    manageGame();
+
+                    const $main = document.querySelector("main");
+                    $main.innerText = "";
+                    injectTurnInMain(getLastTurn(response), $main);
+
+                    setTimeout(manageGame, 2000);
 
                     _currentGameState = response;
                 })
@@ -77,42 +82,6 @@ function jailed(game) {
     return false;
 }
 
-//code needed to show ongoing auctions
-
-function currentAuctions() {
-    const $main = document.querySelector("main");
-    $main.innerText = "";
-    $main.insertAdjacentHTML("beforeend", _htmlElements.auctionTable);
-    fetchFromServer(url, 'GET')
-        .then(game => {
-            game.players.forEach(player => {
-                if (player.name !== _gameData.playerName) {
-                    //get all ongoing auctions by player
-                    fetchFromServer(`/games/${_gameData.gameID}/players/${player.name}/auctions`, 'GET')
-                        .then(response => {
-                            console.log(response);
-                            if (response.auctions.length > 0) {
-                                //show all ongoing auctions in a table on html
-                                const $auctionTableBody = $main.querySelector("#ongoingAuctions tbody");
-                                $auctionTableBody.insertAdjacentHTML("beforeend",
-                                    `<tr data-player="${response.playerName}" data-property="${response.property}">
-                                            <td>${response.playerName}</td>
-                                            <td>${response.property}</td>
-                                            <td><img src="../images/coin.png" alt="Coin" title="Coin" id="coin"/>${response.price}</td>
-                                            <td>
-                                                <button id="join-auction" type="button">Join Auction</button>
-                                            </td>
-                                          </tr>`
-                                );
-                            }
-                        })
-                        .catch(errorHandler);
-                }
-            });
-        })
-        .catch(errorHandler);
-}
-
 function declareBankrupt() {
     fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/bankruptcy`, 'POST')
         .then(response => {
@@ -122,18 +91,16 @@ function declareBankrupt() {
 }
 
 function payJailFine() {
-    fetchFromServer(`/games/${_gameData.gameID}/prison/${_gameData.playerName}/fine`, 'POST')
-        .then(response => {
-            console.log(response);
-            console.log(`${_gameData.playerName} is out of jail!`);
-            manageGame();
-        })
-        .catch(errorHandler);
+    jailCall("fine");
 }
 
 function useJailCards() {
-    fetchFromServer(`/games/${_gameData.gameID}/prison/${_gameData.playerName}/free`, 'POST')
-        .then(response => {
+    jailCall("free");
+}
+
+function jailCall(parameter) {
+    fetchFromServer(`/games/${_gameData.gameID}/prison/${_gameData.playerName}/${parameter}`, 'POST')
+        .then(response =>{
             console.log(response);
             console.log(`${_gameData.playerName} is out of jail!`);
             manageGame();
