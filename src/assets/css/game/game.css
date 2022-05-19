@@ -35,6 +35,10 @@ main {
     position: relative;
 }
 
+section#error{
+    margin-top: 0.5rem;
+}
+
 article#other-player-overview {
     display: flex;
 }
@@ -304,15 +308,13 @@ main p {
     text-align: center;
 }
 
-article#main-tile-deed p{
-    text-align: right;
+section#error p{
+    font-weight: bold;
+    color: #DC143C;
 }
 
-aside#current-place-on-game-board-or-actions-as-text p{
-    margin-top: 2rem;
-    color: #DC143C;
-    font-weight: bold;
-    line-height: 1.3rem;
+article#main-tile-deed p{
+    text-align: right;
 }
 
 /* images */
