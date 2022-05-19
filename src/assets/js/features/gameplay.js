@@ -27,11 +27,19 @@ function manageGame() {
             } else {
                 //All things specific for non-active players go here
                 fillOtherPlayerMain(game);
+                if (game.currentPlayer !== _previousCyclePlayer) {
+                    setTimeout(manageGame, calculateTimeout(game));
+                } else {
+                    setTimeout(manageGame, 1000);
+                }
                 _previousCyclePlayer = game.currentPlayer;
-                setTimeout(manageGame, 1500);
             }
         })
         .catch(errorHandler);
+}
+
+function calculateTimeout(game) {
+    return 10000 / game.numberOfPlayers;
 }
 
 function rollDice() {
