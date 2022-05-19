@@ -164,5 +164,40 @@ const _htmlElements =
             <button type="button" id="mortgage">mortgage</button>
             <button type="button" id="auction-property">auction property</button>
         </article>
+        `,
+        manageHouses:
+        `
+        <div>
+            <wrapper>32 houses remaining</wrapper>
+        </div>
+        
+        <article>
+            <h2>Buy or sell houses</h2>
+            <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
+            <p>3</p>
+            <button type="button" id="buy-house">buy one house</button>
+            <button type="button" id="sell-house">sell one house</button>
+        </article>
+        
+        <article>
+            <article data-streettype="lightblue">
+                  <h3>Lightblue</h3>
+                  <ul>
+                  </ul>
+                  <p>3</p>     
+            </article>
+            <article data-streettype="lightblue">
+                  <h3>Lightblue</h3>
+                  <ul>
+                  </ul>
+                  <p>3</p>
+            </article>
+            <article data-streettype="lightblue">
+                  <h3>Lightblue</h3>
+                  <ul>
+                  </ul>
+                  <p>3</p>      
+            </article>
+        </article>
         `
     };
