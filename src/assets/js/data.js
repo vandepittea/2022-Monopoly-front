@@ -154,9 +154,5 @@ const _htmlElements =
         topButtons:
             `
             <button type="button">History</button>
-            `,
-        playerRolling:
-            `
-            <p><span id="player-name"></span> is busy rolling!</p>
             `
     };
