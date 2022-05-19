@@ -52,7 +52,12 @@ function rollDice() {
                     const $diceRoll = response.lastDiceRoll;
                     console.log(`${_gameData.playerName} rolled a ${$diceRoll[0]} and a ${$diceRoll[1]}`);
                     syncPlayersToMinimap(response);
-                    manageGame();
+
+                    const $main = document.querySelector("main");
+                    $main.innerText = "";
+                    injectTurnInMain(getLastTurn(response), $main);
+
+                    setTimeout(manageGame, 2000);
 
                     _currentGameState = response;
                 })

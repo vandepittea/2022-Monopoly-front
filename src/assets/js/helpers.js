@@ -36,3 +36,7 @@ function clearMain() {
     document.querySelector("main").innerHTML = "";
     manageGame();
 }
+
+function getLastTurn(game) {
+    return game.turns[game.turns.length - 1];
+}
