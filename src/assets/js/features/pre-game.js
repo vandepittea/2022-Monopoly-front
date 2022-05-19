@@ -39,7 +39,7 @@ function createGame(e)
         .then(game =>
         {
             _gameID = game.id;
-           makeVisibleByID("character-screen", allDivIds);
+           joinGameAfterCreation();
         })
         .catch(errorHandler);
 
@@ -101,7 +101,19 @@ function joinGame(e)
         {
             _gameData.token = response;
             makeVisibleByID("character-screen", allDivIds);
-            waitForPlayers();
+        })
+        .catch(errorHandler);
+}
+
+function joinGameAfterCreation() {
+    const playerObject = {
+        playerName: _nickname
+    };
+    fetchFromServer(`/games/${_gameID}/players`, 'POST', playerObject)
+        .then(response =>
+        {
+            _gameData.token = response;
+            makeVisibleByID("character-screen", allDivIds);
         })
         .catch(errorHandler);
 }
@@ -109,6 +121,7 @@ function joinGame(e)
 function joinGameWithPlayer()
 {
     makeVisibleByID("waiting-screen", allDivIds);
+    waitForPlayers();
 }
 
 function waitForPlayers()
