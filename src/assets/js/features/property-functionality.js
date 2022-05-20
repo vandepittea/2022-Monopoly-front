@@ -92,15 +92,17 @@ function buyProperty(propertyName) {
     fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}`, 'POST')
         .then(result => {
             console.log(result);
+            addErrorAndSuccessfulMessage(`You bought the property ${propertyName}`);
             manageGame();
         })
         .catch(errorHandler);
 }
 
-function auctionProperty(propertyName) {
+function dontBuyProperty(propertyName) {
     fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}`, 'DELETE')
         .then(result => {
             console.log(result);
+            addErrorAndSuccessfulMessage(`You didn't buy the property ${propertyName}`);
             manageGame();
         })
         .catch(errorHandler);
@@ -121,7 +123,7 @@ function collectRent(game) {
                     .catch(errorHandler);
             }
             else{
-                addErrorMessage("You can't get rent from a player.");
+                addErrorAndSuccessfulMessage("You can't get rent from a player.");
             }
         }
     });
