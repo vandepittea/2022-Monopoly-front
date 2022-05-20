@@ -102,7 +102,8 @@ function jailCall(parameter) {
     fetchFromServer(`/games/${_gameData.gameID}/prison/${_gameData.playerName}/${parameter}`, 'POST')
         .then(response =>{
             console.log(response);
-            console.log(`${_gameData.playerName} is out of jail!`);
+            addErrorAndSuccessfulMessage()
+            console.log("You are out of jail.");
             manageGame();
         })
         .catch(errorHandler);
