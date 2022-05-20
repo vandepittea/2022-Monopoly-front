@@ -30,7 +30,7 @@ function manageGame() {
                 if (game.currentPlayer !== _previousCyclePlayer) {
                     setTimeout(manageGame, calculateTimeout(game));
                 } else {
-                    setTimeout(manageGame, 1000);
+                    setTimeout(manageGame, 3000);
                 }
                 _previousCyclePlayer = game.currentPlayer;
             }
@@ -102,7 +102,8 @@ function jailCall(parameter) {
     fetchFromServer(`/games/${_gameData.gameID}/prison/${_gameData.playerName}/${parameter}`, 'POST')
         .then(response =>{
             console.log(response);
-            console.log(`${_gameData.playerName} is out of jail!`);
+            addErrorAndSuccessfulMessage()
+            console.log("You are out of jail.");
             manageGame();
         })
         .catch(errorHandler);
@@ -115,6 +116,7 @@ function switchTaxSystem(e) {
             .then(response => {
                 console.log(response);
                 console.log(`${_gameData.playerName} switched tax system to estimate`);
+                addErrorAndSuccessfulMessage("You switched tax system to estimate.");
             })
             .catch(errorHandler);
     } else {
@@ -122,6 +124,7 @@ function switchTaxSystem(e) {
             .then(response => {
                 console.log(response);
                 console.log(`${_gameData.playerName} switched tax system to compute`);
+                addErrorAndSuccessfulMessage("You switched tax system to compute.");
             })
             .catch(errorHandler);
 

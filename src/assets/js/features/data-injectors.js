@@ -7,7 +7,9 @@ const idsToShowWhenNotCurrentPlayer = ["current-place-on-game-board-image"];
 
 function injectBalance(game) {
     const $balanceContainer = document.querySelector('#balance-container');
+    const $debtContainer = document.querySelector('#debt-container');
     $balanceContainer.innerHTML = getPlayerObject(game, _gameData.playerName).money;
+    $debtContainer.innerHTML = getPlayerObject(game, _gameData.playerName).debt;
 }
 
 function injectProperties(game) {
@@ -111,7 +113,7 @@ function showPlayerInfo(e) {
     $otherPlayerWindow.dataset.player = playerName;
     const player = getPlayerObject(_currentGameState, playerName);
     $otherPlayerWindow.querySelector("h2").innerText = player.name;
-    $otherPlayerWindow.querySelector("p").innerText = player.money;
+    $otherPlayerWindow.querySelector("h3").innerText = player.money;
 }
 
 function insertJailedMain($main, game) {
@@ -153,12 +155,15 @@ function fillActivePlayerMain(game) {
 function injectTopLeftTile(game) {
     const $currentPlayerTile = document.querySelector("#current-place-on-game-board-image");
     const lastTurn = getLastTurn(game);
-    const lastMove = lastTurn.moves[lastTurn.moves.length - 1];
-    const tile = getTile(lastMove.tile);
 
-    $currentPlayerTile.setAttribute('src', `../images/tiles/${tile.nameAsPathParameter}.jpg`);
-    $currentPlayerTile.setAttribute('alt', `${tile.name}`);
-    $currentPlayerTile.setAttribute('title', `${tile.name}`);
+    if(lastTurn != undefined){
+        const lastMove = lastTurn.moves[lastTurn.moves.length - 1];
+        const tile = getTile(lastMove.tile);
+
+        $currentPlayerTile.setAttribute('src', `../images/tiles/${tile.nameAsPathParameter}.jpg`);
+        $currentPlayerTile.setAttribute('alt', `${tile.name}`);
+        $currentPlayerTile.setAttribute('title', `${tile.name}`);
+    }
 }
 
 function fillOtherPlayerMain(game) {
@@ -192,7 +197,12 @@ function fillOtherPlayerMain(game) {
 }
 
 function injectTurnInMain(turn, $main) {
+    const rolls = turn.roll;
+    const player = turn.player;
+    addRollDiceMessages(`${player} rolled ${rolls[0]} and ${rolls[1]}`);
+
     turn.moves.forEach(move => {
+
         $main.insertAdjacentHTML('beforeend', _htmlElements.playerAction);
         const tile = getTile(move.tile);
         const $lastMove = $main.lastElementChild;
@@ -214,9 +224,12 @@ function injectHistory(e){
     if(e.target.nodeName.toLowerCase() === "button"){
         const $main = document.querySelector("main");
         $main.innerHTML = `<div id='history-container'>
+                                <button type="button" id="close-screen">&#10007;</button>
                                 <article id='history'></article>
                            </div>`;
         const $history = document.querySelector("#history");
+
+        $main.querySelector("#close-screen").addEventListener("click", clearMain);
 
         _currentGameState.turns.forEach(turn =>{
             turn.moves.forEach(move =>{
@@ -250,7 +263,7 @@ function injectTileDeed($main, game, tileIdx) {
     } else {
         $tileDeed.insertAdjacentHTML("beforeend", _htmlElements.tileDeedButtons);
         $main.querySelector("#main-property-buy").addEventListener("click", () => buyProperty($tileDeed.dataset.name));
-        $main.querySelector("#main-property-auction").addEventListener("click", () => auctionProperty($tileDeed.dataset.name));
+        $main.querySelector("#main-property-auction").addEventListener("click", () => dontBuyProperty($tileDeed.dataset.name));
     }
 }
 

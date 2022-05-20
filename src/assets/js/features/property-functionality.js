@@ -64,21 +64,45 @@ function activateProperties(player) {
         const $property = document.querySelector(`#properties-container ul li[data-name='${property.property}']`);
         $property.classList.add("owned");
     });
+
+    addGetOutOfJailCards(player);
+}
+
+function addGetOutOfJailCards(player){
+    let amountOfGetOutOfJailCards = player.getOutOfJailFreeCards;
+
+    const $jailCardsCont = document.querySelector("#properties-container [data-streettype='jailcards'] ul");
+
+    $jailCardsCont.insertAdjacentHTML("beforeend",
+        `<li data-name="jailcards">
+                    <img src="../images/deeds/Get_Out_Of_Jail_Card.jpg" title="Get Out Of Jail Card" alt="Get Out Of Jail Card">
+              </li>
+              <li data-name="jailcards">
+                <p>${amountOfGetOutOfJailCards}</p>
+              </li>`);
+
+        if(amountOfGetOutOfJailCards > 0)
+    {
+        const $jailCard = document.querySelector('#properties-container ul li[data-name="jailcards"]');
+        $jailCard.classList.add("owned");
+    }
 }
 
 function buyProperty(propertyName) {
     fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}`, 'POST')
         .then(result => {
             console.log(result);
+            addErrorAndSuccessfulMessage(`You bought the property ${result.property}.`);
             manageGame();
         })
         .catch(errorHandler);
 }
 
-function auctionProperty(propertyName) {
+function dontBuyProperty(propertyName) {
     fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}`, 'DELETE')
         .then(result => {
             console.log(result);
+            addErrorAndSuccessfulMessage(`You didn't buy the property ${result.property}.`);
             manageGame();
         })
         .catch(errorHandler);
@@ -90,12 +114,18 @@ function collectRent(game) {
     game.players.forEach(player => {
         if (player.name !== _gameData.playerName) {
             const property = ownedProperties.find(property => property.property === player.currentTile);
-            fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property.property}/visitors/${player.name}/rent`, 'DELETE')
-                .then(response => {
-                    console.log(response);
-                    manageGame();
-                })
-                .catch(errorHandler);
+            if(property != null){
+                fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property.property}/visitors/${player.name}/rent`, 'DELETE')
+                    .then(response => {
+                        console.log(response);
+                        addErrorAndSuccessfulMessage("You collected your rent.");
+                        manageGame();
+                    })
+                    .catch(errorHandler);
+            }
+            else{
+                addErrorAndSuccessfulMessage("You can't get rent from a player.");
+            }
         }
     });
 }

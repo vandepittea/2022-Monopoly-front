@@ -52,6 +52,10 @@ article#waiting-screen, div#launch-screen{
     padding: 0;
 }
 
+div#error-and-successful{
+    margin-top: 1rem;
+}
+
 #login aside{
     width: 22.5%;
 }
@@ -87,6 +91,12 @@ h1, h2{
     text-align: center;
     text-shadow: 0 0.02rem 0.02rem #ffffff;
     margin-bottom: 5rem;
+}
+
+p{
+    text-align: center;
+    color: #DC143C;
+    font-weight: bold;
 }
 
 #game-list h2{
