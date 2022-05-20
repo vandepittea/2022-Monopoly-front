@@ -143,9 +143,13 @@ function joinGameWithPlayer(e)
 {
     assignPawn(e);
 
-    //TODO: If character is chosen, don't proceed (send error message maybe)
-    makeVisibleByID("waiting-screen", allDivIds);
-    waitForPlayers();
+    if(!e.target.classList.contains("pawn-taken")){
+        makeVisibleByID("waiting-screen", allDivIds);
+        waitForPlayers();
+    }
+    else{
+        addErrorAndSuccessfulMessage("This player is already chosen.");
+    }
 }
 
 function assignPawn(e) {
