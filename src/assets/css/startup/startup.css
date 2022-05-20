@@ -52,7 +52,7 @@ article#waiting-screen, div#launch-screen{
     padding: 0;
 }
 
-div#error{
+div#error-and-successful{
     margin-top: 1rem;
 }
 
