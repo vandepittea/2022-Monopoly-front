@@ -118,6 +118,7 @@ function collectRent(game) {
                 fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property.property}/visitors/${player.name}/rent`, 'DELETE')
                     .then(response => {
                         console.log(response);
+                        addErrorAndSuccessfulMessage("You collected your rent.");
                         manageGame();
                     })
                     .catch(errorHandler);
