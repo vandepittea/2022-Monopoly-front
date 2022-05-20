@@ -163,7 +163,7 @@ function houseManager(color, tempTile) {
     const $main = document.querySelector("main");
     $main.innerHTML = "";
     $main.insertAdjacentHTML("beforeend", _htmlElements.manageHouses);
-    $main.querySelector("#manageHouses").insertAdjacentHTML('beforeend', `<h2>Remaining house: ${_currentGameState.availableHouse}</h2>`);
+    $main.querySelector("#manageHouses").insertAdjacentHTML('beforeend', `<h2>Remaining house: ${_currentGameState.availableHouses}</h2>`);
     $main.querySelector("#manageHouses").insertAdjacentHTML('beforeend', `<h2>Remaining hotels: ${_currentGameState.availableHotels}</h2>`);
 
     $main.querySelector("#selectedStreet").insertAdjacentHTML('beforeend',`<h2>${tempTile.name}</h2>`);
