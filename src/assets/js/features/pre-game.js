@@ -155,7 +155,7 @@ function joinGameWithPlayer(e)
 function assignPawn(e) {
     const playerObject = {
         playerName: _nickname,
-        pawn: e.target.title
+        pawn: e.target.dataset.name
     };
     fetchFromServer(`/games/${_gameID}/players`, 'POST', playerObject)
         .then(response =>
@@ -195,6 +195,8 @@ function addPlayersToWaitingScreen(game)
     {
         const $template = $templateNode.content.firstElementChild.cloneNode(true);
         $template.querySelector("img").setAttribute('src', `images/characters/${player.pawn}.webp`);
+        $template.querySelector("img").setAttribute('title', `${player.name}.webp`);
+        $template.querySelector("img").setAttribute('alt', `${player.name}.webp`);
         $template.querySelector("figcaption").innerText = player.name;
         $container.insertAdjacentHTML('beforeend', $template.outerHTML);
     });
@@ -215,6 +217,9 @@ function goToWaitingScreen(game)
     {
         const $template = $templateNode.content.firstElementChild.cloneNode(true);
         $template.querySelector('figcaption').innerText = player.name;
+        $template.querySelector("img").setAttribute('src', `images/characters/${player.pawn}.webp`);
+        $template.querySelector("img").setAttribute('title', `${player.name}.webp`);
+        $template.querySelector("img").setAttribute('alt', `${player.name}.webp`);
 
         if (player.name === _nickname)
         {
