@@ -198,6 +198,8 @@ function fillOtherPlayerMain(game) {
 
 function injectTurnInMain(turn, $main) {
     turn.moves.forEach(move => {
+        addErrorMessage("test");
+
         $main.insertAdjacentHTML('beforeend', _htmlElements.playerAction);
         const tile = getTile(move.tile);
         const $lastMove = $main.lastElementChild;
