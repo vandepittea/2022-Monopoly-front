@@ -138,7 +138,8 @@ function waitForPlayers()
                 addPlayersToWaitingScreen(game);
                 setTimeout(waitForPlayers, 1500);
             }
-        });
+        })
+        .catch(errorHandler);
 }
 
 function addPlayersToWaitingScreen(game)
