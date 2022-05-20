@@ -131,16 +131,6 @@ const _htmlElements =
             `
             <button type="button">History</button>
             `,
-        showDeedCard:
-            `
-        <article id="deedCard">
-            <button type="button" id="close-screen">&#10007;</button>
-            <h2>TileName</h2>
-            <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
-            <button type="button" id="manageStreet">houses</button>
-            <button type="button" id="mortgage">mortgage</button>
-        </article>
-        `,
         manageHouseButtons:
             `
             <button type="button" id="selected-property-improve">Improve property</button>
