@@ -12,15 +12,20 @@ function addErrorAndSuccessfulMessage(message){
     const $error = document.querySelector("#error-and-successful");
     $error.insertAdjacentHTML("afterbegin", `<p>${message}</p>`);
 
-    setTimeout(deleteLastError, 5000);
+    setTimeout(deleteLastError, 3000);
 }
 
 function deleteLastError() {
     const $error = document.querySelector("#error-and-successful");
-    $error.lastElementChild.remove();
+    if($error.lastElementChild.id === "roll-dice"){
+        $error.lastChild.previousSibling.remove();
+    }
+    else{
+        $error.lastElementChild.remove();
+    };
 }
 
 function addRollDiceMessages(message){
     const $error = document.querySelector("#error-and-successful");
-    $error.innerHTML = `<p>${message}</p>`;
+    $error.innerHTML = `<p id="roll-dice">${message}</p>`;
 }
