@@ -213,6 +213,8 @@ function goToWaitingScreen(game)
     const $templateNode = document.querySelector('#launch-screen template');
     const $playerContainer = document.querySelector('#other-players');
 
+    console.log(game.players);
+
     game.players.forEach(player =>
     {
         const $template = $templateNode.content.firstElementChild.cloneNode(true);
