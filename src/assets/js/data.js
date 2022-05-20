@@ -109,17 +109,15 @@ const _htmlElements =
             `,
         playerAction:
             `
-            <div id="multiple-player-actions">
-                <article id="player-action">
-                    <div>
-                        <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
-                    </div>
-                    <div>
-                        <h2>TileName</h2>
-                        <p>Description</p>
-                    </div>                    
-                </article>
-            </div>
+            <article id="player-action">
+                <div>
+                    <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
+                </div>
+                <div>
+                    <h2>TileName</h2>
+                    <p>Description</p>
+                </div>                    
+            </article>
             `,
         jailFineButton:
             `
@@ -136,9 +134,10 @@ const _htmlElements =
         showDeedCard:
             `
         <article id="deedCard">
+            <button type="button" id="close-screen">&#10007;</button>
             <h2>TileName</h2>
             <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
-            <button type="button" id="buy-house">houses</button>
+            <button type="button" id="manageStreet">houses</button>
             <button type="button" id="mortgage">mortgage</button>
         </article>
         `,
