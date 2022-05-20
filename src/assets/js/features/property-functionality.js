@@ -118,7 +118,8 @@ function collectRent(game) {
         if (player.name !== _gameData.playerName) {
             const property = ownedProperties.find(property => property.property === player.currentTile);
             if(property != null){
-                fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property.property}/visitors/${player.name}/rent`, 'DELETE')
+                const propertyPathParam = getTile(property.property).nameAsPathParameter;
+                fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyPathParam}/visitors/${player.name}/rent`, 'DELETE')
                     .then(response => {
                         console.log(response);
                         addErrorAndSuccessfulMessage("You collected your rent.");

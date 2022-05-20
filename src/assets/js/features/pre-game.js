@@ -71,6 +71,7 @@ function createGameList()
 
 function addGameToContainer($container, $templateNode, game)
 {
+    //TODO: Add game name (also in HTML template)
     const $template = $templateNode.content.firstElementChild.cloneNode(true);
     $template.dataset.gameid = game.id;
 
@@ -113,6 +114,7 @@ function joinGameAfterCreation() {
         .then(response =>
         {
             _gameData.token = response;
+            //TODO: Go over all characters, put chosen ones in black/white
             makeVisibleByID("character-screen", allDivIds);
         })
         .catch(errorHandler);
@@ -120,6 +122,7 @@ function joinGameAfterCreation() {
 
 function joinGameWithPlayer()
 {
+    //TODO: If character is chosen, don't proceed (send error message maybe)
     makeVisibleByID("waiting-screen", allDivIds);
     waitForPlayers();
 }
