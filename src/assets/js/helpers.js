@@ -23,6 +23,9 @@ function getTile(tileName) {
     return _tiles.find(tile => tile.name === tileName);
 }
 
+function getTilesByColor(color) {
+    return _tiles.filter(tile => tile.StreetColor === color);
+}
 function toggleVisibilityByID(idsToToggle, hidden) {
     idsToToggle.forEach(id => {
         document.querySelector(`#${id}`).classList.remove("hidden");

@@ -108,32 +108,45 @@ function collectRent(game) {
 function manageProperty(e) {
     const $main = document.querySelector("main");
     const $article = $main.querySelector("article");
+    if ($article == null ||($article.id !== "properties" && e.target.nodeName.toLowerCase() !== "img")) {
+        return;
+    }
 
-    if (($article.id !== "properties") && (e.target.nodeName.toLowerCase() !== "img")) {
+    const tile = getTile(e.target.closest("li").dataset.name);
+    //const owned = getPlayerObject(_currentGameState, _gameData.playerName).properties.find(property => property.property === _gameData.playerName.tile.name);
+    const owned = e.target.closest("li").classList.contains("owned");
+    if (!owned) {
         return;
     }
 
     $main.innerHTML = "";
     $main.insertAdjacentHTML("beforeend", _htmlElements.showDeedCard);
     const $deed = $main.querySelector("#deedCard");
-    const tile = getTile(e.target.closest("li").dataset.name);
     const $deedImg = $deed.querySelector("img");
     $deed.querySelector("h2").innerText = tile.name;
     $deed.dataset.name = tile.name;
     $deedImg.setAttribute("src", `../images/deeds/${tile.nameAsPathParameter}.jpg`);
     $deedImg.setAttribute("alt", `${tile.name}`);
     $deedImg.setAttribute("title", `${tile.name}`);
-
-    $deed.querySelector("#buy-house").addEventListener("click", houseManager());
+    const color = tile.streetColor;
+    $deed.querySelector("#buy-house").addEventListener("click", function () {
+        houseManager(color)
+    });
 }
 
-function houseManager() {
+function houseManager(color) {
     const $main = document.querySelector("main");
     $main.innerHTML = "";
-    $main.insertAdjacentHTML("beforeend", _htmlElements/*still in process of making*/);
+    $main.insertAdjacentHTML("beforeend", _htmlElements.manageHouses);
+    const $container = $main.querySelector("ul");
+    const tiles = new Array(getTilesByColor(color)) ;
+    tiles.forEach (function (tile) {
+        $container.insertAdjacentHTML('beforeend', `<li data-name="${tile.name}"><img src="../images/deeds/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
+    });
+
+
 }
 
-//improveBuildings(e.target.closest("#main-tile-deed").dataset.name);
 function improveBuildings(propertyName) {
     const player = getPlayerObject(_currentGame, playerName);
     const property = player.properties.find(property => property === propertyName);
@@ -151,7 +164,7 @@ function improveBuildings(propertyName) {
             console.log(response);
         });
 }
-//removeBuildings(e.target.closest("#main-tile-deed").dataset.name);
+
 function removeBuildings(propertyName) {
     const player = getPlayerObject(_currentGame, playerName);
     const property = player.properties.find(property => property === propertyName);
