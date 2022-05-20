@@ -129,6 +129,11 @@ article #properties-container article[data-streettype="railroad"] ul li {
     flex: 0 0 21%;
 }
 
+article #properties-container ul li[data-name="jailcards"]:last-of-type {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
 div#history-container{
     width: 100%;
     height: 50vh;

@@ -64,6 +64,31 @@ function activateProperties(player) {
         const $property = document.querySelector(`#properties-container ul li[data-name='${property.property}']`);
         $property.classList.add("owned");
     });
+
+    addGetOutOfJailCards(player);
+}
+
+function addGetOutOfJailCards(player){
+    let amountOfGetOutOfJailCards = player.getOutOfJailCards;
+    if(amountOfGetOutOfJailCards === undefined){
+        amountOfGetOutOfJailCards = 0;
+    }
+
+    const $jailCardsCont = document.querySelector("#properties-container [data-streettype='jailcards'] ul");
+
+    $jailCardsCont.insertAdjacentHTML("beforeend",
+        `<li data-name="jailcards">
+                    <img src="../images/deeds/Get_Out_Of_Jail_Card.jpg" title="Get Out Of Jail Card" alt="Get Out Of Jail Card">
+              </li>
+              <li data-name="jailcards">
+                <p>${amountOfGetOutOfJailCards}</p>
+              </li>`);
+
+        if(amountOfGetOutOfJailCards > 0)
+    {
+        const $jailCard = document.querySelector('#properties-container ul li[data-name="jailcards"]');
+        $jailCard.classList.add("owned");
+    }
 }
 
 function buyProperty(propertyName) {
