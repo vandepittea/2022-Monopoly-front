@@ -21,15 +21,15 @@ function addTile(tile, $propertiesCont, $railroadCont, $utilitiesCont) {
     switch (tile.type) {
         case "STREET":
             const $container = $propertiesCont.querySelector(`[data-streettype='${tile.streetColor.toLowerCase()}'] ul`);
-            $container.insertAdjacentHTML('beforeend', `<li data-name="${tile.nameAsPathParameter}">
+            $container.insertAdjacentHTML('beforeend', `<li data-name="${tile.name}">
                             <img src="../images/deeds/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
             break;
         case "RAILROAD":
-            $railroadCont.insertAdjacentHTML('beforeend', `<li data-name="${tile.nameAsPathParameter}">
+            $railroadCont.insertAdjacentHTML('beforeend', `<li data-name="${tile.name}">
                             <img src="../images/deeds/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
             break;
         case "UTILITY":
-            $utilitiesCont.insertAdjacentHTML('beforeend', `<li data-name="${tile.nameAsPathParameter}">
+            $utilitiesCont.insertAdjacentHTML('beforeend', `<li data-name="${tile.name}">
                             <img src="../images/deeds/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
             break;
         default:
