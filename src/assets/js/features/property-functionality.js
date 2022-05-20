@@ -175,13 +175,13 @@ function houseManager(color, tempTile) {
     const $container = $main.querySelector("#fullStreet ul");
     const tiles = getTilesByColor(color);
     let selectedStreet = tempTile;
-    //const owned = getPlayerObject(_currentGameState, _gameData.playerName).properties.find(property => property.property === _gameData.playerName.item.name);
-    let allOwned = tiles.length;
+    const owned = getPlayerObject(_currentGameState, _gameData.playerName).properties.find(property => property.property === _gameData.playerName.item.name);
+    let allOwned = 0;
     tiles.forEach (function (item) {
         $container.insertAdjacentHTML('beforeend', `<li data-name="${item.name}"><img src="../images/deeds/${item.nameAsPathParameter}.jpg" alt="${item.name} title="${item.name}"/></li>`);
-        /*if (owned) {
+        if (owned) {
             allOwned++;
-        }*/
+        }
     });
     $main.querySelector("#fullStreet").addEventListener("click", changeSelection);
     if (allOwned === tiles.length) {
@@ -208,41 +208,49 @@ function changeSelection (e) {
 
 function improveBuildings(propertyName) {
     const player = getPlayerObject(_currentGameState, _gameData.playerName);
-    const property = player.properties.find(property => property === propertyName);
-    let link = ``;
-    let houseCounter = property.houseCount;
-    let hotelCounter = property.hotelCount;
-    if (hotelCounter === 1) {return null;}
-    if (houseCounter < 4) {
-        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property}/houses`;
-    } else {
-        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property}/hotel`;
+    //TODO property comes out undefined
+    //TODO hide buy house when house difference with selected property is too high
+    const property = player.properties.find(property => property.property === propertyName);
+    if(property != null) {
+        let link = ``;
+        let houseCounter = property.houseCount;
+        let hotelCounter = property.hotelCount;
+        if (hotelCounter === 1) {return null;}
+        if (houseCounter < 4) {
+            link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property}/houses`;
+        } else {
+            link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property}/hotel`;
+        }
+        fetchFromServer(link, 'POST')
+            .then(response => {
+                console.log(response);
+            });
     }
-    fetchFromServer(link, 'POST')
-        .then(response => {
-            console.log(response);
-        });
 }
 
 function removeBuildings(propertyName) {
     const player = getPlayerObject(_currentGameState, _gameData.playerName);
-    const property = player.properties.find(property => property === propertyName);
-    let link = ``;
-    let message = ``;
-    let houseCounter = property.houseCount;
-    let hotelCounter = property.hotelCount;
-    if (houseCounter === 0) {return null;}
-    if (hotelCounter === 0) {
-        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property}/houses`;
-        message = "sold a house";
-    } else {
-        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property}/hotel`;
-        message = "sold a hotel";
+    //TODO property comes out undefined
+    //TODO hide sell house when house difference with selected property is too high
+    const property = player.properties.find(property => property.property === propertyName);
+    if(property != null) {
+        let link = ``;
+        let message = ``;
+        let houseCounter = property.houseCount;
+        let hotelCounter = property.hotelCount;
+        if (houseCounter === 0) {return null;}
+        if (hotelCounter === 0) {
+            link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property}/houses`;
+            message = "sold a house";
+        } else {
+            link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${property}/hotel`;
+            message = "sold a hotel";
+        }
+        fetchFromServer(link, 'DELETE')
+            .then(response => {
+                console.log(response);
+                console.log(`${_gameData.playerName} ` + message);
+            });
     }
-    fetchFromServer(link, 'DELETE')
-        .then(response => {
-            console.log(response);
-            console.log(`${_gameData.playerName} ` + message);
-        });
 }
 
