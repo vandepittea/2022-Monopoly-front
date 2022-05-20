@@ -142,7 +142,7 @@ article#history article{
     margin-bottom: 3rem;
 }
 
-div#error{
+div#error-and-successful{
     margin-top: 0.5rem;
 }
 
@@ -319,7 +319,7 @@ article#main-tile-deed p{
     text-align: right;
 }
 
-div#error p{
+div#error-and-successful p{
     font-weight: bold;
     color: #DC143C;
 }

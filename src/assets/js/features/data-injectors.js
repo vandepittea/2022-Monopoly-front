@@ -257,7 +257,7 @@ function injectTileDeed($main, game, tileIdx) {
     } else {
         $tileDeed.insertAdjacentHTML("beforeend", _htmlElements.tileDeedButtons);
         $main.querySelector("#main-property-buy").addEventListener("click", () => buyProperty($tileDeed.dataset.name));
-        $main.querySelector("#main-property-auction").addEventListener("click", () => auctionProperty($tileDeed.dataset.name));
+        $main.querySelector("#main-property-auction").addEventListener("click", () => dontBuyProperty($tileDeed.dataset.name));
     }
 }
 
