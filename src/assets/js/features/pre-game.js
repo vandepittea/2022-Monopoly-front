@@ -32,7 +32,8 @@ function createGame(e)
 
     const bodyParams = {
        prefix: _config.prefix,
-       numberOfPlayers: parseInt(_amountPlayers)
+       numberOfPlayers: parseInt(_amountPlayers),
+       gameName: document.querySelector("#group-name").value
     };
 
     fetchFromServer('/games', 'POST', bodyParams)
