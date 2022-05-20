@@ -69,10 +69,7 @@ function activateProperties(player) {
 }
 
 function addGetOutOfJailCards(player){
-    let amountOfGetOutOfJailCards = player.getOutOfJailCards;
-    if(amountOfGetOutOfJailCards === undefined){
-        amountOfGetOutOfJailCards = 0;
-    }
+    let amountOfGetOutOfJailCards = player.getOutOfJailFreeCards;
 
     const $jailCardsCont = document.querySelector("#properties-container [data-streettype='jailcards'] ul");
 
