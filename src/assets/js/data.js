@@ -140,42 +140,20 @@ const _htmlElements =
             <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
             <button type="button" id="buy-house">houses</button>
             <button type="button" id="mortgage">mortgage</button>
-            <button type="button" id="auction-property">auction property</button>
         </article>
         `,
         manageHouses:
         `
-        <div>
-            <wrapper>32 houses remaining</wrapper>
+        <div id="manageHouses">
+            <h2>Your streets</h2>
+            <article id="selectedStreet">
+            
+            </article>
+            <article id="fullStreet">
+                <h3 id="streetName"></h3>
+                <ul>
+                </ul>
+            </article>
         </div>
-        
-        <article>
-            <h2>Buy or sell houses</h2>
-            <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
-            <p>3</p>
-            <button type="button" id="buy-house">buy one house</button>
-            <button type="button" id="sell-house">sell one house</button>
-        </article>
-        
-        <article>
-            <article data-streettype="lightblue">
-                  <h3>Lightblue</h3>
-                  <ul>
-                  </ul>
-                  <p>3</p>     
-            </article>
-            <article data-streettype="lightblue">
-                  <h3>Lightblue</h3>
-                  <ul>
-                  </ul>
-                  <p>3</p>
-            </article>
-            <article data-streettype="lightblue">
-                  <h3>Lightblue</h3>
-                  <ul>
-                  </ul>
-                  <p>3</p>      
-            </article>
-        </article>
         `
     };

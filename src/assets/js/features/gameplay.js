@@ -126,9 +126,10 @@ function switchTaxSystem(e) {
             .catch(errorHandler)
 
     }
-    if (e.target.innerText === "ESTIMATE") {
-        e.target.innerText = "compute"
-    } else {
-        e.target.innerText = "estimate"
+    if(e.target.innerText === "ESTIMATE"){
+        e.target.innerText = "compute";
+    }
+    else{
+        e.target.innerText = "estimate";
     }
 }

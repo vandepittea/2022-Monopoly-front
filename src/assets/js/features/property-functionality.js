@@ -152,18 +152,22 @@ function manageProperty(e) {
     $deedImg.setAttribute("title", `${tile.name}`);
     const color = tile.streetColor;
     $deed.querySelector("#buy-house").addEventListener("click", function () {
-        houseManager(color)
+        houseManager(color, tile);
     });
 }
 
-function houseManager(color) {
+function houseManager(color, tempTile) {
     const $main = document.querySelector("main");
     $main.innerHTML = "";
     $main.insertAdjacentHTML("beforeend", _htmlElements.manageHouses);
-    const $container = $main.querySelector("ul");
+    //TODO insert remaining houses in $manage h2
+    //TODO insert name and img of first tile and from then on the selected tile in #selectedStreet
+    //TODO insert images of all streets in container (greyed out if not owned)
+    //TODO when all are owned add buy and sell buttons.
+    const $container = $main.querySelector("#fullStreet ul");
     const tiles = new Array(getTilesByColor(color)) ;
-    tiles.forEach (function (tile) {
-        $container.insertAdjacentHTML('beforeend', `<li data-name="${tile.name}"><img src="../images/deeds/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
+    tiles.forEach (function (item) {
+        $container.insertAdjacentHTML('beforeend', `<li data-name="${item.name}"><img src="../images/deeds/New_York.jpg" alt="${item.name}"/></li>`);
     });
 
 
