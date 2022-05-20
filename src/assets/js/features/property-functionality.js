@@ -77,10 +77,12 @@ function addGetOutOfJailCards(player){
     const $jailCardsCont = document.querySelector("#properties-container [data-streettype='jailcards'] ul");
 
     $jailCardsCont.insertAdjacentHTML("beforeend",
-        `<li data-name="jail-card">
+        `<li data-name="jailcards">
                     <img src="../images/deeds/Get_Out_Of_Jail_Card.jpg" title="Get Out Of Jail Card" alt="Get Out Of Jail Card">
-                    <p>${amountOfGetOutOfJailCards}</p>
-                </li>`);
+              </li>
+              <li data-name="jailcards">
+                <p>${amountOfGetOutOfJailCards}</p>
+              </li>`);
 
         if(amountOfGetOutOfJailCards > 0)
     {
