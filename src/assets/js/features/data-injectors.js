@@ -1,6 +1,6 @@
 "use strict";
 
-const mainIdToNotRefresh = ["properties", "other-player-overview", "history", "deedCard", "manageHouses"];
+const mainIdToNotRefresh = ["properties", "other-player-overview", "history", "property-manager"];
 const idsToShowWhenCurrentPlayer = ["map-container"];
 const idsToShowWhenNotCurrentPlayer = ["current-place-on-game-board-image"];
 
