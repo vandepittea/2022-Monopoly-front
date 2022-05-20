@@ -271,7 +271,7 @@ article #properties-container h3 {
 }
 
 article #properties-container article[data-streettype="purple"] h3 {
-    background-color: #D73A95;
+    background-color: #8F00FF;
 }
 
 article #properties-container article[data-streettype="darkblue"] h3 {
@@ -287,7 +287,7 @@ article #properties-container article[data-streettype="lightblue"] h3 {
 }
 
 article #properties-container article[data-streettype="violet"] h3 {
-    background-color: #8F00FF;
+    background-color: #D73A95;
 }
 
 article #properties-container article[data-streettype="orange"] h3 {
