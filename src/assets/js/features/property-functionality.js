@@ -86,7 +86,7 @@ function addGetOutOfJailCards(player){
 
         if(amountOfGetOutOfJailCards > 0)
     {
-        const $jailCard = document.querySelector('#properties-container ul li[data-name="jail-card"]');
+        const $jailCard = document.querySelector('#properties-container ul li[data-name="jailcards"]');
         $jailCard.classList.add("owned");
     }
 }
