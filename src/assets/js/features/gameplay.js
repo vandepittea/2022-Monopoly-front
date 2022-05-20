@@ -116,6 +116,7 @@ function switchTaxSystem(e) {
             .then(response => {
                 console.log(response);
                 console.log(`${_gameData.playerName} switched tax system to estimate`);
+                addErrorAndSuccessfulMessage("You switched tax system to estimate.");
             })
             .catch(errorHandler);
     } else {
@@ -123,6 +124,7 @@ function switchTaxSystem(e) {
             .then(response => {
                 console.log(response);
                 console.log(`${_gameData.playerName} switched tax system to compute`);
+                addErrorAndSuccessfulMessage("You switched tax system to compute.");
             })
             .catch(errorHandler);
 
