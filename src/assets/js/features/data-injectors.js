@@ -224,9 +224,12 @@ function injectHistory(e){
     if(e.target.nodeName.toLowerCase() === "button"){
         const $main = document.querySelector("main");
         $main.innerHTML = `<div id='history-container'>
+                                <button type="button" id="close-screen">&#10007;</button>
                                 <article id='history'></article>
                            </div>`;
         const $history = document.querySelector("#history");
+
+        $main.querySelector("#close-screen").addEventListener("click", clearMain);
 
         _currentGameState.turns.forEach(turn =>{
             turn.moves.forEach(move =>{
