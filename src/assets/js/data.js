@@ -134,6 +134,7 @@ const _htmlElements =
         showDeedCard:
             `
         <article id="deedCard">
+            <button type="button" id="close-screen">&#10007;</button>
             <h2>TileName</h2>
             <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
             <button type="button" id="manageStreet">houses</button>
@@ -143,6 +144,7 @@ const _htmlElements =
         manageHouses:
         `
         <article id="manageHouses">
+            <button type="button" id="close-screen">&#10007;</button>
             <article id="selectedStreet">
             
             </article>

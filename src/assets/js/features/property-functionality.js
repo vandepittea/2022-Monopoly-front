@@ -146,6 +146,7 @@ function manageProperty(e) {
 
     $main.innerHTML = "";
     $main.insertAdjacentHTML("beforeend", _htmlElements.showDeedCard);
+    $main.querySelector("#close-screen").addEventListener("click", clearMain);
     const $deed = $main.querySelector("#deedCard");
     const $deedImg = $deed.querySelector("img");
     $deed.querySelector("h2").innerText = tile.name;
@@ -163,6 +164,7 @@ function houseManager(color, tempTile) {
     const $main = document.querySelector("main");
     $main.innerHTML = "";
     $main.insertAdjacentHTML("beforeend", _htmlElements.manageHouses);
+    $main.querySelector("#close-screen").addEventListener("click", clearMain);
     $main.querySelector("#manageHouses").insertAdjacentHTML('beforeend', `<h2>Remaining house: ${_currentGameState.availableHouses}</h2>`);
     $main.querySelector("#manageHouses").insertAdjacentHTML('beforeend', `<h2>Remaining hotels: ${_currentGameState.availableHotels}</h2>`);
 
@@ -184,8 +186,12 @@ function houseManager(color, tempTile) {
     $main.querySelector("#fullStreet").addEventListener("click", changeSelection);
     if (allOwned === tiles.length) {
         document.querySelector("#selectedStreet").insertAdjacentHTML("beforeend", _htmlElements.alterHouses);
-        document.querySelector("#buy-house").addEventListener("click", improveBuildings(selectedStreet));
-        document.querySelector("#sell-house").addEventListener("click", removeBuildings(selectedStreet));
+        document.querySelector("#buy-house").addEventListener("click", function () {
+            improveBuildings(selectedStreet);
+        });
+        document.querySelector("#sell-house").addEventListener("click", function () {
+            removeBuildings(selectedStreet);
+        });
     }
 }
 
@@ -219,7 +225,7 @@ function improveBuildings(propertyName) {
 }
 
 function removeBuildings(propertyName) {
-    const player = getPlayerObject(_currentGame, playerName);
+    const player = getPlayerObject(_currentGameState, _gameData.playerName);
     const property = player.properties.find(property => property === propertyName);
     let link = ``;
     let message = ``;
