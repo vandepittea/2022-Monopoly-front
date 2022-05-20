@@ -5,17 +5,17 @@ function generateVisualAPIErrorInConsole(){
 }
 
 function errorHandler(error){
-    addErrorMessage(error.cause);
+    addErrorAndSuccessfulMessage(error.cause);
 }
 
-function addErrorMessage(message){
-    const $error = document.querySelector("#error");
+function addErrorAndSuccessfulMessage(message){
+    const $error = document.querySelector("#error-and-successful");
     $error.insertAdjacentHTML("afterbegin", `<p>${message}</p>`);
 
     setTimeout(deleteLastError, 5000);
 }
 
 function deleteLastError() {
-    const $error = document.querySelector("#error");
+    const $error = document.querySelector("#error-and-successful");
     $error.lastElementChild.remove();
 }
