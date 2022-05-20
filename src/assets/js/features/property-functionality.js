@@ -92,7 +92,7 @@ function buyProperty(propertyName) {
     fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}`, 'POST')
         .then(result => {
             console.log(result);
-            addErrorAndSuccessfulMessage(`You bought the property ${propertyName}`);
+            addErrorAndSuccessfulMessage(`You bought the property ${result.property}.`);
             manageGame();
         })
         .catch(errorHandler);
@@ -102,7 +102,7 @@ function dontBuyProperty(propertyName) {
     fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}`, 'DELETE')
         .then(result => {
             console.log(result);
-            addErrorAndSuccessfulMessage(`You didn't buy the property ${propertyName}`);
+            addErrorAndSuccessfulMessage(`You didn't buy the property ${result.property}.`);
             manageGame();
         })
         .catch(errorHandler);
