@@ -197,8 +197,11 @@ function fillOtherPlayerMain(game) {
 }
 
 function injectTurnInMain(turn, $main) {
+    const rolls = turn.roll;
+    const player = turn.player;
+    addRollDiceMessages(`${player} rolled ${rolls[0]} and ${rolls[1]}`);
+
     turn.moves.forEach(move => {
-        addErrorMessage("test");
 
         $main.insertAdjacentHTML('beforeend', _htmlElements.playerAction);
         const tile = getTile(move.tile);

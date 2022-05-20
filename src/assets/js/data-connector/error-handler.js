@@ -19,3 +19,8 @@ function deleteLastError() {
     const $error = document.querySelector("#error-and-successful");
     $error.lastElementChild.remove();
 }
+
+function addRollDiceMessages(message){
+    const $error = document.querySelector("#error-and-successful");
+    $error.innerHTML = `<p>${message}</p>`;
+}
