@@ -81,6 +81,7 @@ function addGameToContainer($container, $templateNode, game)
     });
     $template.querySelector('#active-players').innerText = game.players.length;
     $template.querySelector('#max-players').innerText = game.numberOfPlayers;
+    $template.querySelector('#game-name').innerText = game.gameName;
 
     $container.insertAdjacentHTML('beforeend', $template.outerHTML);
 }
