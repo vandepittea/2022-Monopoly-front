@@ -120,11 +120,26 @@ function joinGameAfterCreation() {
         .catch(errorHandler);
 }
 
-function joinGameWithPlayer()
+function joinGameWithPlayer(e)
 {
+    assignPawn(e);
+
     //TODO: If character is chosen, don't proceed (send error message maybe)
     makeVisibleByID("waiting-screen", allDivIds);
     waitForPlayers();
+}
+
+function assignPawn(e) {
+    const playerObject = {
+        playerName: _nickname,
+        pawn: e.target.title
+    };
+    fetchFromServer(`/games/${_gameID}/players`, 'POST', playerObject)
+        .then(response =>
+        {
+            console.log(response);
+        })
+        .catch(errorHandler);
 }
 
 function waitForPlayers()
@@ -177,7 +192,6 @@ function goToWaitingScreen(game)
     {
         const $template = $templateNode.content.firstElementChild.cloneNode(true);
         $template.querySelector('figcaption').innerText = player.name;
-        // TODO: add pawn here when our API is done
 
         if (player.name === _nickname)
         {
