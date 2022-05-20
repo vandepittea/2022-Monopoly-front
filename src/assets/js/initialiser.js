@@ -45,8 +45,16 @@ function initMonopoly()
     document.querySelector("#tax-system").addEventListener("click", switchTaxSystem);
     document.querySelector("#moves-container-and-history").addEventListener("click", injectHistory);
 
+    window.onbeforeunload = closingCode;
+    window.onunload = closingCode;
+
     makeMiniMapDivs();
     fillProperties();
     fillPlayerButtons();
     manageGame();
+}
+
+function closingCode(){
+    declareBankrupt();
+    return false;
 }
