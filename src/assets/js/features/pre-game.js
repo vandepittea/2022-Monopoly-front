@@ -195,9 +195,9 @@ function addPlayersToWaitingScreen(game)
     {
         const $template = $templateNode.content.firstElementChild.cloneNode(true);
         $template.querySelector("img").setAttribute('src', `images/characters/${player.pawn}.webp`);
-        $template.querySelector("img").setAttribute('title', `${player.name}.webp`);
-        $template.querySelector("img").setAttribute('alt', `${player.name}.webp`);
-        $template.querySelector("figcaption").innerText = player.name;
+        $template.querySelector("img").setAttribute('title', `${player.name}`);
+        $template.querySelector("img").setAttribute('alt', `${player.pawn}`);
+        $template.querySelector("figcaption").innerText = player.pawn;
         $container.insertAdjacentHTML('beforeend', $template.outerHTML);
     });
 
@@ -218,8 +218,8 @@ function goToWaitingScreen(game)
         const $template = $templateNode.content.firstElementChild.cloneNode(true);
         $template.querySelector('figcaption').innerText = player.name;
         $template.querySelector("img").setAttribute('src', `images/characters/${player.pawn}.webp`);
-        $template.querySelector("img").setAttribute('title', `${player.name}.webp`);
-        $template.querySelector("img").setAttribute('alt', `${player.name}.webp`);
+        $template.querySelector("img").setAttribute('title', `${player.pawn}`);
+        $template.querySelector("img").setAttribute('alt', `${player.pawn}`);
 
         if (player.name === _nickname)
         {
