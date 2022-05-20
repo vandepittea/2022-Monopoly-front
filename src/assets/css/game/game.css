@@ -49,12 +49,6 @@ article#other-player-overview div:last-child {
     justify-content: space-around;
 }
 
-div#multiple-player-actions{
-    display: flex;
-    flex: 1 1 30%;
-    max-width: 70%;
-}
-
 article#player-action{
     display: flex;
     flex-direction: column;
@@ -148,7 +142,7 @@ article#history article{
     margin-bottom: 3rem;
 }
 
-div#error{
+div#error-and-successful{
     margin-top: 0.5rem;
 }
 
@@ -325,7 +319,7 @@ article#main-tile-deed p{
     text-align: right;
 }
 
-div#error p{
+div#error-and-successful p{
     font-weight: bold;
     color: #DC143C;
 }

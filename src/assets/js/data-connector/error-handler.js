@@ -5,17 +5,27 @@ function generateVisualAPIErrorInConsole(){
 }
 
 function errorHandler(error){
-    addErrorMessage(error.cause);
+    addErrorAndSuccessfulMessage(error.cause);
 }
 
-function addErrorMessage(message){
-    const $error = document.querySelector("#error");
+function addErrorAndSuccessfulMessage(message){
+    const $error = document.querySelector("#error-and-successful");
     $error.insertAdjacentHTML("afterbegin", `<p>${message}</p>`);
 
-    setTimeout(deleteLastError, 5000);
+    setTimeout(deleteLastError, 3000);
 }
 
 function deleteLastError() {
-    const $error = document.querySelector("#error");
-    $error.lastElementChild.remove();
+    const $error = document.querySelector("#error-and-successful");
+    if($error.lastElementChild.id === "roll-dice"){
+        $error.lastChild.previousSibling.remove();
+    }
+    else{
+        $error.lastElementChild.remove();
+    };
+}
+
+function addRollDiceMessages(message){
+    const $error = document.querySelector("#error-and-successful");
+    $error.innerHTML = `<p id="roll-dice">${message}</p>`;
 }
