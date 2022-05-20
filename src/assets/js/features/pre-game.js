@@ -101,14 +101,29 @@ function joinGame(e)
         .then(response =>
         {
             _gameData.token = response;
-            //TODO: Go over all characters, put chosen ones in black/white
+            placeChosenCharactersInBlack();
             makeVisibleByID("character-screen", allDivIds);
         })
         .catch(errorHandler);
 }
 
 function placeChosenCharactersInBlack(){
-
+    fetchFromServer(`/games/${_gameID}`, 'GET')
+        .then(game =>
+        {
+            game.players.forEach(player =>
+            {
+                const $images = document.querySelectorAll("#character-screen img");
+                $images.forEach(image =>{
+                    console.log(player.pawn);
+                    console.log(image.title);
+                    if(player.pawn === image.title){
+                        image.classList.add("pawn-taken");
+                    }
+                })
+            });
+        })
+        .catch(errorHandler);
 }
 
 function joinGameAfterCreation() {
