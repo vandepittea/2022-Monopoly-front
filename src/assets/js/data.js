@@ -142,18 +142,9 @@ const _htmlElements =
             <button type="button" id="mortgage">mortgage</button>
         </article>
         `,
-        manageHouses:
-        `
-        <div id="manageHouses">
-            <h2>Your streets</h2>
-            <article id="selectedStreet">
-            
-            </article>
-            <article id="fullStreet">
-                <h3 id="streetName"></h3>
-                <ul>
-                </ul>
-            </article>
-        </div>
-        `
+        manageHouseButtons:
+            `
+            <button type="button" id="selected-property-improve">Improve property</button>
+            <button type="button" id="selected-property-remove">Remove property</button>
+            `
     };

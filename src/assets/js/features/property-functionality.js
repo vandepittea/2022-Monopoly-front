@@ -135,31 +135,46 @@ function manageProperty(e) {
     if ($article == null ||(!$article.hasAttribute("data-streettype") && (e.target.nodeName.toLowerCase() !== "img"))) {
         return;
     }
+    if ($article.id === "property-manager") {
+        return;
+    }
     if(e.target.closest("#properties").querySelector("h2").innerText.split("'")[0] !== _gameData.playerName) {
         return;
     }
+
     $article.id = "property-manager";
+    $article.insertAdjacentHTML("afterbegin", `<button type="button" id="close-screen">&#10007;</button>`);
+    $article.querySelectorAll("li").forEach(item => {
+        const player = getPlayerObject(_currentGameState, _gameData.playerName);
+        const property = getPlayerProperty(player, item.dataset.name);
+
+        let houseCount = 0;
+        let hotelCount = 0;
+
+        if (property !== undefined) {
+            houseCount = property.houseCount;
+            hotelCount = property.hotelCount;
+        }
+
+        item.insertAdjacentHTML("beforeend", `<p>Houses: ${houseCount}</p>`);
+        item.insertAdjacentHTML("beforeend", `<p>Hotels: ${hotelCount}</p>`);
+    });
+    $article.insertAdjacentHTML("beforeend", _htmlElements.manageHouseButtons);
 
     const $main = document.querySelector("main");
     $main.innerText = "";
     $main.insertAdjacentElement("afterbegin", $article);
+    $main.querySelector("#close-screen").addEventListener("click", clearMain);
 }
 
-function houseManager(color, tempTile) {
-    const $main = document.querySelector("main");
-    $main.innerHTML = "";
-    $main.insertAdjacentHTML("beforeend", _htmlElements.manageHouses);
-    //TODO insert remaining houses in $manage h2
-    //TODO insert name and img of first tile and from then on the selected tile in #selectedStreet
-    //TODO insert images of all streets in container (greyed out if not owned)
-    //TODO when all are owned add buy and sell buttons.
-    const $container = $main.querySelector("#fullStreet ul");
-    const tiles = new Array(getTilesByColor(color)) ;
-    tiles.forEach (function (item) {
-        $container.insertAdjacentHTML('beforeend', `<li data-name="${item.name}"><img src="../images/deeds/New_York.jpg" alt="${item.name}"/></li>`);
-    });
+function selectPropertyToImprove(e) {
+    const $article = e.target.closest("article");
+    if ((e.target.nodeName.toLowerCase() !== "img") || ($article.id !== "property-manager")) {
+        return;
+    }
 
-
+    $article.querySelectorAll("li").forEach($image => $image.classList.remove("selected"));
+    e.target.closest("li").classList.add("selected");
 }
 
 function improveBuildings(propertyName) {

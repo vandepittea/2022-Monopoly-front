@@ -23,9 +23,10 @@ function getTile(tileName) {
     return _tiles.find(tile => tile.name === tileName);
 }
 
-function getTilesByColor(color) {
-    return _tiles.filter(tile => tile.StreetColor === color);
+function getPlayerProperty(player, propertyName) {
+    return player.properties.find(property => property.property === propertyName);
 }
+
 function toggleVisibilityByID(idsToToggle, hidden) {
     idsToToggle.forEach(id => {
         document.querySelector(`#${id}`).classList.remove("hidden");
