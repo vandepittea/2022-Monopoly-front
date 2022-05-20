@@ -7,7 +7,9 @@ const idsToShowWhenNotCurrentPlayer = ["current-place-on-game-board-image"];
 
 function injectBalance(game) {
     const $balanceContainer = document.querySelector('#balance-container');
+    const $debtContainer = document.querySelector('#debt-container');
     $balanceContainer.innerHTML = getPlayerObject(game, _gameData.playerName).money;
+    $debtContainer.innerHTML = getPlayerObject(game, _gameData.playerName).debt;
 }
 
 function injectProperties(game) {
