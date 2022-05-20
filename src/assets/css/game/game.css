@@ -259,6 +259,7 @@ footer #balance h3 span {
 footer #balance h3 span:last-child{
     display: inline-block;
     background-size: 2rem 2rem;
+    padding: 2rem 0 0 2.4rem;
     background-position: 0 bottom;
     color: #DC143C;
 }
