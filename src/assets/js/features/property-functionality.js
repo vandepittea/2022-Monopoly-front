@@ -154,7 +154,7 @@ function manageProperty(e) {
     $deedImg.setAttribute("alt", `${tile.name}`);
     $deedImg.setAttribute("title", `${tile.name}`);
     const color = tile.streetColor;
-    $deed.querySelector("#buy-house").addEventListener("click", function () {
+    $deed.querySelector("#manageStreet").addEventListener("click", function () {
         houseManager(color, tile);
     });
 }
@@ -163,21 +163,45 @@ function houseManager(color, tempTile) {
     const $main = document.querySelector("main");
     $main.innerHTML = "";
     $main.insertAdjacentHTML("beforeend", _htmlElements.manageHouses);
-    //TODO insert remaining houses in $manage h2
-    //TODO insert name and img of first tile and from then on the selected tile in #selectedStreet
+    $main.querySelector("#manageHouses").insertAdjacentHTML('beforeend', `<h2>Remaining house: ${_currentGameState.availableHouse}</h2>`);
+    $main.querySelector("#manageHouses").insertAdjacentHTML('beforeend', `<h2>Remaining hotels: ${_currentGameState.availableHotels}</h2>`);
+
+    $main.querySelector("#selectedStreet").insertAdjacentHTML('beforeend',`<h2>${tempTile.name}</h2>`);
+    $main.querySelector("#selectedStreet").insertAdjacentHTML('beforeend', `<img src="../images/deeds/${tempTile.nameAsPathParameter}.jpg" alt="${tempTile.name}"/>`);
     //TODO insert images of all streets in container (greyed out if not owned)
     //TODO when all are owned add buy and sell buttons.
     const $container = $main.querySelector("#fullStreet ul");
-    const tiles = new Array(getTilesByColor(color)) ;
+    const tiles = getTilesByColor(color);
+    let selectedStreet = tempTile;
+    //const owned = getPlayerObject(_currentGameState, _gameData.playerName).properties.find(property => property.property === _gameData.playerName.item.name);
+    let allOwned = tiles.length;
     tiles.forEach (function (item) {
-        $container.insertAdjacentHTML('beforeend', `<li data-name="${item.name}"><img src="../images/deeds/New_York.jpg" alt="${item.name}"/></li>`);
+        $container.insertAdjacentHTML('beforeend', `<li data-name="${item.name}"><img src="../images/deeds/${item.nameAsPathParameter}.jpg" alt="${item.name} title="${item.name}"/></li>`);
+        /*if (owned) {
+            allOwned++;
+        }*/
     });
+    $main.querySelector("#fullStreet").addEventListener("click", changeSelection);
+    if (allOwned === tiles.length) {
+        document.querySelector("#selectedStreet").insertAdjacentHTML("beforeend", _htmlElements.alterHouses);
+        document.querySelector("#buy-house").addEventListener("click", improveBuildings(selectedStreet));
+        document.querySelector("#sell-house").addEventListener("click", removeBuildings(selectedStreet));
+    }
+}
+
+function changeSelection (e) {
+    const $main = document.querySelector("main");
+    const tile = getTile(e.target.closest("li").dataset.name);
+    $main.querySelector("#selectedStreet").innerHTML`<h2>${tile.name}</h2>`;
+    $main.querySelector("#selectedStreet").setAttribute("src", `../images/deeds/${tile.nameAsPathParameter}.jpg`);
+    $main.querySelector("#selectedStreet").setAttribute("alt", `${tile.name}`);
+    $main.querySelector("#selectedStreet").setAttribute("title", `${tile.name}`);
 
 
 }
 
 function improveBuildings(propertyName) {
-    const player = getPlayerObject(_currentGame, playerName);
+    const player = getPlayerObject(_currentGameState, _gameData.playerName);
     const property = player.properties.find(property => property === propertyName);
     let link = ``;
     let houseCounter = property.houseCount;

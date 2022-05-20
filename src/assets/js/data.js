@@ -138,14 +138,13 @@ const _htmlElements =
         <article id="deedCard">
             <h2>TileName</h2>
             <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
-            <button type="button" id="buy-house">houses</button>
+            <button type="button" id="manageStreet">houses</button>
             <button type="button" id="mortgage">mortgage</button>
         </article>
         `,
         manageHouses:
         `
-        <div id="manageHouses">
-            <h2>Your streets</h2>
+        <article id="manageHouses">
             <article id="selectedStreet">
             
             </article>
@@ -154,6 +153,11 @@ const _htmlElements =
                 <ul>
                 </ul>
             </article>
-        </div>
+        </article>
+        `,
+        alterHouses:
+        `
+        <button type="button" id="buy-house">Buy a house</button>
+        <button type="button" id="sell-house">Sell a house</button>
         `
     };
