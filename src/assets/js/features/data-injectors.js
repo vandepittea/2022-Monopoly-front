@@ -113,7 +113,7 @@ function showPlayerInfo(e) {
     $otherPlayerWindow.dataset.player = playerName;
     const player = getPlayerObject(_currentGameState, playerName);
     $otherPlayerWindow.querySelector("h2").innerText = player.name;
-    $otherPlayerWindow.querySelector("p").innerText = player.money;
+    $otherPlayerWindow.querySelector("h3").innerText = player.money;
 }
 
 function insertJailedMain($main, game) {
