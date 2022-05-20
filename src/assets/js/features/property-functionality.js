@@ -19,15 +19,18 @@ function fillProperties() {
 
 function addTile(tile, $propertiesCont, $railroadCont, $utilitiesCont) {
     switch (tile.type) {
-        case "street":
+        case "STREET":
             const $container = $propertiesCont.querySelector(`[data-streettype='${tile.streetColor.toLowerCase()}'] ul`);
-            $container.insertAdjacentHTML('beforeend', `<li data-name="${tile.name}"><img src="../images/deeds/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
+            $container.insertAdjacentHTML('beforeend', `<li data-name="${tile.nameAsPathParameter}">
+                            <img src="../images/deeds/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
             break;
-        case "railroad":
-            $railroadCont.insertAdjacentHTML('beforeend', `<li data-name="${tile.name}"><img src="../images/deeds/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
+        case "RAILROAD":
+            $railroadCont.insertAdjacentHTML('beforeend', `<li data-name="${tile.nameAsPathParameter}">
+                            <img src="../images/deeds/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
             break;
-        case "utility":
-            $utilitiesCont.insertAdjacentHTML('beforeend', `<li data-name="${tile.name}"><img src="../images/deeds/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
+        case "UTILITY":
+            $utilitiesCont.insertAdjacentHTML('beforeend', `<li data-name="${tile.nameAsPathParameter}">
+                            <img src="../images/deeds/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
             break;
         default:
             console.log("something else");
@@ -69,7 +72,7 @@ function activateProperties(player) {
 }
 
 function addGetOutOfJailCards(player){
-    let amountOfGetOutOfJailCards = player.getOutOfJailFreeCards;
+    const amountOfGetOutOfJailCards = player.getOutOfJailFreeCards;
 
     const $jailCardsCont = document.querySelector("#properties-container [data-streettype='jailcards'] ul");
 
