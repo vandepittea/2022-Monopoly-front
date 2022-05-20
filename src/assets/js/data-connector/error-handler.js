@@ -5,6 +5,27 @@ function generateVisualAPIErrorInConsole(){
 }
 
 function errorHandler(error){
-    console.error(error);
-    document.querySelector(_config.errorHandlerSelector).innerText = 'Something went wrong :(';
+    addErrorAndSuccessfulMessage(error.cause);
+}
+
+function addErrorAndSuccessfulMessage(message){
+    const $error = document.querySelector("#error-and-successful");
+    $error.insertAdjacentHTML("afterbegin", `<p>${message}</p>`);
+
+    setTimeout(deleteLastError, 3000);
+}
+
+function deleteLastError() {
+    const $error = document.querySelector("#error-and-successful");
+    if($error.lastElementChild.id === "roll-dice"){
+        $error.lastChild.previousSibling.remove();
+    }
+    else{
+        $error.lastElementChild.remove();
+    };
+}
+
+function addRollDiceMessages(message){
+    const $error = document.querySelector("#error-and-successful");
+    $error.innerHTML = `<p id="roll-dice">${message}</p>`;
 }

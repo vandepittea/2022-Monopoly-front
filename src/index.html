@@ -38,9 +38,9 @@
                     <h1>Welcome to Super Mariopoly!</h1>
                     <form autocomplete="off">
                         <label for="nickname">Please enter your nickname:</label>
-                        <input type="text" id="nickname">
+                        <input type="text" id="nickname" maxlength="15" pattern="[a-zA-Z0-9-]+" required>
                         <label for="amount-players">Choose the amount of players:</label>
-                        <input type="number" id="amount-players" min="2" max="8">
+                        <input type="number" id="amount-players" min="2" max="8" required>
                         <button type="submit">Find a server</button>
                     </form>
                 </article>
@@ -128,8 +128,8 @@
 
                 </div>
             </div>
-            <div class="errormessages">
-                <p></p>
+            <div id="error-and-successful">
+
             </div>
         </main>
     </div>
