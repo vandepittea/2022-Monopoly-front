@@ -1,8 +1,8 @@
 "use strict";
 
-let _tiles = null;
+let _tiles = null; //NOSONAR A constant isn't possible because this data is changed.
 
-let _gameData =
+let _gameData = //NOSONAR A constant isn't possible because this data is changed.
     {
         playerName: null,
         gameID: null,
