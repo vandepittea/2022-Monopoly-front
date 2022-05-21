@@ -66,12 +66,6 @@ function injectOneTileInMovesContainer($movesContainer, currentTileIdx, indexOfF
     $lastInsertedTile.querySelector("div").id = `t${currentTileIdx + indexOfForLoop}`;
 }
 
-function injectHistoryButton() {
-    const $historyContainer = document.querySelector("#moves-container-and-history");
-    $historyContainer.innerHTML = "";
-    $historyContainer.insertAdjacentHTML("beforeend", `<button type="button">History</button>`);
-}
-
 function fillPlayerButtons() {
     fetchFromServer(`/games/${_gameData.gameID}`, "GET")
         .then(game => {
@@ -199,8 +193,36 @@ function becomeOtherPlayer(game){
     toggleVisibilityByID(_idsToShowWhenNotCurrentPlayer, false);
 
     injectHistoryButton();
-    injectPlayerRolling();
+    injectBusyRolling();
     injectTopLeftTile(game);
+}
+
+function injectHistoryButton() {
+    const $historyContainer = document.querySelector("#moves-container-and-history");
+    $historyContainer.innerHTML = "";
+    $historyContainer.insertAdjacentHTML("beforeend", `<button type="button">History</button>`);
+}
+
+function injectBusyRolling() {
+    const $main = document.querySelector("main");
+    $main.innerText = "";
+
+    $main.insertAdjacentHTML('beforeend', _htmlElements.busyRolling);
+    $main.querySelector("p").innerText = _currentGameState.currentPlayer + " is busy rolling.";
+}
+
+function injectTopLeftTile(game) {
+    const $currentPlayerTile = document.querySelector("#current-place-on-game-board-image");
+    const lastTurn = getLastTurn(game);
+
+    if(lastTurn != undefined){
+        const lastMove = lastTurn.moves[lastTurn.moves.length - 1];
+        const tile = getTile(lastMove.tile);
+
+        $currentPlayerTile.setAttribute('src', `../images/tiles/${tile.nameAsPathParameter}.jpg`);
+        $currentPlayerTile.setAttribute('alt', `${tile.name}`);
+        $currentPlayerTile.setAttribute('title', `${tile.name}`);
+    }
 }
 
 function injectTurnInMain(turn, $main) {
@@ -222,20 +244,6 @@ function injectTurnInMain(turn, $main) {
         $img.setAttribute('alt', `${move.tile}`);
         $img.setAttribute('title', `${move.tile}`);
     });
-}
-
-function injectTopLeftTile(game) {
-    const $currentPlayerTile = document.querySelector("#current-place-on-game-board-image");
-    const lastTurn = getLastTurn(game);
-
-    if(lastTurn != undefined){
-        const lastMove = lastTurn.moves[lastTurn.moves.length - 1];
-        const tile = getTile(lastMove.tile);
-
-        $currentPlayerTile.setAttribute('src', `../images/tiles/${tile.nameAsPathParameter}.jpg`);
-        $currentPlayerTile.setAttribute('alt', `${tile.name}`);
-        $currentPlayerTile.setAttribute('title', `${tile.name}`);
-    }
 }
 
 function injectHistory(e){
@@ -293,13 +301,4 @@ function makeMiniMapDivs() {
     for (let i = 0; i < _tiles.length; i++) {
         $miniMapAside.insertAdjacentHTML('beforeend', `<div id="t${i}"> </div>`);
     }
-}
-
-function injectPlayerRolling() {
-    const $main = document.querySelector("main");
-    $main.innerText = "";
-    $main.insertAdjacentHTML('beforeend', `<article id="dice">
-                                                            <img src="../images/dice.png" alt="dice" title="dice">
-                                                            <p>${_currentGameState.currentPlayer} is busy rolling.</p>
-                                                       </article>`);
 }

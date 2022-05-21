@@ -10,10 +10,18 @@ let _gameData =
 
 const _htmlElements =
     {
-        rollDice: `<article id="dice">
-                                <img src="../images/dice.png" alt="dice" title="dice">
-                                <button type="button" id="roll-dice">Roll Dice</button>
-                         </article>`,
+        rollDice: `
+                    <article id="dice">
+                            <img src="../images/dice.png" alt="dice" title="dice">
+                            <button type="button" id="roll-dice">Roll Dice</button>
+                     </article>`,
+        busyRolling:
+            `
+            <article id="dice">
+                <img src="../images/dice.png" alt="dice" title="dice">
+                <p></p>
+            </article>
+            `,
         propertyView:
             `
             <article id="properties">
