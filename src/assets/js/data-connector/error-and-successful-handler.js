@@ -12,7 +12,7 @@ function addErrorAndSuccessfulMessage(message){
     const $error = document.querySelector("#error-and-successful");
     $error.insertAdjacentHTML("afterbegin", `<p>${message}</p>`);
 
-    setTimeout(deleteLastError, 3000);
+    setTimeout(deleteLastError, _waitingTimeActions);
 }
 
 function deleteLastError() {

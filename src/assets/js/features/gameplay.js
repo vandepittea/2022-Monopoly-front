@@ -3,6 +3,7 @@
 let _currentGameState = null;
 let _previousCyclePlayer = null;
 let _firstTimeCyclingManageGame = true;
+let _waitingTimeActions = 3000;
 
 function manageGame() {
     fetchFromServer(`/games/${_gameData.gameID}`, 'GET')
@@ -38,14 +39,14 @@ function showAspectsAndDoActionsForOtherPlayers(game){
     if (game.currentPlayer !== _previousCyclePlayer) {
         setTimeout(manageGame, calculateTimeout(game));
     } else {
-        setTimeout(manageGame, 3000);
+        setTimeout(manageGame, _waitingTimeActions);
     }
 
     _previousCyclePlayer = game.currentPlayer;
 }
 
 function calculateTimeout(game) {
-    return 5000 / game.numberOfPlayers;
+    return 6000 / game.numberOfPlayers;
 }
 
 function rollDice() {
@@ -53,17 +54,13 @@ function rollDice() {
         if (_currentGameState.currentPlayer === _gameData.playerName) {
             fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/dice`, 'POST')
                 .then(response => {
-                    console.log(response);
-
-                    const $diceRoll = response.lastDiceRoll;
-                    console.log(`${_gameData.playerName} rolled a ${$diceRoll[0]} and a ${$diceRoll[1]}`);
                     syncPlayersToMinimap(response);
 
                     const $main = document.querySelector("main");
                     $main.innerText = "";
                     injectTurnInMain(getLastTurn(response), $main);
 
-                    setTimeout(manageGame, 2000);
+                    setTimeout(manageGame, _waitingTimeActions);
 
                     _currentGameState = response;
                 })
