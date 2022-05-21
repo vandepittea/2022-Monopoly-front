@@ -58,7 +58,7 @@ function createGameList()
         fetchFromServer(`/games?started=false&numberOfPlayers=${_amountPlayers}&prefix=${_config.prefix}`,'GET')
             .then(games =>
             {
-                gameListContainer.innerHTML = "";
+                gameListContainer.innerText = "";
                 gameListContainer.insertAdjacentElement('beforeend', $templateNode);
                 games.forEach(game => addGameToGameList(gameListContainer, $templateNode, game));
             })
@@ -169,7 +169,7 @@ function addPlayersToWaitingScreen(game)
     const $templateNode = document.querySelector("#waiting-screen template");
     const $waitingRoomContainer = document.querySelector("#waiting-screen div");
 
-    $waitingRoomContainer.innerHTML = "";
+    $waitingRoomContainer.innerText = "";
     $waitingRoomContainer.insertAdjacentElement("afterbegin", $templateNode);
 
     game.players.forEach(player =>

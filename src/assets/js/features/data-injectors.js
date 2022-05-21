@@ -45,7 +45,7 @@ function injectPossibleTiles(game) {
     const activePlayer = getPlayerObject(game, game.currentPlayer);
     const currentTileIdx = getTileIdx(activePlayer.currentTile);
 
-    $movesContainer.innerHTML = "";
+    $movesContainer.innerText = "";
 
     for (let i = 0; i < 13; i++) {
         injectOneTileInMovesContainer($movesContainer, currentTileIdx, i);
@@ -87,7 +87,7 @@ function addOnePlayerButton($otherPlayersContainer, playerName){
 function showPlayerInfo(e) {
     if (e.target.nodeName.toLowerCase() === "button") {
         const $main = document.querySelector("main");
-        $main.innerHTML = "";
+        $main.innerText = "";
 
         $main.insertAdjacentHTML("beforeend", _htmlElements.playerOverview);
         $main.querySelector("#other-player-overview-property").addEventListener("click", activatePlayerProperties);
@@ -111,7 +111,7 @@ function fillActivePlayerMain(game) {
     becomeActivePlayerView();
 
     const $main = document.querySelector("main");
-    $main.innerHTML = "";
+    $main.innerText = "";
 
     if (_gameData.playerName === game.currentPlayer) {
         if (jailed(game)) {
@@ -181,14 +181,14 @@ function fillOtherPlayerMain(game) {
     const $main = document.querySelector("main");
 
     if(checkIfWeHaveToStopPolling($main) === false){
-        $main.innerHTML = "";
+        $main.innerText = "";
         becomeOtherPlayerMain();
 
         if (game.turns.length !== 0) {
             const lastTurn = getLastTurn(game);
 
             if ((lastTurn.player !== _gameData.playerName) || (lastTurn.player === game.currentPlayer)) {
-                $main.innerHTML = "";
+                $main.innerText = "";
                 injectTurnInMain(lastTurn, $main);
             }
         }
@@ -215,7 +215,7 @@ function becomeOtherPlayerMain(){
 
 function injectHistoryButton() {
     const $historyContainer = document.querySelector("#moves-container-and-history");
-    $historyContainer.innerHTML = "";
+    $historyContainer.innerText = "";
     $historyContainer.insertAdjacentHTML("beforeend", `<button type="button">History</button>`);
 }
 
@@ -272,7 +272,7 @@ function injectHistory(e){
     if(e.target.nodeName.toLowerCase() === "button"){
         const $main = document.querySelector("main");
 
-        $main.innerHTML = _htmlElements.history;
+        $main.innerText = _htmlElements.history;
         $main.querySelector("#close-screen").addEventListener("click", clearMain);
 
         injectMovesInHistory();
@@ -296,7 +296,7 @@ function injectMovesInHistory(){
 
 function makeMiniMapDivs() {
     const $miniMapAside = document.querySelector("#map-container");
-    $miniMapAside.innerHTML = "";
+    $miniMapAside.innerText = "";
 
     for (let i = 0; i < _tiles.length; i++) {
         $miniMapAside.insertAdjacentHTML("beforeend", `<div id="t${i}"> </div>`);

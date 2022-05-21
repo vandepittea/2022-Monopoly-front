@@ -15,7 +15,7 @@ function cleanAllDivs(){
         const $minimapTile = document.querySelectorAll(`.pawns #t${i}`);
 
         $minimapTile.forEach( tile =>{
-            tile.innerHTML = "";
+            tile.innerText = "";
         });
     }
 }

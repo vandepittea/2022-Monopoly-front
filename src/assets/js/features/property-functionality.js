@@ -12,8 +12,8 @@ function fillProperties() {
         addTile(tile, $propertiesCont, $railroadCont, $utilitiesCont);
     });
 
-    _htmlElements.propertyView = $main.innerHTML;
-    $main.innerHTML = "";
+    _htmlElements.propertyView = $main.innerText;
+    $main.innerText = "";
 }
 
 function addTile(tile, $propertiesCont, $railroadCont, $utilitiesCont) {
@@ -52,10 +52,10 @@ function activateProperties(player) {
     toggleVisibilityByID(_divsToToggle, true);
 
     const $main = document.querySelector("main");
-    $main.innerHTML = "";
+    $main.innerText = "";
     $main.insertAdjacentHTML("beforeend", _htmlElements.propertyView);
     $main.querySelector("#close-screen").addEventListener("click", clearMain);
-    $main.querySelector("#properties h2").innerHTML = `${player.name}'s properties`;
+    $main.querySelector("#properties h2").innerText = `${player.name}'s properties`;
 
     const $propertiesContainer = document.querySelectorAll('#properties-container ul li');
     $propertiesContainer.forEach($property => {
