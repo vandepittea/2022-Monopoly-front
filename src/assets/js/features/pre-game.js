@@ -62,7 +62,9 @@ function createGameList()
             })
             .catch(errorHandler);
 
-        setTimeout(createGameList, 1500);
+        if (!document.querySelector("main #game-list").classList.contains("hidden")) {
+            setTimeout(createGameList, 1500);
+        }
     }
     else
     {
@@ -122,8 +124,12 @@ function placeChosenCharactersInBlack(){
                     if(player.pawn === image.title){
                         image.classList.add("pawn-taken");
                     }
-                })
+                });
             });
+
+            if (!document.querySelector("main #character-screen").classList.contains("hidden")) {
+                setTimeout(placeChosenCharactersInBlack, 1500);
+            }
         })
         .catch(errorHandler);
 }
