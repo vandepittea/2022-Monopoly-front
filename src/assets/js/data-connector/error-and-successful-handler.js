@@ -17,6 +17,7 @@ function addErrorAndSuccessfulMessage(message){
 
 function deleteLastError() {
     const $error = document.querySelector("#error-and-successful");
+
     if($error.lastElementChild.id === "roll-dice"){
         $error.lastChild.previousSibling.remove();
     }
