@@ -54,8 +54,6 @@ function injectPossibleTiles(game) {
 function injectOneTileInMovesContainer($movesContainer, currentTileIdx, indexOfForLoop){
     $movesContainer.insertAdjacentHTML("beforeend", _htmlElements.possibleTiles);
 
-    console.log($movesContainer);
-
     const tile = _tiles[(currentTileIdx + indexOfForLoop) % _tiles.length];
     const $lastInsertedTile = $movesContainer.lastElementChild;
     const $image = $lastInsertedTile.querySelector("img");
@@ -67,10 +65,10 @@ function injectOneTileInMovesContainer($movesContainer, currentTileIdx, indexOfF
     $lastInsertedTile.querySelector("div").id = `t${currentTileIdx + indexOfForLoop}`;
 }
 
-function injectTopButtons() {
-    const $container = document.querySelector("#moves-container-and-history");
-    $container.innerHTML = "";
-    $container.insertAdjacentHTML('beforeend', _htmlElements.topButtons);
+function injectHistoryButton() {
+    const $historyContainer = document.querySelector("#moves-container-and-history");
+    $historyContainer.innerHTML = "";
+    $historyContainer.insertAdjacentHTML('beforeend', _htmlElements.historyButton);
 }
 
 function fillPlayerButtons() {
@@ -181,7 +179,7 @@ function fillOtherPlayerMain(game) {
     toggleVisibilityByID(_divsToToggle, false);
     toggleVisibilityByID(idsToShowWhenCurrentPlayer, true);
     toggleVisibilityByID(idsToShowWhenNotCurrentPlayer, false);
-    injectTopButtons();
+    injectHistoryButton();
     injectPlayerRolling();
 
     if (game.turns.length === 0) {
