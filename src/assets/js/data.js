@@ -10,9 +10,9 @@ let _gameData =
 
 const _htmlElements =
     {
-        rollDiceButton: `<article id="dice">
+        rollDice: `<article id="dice">
                                 <img src="../images/dice.png" alt="dice" title="dice">
-                                <button type=\"button\" id=\"roll-dice\">Roll Dice</button>
+                                <button type="button" id="roll-dice">Roll Dice</button>
                          </article>`,
         propertyView:
             `

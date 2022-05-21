@@ -1,5 +1,4 @@
 "use strict";
-const _divsToToggle = ["small-property-container", "property-view button", "moves-container-and-history"];
 
 function fillProperties() {
     const $main = document.querySelector("main");

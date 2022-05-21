@@ -1,8 +1,9 @@
 "use strict";
 
-const mainIdToNotRefresh = ["properties", "other-player-overview", "history"];
-const idsToShowWhenCurrentPlayer = ["map-container"];
-const idsToShowWhenNotCurrentPlayer = ["current-place-on-game-board-image"];
+const _mainIdToNotRefresh = ["properties", "other-player-overview", "history"];
+const _divsToToggle = ["small-property-container", "property-view button", "moves-container-and-history"];
+const _idsToShowWhenCurrentPlayer = ["map-container"];
+const _idsToShowWhenNotCurrentPlayer = ["current-place-on-game-board-image"];
 
 
 function injectBalanceAndDebt(game) {
@@ -112,36 +113,55 @@ function fillInPlayerInfo(e, $main){
     $otherPlayerWindow.querySelector("h3").innerText = player.money;
 }
 
+function fillActivePlayerMain(game) {
+    becomeActivePlayerView();
+
+    const $main = document.querySelector("main");
+    $main.innerHTML = "";
+
+    if (_gameData.playerName === game.currentPlayer) {
+        if (jailed(game)) {
+            insertJailedMain($main, game);
+        } else if (game.canRoll) {
+            insertRollDicedMain($main);
+        } else {
+            insertTileDeedMain($main, game);
+        }
+    }
+}
+
+function becomeActivePlayerView(){
+    toggleVisibilityByID(_divsToToggle, false);
+    toggleVisibilityByID(_idsToShowWhenCurrentPlayer, false);
+    toggleVisibilityByID(_idsToShowWhenNotCurrentPlayer, true);
+}
+
 function insertJailedMain($main, game) {
     $main.insertAdjacentHTML("beforeend", _htmlElements.jail);
-    const $article = $main.querySelector("article");
+    $main.querySelector("#roll-dice").addEventListener("click", rollDice);
+    $main.querySelector("#pay-fine").addEventListener("click", payJailFine);
 
+    injectUseJailCardsButtonIfNeeded($main, game);
+}
+
+function injectUseJailCardsButtonIfNeeded($main, game){
+    const $article = $main.querySelector("article");
     if (getPlayerObject(game, _gameData.playerName).getOutOfJailFreeCards > 0) {
         $article.insertAdjacentHTML('beforeend', `<button type="button" id="jail-card">Use your get out of jail card!</button>`);
         $main.querySelector("#jail-card").addEventListener("click", useJailCards);
     }
 }
 
-function fillActivePlayerMain(game) {
-    toggleVisibilityByID(_divsToToggle, false);
-    toggleVisibilityByID(idsToShowWhenCurrentPlayer, false);
-    toggleVisibilityByID(idsToShowWhenNotCurrentPlayer, true);
+function insertRollDicedMain($main){
+    $main.insertAdjacentHTML('beforeend', _htmlElements.rollDice);
+    $main.querySelector("#roll-dice").addEventListener("click", rollDice);
+}
 
-    const $main = document.querySelector("main");
-    $main.innerHTML = "";
-    if (_gameData.playerName === game.currentPlayer) {
-        if (jailed(game)) {
-            insertJailedMain($main, game);
-        } else if (game.canRoll) {
-            $main.insertAdjacentHTML('beforeend', _htmlElements.rollDiceButton);
-            $main.querySelector("#roll-dice").addEventListener("click", rollDice);
-        } else {
-            const lastTurn = game.turns[game.turns.length - 1];
-            const lastMove = lastTurn.moves[lastTurn.moves.length - 1];
-            const tileIdx = getTileIdx(lastMove.tile);
-            injectTileDeed($main, game, tileIdx);
-        }
-    }
+function insertTileDeedMain($main, game){
+    const lastTurn = game.turns[game.turns.length - 1];
+    const lastMove = lastTurn.moves[lastTurn.moves.length - 1];
+    const tileIdx = getTileIdx(lastMove.tile);
+    injectTileDeed($main, game, tileIdx);
 }
 
 function injectTopLeftTile(game) {
@@ -164,14 +184,14 @@ function fillOtherPlayerMain(game) {
     const $main = document.querySelector("main");
     const $mainContent = $main.querySelector("article");
     if ($mainContent !== null) {
-        if (mainIdToNotRefresh.findIndex(id => $mainContent.id === id) !== -1) {
+        if (_mainIdToNotRefresh.findIndex(id => $mainContent.id === id) !== -1) {
             return;
         }
     }
     $main.innerHTML = "";
     toggleVisibilityByID(_divsToToggle, false);
-    toggleVisibilityByID(idsToShowWhenCurrentPlayer, true);
-    toggleVisibilityByID(idsToShowWhenNotCurrentPlayer, false);
+    toggleVisibilityByID(_idsToShowWhenCurrentPlayer, true);
+    toggleVisibilityByID(_idsToShowWhenNotCurrentPlayer, false);
     injectHistoryButton();
     injectPlayerRolling();
 
