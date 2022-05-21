@@ -40,6 +40,7 @@ function createGame(e)
         .then(game =>
         {
             _gameID = game.id;
+            createGameList();
             makeVisibleByID("game-list", allDivIds);
         })
         .catch(errorHandler);
