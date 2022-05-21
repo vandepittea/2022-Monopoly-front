@@ -1,6 +1,7 @@
 "use strict";
 
 let _tiles = null;
+
 let _gameData =
     {
         playerName: null,
@@ -10,11 +11,13 @@ let _gameData =
 
 const _htmlElements =
     {
-        rollDice: `
-                    <article id="dice">
-                            <img src="../images/dice.png" alt="dice" title="dice">
-                            <button type="button" id="roll-dice">Roll Dice</button>
-                     </article>`,
+        rollDice:
+            `
+            <article id="dice">
+                    <img src="../images/dice.png" alt="dice" title="dice">
+                    <button type="button" id="roll-dice">Roll Dice</button>
+             </article>
+          `,
         busyRolling:
             `
             <article id="dice">
@@ -94,7 +97,10 @@ const _htmlElements =
                         </div>
                  </div>
             `,
-        rentButton: "<button type=\"button\" id=\"collect-rent\">Get rent</button>",
+        rentButton:
+            `
+            <button type=\"button\" id=\"collect-rent\">Get rent</button>
+            `,
         playerOverview:
             `
             <article id="other-player-overview">
@@ -136,12 +142,12 @@ const _htmlElements =
             </article>
             `,
         jail:
-         `<article id="jail-choices">
-                <h2>You are in jail :'-(</h2>
-                <button type="button" id="roll-dice">Roll Dice</button>
-                <button type="button" id="pay-fine">Pay Fine</button>
-          </article>
-         `,
+             `<article id="jail-choices">
+                    <h2>You are in jail :'-(</h2>
+                    <button type="button" id="roll-dice">Roll Dice</button>
+                    <button type="button" id="pay-fine">Pay Fine</button>
+              </article>
+             `,
         possibleTiles:
             `
             <div>
