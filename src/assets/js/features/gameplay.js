@@ -6,7 +6,7 @@ let _firstTimeCyclingManageGame = true;
 let _waitingTime = 3000;
 
 function manageGame() {
-    fetchFromServer(`/games/${_gameData.gameID}`, 'GET')
+    fetchFromServer(`/games/${_gameData.gameID}`, "GET")
         .then(game => {
             _currentGameState = game;
 
@@ -52,7 +52,7 @@ function calculateTimeout(game) {
 function rollDice() {
     if (_gameData.token !== null) {
         if (_currentGameState.currentPlayer === _gameData.playerName) {
-            fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/dice`, 'POST')
+            fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/dice`, "POST")
                 .then(response => {
                     syncPlayersToMinimap(response);
 
@@ -99,7 +99,7 @@ function useJailCards() {
 }
 
 function jailCall(parameter) {
-    fetchFromServer(`/games/${_gameData.gameID}/prison/${_gameData.playerName}/${parameter}`, 'POST')
+    fetchFromServer(`/games/${_gameData.gameID}/prison/${_gameData.playerName}/${parameter}`, "POST")
         .then(response =>{
             addErrorAndSuccessfulMessage("You are out of jail.");
             manageGame();
@@ -110,7 +110,7 @@ function jailCall(parameter) {
 function switchTaxSystem(e) {
     const player = getPlayerObject(_currentGameState, _gameData.playerName);
 
-    if (player.taxSystem === 'COMPUTE') {
+    if (player.taxSystem === "COMPUTE") {
         switchToEstimate();
     } else {
         switchToCompute();
@@ -120,7 +120,7 @@ function switchTaxSystem(e) {
 }
 
 function switchToEstimate(){
-    fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/tax/estimate`, 'POST')
+    fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/tax/estimate`, "POST")
         .then(response => {
             addErrorAndSuccessfulMessage("You switched tax system to estimate.");
         })
@@ -128,7 +128,7 @@ function switchToEstimate(){
 }
 
 function switchToCompute(){
-    fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/tax/compute`, 'POST')
+    fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/tax/compute`, "POST")
         .then(response => {
             addErrorAndSuccessfulMessage("You switched tax system to compute.");
         })
@@ -145,7 +145,7 @@ function switchTaxButtonText(e){
 }
 
 function declareBankrupt() {
-    fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/bankruptcy`, 'POST')
+    fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/bankruptcy`, "POST")
         .then(response => {
             //TODO add bankrupt screen
         });

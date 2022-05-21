@@ -33,9 +33,9 @@ function injectOnePropertyInPropertyContainer($smallPropertyContainer, property)
 
             const $image = $smallPropertyContainer.querySelector("img");
 
-            $image.setAttribute('src', `../images/deeds/${tile.nameAsPathParameter}.jpg`);
-            $image.setAttribute('alt', `${tile.name}`);
-            $image.setAttribute('name', `${tile.name}`);
+            $image.setAttribute("src", `../images/deeds/${tile.nameAsPathParameter}.jpg`);
+            $image.setAttribute("alt", `${tile.name}`);
+            $image.setAttribute("name", `${tile.name}`);
         }
     });
 }
@@ -299,6 +299,6 @@ function makeMiniMapDivs() {
     $miniMapAside.innerHTML = "";
 
     for (let i = 0; i < _tiles.length; i++) {
-        $miniMapAside.insertAdjacentHTML('beforeend', `<div id="t${i}"> </div>`);
+        $miniMapAside.insertAdjacentHTML("beforeend", `<div id="t${i}"> </div>`);
     }
 }
