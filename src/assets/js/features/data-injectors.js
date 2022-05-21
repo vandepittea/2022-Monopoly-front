@@ -45,30 +45,30 @@ function injectPropertyInContainer($container, $templateNode, property) {
 
 function injectPossibleTiles(game) {
     const $container = document.querySelector("#moves-container-and-history");
-    const $templateNode = $container.querySelector("template");
     const activePlayer = getPlayerObject(game, game.currentPlayer);
 
     const currentTileIdx = getTileIdx(activePlayer.currentTile);
 
     $container.innerHTML = "";
-    $container.insertAdjacentElement('beforeend', $templateNode);
 
     for (let i = 0; i < 13; i++) {
-        const $template = $templateNode.content.firstElementChild.cloneNode(true);
+        $container.insertAdjacentHTML('beforeend', _htmlElements.possibleTiles);
         const tile = _tiles[(currentTileIdx + i) % _tiles.length];
 
-        $template.setAttribute('src', `../images/tiles/${tile.nameAsPathParameter}.jpg`);
-        $template.setAttribute('alt', `${tile.name}`);
-        $template.setAttribute('title', `${tile.name}`);
-        $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+        const $lastInsertedTile = $container.lastElementChild;
+        const $image = $lastInsertedTile.querySelector('img');
+
+        $image.setAttribute('src', `../images/tiles/${tile.nameAsPathParameter}.jpg`);
+        $image.setAttribute('alt', `${tile.name}`);
+        $image.setAttribute('title', `${tile.name}`);
+
+        $lastInsertedTile.querySelector('div').id = `t${currentTileIdx + i}`;
     }
 }
 
 function injectTopButtons() {
     const $container = document.querySelector("#moves-container-and-history");
-    const $templateNode = $container.querySelector("template");
     $container.innerHTML = "";
-    $container.insertAdjacentElement('beforeend', $templateNode);
     $container.insertAdjacentHTML('beforeend', _htmlElements.topButtons);
 }
 
@@ -278,5 +278,8 @@ function makeMiniMapDivs() {
 function injectPlayerRolling() {
     const $main = document.querySelector("main");
     $main.innerText = "";
-    $main.insertAdjacentHTML('beforeend', `<p>${_currentGameState.currentPlayer} is busy rolling.</p>`);
+    $main.insertAdjacentHTML('beforeend', `<article id="dice">
+                                                            <img src="../images/dice.png" alt="dice" title="dice">
+                                                            <p>${_currentGameState.currentPlayer} is busy rolling.</p>
+                                                       </article>`);
 }
