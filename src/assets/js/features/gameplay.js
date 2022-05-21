@@ -92,9 +92,7 @@ function useJailCards() {
 function jailCall(parameter) {
     fetchFromServer(`/games/${_gameData.gameID}/prison/${_gameData.playerName}/${parameter}`, 'POST')
         .then(response =>{
-            console.log(response);
-            addErrorAndSuccessfulMessage()
-            console.log("You are out of jail.");
+            addErrorAndSuccessfulMessage("You are out of jail.");
             manageGame();
         })
         .catch(errorHandler);
@@ -102,29 +100,38 @@ function jailCall(parameter) {
 
 function switchTaxSystem(e) {
     const player = getPlayerObject(_currentGameState, _gameData.playerName);
-    if (player.taxSystem === 'COMPUTE') {
-        fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/tax/estimate`, 'POST')
-            .then(response => {
-                console.log(response);
-                console.log(`${_gameData.playerName} switched tax system to estimate`);
-                addErrorAndSuccessfulMessage("You switched tax system to estimate.");
-            })
-            .catch(errorHandler);
-    } else {
-        fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/tax/compute`, 'POST')
-            .then(response => {
-                console.log(response);
-                console.log(`${_gameData.playerName} switched tax system to compute`);
-                addErrorAndSuccessfulMessage("You switched tax system to compute.");
-            })
-            .catch(errorHandler);
 
+    if (player.taxSystem === 'COMPUTE') {
+        switchToEstimate();
+    } else {
+        switchToCompute();
     }
+
+    switchTaxButtonText(e);
+}
+
+function switchToEstimate(){
+    fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/tax/estimate`, 'POST')
+        .then(response => {
+            addErrorAndSuccessfulMessage("You switched tax system to estimate.");
+        })
+        .catch(errorHandler);
+}
+
+function switchToCompute(){
+    fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/tax/compute`, 'POST')
+        .then(response => {
+            addErrorAndSuccessfulMessage("You switched tax system to compute.");
+        })
+        .catch(errorHandler);
+}
+
+function switchTaxButtonText(e){
     if(e.target.innerText === "ESTIMATE"){
-        e.target.innerText = "compute";
+        e.target.innerText = "COMPUTE";
     }
     else{
-        e.target.innerText = "estimate";
+        e.target.innerText = "ESTIMATE";
     }
 }
 
