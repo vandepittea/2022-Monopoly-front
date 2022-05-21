@@ -78,6 +78,14 @@ const _htmlElements =
                 </div>
             </article>
             `,
+        propertyInSmallContainer:
+            `
+                <div class="partially-of-screen">
+                        <div class="partially-of-screen-images">
+                               <img src="" title="" alt="">
+                        </div>
+                 </div>
+            `,
         rentButton: "<button type=\"button\" id=\"collect-rent\">Get rent</button>",
         playerOverview:
             `

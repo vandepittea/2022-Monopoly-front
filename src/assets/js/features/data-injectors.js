@@ -5,40 +5,36 @@ const idsToShowWhenCurrentPlayer = ["map-container"];
 const idsToShowWhenNotCurrentPlayer = ["current-place-on-game-board-image"];
 
 
-function injectBalance(game) {
-    const $balanceContainer = document.querySelector('#balance-container');
-    const $debtContainer = document.querySelector('#debt-container');
-    $balanceContainer.innerHTML = getPlayerObject(game, _gameData.playerName).money;
-    $debtContainer.innerHTML = getPlayerObject(game, _gameData.playerName).debt;
+function injectBalanceAndDebt(game) {
+    const $balanceContainer = document.querySelector("#balance-container");
+    const $debtContainer = document.querySelector("#debt-container");
+
+    $balanceContainer.innerText = getPlayerObject(game, _gameData.playerName).money;
+    $debtContainer.innerText = getPlayerObject(game, _gameData.playerName).debt;
 }
 
 function injectProperties(game) {
-    const $smallPropertyContainer = document.querySelector('#small-property-container');
-    const $templateNode = $smallPropertyContainer.querySelector("template");
+    const $smallPropertyContainer = document.querySelector("#small-property-container");
 
-    $smallPropertyContainer.innerHTML = "";
-    $smallPropertyContainer.insertAdjacentElement('afterbegin', $templateNode);
+    $smallPropertyContainer.innerText = "";
 
     getPlayerObject(game, _gameData.playerName).properties.forEach(function (property, index) {
         if (index < 3) {
-            injectPropertyInContainer($smallPropertyContainer, $templateNode, property);
+            injectOnePropertyInPropertyContainer($smallPropertyContainer, property);
         }
     });
 }
 
-function injectPropertyInContainer($container, $templateNode, property) {
+function injectOnePropertyInPropertyContainer($smallPropertyContainer, property) {
     _tiles.forEach(tile => {
         if (property.property === tile.name) {
-            const $template = $templateNode.content.firstElementChild.cloneNode(true);
-            $template.setAttribute('src', `../images/deeds/${tile.nameAsPathParameter}.jpg`);
-            $template.setAttribute('alt', `${tile.name}`);
-            $template.setAttribute('name', `${tile.name}`);
+            $smallPropertyContainer.insertAdjacentHTML("afterbegin", _htmlElements.propertyInSmallContainer);
 
-            const image = $template.outerHTML;
-            $container.insertAdjacentHTML('beforeend',
-                `<div class="partially-of-screen">
-                        <div class="partially-of-screen-images">${image}</div>
-                 </div>`);
+            const $image = $smallPropertyContainer.querySelector("img");
+
+            $image.setAttribute('src', `../images/deeds/${tile.nameAsPathParameter}.jpg`);
+            $image.setAttribute('alt', `${tile.name}`);
+            $image.setAttribute('name', `${tile.name}`);
         }
     });
 }

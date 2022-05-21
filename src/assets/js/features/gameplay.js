@@ -18,7 +18,7 @@ function manageGame() {
 
             //All things that needs to be shown for both go here
             injectProperties(game);
-            injectBalance(game);
+            injectBalanceAndDebt(game);
 
             if ((game.currentPlayer === _gameData.playerName) && (_previousCyclePlayer === _gameData.playerName || _firstTimeCyclingManageGame)) {
                 //All things specific for the active player goes here
