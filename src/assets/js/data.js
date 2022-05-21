@@ -133,5 +133,12 @@ const _htmlElements =
         topButtons:
             `
             <button type="button">History</button>
+            `,
+        possibleTiles:
+            `
+            <div>
+                <img src="" alt="" title="">
+                <div></div>
+            </div>
             `
     };
