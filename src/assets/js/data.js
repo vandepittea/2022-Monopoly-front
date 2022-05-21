@@ -130,14 +130,13 @@ const _htmlElements =
                 </div>                    
             </article>
             `,
-        jailFineButton:
-            `
-            <button type="button" id="pay-fine">Pay Fine</button>
-            `,
-        jailCardButton:
-            `
-            <button type="button" id="jail-card">Use your get out of jail card!</button>
-            `,
+        jail:
+         `<article id="jail-choices">
+                <h2>You are in jail :'-(</h2>
+                <button type="button" id="roll-dice">Roll Dice</button>
+                <button type="button" id="pay-fine">Pay Fine</button>
+          </article>
+         `,
         possibleTiles:
             `
             <div>

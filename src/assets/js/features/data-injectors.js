@@ -113,15 +113,11 @@ function fillInPlayerInfo(e, $main){
 }
 
 function insertJailedMain($main, game) {
-    $main.insertAdjacentHTML('beforeend', "<article id='jail-choices'></article>");
-    const $article = $main.firstElementChild;
-    $article.insertAdjacentHTML('beforeend', "<h2>You are in jail :'-(</h2>");
-    $article.insertAdjacentHTML('beforeend', _htmlElements.rollDiceButton);
-    $main.querySelector("#roll-dice").addEventListener("click", rollDice);
-    $article.insertAdjacentHTML('beforeend', _htmlElements.jailFineButton);
-    $main.querySelector("#pay-fine").addEventListener("click", payJailFine);
+    $main.insertAdjacentHTML("beforeend", _htmlElements.jail);
+    const $article = $main.querySelector("article");
+
     if (getPlayerObject(game, _gameData.playerName).getOutOfJailFreeCards > 0) {
-        $article.insertAdjacentHTML('beforeend', _htmlElements.jailCardButton);
+        $article.insertAdjacentHTML('beforeend', `<button type="button" id="jail-card">Use your get out of jail card!</button>`);
         $main.querySelector("#jail-card").addEventListener("click", useJailCards);
     }
 }
