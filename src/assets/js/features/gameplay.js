@@ -1,4 +1,5 @@
 "use strict";
+
 let _currentGameState = null;
 let _previousCyclePlayer = null;
 let _firstTimeCyclingManageGame = true;

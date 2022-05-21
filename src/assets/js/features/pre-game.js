@@ -1,4 +1,5 @@
 "use strict";
+
 let _nickname = null;
 let _amountPlayers = null;
 let _gameID = null;
@@ -8,17 +9,18 @@ const allDivIds = ["login", "game-list", "create-game-screen", "character-screen
 function showGames(e){
     e.preventDefault();
 
-    if ((e.target.querySelector("#nickname").value === "") || (e.target.querySelector("#amount-players").value === ""))
+    if ((e.target.querySelector("#nickname").value !== "") || (e.target.querySelector("#amount-players").value !== ""))
     {
-        return;
+        _nickname = e.target.querySelector("#nickname").value;
+        _amountPlayers = e.target.querySelector("#amount-players").value;
+
+        createGameList();
+
+        makeVisibleByID("game-list", allDivIds);
     }
-
-    _nickname = e.target.querySelector("#nickname").value;
-    _amountPlayers = e.target.querySelector("#amount-players").value;
-
-    createGameList();
-
-    makeVisibleByID("game-list", allDivIds);
+    else{
+        addErrorAndSuccessfulMessage("Fill in all the required fields.");
+    }
 }
 
 function showGameCreationScreen()
