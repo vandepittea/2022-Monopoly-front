@@ -17,8 +17,7 @@ function showGames(e){
         createGameList();
 
         makeVisibleByID("game-list", allDivIds);
-    }
-    else{
+    } else{
         addErrorAndSuccessfulMessage("Fill in all the required fields.");
     }
 }

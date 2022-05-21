@@ -65,7 +65,11 @@ function rollDice() {
                     _currentGameState = response;
                 })
                 .catch(errorHandler);
+        } else{
+            addErrorAndSuccessfulMessage("It's not your turn.");
         }
+    } else{
+        addErrorAndSuccessfulMessage("There isn't a game token.");
     }
 }
 
@@ -77,7 +81,11 @@ function jailed(game) {
             if (activePlayer.jailed) {
                 return true;
             }
+        } else{
+            addErrorAndSuccessfulMessage("It's not your turn.");
         }
+    } else{
+        addErrorAndSuccessfulMessage("There isn't a game token.");
     }
     return false;
 }
