@@ -52,29 +52,27 @@ function createGameList()
 {
     if (_gameData.token === null)
     {
-        const $container = document.querySelector('#game-list tbody');
-        const $templateNode = $container.querySelector('template');
+        const gameListContainer = document.querySelector('#game-list tbody');
+        const $templateNode = gameListContainer.querySelector('template');
 
         fetchFromServer(`/games?started=false&numberOfPlayers=${_amountPlayers}&prefix=${_config.prefix}`,'GET')
             .then(games =>
             {
-                $container.innerHTML = "";
-                $container.insertAdjacentElement('beforeend', $templateNode);
-                games.forEach(game => addGameToContainer($container, $templateNode, game));
+                gameListContainer.innerHTML = "";
+                gameListContainer.insertAdjacentElement('beforeend', $templateNode);
+                games.forEach(game => addGameToGameList(gameListContainer, $templateNode, game));
             })
             .catch(errorHandler);
 
         setTimeout(createGameList, 1500);
     }
-    else
-    {
-        console.log("Go to game");
+    else{
+        addErrorAndSuccessfulMessage("There is already a game token.");
     }
 }
 
-function addGameToContainer($container, $templateNode, game)
+function addGameToGameList($gameListContainer, $templateNode, game)
 {
-    //TODO: Add game name (also in HTML template)
     const $template = $templateNode.content.firstElementChild.cloneNode(true);
     $template.dataset.gameid = game.id;
 
@@ -82,33 +80,33 @@ function addGameToContainer($container, $templateNode, game)
     {
         $template.querySelector('ul').insertAdjacentHTML('beforeend', `<li>${player.name}</li>`);
     });
+
     $template.querySelector('#active-players').innerText = game.players.length;
     $template.querySelector('#max-players').innerText = game.numberOfPlayers;
     $template.querySelector('#game-name').innerText = game.gameName;
 
-    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+    $gameListContainer.insertAdjacentHTML('beforeend', $template.outerHTML);
 }
 
 function joinGame(e)
 {
-    if (e.target.nodeName.toLowerCase() !== "button")
+    if (e.target.nodeName.toLowerCase() === "button")
     {
-        return;
+        _gameID = e.target.closest('tr').dataset.gameid;
+
+        const playerObject = {
+            playerName: _nickname
+        };
+
+        fetchFromServer(`/games/${_gameID}/players`, 'POST', playerObject)
+            .then(response =>
+            {
+                _gameData.token = response;
+                placeChosenCharactersInBlack();
+                makeVisibleByID("character-screen", allDivIds);
+            })
+            .catch(errorHandler);
     }
-
-    _gameID = e.target.closest('tr').dataset.gameid;
-    const playerObject = {
-        playerName: _nickname
-    };
-
-    fetchFromServer(`/games/${_gameID}/players`, 'POST', playerObject)
-        .then(response =>
-        {
-            _gameData.token = response;
-            placeChosenCharactersInBlack();
-            makeVisibleByID("character-screen", allDivIds);
-        })
-        .catch(errorHandler);
 }
 
 function placeChosenCharactersInBlack(){
@@ -119,9 +117,7 @@ function placeChosenCharactersInBlack(){
             {
                 const $images = document.querySelectorAll("#character-screen img");
                 $images.forEach(image =>{
-                    console.log(player.pawn);
-                    console.log(image.title);
-                    if(player.pawn === image.title){
+                    if(player.pawn === image.dataset.name){
                         image.classList.add("pawn-taken");
                     }
                 })
