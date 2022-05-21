@@ -40,7 +40,7 @@ function createGame(e)
         .then(game =>
         {
             _gameID = game.id;
-           joinGameAfterCreation();
+            makeVisibleByID("game-list", allDivIds);
         })
         .catch(errorHandler);
 
@@ -124,19 +124,6 @@ function placeChosenCharactersInBlack(){
                     }
                 })
             });
-        })
-        .catch(errorHandler);
-}
-
-function joinGameAfterCreation() {
-    const playerObject = {
-        playerName: _nickname
-    };
-    fetchFromServer(`/games/${_gameID}/players`, 'POST', playerObject)
-        .then(response =>
-        {
-            _gameData.token = response;
-            makeVisibleByID("character-screen", allDivIds);
         })
         .catch(errorHandler);
 }
