@@ -215,7 +215,7 @@ function injectTopLeftTile(game) {
     const $currentPlayerTile = document.querySelector("#current-place-on-game-board-image");
     const lastTurn = getLastTurn(game);
 
-    if(lastTurn != undefined){
+    if(lastTurn !== undefined){
         const lastMove = lastTurn.moves[lastTurn.moves.length - 1];
         const tile = getTile(lastMove.tile);
 
