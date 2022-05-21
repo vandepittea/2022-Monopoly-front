@@ -156,7 +156,7 @@ function waitForPlayers()
         {
             if (game.started)
             {
-                goToWaitingScreen(game);
+                goToLaunchScreen(game);
             }
             else
             {
@@ -204,30 +204,42 @@ function addImagesOfBlackMarioToShowHowManyUserWeAreStillWaitingFor($templateNod
     }
 }
 
-function goToWaitingScreen(game)
+function goToLaunchScreen(game)
 {
     const $templateNode = document.querySelector('#launch-screen template');
     const $playerContainer = document.querySelector('#other-players');
 
     game.players.forEach(player =>
     {
-        const $template = $templateNode.content.firstElementChild.cloneNode(true);
-        $template.querySelector('figcaption').innerText = player.name;
-        $template.querySelector("img").setAttribute('src', `images/characters/${player.pawn}.webp`);
-        $template.querySelector("img").setAttribute('title', `${player.pawn}`);
-        $template.querySelector("img").setAttribute('alt', `${player.pawn}`);
-
-        if (player.name === _nickname)
-        {
-            document.querySelector('#launch-button-and-current-player').insertAdjacentHTML('afterbegin', $template.outerHTML);
-        }
-        else
-        {
-            $playerContainer.insertAdjacentHTML('beforeend', $template.outerHTML);
-        }
+        addOnePlayerToLaunchScreen($templateNode, $playerContainer, player);
     });
 
     makeVisibleByID("launch-screen", allDivIds);
+}
+
+function addOnePlayerToLaunchScreen($templateNode, $playerContainer, player){
+    const $template = $templateNode.content.firstElementChild.cloneNode(true);
+
+    const $image = $template.querySelector("img");
+    $image.setAttribute("src", `images/characters/${player.pawn}.webp`);
+    $image.setAttribute("title", `${player.title}`);
+    $image.setAttribute("alt", `${player.pawn}`);
+
+    $template.querySelector('figcaption').innerText = player.name;
+
+    addPlayerInMiddleOrTheBottomRightCorner($playerContainer, $template, player);
+
+}
+
+function addPlayerInMiddleOrTheBottomRightCorner($playerContainer, $template, player){
+    if (player.name === _nickname)
+    {
+        document.querySelector('#launch-button-and-current-player').insertAdjacentHTML('afterbegin', $template.outerHTML);
+    }
+    else
+    {
+        $playerContainer.insertAdjacentHTML('beforeend', $template.outerHTML);
+    }
 }
 
 function goToGame()
