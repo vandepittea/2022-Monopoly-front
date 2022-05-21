@@ -53,10 +53,6 @@ function rollDice() {
         if (_currentGameState.currentPlayer === _gameData.playerName) {
             fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/dice`, 'POST')
                 .then(response => {
-                    console.log(response);
-
-                    const $diceRoll = response.lastDiceRoll;
-                    console.log(`${_gameData.playerName} rolled a ${$diceRoll[0]} and a ${$diceRoll[1]}`);
                     syncPlayersToMinimap(response);
 
                     const $main = document.querySelector("main");
