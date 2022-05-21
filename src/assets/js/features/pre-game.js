@@ -126,7 +126,7 @@ function placeChosenCharactersInBlack(){
         .catch(errorHandler);
 }
 
-function joinGameWithPlayer(e)
+function joinGameWithPawn(e)
 {
     assignPawn(e);
 
@@ -144,11 +144,8 @@ function assignPawn(e) {
         playerName: _nickname,
         pawn: e.target.dataset.name
     };
+
     fetchFromServer(`/games/${_gameID}/players`, 'POST', playerObject)
-        .then(response =>
-        {
-            console.log(response);
-        })
         .catch(errorHandler);
 }
 
@@ -173,25 +170,37 @@ function waitForPlayers()
 function addPlayersToWaitingScreen(game)
 {
     const $templateNode = document.querySelector("#waiting-screen template");
-    const $container = document.querySelector("#waiting-screen div");
+    const $waitingRoomContainer = document.querySelector("#waiting-screen div");
 
-    $container.innerHTML = "";
-    $container.insertAdjacentElement('afterbegin', $templateNode);
+    $waitingRoomContainer.innerHTML = "";
+    $waitingRoomContainer.insertAdjacentElement("afterbegin", $templateNode);
 
     game.players.forEach(player =>
     {
-        const $template = $templateNode.content.firstElementChild.cloneNode(true);
-        $template.querySelector("img").setAttribute('src', `images/characters/${player.pawn}.webp`);
-        $template.querySelector("img").setAttribute('title', `${player.name}`);
-        $template.querySelector("img").setAttribute('alt', `${player.pawn}`);
-        $template.querySelector("figcaption").innerText = player.pawn;
-        $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+        addOnePlayerToWaitingRoom($templateNode, $waitingRoomContainer, player);
     });
 
+    addImagesOfBlackMarioToShowHowManyUserWeAreStillWaitingFor($templateNode, $waitingRoomContainer, game);
+}
+
+function addOnePlayerToWaitingRoom($templateNode, $waitingRoomContainer, player){
+    const $template = $templateNode.content.firstElementChild.cloneNode(true);
+
+    const $image = $template.querySelector("img");
+    $image.setAttribute("src", `images/characters/${player.pawn}.webp`);
+    $image.setAttribute("title", `${player.name}`);
+    $image.setAttribute("alt", `${player.pawn}`);
+
+    $template.querySelector("figcaption").innerText = player.pawn;
+
+    $waitingRoomContainer.insertAdjacentHTML("beforeend", $template.outerHTML);
+}
+
+function addImagesOfBlackMarioToShowHowManyUserWeAreStillWaitingFor($templateNode, $waitingRoomContainer, game){
     for (let i = 0; i < (game.numberOfPlayers - game.players.length); i++)
     {
         const $template = $templateNode.content.firstElementChild.cloneNode(true);
-        $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+        $waitingRoomContainer.insertAdjacentHTML('beforeend', $template.outerHTML);
     }
 }
 
@@ -199,8 +208,6 @@ function goToWaitingScreen(game)
 {
     const $templateNode = document.querySelector('#launch-screen template');
     const $playerContainer = document.querySelector('#other-players');
-
-    console.log(game.players);
 
     game.players.forEach(player =>
     {
