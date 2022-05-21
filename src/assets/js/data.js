@@ -151,5 +151,19 @@ const _htmlElements =
                 <img src="" alt="" title="">
                 <div></div>
             </div>
+            `,
+        history:
+            `
+            <div id='history-container'>
+                <button type="button" id="close-screen">&#10007;</button>
+                <article id='history'></article>
+           </div>
+            `,
+        moveInHistory:
+            `
+            <article>
+                <h2></h2>
+                <p></p>
+            </article>
             `
     };

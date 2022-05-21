@@ -255,24 +255,27 @@ function injectHistory(e){
 
     if(e.target.nodeName.toLowerCase() === "button"){
         const $main = document.querySelector("main");
-        $main.innerHTML = `<div id='history-container'>
-                                <button type="button" id="close-screen">&#10007;</button>
-                                <article id='history'></article>
-                           </div>`;
-        const $history = document.querySelector("#history");
 
+        $main.innerHTML = _htmlElements.history;
         $main.querySelector("#close-screen").addEventListener("click", clearMain);
 
-        _currentGameState.turns.forEach(turn =>{
-            turn.moves.forEach(move =>{
-                $history.insertAdjacentHTML("afterbegin", `
-                    <article>
-                        <h2>${move.tile}</h2>
-                        <p>${move.description}</p>
-                    </article>`);
-            });
-        });
+        injectMovesInHistory();
     }
+}
+
+function injectMovesInHistory(){
+    const $history = document.querySelector("#history");
+
+    _currentGameState.turns.forEach(turn =>{
+        turn.moves.forEach(move =>{
+            $history.insertAdjacentHTML("afterbegin", _htmlElements.moveInHistory);
+
+            const $lastMove = $history.firstElementChild;
+
+            $lastMove.querySelector("h2").innerText = move.tile;
+            $lastMove.querySelector("p").innerText = move.description;
+        });
+    });
 }
 
 function injectTileDeed($main, game, tileIdx) {
