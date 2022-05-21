@@ -1,6 +1,7 @@
 "use strict";
 let _currentGameState = null;
 let _previousCyclePlayer = null;
+let _firstTimeCyclingManageGame = true;
 
 function manageGame() {
     // TODO: delete this if-else, this exists for testing with dummy data
@@ -20,10 +21,11 @@ function manageGame() {
             injectBalance(game);
             syncPlayersToMinimap(game);
 
-            if ((game.currentPlayer === _gameData.playerName) && (_previousCyclePlayer === _gameData.playerName)) {
+            if ((game.currentPlayer === _gameData.playerName) && (_previousCyclePlayer === _gameData.playerName || _firstTimeCyclingManageGame)) {
                 //All things specific for the active player goes here
                 injectPossibleTiles(game);
                 fillActivePlayerMain(game);
+                _firstTimeCyclingManageGame = false;
             } else {
                 //All things specific for non-active players go here
                 fillOtherPlayerMain(game);

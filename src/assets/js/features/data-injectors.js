@@ -251,7 +251,7 @@ function injectTileDeed($main, game, tileIdx) {
 
     $tileDeed.querySelector("h2").innerText = tile.name;
     $tileDeed.querySelector("span").innerText = tile.cost;
-    $tileDeed.dataset.name = tile.name;
+    $tileDeed.dataset.name = tile.nameAsPathParameter;
     $tileImg.setAttribute("src", `../images/deeds/${tile.nameAsPathParameter}.jpg`);
     $tileImg.setAttribute("alt", `${tile.name}`);
     $tileImg.setAttribute("title", `${tile.name}`);
