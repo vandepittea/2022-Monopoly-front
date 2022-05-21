@@ -66,9 +66,6 @@ function createGameList()
 
         setTimeout(createGameList, 1500);
     }
-    else{
-        addErrorAndSuccessfulMessage("There is already a game token.");
-    }
 }
 
 function addGameToGameList($gameListContainer, $templateNode, game)
