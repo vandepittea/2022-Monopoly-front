@@ -117,14 +117,11 @@ const _htmlElements =
                     <h2>DeedName</h2>
                     <p>Price: <span>100</span> coins</p>
                 </div>
+                <div>
+                    <button type="button" id="main-property-buy">Buy property</button>
+                    <button type="button" id="main-property-dont-buy">Don't buy property</button>
+                </div>
             </article>
-            `,
-        tileDeedButtons:
-            `
-            <div>
-                <button type="button" id="main-property-buy">Buy property</button>
-                <button type="button" id="main-property-auction">Don't buy property</button>
-            </div>
             `,
         playerAction:
             `

@@ -158,6 +158,25 @@ function insertTileDeedMain($main, game){
     injectTileDeed($main, game, tileIdx);
 }
 
+function injectTileDeed($main, game, tileIdx) {
+    $main.insertAdjacentHTML("beforeend", _htmlElements.tileDeed);
+
+    const $tileDeed = $main.querySelector("#main-tile-deed");
+    const tile = _tiles[tileIdx];
+
+    $tileDeed.querySelector("h2").innerText = tile.name;
+    $tileDeed.querySelector("span").innerText = tile.cost;
+    $tileDeed.dataset.name = tile.nameAsPathParameter;
+
+    const $tileImage = $tileDeed.querySelector("img");
+    $tileImage.setAttribute("src", `../images/deeds/${tile.nameAsPathParameter}.jpg`);
+    $tileImage.setAttribute("alt", `${tile.name}`);
+    $tileImage.setAttribute("title", `${tile.name}`);
+
+    $main.querySelector("#main-property-buy").addEventListener("click", () => buyProperty($tileDeed.dataset.name));
+    $main.querySelector("#main-property-dont-buy").addEventListener("click", () => dontBuyProperty($tileDeed.dataset.name));
+}
+
 function fillOtherPlayerMain(game) {
     const $main = document.querySelector("main");
 
@@ -276,30 +295,6 @@ function injectMovesInHistory(){
             $lastMove.querySelector("p").innerText = move.description;
         });
     });
-}
-
-function injectTileDeed($main, game, tileIdx) {
-    $main.insertAdjacentHTML('beforeend', _htmlElements.tileDeed);
-    const $tileDeed = $main.querySelector("#main-tile-deed");
-    const tile = _tiles[tileIdx];
-    const $tileImg = $tileDeed.querySelector("img");
-
-    $tileDeed.querySelector("h2").innerText = tile.name;
-    $tileDeed.querySelector("span").innerText = tile.cost;
-    $tileDeed.dataset.name = tile.nameAsPathParameter;
-    $tileImg.setAttribute("src", `../images/deeds/${tile.nameAsPathParameter}.jpg`);
-    $tileImg.setAttribute("alt", `${tile.name}`);
-    $tileImg.setAttribute("title", `${tile.name}`);
-
-    const propertyOwned = game.players.find(player => player.properties.find(property => property.property === tile.name));
-
-    if (propertyOwned) {
-        $tileDeed.insertAdjacentHTML("beforeend", `<p>Property owned by ${player.name}</p>`);
-    } else {
-        $tileDeed.insertAdjacentHTML("beforeend", _htmlElements.tileDeedButtons);
-        $main.querySelector("#main-property-buy").addEventListener("click", () => buyProperty($tileDeed.dataset.name));
-        $main.querySelector("#main-property-auction").addEventListener("click", () => dontBuyProperty($tileDeed.dataset.name));
-    }
 }
 
 function makeMiniMapDivs() {
