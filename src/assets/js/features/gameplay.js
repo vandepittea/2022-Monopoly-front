@@ -81,14 +81,6 @@ function jailed(game) {
     return false;
 }
 
-function declareBankrupt() {
-    fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/bankruptcy`, 'POST')
-        .then(response => {
-            console.log(response);
-            console.log(`${_gameData.playerName} is bankrupt!`);
-        });
-}
-
 function payJailFine() {
     jailCall("fine");
 }
@@ -134,4 +126,11 @@ function switchTaxSystem(e) {
     else{
         e.target.innerText = "estimate";
     }
+}
+
+function declareBankrupt() {
+    fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/bankruptcy`, 'POST')
+        .then(response => {
+            //TODO add bankrupt screen
+        });
 }
