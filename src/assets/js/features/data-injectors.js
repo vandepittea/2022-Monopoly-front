@@ -40,26 +40,31 @@ function injectOnePropertyInPropertyContainer($smallPropertyContainer, property)
 }
 
 function injectPossibleTiles(game) {
-    const $container = document.querySelector("#moves-container-and-history");
+    const $movesContainer = document.querySelector("#moves-container-and-history");
     const activePlayer = getPlayerObject(game, game.currentPlayer);
-
     const currentTileIdx = getTileIdx(activePlayer.currentTile);
 
-    $container.innerHTML = "";
+    $movesContainer.innerHTML = "";
 
     for (let i = 0; i < 13; i++) {
-        $container.insertAdjacentHTML('beforeend', _htmlElements.possibleTiles);
-        const tile = _tiles[(currentTileIdx + i) % _tiles.length];
-
-        const $lastInsertedTile = $container.lastElementChild;
-        const $image = $lastInsertedTile.querySelector('img');
-
-        $image.setAttribute('src', `../images/tiles/${tile.nameAsPathParameter}.jpg`);
-        $image.setAttribute('alt', `${tile.name}`);
-        $image.setAttribute('title', `${tile.name}`);
-
-        $lastInsertedTile.querySelector('div').id = `t${currentTileIdx + i}`;
+        injectOneTileInMovesContainer($movesContainer, currentTileIdx, i);
     }
+}
+
+function injectOneTileInMovesContainer($movesContainer, currentTileIdx, indexOfForLoop){
+    $movesContainer.insertAdjacentHTML("beforeend", _htmlElements.possibleTiles);
+
+    console.log($movesContainer);
+
+    const tile = _tiles[(currentTileIdx + indexOfForLoop) % _tiles.length];
+    const $lastInsertedTile = $movesContainer.lastElementChild;
+    const $image = $lastInsertedTile.querySelector("img");
+
+    $image.setAttribute("src", `../images/tiles/${tile.nameAsPathParameter}.jpg`);
+    $image.setAttribute("alt", `${tile.name}`);
+    $image.setAttribute("title", `${tile.name}`);
+
+    $lastInsertedTile.querySelector("div").id = `t${currentTileIdx + indexOfForLoop}`;
 }
 
 function injectTopButtons() {
