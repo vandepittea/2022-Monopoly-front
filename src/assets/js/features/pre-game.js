@@ -190,7 +190,7 @@ function addPlayersToWaitingScreen(game)
         }
         $template.querySelector("img").setAttribute('title', `${player.name}`);
         $template.querySelector("img").setAttribute('alt', `${player.pawn}`);
-        $template.querySelector("figcaption").innerText = player.pawn;
+        $template.querySelector("figcaption").innerText = player.name;
         $container.insertAdjacentHTML('beforeend', $template.outerHTML);
     });
 
