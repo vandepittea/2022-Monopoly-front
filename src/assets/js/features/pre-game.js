@@ -117,9 +117,9 @@ function placeChosenCharactersInBlack(){
                     if(player.pawn === image.dataset.name){
                         image.classList.add("pawn-taken");
                     }
-                })
+                });
             });
-        });
+        })
         .catch(errorHandler);
 }
 
