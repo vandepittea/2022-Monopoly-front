@@ -41,6 +41,7 @@ function createGame(e)
         .then(game =>
         {
             _gameID = game.id;
+
             makeVisibleByID("game-list", allDivIds);
         })
         .catch(errorHandler);
