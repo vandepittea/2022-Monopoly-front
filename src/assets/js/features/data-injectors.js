@@ -207,7 +207,7 @@ function injectBusyRolling() {
     const $main = document.querySelector("main");
     $main.innerText = "";
 
-    $main.insertAdjacentHTML('beforeend', _htmlElements.busyRolling);
+    $main.insertAdjacentHTML("beforeend", _htmlElements.busyRolling);
     $main.querySelector("p").innerText = _currentGameState.currentPlayer + " is busy rolling.";
 }
 
@@ -219,31 +219,35 @@ function injectTopLeftTile(game) {
         const lastMove = lastTurn.moves[lastTurn.moves.length - 1];
         const tile = getTile(lastMove.tile);
 
-        $currentPlayerTile.setAttribute('src', `../images/tiles/${tile.nameAsPathParameter}.jpg`);
-        $currentPlayerTile.setAttribute('alt', `${tile.name}`);
-        $currentPlayerTile.setAttribute('title', `${tile.name}`);
+        $currentPlayerTile.setAttribute("src", `../images/tiles/${tile.nameAsPathParameter}.jpg`);
+        $currentPlayerTile.setAttribute("alt", `${tile.name}`);
+        $currentPlayerTile.setAttribute("title", `${tile.name}`);
     }
 }
 
 function injectTurnInMain(turn, $main) {
-    const rolls = turn.roll;
-    const player = turn.player;
-    addRollDiceMessages(`${player} rolled ${rolls[0]} and ${rolls[1]}`);
+    showTurnOfCurrentPlayerForEveryone(turn);
 
     turn.moves.forEach(move => {
-
-        $main.insertAdjacentHTML('beforeend', _htmlElements.playerAction);
+        $main.insertAdjacentHTML("beforeend", _htmlElements.playerAction);
         const tile = getTile(move.tile);
         const $lastMove = $main.lastElementChild;
 
-        $lastMove.querySelector('h2').innerText = move.tile;
-        $lastMove.querySelector('p').innerText = move.description;
+        $lastMove.querySelector("h2").innerText = move.tile;
+        $lastMove.querySelector("p").innerText = move.description;
 
-        const $img = $lastMove.querySelector('img');
-        $img.setAttribute('src', `../images/${(tile.type === "street" ? "deeds" : "tiles")}/${tile.nameAsPathParameter}.jpg`);
-        $img.setAttribute('alt', `${move.tile}`);
-        $img.setAttribute('title', `${move.tile}`);
+        const $img = $lastMove.querySelector("img");
+        $img.setAttribute("src", `../images/${(tile.type === "street" ? "deeds" : "tiles")}/${tile.nameAsPathParameter}.jpg`);
+        $img.setAttribute("alt", `${move.tile}`);
+        $img.setAttribute("title", `${move.tile}`);
     });
+}
+
+function showTurnOfCurrentPlayerForEveryone(turn){
+    const rolls = turn.roll;
+    const player = turn.player;
+
+    addRollDiceMessages(`${player} rolled ${rolls[0]} and ${rolls[1]}`);
 }
 
 function injectHistory(e){

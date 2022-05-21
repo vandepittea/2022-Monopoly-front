@@ -130,11 +130,11 @@ const _htmlElements =
             `
             <article id="player-action">
                 <div>
-                    <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
+                    <img src="" alt="" title="">
                 </div>
                 <div>
-                    <h2>TileName</h2>
-                    <p>Description</p>
+                    <h2></h2>
+                    <p></p>
                 </div>                    
             </article>
             `,
