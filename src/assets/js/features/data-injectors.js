@@ -147,13 +147,13 @@ function insertJailedMain($main, game) {
 function injectUseJailCardsButtonIfNeeded($main, game){
     const $article = $main.querySelector("article");
     if (getPlayerObject(game, _gameData.playerName).getOutOfJailFreeCards > 0) {
-        $article.insertAdjacentHTML('beforeend', `<button type="button" id="jail-card">Use your get out of jail card!</button>`);
+        $article.insertAdjacentHTML("beforeend", `<button type="button" id="jail-card">Use your get out of jail card!</button>`);
         $main.querySelector("#jail-card").addEventListener("click", useJailCards);
     }
 }
 
 function insertRollDicedMain($main){
-    $main.insertAdjacentHTML('beforeend', _htmlElements.rollDice);
+    $main.insertAdjacentHTML("beforeend", _htmlElements.rollDice);
     $main.querySelector("#roll-dice").addEventListener("click", rollDice);
 }
 
@@ -164,48 +164,43 @@ function insertTileDeedMain($main, game){
     injectTileDeed($main, game, tileIdx);
 }
 
-function injectTopLeftTile(game) {
-    const $currentPlayerTile = document.querySelector("#current-place-on-game-board-image");
-    const lastTurn = getLastTurn(game);
+function fillOtherPlayerMain(game) {
+    const $main = document.querySelector("main");
 
-    if(lastTurn != undefined){
-        const lastMove = lastTurn.moves[lastTurn.moves.length - 1];
-        const tile = getTile(lastMove.tile);
+    if(!checkIfWeHaveToStopPolling($main)){
+        $main.innerHTML = "";
+        becomeOtherPlayer(game);
 
-        $currentPlayerTile.setAttribute('src', `../images/tiles/${tile.nameAsPathParameter}.jpg`);
-        $currentPlayerTile.setAttribute('alt', `${tile.name}`);
-        $currentPlayerTile.setAttribute('title', `${tile.name}`);
+        if (game.turns.length !== 0) {
+            const lastTurn = getLastTurn(game);
+
+            if ((lastTurn.player !== _gameData.playerName) && (lastTurn.player === game.currentPlayer)) {
+                $main.innerHTML = "";
+                injectTurnInMain(lastTurn, $main);
+            }
+        }
     }
 }
 
-function fillOtherPlayerMain(game) {
-    injectTopLeftTile(game);
-
-    const $main = document.querySelector("main");
+function checkIfWeHaveToStopPolling($main){
     const $mainContent = $main.querySelector("article");
+
     if ($mainContent !== null) {
         if (_mainIdToNotRefresh.findIndex(id => $mainContent.id === id) !== -1) {
-            return;
+            return true;
         }
     }
-    $main.innerHTML = "";
+    return false;
+}
+
+function becomeOtherPlayer(game){
     toggleVisibilityByID(_divsToToggle, false);
     toggleVisibilityByID(_idsToShowWhenCurrentPlayer, true);
     toggleVisibilityByID(_idsToShowWhenNotCurrentPlayer, false);
+
     injectHistoryButton();
     injectPlayerRolling();
-
-    if (game.turns.length === 0) {
-        return;
-    }
-
-    const lastTurn = getLastTurn(game);
-    if ((lastTurn.player === _gameData.playerName) && (lastTurn.player !== game.currentPlayer)) {
-        return;
-    }
-
-    $main.innerHTML = "";
-    injectTurnInMain(lastTurn, $main);
+    injectTopLeftTile(game);
 }
 
 function injectTurnInMain(turn, $main) {
@@ -227,7 +222,20 @@ function injectTurnInMain(turn, $main) {
         $img.setAttribute('alt', `${move.tile}`);
         $img.setAttribute('title', `${move.tile}`);
     });
+}
 
+function injectTopLeftTile(game) {
+    const $currentPlayerTile = document.querySelector("#current-place-on-game-board-image");
+    const lastTurn = getLastTurn(game);
+
+    if(lastTurn != undefined){
+        const lastMove = lastTurn.moves[lastTurn.moves.length - 1];
+        const tile = getTile(lastMove.tile);
+
+        $currentPlayerTile.setAttribute('src', `../images/tiles/${tile.nameAsPathParameter}.jpg`);
+        $currentPlayerTile.setAttribute('alt', `${tile.name}`);
+        $currentPlayerTile.setAttribute('title', `${tile.name}`);
+    }
 }
 
 function injectHistory(e){
