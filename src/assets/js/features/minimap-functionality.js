@@ -12,6 +12,6 @@ function syncPlayersToMinimap(game)
     {
         const playerTileIdx = getTileIdx(player.currentTile);
         const $minimapTile = document.querySelector(`#map-container #t${playerTileIdx}`);
-        $minimapTile.insertAdjacentHTML('beforeend', `<p>${player.name}</p>`);
+        $minimapTile.insertAdjacentHTML('beforeend', `<img src="../images/characters/${player.pawn}.webp" alt="${player.pawn} title="${player.pawn}">`);
     });
 }
