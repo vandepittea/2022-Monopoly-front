@@ -333,6 +333,10 @@ header #moves-container-and-history img{
     max-width: 7.69%;
 }
 
+article#dice img{
+    margin-bottom: 2em;
+}
+
 article#player-action img{
     max-height: 40vh;
     margin-right: auto;

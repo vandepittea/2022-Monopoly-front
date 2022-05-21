@@ -278,5 +278,8 @@ function makeMiniMapDivs() {
 function injectPlayerRolling() {
     const $main = document.querySelector("main");
     $main.innerText = "";
-    $main.insertAdjacentHTML('beforeend', `<p>${_currentGameState.currentPlayer} is busy rolling.</p>`);
+    $main.insertAdjacentHTML('beforeend', `<article id="dice">
+                                                            <img src="../images/dice.png" alt="dice" title="dice">
+                                                            <p>${_currentGameState.currentPlayer} is busy rolling.</p>
+                                                       </article>`);
 }
