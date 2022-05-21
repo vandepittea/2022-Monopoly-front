@@ -300,6 +300,7 @@ function injectMovesInHistory(){
 function makeMiniMapDivs() {
     const $miniMapAside = document.querySelector("#map-container");
     $miniMapAside.innerHTML = "";
+
     for (let i = 0; i < _tiles.length; i++) {
         $miniMapAside.insertAdjacentHTML('beforeend', `<div id="t${i}"> </div>`);
     }
