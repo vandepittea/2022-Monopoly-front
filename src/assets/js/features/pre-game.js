@@ -63,9 +63,7 @@ function createGameList()
             })
             .catch(errorHandler);
 
-        if (!document.querySelector("main #game-list").classList.contains("hidden")) {
-            setTimeout(createGameList, 1500);
-        }
+        setTimeout(createGameList, 1500);
     }
     else
     {
@@ -143,9 +141,6 @@ function joinGameWithPlayer(e)
         makeVisibleByID("waiting-screen", allDivIds);
         waitForPlayers();
     }
-    else{
-        addErrorAndSuccessfulMessage("This player is already chosen.");
-    }
 }
 
 function assignPawn(e) {
@@ -190,7 +185,9 @@ function addPlayersToWaitingScreen(game)
     game.players.forEach(player =>
     {
         const $template = $templateNode.content.firstElementChild.cloneNode(true);
-        $template.querySelector("img").setAttribute('src', `images/characters/${player.pawn}.webp`);
+        if (player.pawn !== null) {
+            $template.querySelector("img").setAttribute('src', `images/characters/${player.pawn}.webp`);
+        }
         $template.querySelector("img").setAttribute('title', `${player.name}`);
         $template.querySelector("img").setAttribute('alt', `${player.pawn}`);
         $template.querySelector("figcaption").innerText = player.pawn;
