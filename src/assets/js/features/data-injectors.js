@@ -180,14 +180,14 @@ function injectTileDeed($main, game, tileIdx) {
 function fillOtherPlayerMain(game) {
     const $main = document.querySelector("main");
 
-    if(!checkIfWeHaveToStopPolling($main)){
+    if(checkIfWeHaveToStopPolling($main) === false){
         $main.innerHTML = "";
-        becomeOtherPlayer(game);
+        becomeOtherPlayerMain();
 
         if (game.turns.length !== 0) {
             const lastTurn = getLastTurn(game);
 
-            if ((lastTurn.player !== _gameData.playerName) && (lastTurn.player === game.currentPlayer)) {
+            if ((lastTurn.player !== _gameData.playerName) || (lastTurn.player === game.currentPlayer)) {
                 $main.innerHTML = "";
                 injectTurnInMain(lastTurn, $main);
             }
@@ -197,7 +197,6 @@ function fillOtherPlayerMain(game) {
 
 function checkIfWeHaveToStopPolling($main){
     const $mainContent = $main.querySelector("article");
-
     if ($mainContent !== null) {
         if (_mainIdToNotRefresh.findIndex(id => $mainContent.id === id) !== -1) {
             return true;
@@ -206,14 +205,12 @@ function checkIfWeHaveToStopPolling($main){
     return false;
 }
 
-function becomeOtherPlayer(game){
+function becomeOtherPlayerMain(){
     toggleVisibilityByID(_divsToToggle, false);
     toggleVisibilityByID(_idsToShowWhenCurrentPlayer, true);
     toggleVisibilityByID(_idsToShowWhenNotCurrentPlayer, false);
-
     injectHistoryButton();
     injectBusyRolling();
-    injectTopLeftTile(game);
 }
 
 function injectHistoryButton() {
