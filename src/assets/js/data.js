@@ -1,8 +1,8 @@
 "use strict";
 
-let _tiles = null;
+const _tiles = null;
 
-let _gameData =
+const _gameData =
     {
         playerName: null,
         gameID: null,

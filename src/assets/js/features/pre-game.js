@@ -119,7 +119,7 @@ function placeChosenCharactersInBlack(){
                     }
                 })
             });
-        })
+        });
         .catch(errorHandler);
 }
 

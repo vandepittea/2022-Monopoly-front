@@ -3,7 +3,7 @@
 let _currentGameState = null;
 let _previousCyclePlayer = null;
 let _firstTimeCyclingManageGame = true;
-let _waitingTime = 3000;
+const _waitingTime = 3000;
 
 function manageGame() {
     fetchFromServer(`/games/${_gameData.gameID}`, "GET")
