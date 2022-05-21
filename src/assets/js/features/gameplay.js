@@ -70,14 +70,11 @@ function rollDice() {
 
 function jailed(game) {
     const activePlayer = getPlayerObject(game, game.currentPlayer);
+
     if (_gameData.token !== null) {
         if (_currentGameState.currentPlayer === _gameData.playerName) {
-            const $jailed = activePlayer.jailed;
-            if ($jailed) {
-                console.log(`${_gameData.playerName} is in jail`);
+            if (activePlayer.jailed) {
                 return true;
-            } else {
-                console.log(`${_gameData.playerName} is not in jail`);
             }
         }
     }
