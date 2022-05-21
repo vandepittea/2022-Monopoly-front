@@ -34,4 +34,3 @@ function constructOptions(httpVerb, requestBody){
 
     return options;
 }
-
