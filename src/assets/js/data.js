@@ -138,10 +138,6 @@ const _htmlElements =
             `
             <button type="button" id="jail-card">Use your get out of jail card!</button>
             `,
-        historyButton:
-            `
-            <button type="button">History</button>
-            `,
         possibleTiles:
             `
             <div>

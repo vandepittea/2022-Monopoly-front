@@ -68,31 +68,25 @@ function injectOneTileInMovesContainer($movesContainer, currentTileIdx, indexOfF
 function injectHistoryButton() {
     const $historyContainer = document.querySelector("#moves-container-and-history");
     $historyContainer.innerHTML = "";
-    $historyContainer.insertAdjacentHTML('beforeend', _htmlElements.historyButton);
+    $historyContainer.insertAdjacentHTML("beforeend", `<button type="button">History</button>`);
 }
 
 function fillPlayerButtons() {
-    let url;
-    if (_gameData.token === null) {
-        url = '/games/dummy';
-    } else {
-        url = `/games/${_gameData.gameID}`;
-    }
-
-    fetchFromServer(url, 'GET')
+    fetchFromServer(`/games/${_gameData.gameID}`, 'GET')
         .then(game => {
-            const $container = document.querySelector("#other-players div");
-            const $templateNode = document.querySelector("#other-players template");
+            const $otherPlayersContainer = document.querySelector("#other-players div");
+
             game.players.forEach(player => {
                 if (player.name !== _gameData.playerName) {
-                    const $template = $templateNode.content.firstElementChild.cloneNode(true);
-                    $template.dataset.player = player.name;
-                    $template.innerText = player.name;
-                    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+                    addOnePlayerButton($otherPlayersContainer, player.name);
                 }
             });
         })
         .catch(errorHandler);
+}
+
+function addOnePlayerButton($otherPlayersContainer, playerName){
+    $otherPlayersContainer.insertAdjacentHTML('beforeend', `<button type="button" data-player="${playerName}">${playerName}</button>`);
 }
 
 function showPlayerInfo(e) {
