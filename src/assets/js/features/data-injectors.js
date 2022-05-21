@@ -72,7 +72,7 @@ function injectHistoryButton() {
 }
 
 function fillPlayerButtons() {
-    fetchFromServer(`/games/${_gameData.gameID}`, 'GET')
+    fetchFromServer(`/games/${_gameData.gameID}`, "GET")
         .then(game => {
             const $otherPlayersContainer = document.querySelector("#other-players div");
 
@@ -86,24 +86,27 @@ function fillPlayerButtons() {
 }
 
 function addOnePlayerButton($otherPlayersContainer, playerName){
-    $otherPlayersContainer.insertAdjacentHTML('beforeend', `<button type="button" data-player="${playerName}">${playerName}</button>`);
+    $otherPlayersContainer.insertAdjacentHTML("beforeend", `<button type="button" data-player="${playerName}">${playerName}</button>`);
 }
 
 function showPlayerInfo(e) {
-    if (e.target.nodeName.toLowerCase() !== "button") {
-        return;
+    if (e.target.nodeName.toLowerCase() === "button") {
+        const $main = document.querySelector("main");
+        $main.innerHTML = "";
+
+        $main.insertAdjacentHTML("beforeend", _htmlElements.playerOverview);
+        $main.querySelector("#other-player-overview-property").addEventListener("click", activatePlayerProperties);
+        $main.querySelector("#close-screen").addEventListener("click", clearMain);
+
+        fillInPlayerInfo(e, $main);
     }
+}
 
-    const $main = document.querySelector("main");
-    $main.innerHTML = "";
-    $main.insertAdjacentHTML('beforeend', _htmlElements.playerOverview);
-    $main.querySelector("#other-player-overview-property").addEventListener("click", activatePlayerProperties);
-    $main.querySelector("#close-screen").addEventListener("click", clearMain);
-
+function fillInPlayerInfo(e, $main){
     const $otherPlayerWindow = $main.querySelector("#other-player-overview");
     const playerName = e.target.dataset.player;
-
     $otherPlayerWindow.dataset.player = playerName;
+
     const player = getPlayerObject(_currentGameState, playerName);
     $otherPlayerWindow.querySelector("h2").innerText = player.name;
     $otherPlayerWindow.querySelector("h3").innerText = player.money;
