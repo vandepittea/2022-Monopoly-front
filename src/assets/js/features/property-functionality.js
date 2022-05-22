@@ -256,10 +256,6 @@ function improveBuildings(e) {
                 const houseCounter = getHouseCountOutOfHtml($item);
                 const hotelCounter = getHotelCountOutOfHtml($item);
 
-                if (hotelCounter === 1) {
-                    addErrorAndSuccessfulMessage("You can't build more than one hotel on a property.");
-                }
-
                 buyHotelOrHouse($item, houseCounter);
             }
         });
