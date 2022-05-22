@@ -102,6 +102,12 @@ function fillInPlayerInfo(e, $main){
     $otherPlayerWindow.dataset.player = playerName;
 
     const player = getPlayerObject(_currentGameState, playerName);
+
+    const $image = $otherPlayerWindow.querySelector("img");
+    $image.setAttribute("src", `../images/characters/${player.pawn}.png`);
+    $image.setAttribute("title", `${player.pawn}`);
+    $image.setAttribute("alt", `${player.pawn}`);
+
     $otherPlayerWindow.querySelector("h2").innerText = player.name;
     $otherPlayerWindow.querySelector("h3").innerText = player.money;
 }
