@@ -97,57 +97,6 @@ article#main-tile-deed div:last-child {
     margin-top: 3rem;
 }
 
-article#properties {
-    width: 70%;
-    margin-bottom: 1rem;
-}
-
-#properties-container {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-}
-
-#properties-container article {
-    flex: 1 1 30%;
-    margin-bottom: 2rem;
-    margin-right: 1.5rem;
-}
-
-#properties-container ul {
-    display: flex;
-    background-color: rgba(196, 196, 196, 0.2);
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    padding: 1rem;
-}
-
-a#properties-container article[data-streettype="jailcards"] ul {
-    padding: 1.3rem;
-}
-
-#properties-container ul li {
-    flex: 0 0 28%;
-    margin-right: 1rem;
-    filter: grayscale(100%);
-}
-
-#properties-container ul li.owned {
-    filter: grayscale(0%);
-}
-
-#properties-container article.two-cards ul li {
-    flex: 0 0 46.5%;
-}
-
-#properties-container article[data-streettype="railroad"] ul li {
-    flex: 0 0 20%;
-}
-
-#properties-container ul li[data-name="jailcards"]:last-of-type {
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
 div#history-container{
     width: 100%;
     height: 50vh;
@@ -276,56 +225,6 @@ footer #balance h3 span:last-child{
     padding: 2rem 0 0 2.4rem;
     background-position: 0 bottom;
     color: #DC143C;
-}
-
-#properties-container h3 {
-    text-align: center;
-    color: white;
-    line-height: 3rem;
-}
-
-#properties-container article[data-streettype="purple"] h3 {
-    background-color: #8F00FF;
-}
-
-#properties-container article[data-streettype="darkblue"] h3 {
-    background-color: #0072BB;
-}
-
-#properties-container article[data-streettype="utilities"] h3 {
-    background-color: black;
-}
-
-#properties-container article[data-streettype="lightblue"] h3 {
-    background-color: #81c9ec;
-}
-
-#properties-container article[data-streettype="violet"] h3 {
-    background-color: #D73A95;
-}
-
-#properties-container article[data-streettype="orange"] h3 {
-    background-color: #F7941D;
-}
-
-#properties-container article[data-streettype="red"] h3 {
-    background-color: #ED1B24;
-}
-
-#properties-container article[data-streettype="yellow"] h3 {
-    background-color: #cbc105;
-}
-
-#properties-container article[data-streettype="darkgreen"] h3 {
-    background-color: #1FB25A;
-}
-
-#properties-container article[data-streettype="railroad"] h3 {
-    background-color: #676767;
-}
-
-#properties-container article[data-streettype="jailcards"] h3 {
-    background-color: gray;
 }
 
 main p {

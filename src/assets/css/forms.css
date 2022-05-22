@@ -101,6 +101,11 @@ article #properties-container button {
     margin-right: 1.5rem;
 }
 
+#properties-container button#selected-property-improve{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
 div#launch-button-and-current-player button{
     border-radius: 0;
     font-size: 3rem;
@@ -127,7 +132,7 @@ footer #property-view button {
     margin: 0;
 }
 
-div#history-container button, article#properties > button, article#other-player-overview div:first-child button {
+div#history-container button, article#properties > button, article#other-player-overview div:first-child button, article#property-manager > button:first-child {
     position: absolute; /* relative main */
     top: -2rem;
     right: 3rem;
