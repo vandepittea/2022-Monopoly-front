@@ -211,12 +211,12 @@ function injectOnePropertyInTheStreetWithHouseAndHotelCount(item){
 
 function selectPropertyToImprove(e) {
     const $article = e.target.closest("article");
-    if ((e.target.nodeName.toLowerCase() !== "img") || ($article.id !== "property-manager")) {
-        return;
-    }
 
-    $article.querySelectorAll("li").forEach($image => $image.classList.remove("selected"));
-    e.target.closest("li").classList.add("selected");
+    if ((e.target.nodeName.toLowerCase() === "img") && ($article.id === "property-manager")) {
+        $article.querySelectorAll("li").forEach($image => $image.classList.remove("selected"));
+
+        e.target.closest("li").classList.add("selected");
+    }
 }
 
 function improveBuildings(e) {
