@@ -162,3 +162,12 @@ function checkForWinner() {
 
     setTimeout(checkForWinner, _waitingTime);
 }
+
+function refreshCurrentGameState() {
+    fetchFromServer(`/games/${_gameData.gameID}`, "GET")
+        .then(response => {
+            _currentGameState = response;
+            injectBalanceAndDebt(_currentGameState);
+        })
+        .catch(errorHandler);
+}

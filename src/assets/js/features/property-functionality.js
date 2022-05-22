@@ -242,6 +242,8 @@ function setHotelCountInHtml($item, response){
     $item.querySelector("#hotel-count").innerText = response.hotels;
     if (response.hotels === 0) {
         $item.querySelector("#house-count").innerText = 4;
+    } else if (response.hotels > 0) {
+        $item.querySelector("#house-count").innerText = 0;
     }
 }
 
@@ -276,6 +278,7 @@ function buyHotelOrHouse($item, houseCounter){
             } else {
                 setHotelCountInHtml($item, response);
             }
+            refreshCurrentGameState();
         })
         .catch(errorHandler);
 }
@@ -318,6 +321,7 @@ function sellHotelOrHouse($item, hotelCounter){
             } else {
                 setHouseCountInHtml($item, response);
             }
+            refreshCurrentGameState();
         })
         .catch(errorHandler);
 }

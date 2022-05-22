@@ -5,7 +5,6 @@ const _divsToToggle = ["small-property-container", "property-view button", "move
 const _idsToShowWhenCurrentPlayer = ["map-container"];
 const _idsToShowWhenNotCurrentPlayer = ["current-place-on-game-board-image"];
 
-
 function injectBalanceAndDebt(game) {
     const $balanceContainer = document.querySelector("#balance-container");
     const $debtContainer = document.querySelector("#debt-container");
@@ -198,7 +197,7 @@ function fillOtherPlayerMain(game) {
 }
 
 function checkIfWeHaveToStopPolling($main){
-    let $mainContent = $main.querySelector("article");
+    const $mainContent = $main.querySelector("article");
     if ($mainContent !== null) {
         if (_mainIdToNotRefresh.findIndex(id => $mainContent.id === id) !== -1) {
             return true;
