@@ -172,9 +172,9 @@ const _htmlElements =
             `,
         history:
             `
-            <div id='history-container'>
+            <div id="history-container">
                 <button type="button" id="close-screen">&#10007;</button>
-                <article id='history'></article>
+                <article id="history"></article>
            </div>
             `,
         moveInHistory:
