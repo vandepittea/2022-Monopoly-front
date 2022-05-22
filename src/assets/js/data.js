@@ -95,6 +95,15 @@ const _htmlElements =
                     <img src="" alt="" title=""/>
             </li>
             `,
+        jailCardInPropertyView:
+            `
+            <li data-name="jailcards">
+                    <img src="../images/deeds/Get_Out_Of_Jail_Card.jpg" title="Get Out Of Jail Card" alt="Get Out Of Jail Card">
+            </li>
+            <li data-name="jailcards">
+                    <p></p>
+            </li>
+            `,
         propertyInSmallContainer:
             `
                 <div class="partially-of-screen">

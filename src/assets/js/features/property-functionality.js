@@ -90,18 +90,16 @@ function placeOwnedPropertiesInColor(player){
 
 function addGetOutOfJailCards(player){
     const amountOfGetOutOfJailCards = player.getOutOfJailFreeCards;
+    const $jailCardsContainer = document.querySelector("#properties-container [data-streettype='jailcards'] ul");
 
-    const $jailCardsCont = document.querySelector("#properties-container [data-streettype='jailcards'] ul");
+    $jailCardsContainer.insertAdjacentHTML("beforeend",_htmlElements.jailCardInPropertyView);
+    $jailCardsContainer.querySelector("p").innerText = amountOfGetOutOfJailCards;
 
-    $jailCardsCont.insertAdjacentHTML("beforeend",
-        `<li data-name="jailcards">
-                    <img src="../images/deeds/Get_Out_Of_Jail_Card.jpg" title="Get Out Of Jail Card" alt="Get Out Of Jail Card">
-              </li>
-              <li data-name="jailcards">
-                <p>${amountOfGetOutOfJailCards}</p>
-              </li>`);
+    whenYouHaveAJailCardColorTheCard(amountOfGetOutOfJailCards);
+}
 
-        if(amountOfGetOutOfJailCards > 0)
+function whenYouHaveAJailCardColorTheCard(amountOfGetOutOfJailCards){
+    if(amountOfGetOutOfJailCards > 0)
     {
         const $jailCard = document.querySelector('#properties-container ul li[data-name="jailcards"]');
         $jailCard.classList.add("owned");
