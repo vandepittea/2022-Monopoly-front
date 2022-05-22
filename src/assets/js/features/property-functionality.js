@@ -168,7 +168,7 @@ function manageProperty(e) {
 }
 
 function checkIfThePropertyManagerIsAllowedToOpen(e, $article){
-    if(($article !== null) && checkIfItIsAButtonInsideThePropertyManager(e, $article)){
+    if(($article !== null) && (e.target.nodeName.toLowerCase() === "img") && ($article.id !== "property-manager")){
         if(($article.hasAttribute("data-streettype")) && ($article.dataset.streettype !== "railroad") && ($article.dataset.streettype !== "jailcards")){
             if(e.target.closest("#properties").querySelector("h2").innerText.split("'")[0] === _gameData.playerName){
                 return true;
@@ -179,10 +179,8 @@ function checkIfThePropertyManagerIsAllowedToOpen(e, $article){
 }
 
 function checkIfItIsAButtonInsideThePropertyManager(e, $article){
-    if((e.target.nodeName.toLowerCase() === "img") && ($article.id === "property-manager")){
-        return true;
-    }
-    return false;
+    return (e.target.nodeName.toLowerCase() === "img") && ($article.id === "property-manager");
+
 }
 
 function injectStreetWithHouseAndHotelCount($main, $article){
