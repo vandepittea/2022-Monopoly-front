@@ -147,6 +147,18 @@ function switchTaxButtonText(e){
 function declareBankrupt() {
     fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/bankruptcy`, "POST")
         .then(response => {
-            //TODO add bankrupt screen
+            window.location.replace("bankrupt-screen.html");
         });
+}
+
+function checkForWinner() {
+    if (_currentGameState !== null) {
+        if (_currentGameState.ended) {
+            if (_currentGameState.winner === _gameData.playerName) {
+                window.location.replace("win-screen.html");
+            }
+        }
+    }
+
+    setTimeout(checkForWinner, _waitingTime);
 }

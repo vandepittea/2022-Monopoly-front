@@ -202,7 +202,7 @@ function addInformationToPlayerForAddingToWaitingList($templateNode, player){
         $image.setAttribute("alt", `${player.pawn}`);
     }
 
-    $template.querySelector("figcaption").innerText = player.pawn;
+    $template.querySelector("figcaption").innerText = player.name;
 
     return $template;
 }

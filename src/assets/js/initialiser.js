@@ -45,4 +45,5 @@ function startGame(){
     fillProperties();
     fillPlayerButtons();
     manageGame();
+    checkForWinner();
 }
