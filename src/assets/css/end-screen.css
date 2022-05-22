@@ -4,11 +4,32 @@
     src: url("../fonts/Pretendo.ttf");
 }
 
+/* ids */
+#win-screen {
+    background-image: url("../media/mario-level-completed.png");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 75%;
+}
+
+#bankrupt-screen {
+    background-color: rgba(186, 36, 3, 1);
+    background-image: url("../media/Mario-bankrupt.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+}
+
+#win-screen-button {
+    background-image: url("../media/super-mario-bros-level-completed-wall.png");
+    background-size: 25%;
+}
+
 /* blocks */
 body {
     font-family: "Arial", "Helvetica", sans-serif;
     color: black;
-    background-color: rgba(186, 36, 3, 1);
+    background-color: rgba(120, 144, 248, 1);
     font-size: 1rem;
 }
 
@@ -31,17 +52,12 @@ article {
     height: 100vh;
     margin-right: auto;
     margin-left: auto;
-
-    background-image: url("../media/Mario-bankrupt.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 50%;
 }
 
 div {
     width: 100%;
     position: fixed;
-    bottom: 3rem;
+    bottom: 0;
 
     padding-top: 1rem;
     padding-bottom: 1rem;
