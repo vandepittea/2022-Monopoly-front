@@ -153,11 +153,15 @@ function declareBankrupt() {
 
 function checkForWinner() {
     if (_currentGameState !== null) {
-        if (_currentGameState.ended) {
-            if (_currentGameState.winner === _gameData.playerName) {
-                window.location.replace("win-screen.html");
-            }
-        }
+        fetchFromServer(`/games/${_gameData.gameID}`, "GET")
+            .then(response => {
+                if (response.ended) {
+                    if (response.winner === _gameData.playerName) {
+                        window.location.replace("win-screen.html");
+                    }
+                }
+            })
+            .catch(errorHandler);
     }
 
     setTimeout(checkForWinner, _waitingTime);
