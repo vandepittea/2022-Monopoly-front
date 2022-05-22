@@ -121,11 +121,15 @@ function placeChosenCharactersInBlack(){
                 });
             });
 
-            if (!document.querySelector("main #character-screen").classList.contains("hidden")) {
-                setTimeout(placeChosenCharactersInBlack, 1500);
-            }
+            refreshTheChosenCharactersWhenNeeded();
         })
         .catch(errorHandler);
+}
+
+function refreshTheChosenCharactersWhenNeeded(){
+    if (!document.querySelector("main #character-screen").classList.contains("hidden")) {
+        setTimeout(placeChosenCharactersInBlack, 1500);
+    }
 }
 
 function joinGameWithPawn(e)
@@ -190,13 +194,13 @@ function addOnePlayerToWaitingRoom($templateNode, $waitingRoomContainer, player)
 function addInformationToPlayerForAddingToWaitingList($templateNode, player){
     const $template = $templateNode.content.firstElementChild.cloneNode(true);
 
-    const $image = $template.querySelector("img");
-
     if (player.pawn !== null) {
+        const $image = $template.querySelector("img");
+
         $image.setAttribute("src", `images/characters/${player.pawn}.webp`);
+        $image.setAttribute("title", `${player.name}`);
+        $image.setAttribute("alt", `${player.pawn}`);
     }
-    $image.setAttribute("title", `${player.name}`);
-    $image.setAttribute("alt", `${player.pawn}`);
 
     $template.querySelector("figcaption").innerText = player.pawn;
 
