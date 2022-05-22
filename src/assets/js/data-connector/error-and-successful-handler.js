@@ -10,11 +10,19 @@ function errorHandler(error){
     addErrorAndSuccessfulMessage(error.cause);
 }
 
-function addErrorAndSuccessfulMessage(message){
+function addErrorAndSuccessfulMessage(message, doubleRoll = false){
     const $error = document.querySelector(_errorAndSuccessfulSelector);
     $error.insertAdjacentHTML("afterbegin", `<p>${message}</p>`);
 
+    setDoubleRollMessageIfNeeded($error, doubleRoll);
+
     setTimeout(deleteLastError, 5000);
+}
+
+function setDoubleRollMessageIfNeeded($error, doubleRoll){
+    if(doubleRoll){
+        $error.querySelector("p").id = "double-roll";
+    }
 }
 
 function deleteLastError() {
