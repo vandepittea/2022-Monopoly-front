@@ -130,19 +130,24 @@ function collectRent(game) {
     game.players.forEach(player => {
         if (player.name !== _gameData.playerName) {
             const property = ownedProperties.find(property => property.property === player.currentTile);
-            if(property != null){
-                const propertyPathParam = getTile(property.property).nameAsPathParameter;
-                fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyPathParam}/visitors/${player.name}/rent`, 'DELETE')
-                    .then(response => {
-                        console.log(response);
-                        addErrorAndSuccessfulMessage("You collected your rent.");
-                        manageGame();
-                    })
-                    .catch(errorHandler);
-            }
-            else{
-                addErrorAndSuccessfulMessage("You can't get rent from a player.");
-            }
+
+            sendCollectRentRequestToTheAPI(property, player);
         }
     });
+}
+
+function sendCollectRentRequestToTheAPI(property, player){
+    if(property != null){
+        const propertyPathParameter = getTile(property.property).nameAsPathParameter;
+
+        fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyPathParameter}/visitors/${player.name}/rent`, 'DELETE')
+            .then(response => {
+                addErrorAndSuccessfulMessage("You collected your rent.");
+                manageGame();
+            })
+            .catch(errorHandler);
+    }
+    else{
+        addErrorAndSuccessfulMessage("You can't get rent from a player.");
+    }
 }
