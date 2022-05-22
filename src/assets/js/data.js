@@ -186,7 +186,7 @@ const _htmlElements =
             `,
         manageHouseButtons:
             `
-            <button type="button" id="selected-property-improve">Improve property</button>
-            <button type="button" id="selected-property-remove">Remove property</button>
+            <button type="button" id="selected-property-improve">Add buildings</button>
+            <button type="button" id="selected-property-remove">Remove buildings</button>
             `
     };
