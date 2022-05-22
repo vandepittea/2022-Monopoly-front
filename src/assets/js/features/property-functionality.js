@@ -1,5 +1,7 @@
 "use strict";
 
+const _streetTypesNotToOpenManagerOn = ["utilities", "railroad", "jailcards"];
+
 function fillProperties() {
     const $main = document.querySelector("main");
     $main.insertAdjacentHTML("beforeend", _htmlElements.propertyView);
@@ -155,20 +157,22 @@ function sendCollectRentRequestToTheAPI(property, player){
 
 function manageProperty(e) {
     const $article = e.target.closest("article");
-    const $main = document.querySelector("main");
+    if ($article.hasAttribute("data-streettype") && !_streetTypesNotToOpenManagerOn.includes($article.dataset.streettype)) {
+        const $main = document.querySelector("main");
 
-    $main.innerHTML = `<div id="properties-container"></div>`;
-    document.querySelector("#properties-container").addEventListener("click", selectPropertyToImprove);
-    const $propertyContainer = $main.querySelector("div");
+        $main.innerHTML = `<div id="properties-container"></div>`;
+        document.querySelector("#properties-container").addEventListener("click", selectPropertyToImprove);
+        const $propertyContainer = $main.querySelector("div");
 
-    if (checkIfThePropertyManagerIsAllowedToOpen(e, $article)) {
-        $article.id = "property-manager";
+        if (checkIfThePropertyManagerIsAllowedToOpen(e, $article)) {
+            $article.id = "property-manager";
 
-        injectStreetWithHouseAndHotelCount($propertyContainer, $article);
+            injectStreetWithHouseAndHotelCount($propertyContainer, $article);
 
-        $main.querySelector("#close-screen").addEventListener("click", activateCurrentPlayersProperties);
-        $main.querySelector("#selected-property-improve").addEventListener("click", improveBuildings);
-        $main.querySelector("#selected-property-remove").addEventListener("click", removeBuildings);
+            $main.querySelector("#close-screen").addEventListener("click", activateCurrentPlayersProperties);
+            $main.querySelector("#selected-property-improve").addEventListener("click", improveBuildings);
+            $main.querySelector("#selected-property-remove").addEventListener("click", removeBuildings);
+        }
     }
 }
 
