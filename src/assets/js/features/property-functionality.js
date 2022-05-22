@@ -154,41 +154,59 @@ function sendCollectRentRequestToTheAPI(property, player){
 
 function manageProperty(e) {
     const $article = e.target.closest("article");
-    if ($article == null ||(!$article.hasAttribute("data-streettype") && (e.target.nodeName.toLowerCase() !== "img"))) {
-        return;
-    }
-    if ($article.id === "property-manager") {
-        return;
-    }
-    if(e.target.closest("#properties").querySelector("h2").innerText.split("'")[0] !== _gameData.playerName) {
-        return;
-    }
+    const $main = document.querySelector("main");
 
-    $article.id = "property-manager";
-    $article.insertAdjacentHTML("afterbegin", `<button type="button" id="close-screen">&#10007;</button>`);
-    $article.querySelectorAll("li").forEach(item => {
-        const player = getPlayerObject(_currentGameState, _gameData.playerName);
-        const property = getPlayerProperty(player, item.dataset.name);
+    if (checkIfThePropertyManagerIsAllowedToOpen(e, $article)) {
+        $article.id = "property-manager";
 
-        let houseCount = 0;
-        let hotelCount = 0;
+        injectStreetWithHouseAndHotelCount($main, $article);
 
-        if (property !== undefined) {
-            houseCount = property.houseCount;
-            hotelCount = property.hotelCount;
+        $main.querySelector("#close-screen").addEventListener("click", activateCurrentPlayersProperties);
+        $main.querySelector("#selected-property-improve").addEventListener("click", improveBuildings);
+        $main.querySelector("#selected-property-remove").addEventListener("click", removeBuildings);
+    }
+}
+
+function checkIfThePropertyManagerIsAllowedToOpen(e, $article){
+    if(e.target.nodeName.toLowerCase() === "img"){
+        if(($article !== null) && ($article.id !== "property-manager")){
+            if(($article.hasAttribute("data-streettype")) && ($article.dataset.streettype !== "railroad") && ($article.dataset.streettype !== "jailcards")){
+                if(e.target.closest("#properties").querySelector("h2").innerText.split("'")[0] === _gameData.playerName){
+                    return true;
+                }
+            }
         }
+    }
+    return false;
+}
 
-        item.insertAdjacentHTML("beforeend", `<p>Houses: <span id="house-count">${houseCount}</span></p>`);
-        item.insertAdjacentHTML("beforeend", `<p>Hotels: <span id="hotel-count">${hotelCount}</span></p>`);
+function injectStreetWithHouseAndHotelCount($main, $article){
+    $article.insertAdjacentHTML("afterbegin", `<button type="button" id="close-screen">&#10007;</button>`);
+
+    $article.querySelectorAll("li").forEach(item => {
+        injectOnePropertyInTheStreetWithHouseAndHotelCount(item);
     });
+
     $article.insertAdjacentHTML("beforeend", _htmlElements.manageHouseButtons);
 
-    const $main = document.querySelector("main");
     $main.innerText = "";
     $main.insertAdjacentElement("afterbegin", $article);
-    $main.querySelector("#close-screen").addEventListener("click", activateCurrentPlayersProperties);
-    $main.querySelector("#selected-property-improve").addEventListener("click", improveBuildings);
-    $main.querySelector("#selected-property-remove").addEventListener("click", removeBuildings);
+}
+
+function injectOnePropertyInTheStreetWithHouseAndHotelCount(item){
+    const player = getPlayerObject(_currentGameState, _gameData.playerName);
+    const property = getPlayerProperty(player, item.dataset.name);
+
+    let houseCount = 0;
+    let hotelCount = 0;
+
+    if (property !== undefined) {
+        houseCount = property.houseCount;
+        hotelCount = property.hotelCount;
+    }
+
+    item.insertAdjacentHTML("beforeend", `<p>Houses: <span id="house-count">${houseCount}</span></p>`);
+    item.insertAdjacentHTML("beforeend", `<p>Hotels: <span id="hotel-count">${hotelCount}</span></p>`);
 }
 
 function selectPropertyToImprove(e) {
