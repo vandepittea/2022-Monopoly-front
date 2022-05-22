@@ -58,9 +58,4 @@ h1 {
 
 a {
     text-decoration: none;
-    color: #DC143C;
-}
-
-button:hover a{
-    color: white;
 }
