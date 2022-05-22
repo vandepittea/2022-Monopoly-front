@@ -220,40 +220,50 @@ function selectPropertyToImprove(e) {
 }
 
 function improveBuildings(e) {
-    if (e.target.nodeName.toLowerCase() !== "button") {
-        return;
-    }
-
     const $article = e.target.closest("article");
-    if ($article.id !== "property-manager") {
-        return;
+
+    if ((e.target.nodeName.toLowerCase() === "button") && ($article.id === "property-manager")) {
+        $article.querySelectorAll("li").forEach($item => {
+            if ($item.classList.contains("selected")) {
+                const houseCounter = $item.querySelector("#house-count").innerText;
+                const hotelCounter = $item.querySelector("#hotel-count").innerText;
+
+                if (hotelCounter === 1) {
+                    addErrorAndSuccessfulMessage("You can't build more than one hotel on a property.");
+                }
+
+                buyHotelOrHouse($item, houseCounter);
+            }
+        });
+    }
+}
+
+function buyHotelOrHouse($item, houseCounter){
+    const propertyName = getTile($item.dataset.name).nameAsPathParameter;
+
+    const link = decideBuyingHotelOrHouse(propertyName, houseCounter)
+
+    fetchFromServer(link, "POST")
+        .then(response => {
+            if (houseCounter < 4) {
+                $item.querySelector("#house-count").innerText = response.houses;
+            } else {
+                $item.querySelector("#hotel-count").innerText = response.houses;
+            }
+        })
+        .catch(errorHandler);
+}
+
+function decideBuyingHotelOrHouse(propertyName, houseCounter){
+    let link = "";
+
+    if (houseCounter < 4) {
+        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}/houses`;
+    } else {
+        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}/hotel`;
     }
 
-    $article.querySelectorAll("li").forEach($item => {
-        if ($item.classList.contains("selected")) {
-            const houseCounter = $item.querySelector("#house-count").innerText;
-            const hotelCounter = $item.querySelector("#hotel-count").innerText;
-            if (hotelCounter === 1) {
-                return null;
-            }
-            const propertyName = getTile($item.dataset.name).nameAsPathParameter;
-            let link = "";
-            if (houseCounter < 4) {
-                link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}/houses`;
-            } else {
-                link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}/hotel`;
-            }
-            fetchFromServer(link, 'POST')
-                .then(response => {
-                    if (houseCounter < 4) {
-                        $item.querySelector("#house-count").innerText = response.houses;
-                    } else {
-                        $item.querySelector("#hotel-count").innerText = response.houses;
-                    }
-                })
-                .catch(errorHandler);
-        }
-    });
+    return link;
 }
 
 function removeBuildings(e) {
