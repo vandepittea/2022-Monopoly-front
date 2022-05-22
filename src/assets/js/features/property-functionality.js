@@ -156,10 +156,13 @@ function manageProperty(e) {
     const $article = e.target.closest("article");
     const $main = document.querySelector("main");
 
+    $main.innerHTML = `<div id="properties-container"></div>`;
+    const $propertyContainer = $main.querySelector("div");
+
     if (checkIfThePropertyManagerIsAllowedToOpen(e, $article)) {
         $article.id = "property-manager";
 
-        injectStreetWithHouseAndHotelCount($main, $article);
+        injectStreetWithHouseAndHotelCount($propertyContainer, $article);
 
         $main.querySelector("#close-screen").addEventListener("click", activateCurrentPlayersProperties);
         $main.querySelector("#selected-property-improve").addEventListener("click", improveBuildings);
@@ -183,7 +186,7 @@ function checkIfItIsAnElementInsideThePropertyManager(e, elementName, $article){
 
 }
 
-function injectStreetWithHouseAndHotelCount($main, $article){
+function injectStreetWithHouseAndHotelCount($propertyContainer, $article){
     $article.insertAdjacentHTML("afterbegin", `<button type="button" id="close-screen">&#10007;</button>`);
 
     $article.querySelectorAll("li").forEach(item => {
@@ -192,8 +195,7 @@ function injectStreetWithHouseAndHotelCount($main, $article){
 
     $article.insertAdjacentHTML("beforeend", _htmlElements.manageHouseButtons);
 
-    $main.innerText = "";
-    $main.insertAdjacentElement("afterbegin", $article);
+    $propertyContainer.insertAdjacentElement("afterbegin", $article);
 }
 
 function injectOnePropertyInTheStreetWithHouseAndHotelCount(item){
