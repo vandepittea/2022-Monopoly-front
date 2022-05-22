@@ -9,9 +9,7 @@ function init(){
             .then(response => _tiles = response)
             .then(initMonopoly)
             .catch(errorHandler);
-    }
-    else
-    {
+    } else {
         initPreGame();
     }
 }

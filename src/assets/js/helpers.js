@@ -34,6 +34,10 @@ function getTile(tileName) {
     return _tiles.find(tile => tile.name === tileName);
 }
 
+function getPlayerProperty(player, propertyName) {
+    return player.properties.find(property => property.property === propertyName);
+}
+
 function clearMain() {
     document.querySelector("main").innerHTML = "";
     manageGame();

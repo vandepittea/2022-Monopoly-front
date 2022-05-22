@@ -183,5 +183,10 @@ const _htmlElements =
                 <h2></h2>
                 <p></p>
             </article>
+            `,
+        manageHouseButtons:
+            `
+            <button type="button" id="selected-property-improve">Add buildings</button>
+            <button type="button" id="selected-property-remove">Remove buildings</button>
             `
     };

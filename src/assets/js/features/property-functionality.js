@@ -1,5 +1,7 @@
 "use strict";
 
+const _streetTypesNotToOpenManagerOn = ["utilities", "railroad", "jailcards"];
+
 function fillProperties() {
     const $main = document.querySelector("main");
     $main.insertAdjacentHTML("beforeend", _htmlElements.propertyView);
@@ -55,6 +57,7 @@ function activateCurrentPlayersProperties() {
 
     document.querySelector("#properties-container").insertAdjacentHTML("beforeend", _htmlElements.rentButton);
     document.querySelector("main #collect-rent").addEventListener("click", () => collectRent(_currentGameState));
+    document.querySelector("#properties-container").addEventListener("click", manageProperty);
 }
 
 function activateOtherPlayerProperties(e) {
@@ -150,4 +153,187 @@ function sendCollectRentRequestToTheAPI(property, player){
     else{
         addErrorAndSuccessfulMessage("You can't get rent from a player.");
     }
+}
+
+function manageProperty(e) {
+    const $article = e.target.closest("article");
+    if ($article.hasAttribute("data-streettype") && !_streetTypesNotToOpenManagerOn.includes($article.dataset.streettype)) {
+        const $main = document.querySelector("main");
+
+        $main.innerHTML = `<div id="properties-container"></div>`;
+        document.querySelector("#properties-container").addEventListener("click", selectPropertyToImprove);
+        const $propertyContainer = $main.querySelector("div");
+
+        if (checkIfThePropertyManagerIsAllowedToOpen(e, $article)) {
+            $article.id = "property-manager";
+
+            injectStreetWithHouseAndHotelCount($propertyContainer, $article);
+
+            $main.querySelector("#close-screen").addEventListener("click", activateCurrentPlayersProperties);
+            $main.querySelector("#selected-property-improve").addEventListener("click", improveBuildings);
+            $main.querySelector("#selected-property-remove").addEventListener("click", removeBuildings);
+        }
+    }
+}
+
+function checkIfThePropertyManagerIsAllowedToOpen(e, $article){
+    if(($article !== null) && ($article.id !== "property-manager")){
+        if(($article.hasAttribute("data-streettype")) && ($article.dataset.streettype !== "railroad") && ($article.dataset.streettype !== "jailcards")){
+            if(e.target.closest("#properties").querySelector("h2").innerText.split("'")[0] === _gameData.playerName){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+function checkIfItIsAnElementInsideThePropertyManager(e, elementName, $article){
+    return (e.target.nodeName.toLowerCase() === elementName) && ($article.id === "property-manager");
+
+}
+
+function injectStreetWithHouseAndHotelCount($propertyContainer, $article){
+    $article.insertAdjacentHTML("afterbegin", `<button type="button" id="close-screen">&#10007;</button>`);
+
+    $article.querySelectorAll("li").forEach(item => {
+        injectOnePropertyInTheStreetWithHouseAndHotelCount(item);
+    });
+
+    $article.insertAdjacentHTML("beforeend", _htmlElements.manageHouseButtons);
+
+    $propertyContainer.insertAdjacentElement("afterbegin", $article);
+}
+
+function injectOnePropertyInTheStreetWithHouseAndHotelCount(item){
+    const player = getPlayerObject(_currentGameState, _gameData.playerName);
+    const property = getPlayerProperty(player, item.dataset.name);
+
+    let houseCount = 0;
+    let hotelCount = 0;
+
+    if (property !== undefined) {
+        houseCount = property.houseCount;
+        hotelCount = property.hotelCount;
+    }
+
+    item.insertAdjacentHTML("beforeend", `<p>Houses: <span id="house-count">${houseCount}</span></p>`);
+    item.insertAdjacentHTML("beforeend", `<p>Hotels: <span id="hotel-count">${hotelCount}</span></p>`);
+}
+
+function selectPropertyToImprove(e) {
+    const $article = e.target.closest("article");
+
+    if (checkIfItIsAnElementInsideThePropertyManager(e, "img", $article)) {
+        $article.querySelectorAll("li").forEach($image => $image.classList.remove("selected"));
+
+        e.target.closest("li").classList.add("selected");
+    }
+}
+
+function getHouseCountOutOfHtml($item){
+    return parseInt($item.querySelector("#house-count").innerText);
+}
+
+function getHotelCountOutOfHtml($item){
+    return parseInt($item.querySelector("#hotel-count").innerText);
+}
+
+function setHouseCountInHtml($item, response){
+    $item.querySelector("#house-count").innerText = response.houses;
+}
+
+function setHotelCountInHtml($item, response){
+    $item.querySelector("#hotel-count").innerText = response.hotels;
+    if (response.hotels === 0) {
+        $item.querySelector("#house-count").innerText = 4;
+    } else if (response.hotels > 0) {
+        $item.querySelector("#house-count").innerText = 0;
+    }
+}
+
+function improveBuildings(e) {
+    const $article = e.target.closest("article");
+
+    if (checkIfItIsAnElementInsideThePropertyManager(e, "button", $article)) {
+        $article.querySelectorAll("li").forEach($item => {
+            if ($item.classList.contains("selected")) {
+                const houseCounter = getHouseCountOutOfHtml($item);
+                const hotelCounter = getHotelCountOutOfHtml($item);
+
+                buyHotelOrHouse($item, houseCounter);
+            }
+        });
+    }
+}
+
+function buyHotelOrHouse($item, houseCounter){
+    const propertyName = getTile($item.dataset.name).nameAsPathParameter;
+
+    const link = decideBuyingHotelOrHouse(propertyName, houseCounter);
+
+    fetchFromServer(link, "POST")
+        .then(response => {
+            if (houseCounter < 4) {
+                setHouseCountInHtml($item, response);
+            } else {
+                setHotelCountInHtml($item, response);
+            }
+            refreshCurrentGameState();
+        })
+        .catch(errorHandler);
+}
+
+function decideBuyingHotelOrHouse(propertyName, houseCounter){
+    let link = "";
+
+    if (houseCounter < 4) {
+        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}/houses`;
+    } else {
+        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}/hotel`;
+    }
+
+    return link;
+}
+
+function removeBuildings(e) {
+    const $article = e.target.closest("article");
+
+    if (checkIfItIsAnElementInsideThePropertyManager(e, "button", $article)) {
+        $article.querySelectorAll("li").forEach($item => {
+            if ($item.classList.contains("selected")) {
+                const hotelCounter = getHotelCountOutOfHtml($item);
+
+                sellHotelOrHouse($item, hotelCounter);
+            }
+        });
+    }
+}
+
+function sellHotelOrHouse($item, hotelCounter){
+    const propertyName = getTile($item.dataset.name).nameAsPathParameter;
+
+    const link = decideSellingHotelOrHouse(propertyName, hotelCounter);
+
+    fetchFromServer(link, 'DELETE')
+        .then(response => {
+            if (hotelCounter > 0) {
+                setHotelCountInHtml($item, response);
+            } else {
+                setHouseCountInHtml($item, response);
+            }
+            refreshCurrentGameState();
+        })
+        .catch(errorHandler);
+}
+
+function decideSellingHotelOrHouse(propertyName, hotelCounter){
+    let link = "";
+
+    if (hotelCounter > 0) {
+        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}/hotel`;
+    } else {
+        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}/houses`;
+    }
+
+    return link;
 }
