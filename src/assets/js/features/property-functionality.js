@@ -109,7 +109,6 @@ function whenYouHaveAJailCardColorTheCard(amountOfGetOutOfJailCards){
 function buyProperty(propertyName) {
     fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}`, 'POST')
         .then(result => {
-            console.log(result);
             addErrorAndSuccessfulMessage(`You bought the property ${result.property}.`);
             manageGame();
         })
@@ -119,7 +118,6 @@ function buyProperty(propertyName) {
 function dontBuyProperty(propertyName) {
     fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}`, 'DELETE')
         .then(result => {
-            console.log(result);
             addErrorAndSuccessfulMessage(`You didn't buy the property ${result.property}.`);
             manageGame();
         })
