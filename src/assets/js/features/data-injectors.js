@@ -269,6 +269,10 @@ function showTurnOfCurrentPlayerForEveryone(turn){
     const player = turn.player;
 
     addRollDiceMessages(`${player} rolled ${rolls[0]} and ${rolls[1]}`);
+
+    if(rolls[0] === rolls[1]){
+        addErrorAndSuccessfulMessage("Double roll", true);
+    }
 }
 
 function injectHistory(e){
