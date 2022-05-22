@@ -5,7 +5,6 @@ const _divsToToggle = ["small-property-container", "property-view button", "move
 const _idsToShowWhenCurrentPlayer = ["map-container"];
 const _idsToShowWhenNotCurrentPlayer = ["current-place-on-game-board-image"];
 
-
 function injectBalanceAndDebt(game) {
     const $balanceContainer = document.querySelector("#balance-container");
     const $debtContainer = document.querySelector("#debt-container");
