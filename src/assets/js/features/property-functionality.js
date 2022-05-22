@@ -5,8 +5,8 @@ function fillProperties() {
     $main.insertAdjacentHTML("beforeend", _htmlElements.propertyView);
 
     const $propertiesContainer = document.querySelector("#properties-container");
-    const $railroadContainer = $propertiesContainer.querySelector("[data-streettype='railroad'] ul");
-    const $utilitiesContainer = $propertiesContainer.querySelector("[data-streettype='utilities'] ul");
+    const $railroadContainer = $propertiesContainer.querySelector(`[data-streettype="railroad"] ul`);
+    const $utilitiesContainer = $propertiesContainer.querySelector(`[data-streettype="utilities"] ul`);
 
     _tiles.forEach(tile => {
         addTileToCorrectPropertyGroupContainer(tile, $propertiesContainer, $railroadContainer, $utilitiesContainer);
@@ -19,18 +19,18 @@ function fillProperties() {
 function addTileToCorrectPropertyGroupContainer(tile, $propertiesContainer, $railroadContainer, $utilitiesContainer) {
     switch (tile.type) {
         case "STREET":
-            const $propertyListContainer = $propertiesContainer.querySelector(`[data-streettype='${tile.streetColor.toLowerCase()}'] ul`);
-            $propertyListContainer.insertAdjacentHTML('beforeend', _htmlElements.onePropertyInPropertyView);
+            const $propertyListContainer = $propertiesContainer.querySelector(`[data-streettype="${tile.streetColor.toLowerCase()}"] ul`);
+            $propertyListContainer.insertAdjacentHTML("beforeend", _htmlElements.onePropertyInPropertyView);
 
             fillInPropertyDetails($propertyListContainer, tile);
             break;
         case "RAILROAD":
-            $railroadContainer.insertAdjacentHTML('beforeend', _htmlElements.onePropertyInPropertyView);
+            $railroadContainer.insertAdjacentHTML("beforeend", _htmlElements.onePropertyInPropertyView);
 
             fillInPropertyDetails($railroadContainer, tile);
             break;
         case "UTILITY":
-            $utilitiesContainer.insertAdjacentHTML('beforeend', _htmlElements.onePropertyInPropertyView);
+            $utilitiesContainer.insertAdjacentHTML("beforeend", _htmlElements.onePropertyInPropertyView);
 
             fillInPropertyDetails($utilitiesContainer, tile);
             break;
@@ -53,7 +53,7 @@ function fillInPropertyDetails($propertyListContainer, tile){
 function activateCurrentPlayersProperties() {
     activateProperties(getPlayerObject(_currentGameState, _gameData.playerName));
 
-    document.querySelector("#properties-container").insertAdjacentHTML('beforeend', _htmlElements.rentButton);
+    document.querySelector("#properties-container").insertAdjacentHTML("beforeend", _htmlElements.rentButton);
     document.querySelector("main #collect-rent").addEventListener("click", () => collectRent(_currentGameState));
 }
 
@@ -77,20 +77,20 @@ function activateProperties(player) {
 }
 
 function placeOwnedPropertiesInColor(player){
-    const $propertiesContainer = document.querySelectorAll('#properties-container ul li');
+    const $propertiesContainer = document.querySelectorAll("#properties-container ul li");
     $propertiesContainer.forEach($property => {
         $property.classList.remove("owned");
     });
 
     player.properties.forEach(property => {
-        const $property = document.querySelector(`#properties-container ul li[data-name='${property.property}']`);
+        const $property = document.querySelector(`#properties-container ul li[data-name="${property.property}"]`);
         $property.classList.add("owned");
     });
 }
 
 function addGetOutOfJailCards(player){
     const amountOfGetOutOfJailCards = player.getOutOfJailFreeCards;
-    const $jailCardsContainer = document.querySelector("#properties-container [data-streettype='jailcards'] ul");
+    const $jailCardsContainer = document.querySelector(`#properties-container [data-streettype="jailcards"] ul`);
 
     $jailCardsContainer.insertAdjacentHTML("beforeend",_htmlElements.jailCardInPropertyView);
     $jailCardsContainer.querySelector("p").innerText = amountOfGetOutOfJailCards;
@@ -101,13 +101,13 @@ function addGetOutOfJailCards(player){
 function whenYouHaveAJailCardColorTheCard(amountOfGetOutOfJailCards){
     if(amountOfGetOutOfJailCards > 0)
     {
-        const $jailCard = document.querySelector('#properties-container ul li[data-name="jailcards"]');
+        const $jailCard = document.querySelector(`#properties-container ul li[data-name="jailcards"]`);
         $jailCard.classList.add("owned");
     }
 }
 
 function buyProperty(propertyName) {
-    fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}`, 'POST')
+    fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}`, "POST")
         .then(result => {
             addErrorAndSuccessfulMessage(`You bought the property ${result.property}.`);
             manageGame();
@@ -116,7 +116,7 @@ function buyProperty(propertyName) {
 }
 
 function dontBuyProperty(propertyName) {
-    fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}`, 'DELETE')
+    fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}`, "DELETE")
         .then(result => {
             addErrorAndSuccessfulMessage(`You didn't buy the property ${result.property}.`);
             manageGame();
@@ -140,7 +140,7 @@ function sendCollectRentRequestToTheAPI(property, player){
     if(property != null){
         const propertyPathParameter = getTile(property.property).nameAsPathParameter;
 
-        fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyPathParameter}/visitors/${player.name}/rent`, 'DELETE')
+        fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyPathParameter}/visitors/${player.name}/rent`, "DELETE")
             .then(response => {
                 addErrorAndSuccessfulMessage("You collected your rent.");
                 manageGame();
