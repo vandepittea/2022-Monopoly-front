@@ -1,4 +1,5 @@
 "use strict";
+
 let _nickname = null;
 let _amountPlayers = null;
 let _gameID = null;
@@ -8,17 +9,17 @@ const allDivIds = ["login", "game-list", "create-game-screen", "character-screen
 function showGames(e){
     e.preventDefault();
 
-    if ((e.target.querySelector("#nickname").value === "") || (e.target.querySelector("#amount-players").value === ""))
+    if ((e.target.querySelector("#nickname").value !== "") || (e.target.querySelector("#amount-players").value !== ""))
     {
-        return;
+        _nickname = e.target.querySelector("#nickname").value;
+        _amountPlayers = e.target.querySelector("#amount-players").value;
+
+        createGameList();
+
+        makeVisibleByID("game-list", allDivIds);
+    } else{
+        addErrorAndSuccessfulMessage("Fill in all the required fields.");
     }
-
-    _nickname = e.target.querySelector("#nickname").value;
-    _amountPlayers = e.target.querySelector("#amount-players").value;
-
-    createGameList();
-
-    makeVisibleByID("game-list", allDivIds);
 }
 
 function showGameCreationScreen()
@@ -32,14 +33,17 @@ function createGame(e)
 
     const bodyParams = {
        prefix: _config.prefix,
-       numberOfPlayers: parseInt(_amountPlayers)
+       numberOfPlayers: parseInt(_amountPlayers),
+       gameName: document.querySelector("#group-name").value
     };
 
-    fetchFromServer('/games', 'POST', bodyParams)
+    fetchFromServer("/games", "POST", bodyParams)
         .then(game =>
         {
             _gameID = game.id;
-           joinGameAfterCreation();
+
+            createGameList();
+            makeVisibleByID("game-list", allDivIds);
         })
         .catch(errorHandler);
 
@@ -49,143 +53,195 @@ function createGameList()
 {
     if (_gameData.token === null)
     {
-        const $container = document.querySelector('#game-list tbody');
-        const $templateNode = $container.querySelector('template');
+        const gameListContainer = document.querySelector("#game-list tbody");
+        const $templateNode = gameListContainer.querySelector("template");
 
-        fetchFromServer(`/games?started=false&numberOfPlayers=${_amountPlayers}&prefix=${_config.prefix}`,'GET')
+        fetchFromServer(`/games?started=false&numberOfPlayers=${_amountPlayers}&prefix=${_config.prefix}`,"GET")
             .then(games =>
             {
-                $container.innerHTML = "";
-                $container.insertAdjacentElement('beforeend', $templateNode);
-                games.forEach(game => addGameToContainer($container, $templateNode, game));
+                gameListContainer.innerText = "";
+                gameListContainer.insertAdjacentElement("beforeend", $templateNode);
+                games.forEach(game => addGameToGameList(gameListContainer, $templateNode, game));
             })
             .catch(errorHandler);
 
         setTimeout(createGameList, 1500);
     }
-    else
-    {
-        console.log("Go to game");
-    }
 }
 
-function addGameToContainer($container, $templateNode, game)
+function addGameToGameList($gameListContainer, $templateNode, game)
 {
     const $template = $templateNode.content.firstElementChild.cloneNode(true);
     $template.dataset.gameid = game.id;
 
     game.players.forEach(player =>
     {
-        $template.querySelector('ul').insertAdjacentHTML('beforeend', `<li>${player.name}</li>`);
+        $template.querySelector("ul").insertAdjacentHTML("beforeend", `<li>${player.name}</li>`);
     });
-    $template.querySelector('#active-players').innerText = game.players.length;
-    $template.querySelector('#max-players').innerText = game.numberOfPlayers;
 
-    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+    $template.querySelector("#active-players").innerText = game.players.length;
+    $template.querySelector("#max-players").innerText = game.numberOfPlayers;
+    $template.querySelector("#game-name").innerText = game.gameName;
+
+    $gameListContainer.insertAdjacentHTML("beforeend", $template.outerHTML);
 }
 
 function joinGame(e)
 {
-    if (e.target.nodeName.toLowerCase() !== "button")
+    if (e.target.nodeName.toLowerCase() === "button")
     {
-        return;
+        _gameID = e.target.closest("tr").dataset.gameid;
+
+        const playerObject = {
+            playerName: _nickname
+        };
+
+        fetchFromServer(`/games/${_gameID}/players`, "POST", playerObject)
+            .then(response =>
+            {
+                _gameData.token = response;
+                placeChosenCharactersInBlack();
+                makeVisibleByID("character-screen", allDivIds);
+            })
+            .catch(errorHandler);
     }
+}
 
-    _gameID = e.target.closest('tr').dataset.gameid;
-    const playerObject = {
-        playerName: _nickname
-    };
-
-    fetchFromServer(`/games/${_gameID}/players`, 'POST', playerObject)
-        .then(response =>
+function placeChosenCharactersInBlack(){
+    fetchFromServer(`/games/${_gameID}`, "GET")
+        .then(game =>
         {
-            _gameData.token = response;
-            makeVisibleByID("character-screen", allDivIds);
+            game.players.forEach(player =>
+            {
+                const $images = document.querySelectorAll("#character-screen img");
+                $images.forEach(image =>{
+                    if(player.pawn === image.dataset.name){
+                        image.classList.add("pawn-taken");
+                    }
+                });
+            });
+
+            refreshTheChosenCharactersWhenNeeded();
         })
         .catch(errorHandler);
 }
 
-function joinGameAfterCreation() {
-    const playerObject = {
-        playerName: _nickname
-    };
-    fetchFromServer(`/games/${_gameID}/players`, 'POST', playerObject)
-        .then(response =>
-        {
-            _gameData.token = response;
-            makeVisibleByID("character-screen", allDivIds);
-        })
-        .catch(errorHandler);
+function refreshTheChosenCharactersWhenNeeded(){
+    if (!document.querySelector("main #character-screen").classList.contains("hidden")) {
+        setTimeout(placeChosenCharactersInBlack, 1500);
+    }
 }
 
-function joinGameWithPlayer()
+function joinGameWithPawn(e)
 {
-    makeVisibleByID("waiting-screen", allDivIds);
-    waitForPlayers();
+    assignPawn(e);
+
+    if(!e.target.classList.contains("pawn-taken")){
+        makeVisibleByID("waiting-screen", allDivIds);
+        waitForPlayers();
+    }
+}
+
+function assignPawn(e) {
+    const playerObject = {
+        playerName: _nickname,
+        pawn: e.target.dataset.name
+    };
+
+    fetchFromServer(`/games/${_gameID}/players`, "POST", playerObject)
+        .catch(errorHandler);
 }
 
 function waitForPlayers()
 {
-    fetchFromServer(`/games/${_gameID}`, 'GET')
+    fetchFromServer(`/games/${_gameID}`, "GET")
         .then(game =>
         {
             if (game.started)
             {
-                goToWaitingScreen(game);
+                goToLaunchScreen(game);
             }
             else
             {
                 addPlayersToWaitingScreen(game);
                 setTimeout(waitForPlayers, 1500);
             }
-        });
+        })
+        .catch(errorHandler);
 }
 
 function addPlayersToWaitingScreen(game)
 {
     const $templateNode = document.querySelector("#waiting-screen template");
-    const $container = document.querySelector("#waiting-screen div");
+    const $waitingRoomContainer = document.querySelector("#waiting-screen div");
 
-    $container.innerHTML = "";
-    $container.insertAdjacentElement('afterbegin', $templateNode);
+    $waitingRoomContainer.innerText = "";
+    $waitingRoomContainer.insertAdjacentElement("afterbegin", $templateNode);
 
     game.players.forEach(player =>
     {
-        const $template = $templateNode.content.firstElementChild.cloneNode(true);
-        $template.querySelector("img").setAttribute('src', "images/characters/waluigi.webp");
-        $template.querySelector("figcaption").innerText = player.name;
-        $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+        addOnePlayerToWaitingRoom($templateNode, $waitingRoomContainer, player);
     });
 
+    addImagesOfBlackMarioToShowHowManyUserWeAreStillWaitingFor($templateNode, $waitingRoomContainer, game);
+}
+
+function addOnePlayerToWaitingRoom($templateNode, $waitingRoomContainer, player){
+    const $template = addInformationToPlayerForAddingToWaitingList($templateNode, player);
+    $waitingRoomContainer.insertAdjacentHTML("beforeend", $template.outerHTML);
+}
+
+function addInformationToPlayerForAddingToWaitingList($templateNode, player){
+    const $template = $templateNode.content.firstElementChild.cloneNode(true);
+
+    if (player.pawn !== null) {
+        const $image = $template.querySelector("img");
+
+        $image.setAttribute("src", `images/characters/${player.pawn}.png`);
+        $image.setAttribute("title", `${player.name}`);
+        $image.setAttribute("alt", `${player.pawn}`);
+    }
+
+    $template.querySelector("figcaption").innerText = player.name;
+
+    return $template;
+}
+
+function addImagesOfBlackMarioToShowHowManyUserWeAreStillWaitingFor($templateNode, $waitingRoomContainer, game){
     for (let i = 0; i < (game.numberOfPlayers - game.players.length); i++)
     {
         const $template = $templateNode.content.firstElementChild.cloneNode(true);
-        $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+        $waitingRoomContainer.insertAdjacentHTML("beforeend", $template.outerHTML);
     }
 }
 
-function goToWaitingScreen(game)
+function goToLaunchScreen(game)
 {
-    const $templateNode = document.querySelector('#launch-screen template');
-    const $playerContainer = document.querySelector('#other-players');
+    const $templateNode = document.querySelector("#launch-screen template");
+    const $playerContainer = document.querySelector("#other-players");
 
     game.players.forEach(player =>
     {
-        const $template = $templateNode.content.firstElementChild.cloneNode(true);
-        $template.querySelector('figcaption').innerText = player.name;
-        // TODO: add pawn here when our API is done
-
-        if (player.name === _nickname)
-        {
-            document.querySelector('#launch-button-and-current-player').insertAdjacentHTML('afterbegin', $template.outerHTML);
-        }
-        else
-        {
-            $playerContainer.insertAdjacentHTML('beforeend', $template.outerHTML);
-        }
+        addOnePlayerToLaunchScreen($templateNode, $playerContainer, player);
     });
 
     makeVisibleByID("launch-screen", allDivIds);
+}
+
+function addOnePlayerToLaunchScreen($templateNode, $playerContainer, player){
+    const $template = addInformationToPlayerForAddingToWaitingList($templateNode, player);
+    addPlayerInMiddleOrTheBottomRightCorner($playerContainer, $template, player);
+}
+
+function addPlayerInMiddleOrTheBottomRightCorner($playerContainer, $template, player){
+    if (player.name === _nickname)
+    {
+        document.querySelector("#launch-button-and-current-player").insertAdjacentHTML("afterbegin", $template.outerHTML);
+    }
+    else
+    {
+        $playerContainer.insertAdjacentHTML("beforeend", $template.outerHTML);
+    }
 }
 
 function goToGame()

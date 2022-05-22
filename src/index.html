@@ -15,7 +15,7 @@
 
     <script src="assets/js/config.js"></script>
 
-    <script src="assets/js/data-connector/error-handler.js"></script>
+    <script src="assets/js/data-connector/error-and-successful-handler.js"></script>
     <script src="assets/js/data-connector/api-communication-abstractor.js"></script>
     <script src="assets/js/data-connector/local-storage-abstractor.js"></script>
     <script src="assets/js/data.js"></script>
@@ -27,12 +27,12 @@
 <body>
     <div id="wrapper">
         <header>
-            <img src="images/cover.png" title="cover" alt="cover">
+            <img src="images/Cover.png" title="cover" alt="cover">
         </header>
         <main>
             <div id="login">
                 <aside aria-label="decorative image">
-                    <img src="images/mario-pixel.png" title="Pixel Mario" alt="Pixel Mario">
+                    <img src="images/Mario_Pixel.png" title="Pixel Mario" alt="Pixel Mario">
                 </aside>
                 <article>
                     <h1>Welcome to Super Mariopoly!</h1>
@@ -40,12 +40,12 @@
                         <label for="nickname">Please enter your nickname:</label>
                         <input type="text" id="nickname" maxlength="15" pattern="[a-zA-Z0-9-]+" required>
                         <label for="amount-players">Choose the amount of players:</label>
-                        <input type="number" id="amount-players" min="2" max="8" required>
+                        <input type="number" id="amount-players" min="2" max="10" required>
                         <button type="submit">Find a server</button>
                     </form>
                 </article>
                 <aside aria-label="decorative image">
-                    <img id="mario-img" src="images/mario.webp" title="Mario" alt="Mario">
+                    <img id="mario-img" src="images/characters/Mario.png" title="Mario" alt="Mario">
                 </aside>
             </div>
             <article id="game-list" class="hidden">
@@ -66,7 +66,7 @@
                         <tbody>
                         <template>
                             <tr>
-                                <td>Come play with us</td>
+                                <td id="game-name">Come play with us</td>
                                 <td>
                                     <ul></ul>
                                 </td>
@@ -84,23 +84,23 @@
                 <h2>Create new game</h2>
                 <form>
                     <label for="group-name">Please enter a group name:</label>
-                    <input type="text" id="group-name">
+                    <input type="text" id="group-name" maxlength="15" pattern="[a-zA-Z0-9-]+" required >
                     <button type="submit">Find teammates</button>
                 </form>
             </article>
             <article id="character-screen" class="hidden">
                 <h2>Choose a character</h2>
                 <div>
-                    <img src="images/characters/mario.webp" title ="Mario" alt="Mario">
-                    <img src="images/characters/donkey-kong.webp" title ="Donkey Kong" alt="Donkey Kong">
-                    <img src="images/characters/princess-daisy.webp" title ="Princess Daisy" alt="Princess Daisy">
-                    <img src="images/characters/princess-peach.webp" title ="Princess Peach" alt="Princess Peach">
-                    <img src="images/characters/shy-guy.webp" title ="Shy Guy" alt="Shy Guy">
-                    <img src="images/characters/toad.webp" title ="Toad" alt="Toad">
-                    <img src="images/characters/toadette.webp" title ="Toadette" alt="Toadette">
-                    <img src="images/characters/waluigi.webp" title ="Waluigi" alt="Waluigi">
-                    <img src="images/characters/wario.webp" title ="Wario" alt="Wario">
-                    <img src="images/characters/yoshi.webp" title ="Yoshi" alt="Yoshi">
+                    <img src="images/characters/Mario.png" title ="Mario" alt="Mario" data-name="Mario">
+                    <img src="images/characters/Donkey_Kong.png" title ="Donkey_Kong" alt="Donkey_Kong" data-name="Donkey_Kong">
+                    <img src="images/characters/Princess_Daisy.png" title ="Princess_Daisy" alt="Princess_Daisy" data-name="Princess_Daisy">
+                    <img src="images/characters/Princess_Peach.png" title ="Princess_Peach" alt="Princess_Peach" data-name="Princess_Peach">
+                    <img src="images/characters/Shy_Guy.png" title ="Shy_Guy" alt="Shy_Guy" data-name="Shy_Guy">
+                    <img src="images/characters/Toad.png" title ="Toad" alt="Toad" data-name="Toad">
+                    <img src="images/characters/Toadette.png" title ="Toadette" alt="Toadette" data-name="Toadette">
+                    <img src="images/characters/Waluigi.png" title ="Waluigi" alt="Waluigi" data-name="Waluigi">
+                    <img src="images/characters/Wario.png" title ="Wario" alt="Wario" data-name="Wario">
+                    <img src="images/characters/Yoshi.png" title ="Yoshi" alt="Yoshi" data-name="Yoshi">
                 </div>
             </article>
             <article id="waiting-screen" class="hidden">
@@ -108,7 +108,7 @@
                 <div>
                     <template>
                         <figure>
-                            <img src="images/characters/mario-waiting.png" title="player" alt="player">
+                            <img src="images/characters/Mario_Waiting.png" title="player" alt="player">
                             <figcaption></figcaption>
                         </figure>
                     </template>
@@ -117,7 +117,7 @@
             <div id="launch-screen" class="hidden">
                 <template>
                     <figure>
-                        <img src="images/characters/waluigi.webp" title="Waluigi" alt="Waluigi">
+                        <img src="images/characters/Waluigi.png" title="Waluigi" alt="Waluigi">
                         <figcaption>Timixo</figcaption>
                     </figure>
                 </template>

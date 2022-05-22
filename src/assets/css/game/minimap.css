@@ -1,6 +1,6 @@
 aside#map-container {
     grid-area: 5 / 1 / 8 / 3;
-    background-image: url("../../media/monopoly-board.png");
+    background-image: url("../../media/Monopoly_Board.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
     display: grid;
@@ -22,170 +22,14 @@ aside#map-container {
         "t10 t10 t9  t8  t7  t6  t5  t4  t3  t2  t1  t0  t0";
 }
 
+aside#map-container img{
+    max-height: 2rem;
+}
+
 aside#map-container div {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     font-weight: bold;
-}
-
-#t0 {
-    grid-area: t0;
-}
-
-#t1 {
-    grid-area: t1;
-}
-
-#t2 {
-    grid-area: t2;
-}
-
-#t3 {
-    grid-area: t3;
-}
-
-#t4 {
-    grid-area: t4;
-}
-
-#t5 {
-    grid-area: t5;
-}
-
-#t6 {
-    grid-area: t6;
-}
-
-#t7 {
-    grid-area: t7;
-}
-
-#t8 {
-    grid-area: t8;
-}
-
-#t9 {
-    grid-area: t9;
-}
-
-#t10 {
-    grid-area: t10;
-}
-
-#t11 {
-    grid-area: t11;
-}
-
-#t12 {
-    grid-area: t12;
-}
-
-#t13 {
-    grid-area: t13;
-}
-
-#t14 {
-    grid-area: t14;
-}
-
-#t15 {
-    grid-area: t15;
-}
-
-#t16 {
-    grid-area: t16;
-}
-
-#t17 {
-    grid-area: t17;
-}
-
-#t18 {
-    grid-area: t18;
-}
-
-#t19 {
-    grid-area: t19;
-}
-
-#t20 {
-    grid-area: t20;
-}
-
-#t21 {
-    grid-area: t21;
-}
-
-#t22 {
-    grid-area: t22;
-}
-
-#t23 {
-    grid-area: t23;
-}
-
-#t24 {
-    grid-area: t24;
-}
-
-#t25 {
-    grid-area: t25;
-}
-
-#t26 {
-    grid-area: t26;
-}
-
-#t27 {
-    grid-area: t27;
-}
-
-#t28 {
-    grid-area: t28;
-}
-
-#t29 {
-    grid-area: t29;
-}
-
-#t30 {
-    grid-area: t30;
-}
-
-#t31 {
-    grid-area: t31;
-}
-
-#t32 {
-    grid-area: t32;
-}
-
-#t33 {
-    grid-area: t33;
-}
-
-#t34 {
-    grid-area: t34;
-}
-
-#t35 {
-    grid-area: t35;
-}
-
-#t36 {
-    grid-area: t36;
-}
-
-#t37 {
-    grid-area: t37;
-}
-
-#t38 {
-    grid-area: t38;
-}
-
-#t39 {
-    grid-area: t39;
 }

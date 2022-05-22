@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Monopoly</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
     <link rel="stylesheet" href="../assets/css/reset.css">
     <link rel="stylesheet" href="../assets/css/game/game.css">
     <link rel="stylesheet" href="../assets/css/forms.css">
@@ -10,7 +15,7 @@
 
     <script src="../assets/js/config.js"></script>
 
-    <script src="../assets/js/data-connector/error-handler.js"></script>
+    <script src="../assets/js/data-connector/error-and-successful-handler.js"></script>
     <script src="../assets/js/data-connector/api-communication-abstractor.js"></script>
     <script src="../assets/js/data-connector/local-storage-abstractor.js"></script>
 
@@ -28,16 +33,14 @@
     <!-- part of game board for moves OR buttons for auctions and history -->
     <header>
         <h1>Monopoly</h1>
-        <div id="moves-container-and-history">
-            <template>
-                <img src="../images/tiles/Atlantic.jpg" alt="Atlantic" title="Atlantic">
-            </template>
+        <div id="moves-container-and-history" class="pawns">
+
         </div>
     </header>
 
     <!-- show where the current player is on the game board OR show errors and actions as text -->
     <aside id="current-place-on-game-board-or-actions-as-text">
-        <img id="current-place-on-game-board-image" src="../images/tiles/Atlantic.jpg" alt="Atlantic" title="Atlantic"/>
+        <img id="current-place-on-game-board-image" src="../images/tiles/Peachs_Garden.jpg" alt="Peach's Garden" title="Peach's Garden"/>
         <div id="error-and-successful">
 
         </div>
@@ -51,16 +54,14 @@
     <!-- properties and money of other players -->
     <aside id="other-players">
         <h2>Other players</h2>
-        <template>
-            <button type="button"></button>
-        </template>
+
         <div>
 
         </div>
     </aside>
 
     <!-- minimap -->
-    <aside id="map-container">
+    <aside id="map-container" class="pawns">
 
     </aside>
 
@@ -68,9 +69,7 @@
     <footer>
         <div id="property-view">
             <div id="small-property-container">
-                <template>
-                            <img src="" alt="" title="">
-                </template>
+
             </div>
             <button type="button">&hellip;</button>
         </div>
@@ -79,7 +78,7 @@
             <button type="button" id="bankrupt">bankrupt</button>
         </div>
         <section id="balance">
-            <h3><span id="balance-container">1</span><span id="debt-container">0</span></h3>
+            <h3><span id="balance-container">1</span><span id="debt-container">1</span></h3>
         </section>
     </footer>
 </div>

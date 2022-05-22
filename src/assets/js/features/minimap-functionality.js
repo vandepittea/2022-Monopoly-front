@@ -1,14 +1,30 @@
 "use strict";
 
-function syncPlayersToMinimap(game) {
-    // Clean all divs
-    for (let i = 0; i < _tiles.length; i++) {
-        document.querySelector(`#map-container #t${i}`).innerHTML = "";
-    }
+function syncPlayersToMinimap(game)
+{
+    cleanAllDivs();
 
-    game.players.forEach(player => {
-        const playerTileIdx = getTileIdx(player.currentTile);
-        const $minimapTile = document.querySelector(`#map-container #t${playerTileIdx}`);
-        $minimapTile.insertAdjacentHTML('beforeend', `<p>${player.name}</p>`);
+    game.players.forEach(player =>
+    {
+        syncOnePawn(player);
+    });
+}
+
+function cleanAllDivs(){
+    for (let i = 0; i < _tiles.length; i++) {
+        const $minimapTile = document.querySelectorAll(`.pawns #t${i}`);
+
+        $minimapTile.forEach( tile =>{
+            tile.innerText = "";
+        });
+    }
+}
+
+function syncOnePawn(player){
+    const playerTileIdx = getTileIdx(player.currentTile);
+
+    const $minimapTile = document.querySelectorAll(`.pawns #t${playerTileIdx}`);
+    $minimapTile.forEach(tile =>{
+        tile.insertAdjacentHTML('beforeend', `<img src="../images/characters/${player.pawn}.png" alt="${player.pawn} title="${player.pawn}">`);
     });
 }
