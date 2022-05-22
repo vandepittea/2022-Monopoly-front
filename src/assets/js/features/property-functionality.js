@@ -1,12 +1,15 @@
 "use strict";
 
 const _streetTypesNotToOpenManagerOn = ["utilities", "railroad", "jailcards"];
+const _propertiesContainerId = "#properties-container";
+const _propertyManagerId = "property-manager";
+const _houseCountId = "#house-count";
 
 function fillProperties() {
     const $main = document.querySelector("main");
     $main.insertAdjacentHTML("beforeend", _htmlElements.propertyView);
 
-    const $propertiesContainer = document.querySelector("#properties-container");
+    const $propertiesContainer = document.querySelector(_propertiesContainerId);
     const $railroadContainer = $propertiesContainer.querySelector(`[data-streettype="railroad"] ul`);
     const $utilitiesContainer = $propertiesContainer.querySelector(`[data-streettype="utilities"] ul`);
 
@@ -55,9 +58,9 @@ function fillInPropertyDetails($propertyListContainer, tile){
 function activateCurrentPlayersProperties() {
     activateProperties(getPlayerObject(_currentGameState, _gameData.playerName));
 
-    document.querySelector("#properties-container").insertAdjacentHTML("beforeend", _htmlElements.rentButton);
+    document.querySelector(_propertiesContainerId).insertAdjacentHTML("beforeend", _htmlElements.rentButton);
     document.querySelector("main #collect-rent").addEventListener("click", () => collectRent(_currentGameState));
-    document.querySelector("#properties-container").addEventListener("click", manageProperty);
+    document.querySelector(_propertiesContainerId).addEventListener("click", manageProperty);
 }
 
 function activateOtherPlayerProperties(e) {
@@ -161,11 +164,11 @@ function manageProperty(e) {
         const $main = document.querySelector("main");
 
         $main.innerHTML = `<div id="properties-container"></div>`;
-        document.querySelector("#properties-container").addEventListener("click", selectPropertyToImprove);
+        document.querySelector(_propertiesContainerId).addEventListener("click", selectPropertyToImprove);
         const $propertyContainer = $main.querySelector("div");
 
         if (checkIfThePropertyManagerIsAllowedToOpen(e, $article)) {
-            $article.id = "property-manager";
+            $article.id = _propertyManagerId;
 
             injectStreetWithHouseAndHotelCount($propertyContainer, $article);
 
@@ -177,7 +180,7 @@ function manageProperty(e) {
 }
 
 function checkIfThePropertyManagerIsAllowedToOpen(e, $article){
-    if(($article !== null) && ($article.id !== "property-manager")){
+    if(($article !== null) && ($article.id !== _propertyManagerId)){
         if(($article.hasAttribute("data-streettype")) && ($article.dataset.streettype !== "railroad") && ($article.dataset.streettype !== "jailcards")){
             if(e.target.closest("#properties").querySelector("h2").innerText.split("'")[0] === _gameData.playerName){
                 return true;
@@ -188,7 +191,7 @@ function checkIfThePropertyManagerIsAllowedToOpen(e, $article){
 }
 
 function checkIfItIsAnElementInsideThePropertyManager(e, elementName, $article){
-    return (e.target.nodeName.toLowerCase() === elementName) && ($article.id === "property-manager");
+    return (e.target.nodeName.toLowerCase() === elementName) && ($article.id === _propertyManagerId);
 
 }
 
@@ -231,7 +234,7 @@ function selectPropertyToImprove(e) {
 }
 
 function getHouseCountOutOfHtml($item){
-    return parseInt($item.querySelector("#house-count").innerText);
+    return parseInt($item.querySelector(_houseCountId).innerText);
 }
 
 function getHotelCountOutOfHtml($item){
@@ -239,15 +242,15 @@ function getHotelCountOutOfHtml($item){
 }
 
 function setHouseCountInHtml($item, response){
-    $item.querySelector("#house-count").innerText = response.houses;
+    $item.querySelector(_houseCountId).innerText = response.houses;
 }
 
 function setHotelCountInHtml($item, response){
     $item.querySelector("#hotel-count").innerText = response.hotels;
     if (response.hotels === 0) {
-        $item.querySelector("#house-count").innerText = 4;
+        $item.querySelector(_houseCountId).innerText = 4;
     } else if (response.hotels > 0) {
-        $item.querySelector("#house-count").innerText = 0;
+        $item.querySelector(_houseCountId).innerText = 0;
     }
 }
 
@@ -259,7 +262,6 @@ function improveBuildings(e) {
         $article.querySelectorAll("li").forEach($item => {
             if ($item.classList.contains("selected")) {
                 const houseCounter = getHouseCountOutOfHtml($item);
-                const hotelCounter = getHotelCountOutOfHtml($item);
 
                 buyHotelOrHouse($item, houseCounter);
                 itemWasSelected = true;
