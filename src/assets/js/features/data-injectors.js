@@ -300,5 +300,7 @@ function makeMiniMapDivs() {
 
     for (let i = 0; i < _tiles.length; i++) {
         $miniMapAside.insertAdjacentHTML("beforeend", `<div id="t${i}"> </div>`);
+        const $div = $miniMapAside.querySelector(`#t${i}`);
+        $div.style.setProperty("grid-area", `t${i}`);
     }
 }
