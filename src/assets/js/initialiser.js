@@ -36,6 +36,9 @@ function initMonopolyEventHandlers(){
     document.querySelector("#bankrupt").addEventListener("click", declareBankrupt);
     document.querySelector("#tax-system").addEventListener("click", switchTaxSystem);
     document.querySelector("#moves-container-and-history").addEventListener("click", injectHistory);
+
+    window.onbeforeunload = closingCode;
+    window.onunload = closingCode;
 }
 
 function startGame(){
@@ -44,4 +47,9 @@ function startGame(){
     fillPlayerButtons();
     manageGame();
     checkForWinner();
+}
+
+function closingCode(){
+    declareBankrupt();
+    return false;
 }
