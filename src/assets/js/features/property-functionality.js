@@ -2,39 +2,52 @@
 
 function fillProperties() {
     const $main = document.querySelector("main");
-    $main.insertAdjacentHTML('beforeend', _htmlElements.propertyView);
+    $main.insertAdjacentHTML("beforeend", _htmlElements.propertyView);
 
-    const $propertiesCont = document.querySelector("#properties-container");
-    const $railroadCont = $propertiesCont.querySelector("[data-streettype='railroad'] ul");
-    const $utilitiesCont = $propertiesCont.querySelector("[data-streettype='utilities'] ul");
+    const $propertiesContainer = document.querySelector("#properties-container");
+    const $railroadContainer = $propertiesContainer.querySelector("[data-streettype='railroad'] ul");
+    const $utilitiesContainer = $propertiesContainer.querySelector("[data-streettype='utilities'] ul");
 
     _tiles.forEach(tile => {
-        addTile(tile, $propertiesCont, $railroadCont, $utilitiesCont);
+        addTileToCorrectPropertyGroupContainer(tile, $propertiesContainer, $railroadContainer, $utilitiesContainer);
     });
 
-    _htmlElements.propertyView = $main.innerText;
-    $main.innerText = "";
+    _htmlElements.propertyView = $main.innerHTML;
+    $main.innerHTML = "";
 }
 
-function addTile(tile, $propertiesCont, $railroadCont, $utilitiesCont) {
+function addTileToCorrectPropertyGroupContainer(tile, $propertiesContainer, $railroadContainer, $utilitiesContainer) {
     switch (tile.type) {
         case "STREET":
-            const $container = $propertiesCont.querySelector(`[data-streettype='${tile.streetColor.toLowerCase()}'] ul`);
-            $container.insertAdjacentHTML('beforeend', `<li data-name="${tile.name}">
-                            <img src="../images/deeds/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
+            const $propertyListContainer = $propertiesContainer.querySelector(`[data-streettype='${tile.streetColor.toLowerCase()}'] ul`);
+            $propertyListContainer.insertAdjacentHTML('beforeend', _htmlElements.onePropertyInPropertyView);
+
+            fillInPropertyDetails($propertyListContainer, tile);
             break;
         case "RAILROAD":
-            $railroadCont.insertAdjacentHTML('beforeend', `<li data-name="${tile.name}">
-                            <img src="../images/deeds/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
+            $railroadContainer.insertAdjacentHTML('beforeend', _htmlElements.onePropertyInPropertyView);
+
+            fillInPropertyDetails($railroadContainer, tile);
             break;
         case "UTILITY":
-            $utilitiesCont.insertAdjacentHTML('beforeend', `<li data-name="${tile.name}">
-                            <img src="../images/deeds/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
+            $utilitiesContainer.insertAdjacentHTML('beforeend', _htmlElements.onePropertyInPropertyView);
+
+            fillInPropertyDetails($utilitiesContainer, tile);
             break;
         default:
-            console.log("something else");
             break;
     }
+}
+
+function fillInPropertyDetails($propertyListContainer, tile){
+    const $lastInsertedProperty = $propertyListContainer.lastElementChild;
+
+    $lastInsertedProperty.dataset.name = tile.name;
+
+    const $image = $lastInsertedProperty.querySelector("img");
+    $image.setAttribute("src", `../images/deeds/${tile.nameAsPathParameter}.jpg`);
+    $image.setAttribute("alt", tile.name);
+    $image.setAttribute("title", tile.name);
 }
 
 function activateCurrentPlayersProperties() {

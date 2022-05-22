@@ -89,6 +89,12 @@ const _htmlElements =
                 </div>
             </article>
             `,
+        onePropertyInPropertyView:
+            `
+            <li data-name="">
+                    <img src="" alt="" title=""/>
+            </li>
+            `,
         propertyInSmallContainer:
             `
                 <div class="partially-of-screen">
