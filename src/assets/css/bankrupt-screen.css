@@ -1,0 +1,66 @@
+/* fonts */
+@font-face {
+    font-family: "nintendo";
+    src: url("../fonts/Pretendo.ttf");
+}
+
+/* blocks */
+body {
+    font-family: "Arial", "Helvetica", sans-serif;
+    color: black;
+    background-color: rgba(186, 36, 3, 1);
+    font-size: 1rem;
+}
+
+h1 {
+    color: #DC143C;
+    font-family: "nintendo", sans-serif;
+    font-size: 4rem;
+    text-shadow: 0 0.02rem 0.02rem #ffffff;
+
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: white;
+
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+article {
+    height: 100vh;
+    margin-right: auto;
+    margin-left: auto;
+
+    background-image: url("../media/Mario-bankrupt.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+}
+
+div {
+    width: 100%;
+    position: fixed;
+    bottom: 3rem;
+
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+a {
+    text-decoration: none;
+    display: block;
+    color: #DC143C;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 1.25rem;
+    border-style: solid;
+    border-width: 0.125rem;
+    border-color: #DC143C;
+    padding: 0.35rem 0.75rem;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+}
