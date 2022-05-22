@@ -32,14 +32,16 @@ function createGame(e)
 
     const bodyParams = {
        prefix: _config.prefix,
-       numberOfPlayers: parseInt(_amountPlayers)
+       numberOfPlayers: parseInt(_amountPlayers),
+       gameName: document.querySelector("#group-name").value
     };
 
     fetchFromServer('/games', 'POST', bodyParams)
         .then(game =>
         {
             _gameID = game.id;
-           joinGameAfterCreation();
+            createGameList();
+            makeVisibleByID("game-list", allDivIds);
         })
         .catch(errorHandler);
 
@@ -71,6 +73,7 @@ function createGameList()
 
 function addGameToContainer($container, $templateNode, game)
 {
+    //TODO: Add game name (also in HTML template)
     const $template = $templateNode.content.firstElementChild.cloneNode(true);
     $template.dataset.gameid = game.id;
 
@@ -80,6 +83,7 @@ function addGameToContainer($container, $templateNode, game)
     });
     $template.querySelector('#active-players').innerText = game.players.length;
     $template.querySelector('#max-players').innerText = game.numberOfPlayers;
+    $template.querySelector('#game-name').innerText = game.gameName;
 
     $container.insertAdjacentHTML('beforeend', $template.outerHTML);
 }
@@ -100,28 +104,56 @@ function joinGame(e)
         .then(response =>
         {
             _gameData.token = response;
+            placeChosenCharactersInBlack();
             makeVisibleByID("character-screen", allDivIds);
         })
         .catch(errorHandler);
 }
 
-function joinGameAfterCreation() {
+function placeChosenCharactersInBlack(){
+    fetchFromServer(`/games/${_gameID}`, 'GET')
+        .then(game =>
+        {
+            game.players.forEach(player =>
+            {
+                const $images = document.querySelectorAll("#character-screen img");
+                $images.forEach(image =>{
+                    console.log(player.pawn);
+                    console.log(image.title);
+                    if(player.pawn === image.title){
+                        image.classList.add("pawn-taken");
+                    }
+                });
+            });
+
+            if (!document.querySelector("main #character-screen").classList.contains("hidden")) {
+                setTimeout(placeChosenCharactersInBlack, 1500);
+            }
+        })
+        .catch(errorHandler);
+}
+
+function joinGameWithPlayer(e)
+{
+    assignPawn(e);
+
+    if(!e.target.classList.contains("pawn-taken")){
+        makeVisibleByID("waiting-screen", allDivIds);
+        waitForPlayers();
+    }
+}
+
+function assignPawn(e) {
     const playerObject = {
-        playerName: _nickname
+        playerName: _nickname,
+        pawn: e.target.dataset.name
     };
     fetchFromServer(`/games/${_gameID}/players`, 'POST', playerObject)
         .then(response =>
         {
-            _gameData.token = response;
-            makeVisibleByID("character-screen", allDivIds);
+            console.log(response);
         })
         .catch(errorHandler);
-}
-
-function joinGameWithPlayer()
-{
-    makeVisibleByID("waiting-screen", allDivIds);
-    waitForPlayers();
 }
 
 function waitForPlayers()
@@ -138,7 +170,8 @@ function waitForPlayers()
                 addPlayersToWaitingScreen(game);
                 setTimeout(waitForPlayers, 1500);
             }
-        });
+        })
+        .catch(errorHandler);
 }
 
 function addPlayersToWaitingScreen(game)
@@ -152,7 +185,11 @@ function addPlayersToWaitingScreen(game)
     game.players.forEach(player =>
     {
         const $template = $templateNode.content.firstElementChild.cloneNode(true);
-        $template.querySelector("img").setAttribute('src', "images/characters/waluigi.webp");
+        if (player.pawn !== null) {
+            $template.querySelector("img").setAttribute('src', `images/characters/${player.pawn}.webp`);
+        }
+        $template.querySelector("img").setAttribute('title', `${player.name}`);
+        $template.querySelector("img").setAttribute('alt', `${player.pawn}`);
         $template.querySelector("figcaption").innerText = player.name;
         $container.insertAdjacentHTML('beforeend', $template.outerHTML);
     });
@@ -169,11 +206,15 @@ function goToWaitingScreen(game)
     const $templateNode = document.querySelector('#launch-screen template');
     const $playerContainer = document.querySelector('#other-players');
 
+    console.log(game.players);
+
     game.players.forEach(player =>
     {
         const $template = $templateNode.content.firstElementChild.cloneNode(true);
         $template.querySelector('figcaption').innerText = player.name;
-        // TODO: add pawn here when our API is done
+        $template.querySelector("img").setAttribute('src', `images/characters/${player.pawn}.webp`);
+        $template.querySelector("img").setAttribute('title', `${player.pawn}`);
+        $template.querySelector("img").setAttribute('alt', `${player.pawn}`);
 
         if (player.name === _nickname)
         {

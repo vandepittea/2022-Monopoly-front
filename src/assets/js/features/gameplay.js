@@ -1,45 +1,52 @@
 "use strict";
+
 let _currentGameState = null;
 let _previousCyclePlayer = null;
+let _firstTimeCyclingManageGame = true;
+let _waitingTimeActions = 3000;
 
 function manageGame() {
-    // TODO: delete this if-else, this exists for testing with dummy data
-    let url;
-    if (_gameData.token === null) {
-        url = '/games/dummy';
-    } else {
-        url = `/games/${_gameData.gameID}`;
-    }
-
-    fetchFromServer(url, 'GET')
+    fetchFromServer(`/games/${_gameData.gameID}`, 'GET')
         .then(game => {
             _currentGameState = game;
 
-            //All things that needs to be shown for both go here
-            injectProperties(game);
-            injectBalance(game);
-            syncPlayersToMinimap(game);
+            showAspectsForCurrentAndOtherPlayers(game);
 
-            if ((game.currentPlayer === _gameData.playerName) && (_previousCyclePlayer === _gameData.playerName)) {
-                //All things specific for the active player goes here
-                injectPossibleTiles(game);
-                fillActivePlayerMain(game);
+            if ((game.currentPlayer === _gameData.playerName) && (_previousCyclePlayer === _gameData.playerName || _firstTimeCyclingManageGame)) {
+                showAspectsForCurrentPlayer(game);
+                _firstTimeCyclingManageGame = false;
             } else {
-                //All things specific for non-active players go here
-                fillOtherPlayerMain(game);
-                if (game.currentPlayer !== _previousCyclePlayer) {
-                    setTimeout(manageGame, calculateTimeout(game));
-                } else {
-                    setTimeout(manageGame, 3000);
-                }
-                _previousCyclePlayer = game.currentPlayer;
+                showAspectsAndDoActionsForOtherPlayers(game);
             }
         })
         .catch(errorHandler);
 }
 
+function showAspectsForCurrentAndOtherPlayers(game){
+    injectProperties(game);
+    injectBalanceAndDebt(game);
+}
+
+function showAspectsForCurrentPlayer(game){
+    injectPossibleTiles(game);
+    syncPlayersToMinimap(game);
+    fillActivePlayerMain(game);
+}
+
+function showAspectsAndDoActionsForOtherPlayers(game){
+    fillOtherPlayerMain(game);
+
+    if (game.currentPlayer !== _previousCyclePlayer) {
+        setTimeout(manageGame, calculateTimeout(game));
+    } else {
+        setTimeout(manageGame, _waitingTimeActions);
+    }
+
+    _previousCyclePlayer = game.currentPlayer;
+}
+
 function calculateTimeout(game) {
-    return 5000 / game.numberOfPlayers;
+    return 6000 / game.numberOfPlayers;
 }
 
 function rollDice() {
@@ -47,17 +54,13 @@ function rollDice() {
         if (_currentGameState.currentPlayer === _gameData.playerName) {
             fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/dice`, 'POST')
                 .then(response => {
-                    console.log(response);
-
-                    const $diceRoll = response.lastDiceRoll;
-                    console.log(`${_gameData.playerName} rolled a ${$diceRoll[0]} and a ${$diceRoll[1]}`);
                     syncPlayersToMinimap(response);
 
                     const $main = document.querySelector("main");
                     $main.innerText = "";
                     injectTurnInMain(getLastTurn(response), $main);
 
-                    setTimeout(manageGame, 2000);
+                    setTimeout(manageGame, _waitingTimeActions);
 
                     _currentGameState = response;
                 })
