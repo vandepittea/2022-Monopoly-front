@@ -168,7 +168,7 @@ function manageProperty(e) {
 }
 
 function checkIfThePropertyManagerIsAllowedToOpen(e, $article){
-    if(($article !== null) && (e.target.nodeName.toLowerCase() === "img") && ($article.id !== "property-manager")){
+    if(($article !== null) && ($article.id !== "property-manager")){
         if(($article.hasAttribute("data-streettype")) && ($article.dataset.streettype !== "railroad") && ($article.dataset.streettype !== "jailcards")){
             if(e.target.closest("#properties").querySelector("h2").innerText.split("'")[0] === _gameData.playerName){
                 return true;
@@ -178,8 +178,8 @@ function checkIfThePropertyManagerIsAllowedToOpen(e, $article){
     return false;
 }
 
-function checkIfItIsAButtonInsideThePropertyManager(e, $article){
-    return (e.target.nodeName.toLowerCase() === "img") && ($article.id === "property-manager");
+function checkIfItIsAnElementInsideThePropertyManager(e, elementName, $article){
+    return (e.target.nodeName.toLowerCase() === elementName) && ($article.id === "property-manager");
 
 }
 
@@ -215,7 +215,7 @@ function injectOnePropertyInTheStreetWithHouseAndHotelCount(item){
 function selectPropertyToImprove(e) {
     const $article = e.target.closest("article");
 
-    if (checkIfItIsAButtonInsideThePropertyManager(e, $article)) {
+    if (checkIfItIsAnElementInsideThePropertyManager(e, "img", $article)) {
         $article.querySelectorAll("li").forEach($image => $image.classList.remove("selected"));
 
         e.target.closest("li").classList.add("selected");
@@ -223,11 +223,11 @@ function selectPropertyToImprove(e) {
 }
 
 function getHouseCountOutOfHtml($item){
-    return $item.querySelector("#house-count").innerText;
+    return parseInt($item.querySelector("#house-count").innerText);
 }
 
 function getHotelCountOutOfHtml($item){
-    return $item.querySelector("#hotel-count").innerText;
+    return parseInt($item.querySelector("#hotel-count").innerText);
 }
 
 function setHouseCountInHtml($item, response){
@@ -241,7 +241,7 @@ function setHotelCountInHtml($item, response){
 function improveBuildings(e) {
     const $article = e.target.closest("article");
 
-    if (checkIfItIsAButtonInsideThePropertyManager(e, $article)) {
+    if (checkIfItIsAnElementInsideThePropertyManager(e, "button", $article)) {
         $article.querySelectorAll("li").forEach($item => {
             if ($item.classList.contains("selected")) {
                 const houseCounter = getHouseCountOutOfHtml($item);
@@ -288,7 +288,7 @@ function decideBuyingHotelOrHouse(propertyName, houseCounter){
 function removeBuildings(e) {
     const $article = e.target.closest("article");
 
-    if (checkIfItIsAButtonInsideThePropertyManager(e, $article)) {
+    if (checkIfItIsAnElementInsideThePropertyManager(e, "button", $article)) {
         $article.querySelectorAll("li").forEach($item => {
             if ($item.classList.contains("selected")) {
                 const hotelCounter = getHotelCountOutOfHtml($item);
@@ -306,10 +306,10 @@ function sellHotelOrHouse($item, hotelCounter){
 
     fetchFromServer(link, 'DELETE')
         .then(response => {
-            if (hotelCounter < 0) {
-                setHouseCountInHtml($item, response);
-            } else {
+            if (hotelCounter > 0) {
                 setHotelCountInHtml($item, response);
+            } else {
+                setHouseCountInHtml($item, response);
             }
         })
         .catch(errorHandler);
@@ -318,10 +318,10 @@ function sellHotelOrHouse($item, hotelCounter){
 function decideSellingHotelOrHouse(propertyName, hotelCounter){
     let link = "";
 
-    if (hotelCounter < 0) {
-        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}/houses`;
-    } else {
+    if (hotelCounter > 0) {
         link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}/hotel`;
+    } else {
+        link = `/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}/houses`;
     }
 
     return link;
