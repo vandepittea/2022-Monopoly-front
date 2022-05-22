@@ -128,6 +128,8 @@ function becomeActivePlayerView(){
     toggleVisibilityByID(_divsToToggle, false);
     toggleVisibilityByID(_idsToShowWhenCurrentPlayer, false);
     toggleVisibilityByID(_idsToShowWhenNotCurrentPlayer, true);
+
+    document.querySelector("main").style.gridColumnStart = "3";
 }
 
 function insertJailedMain($main, game) {
@@ -209,8 +211,11 @@ function becomeOtherPlayerMain(){
     toggleVisibilityByID(_divsToToggle, false);
     toggleVisibilityByID(_idsToShowWhenCurrentPlayer, true);
     toggleVisibilityByID(_idsToShowWhenNotCurrentPlayer, false);
+
     injectHistoryButton();
     injectBusyRolling();
+
+    document.querySelector("main").style.gridColumnStart = "2";
 }
 
 function injectHistoryButton() {
