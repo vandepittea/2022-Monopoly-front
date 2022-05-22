@@ -1,17 +1,29 @@
+/* fonts */
+@font-face {
+    font-family: "nintendo";
+    src: url("../fonts/Pretendo.ttf");
+}
+
+/* blocks */
 body {
-    font-family: "Arial", "Helvetica", sans-serif;
+    font-family: "nintendo", sans-serif;
     color: black;
     background-color: rgba(120, 144, 248, 1);
     font-size: 1rem;
 }
 
 h1 {
+    color: #DC143C;
+    font-size: 4rem;
+    text-shadow: 0 0.02rem 0.02rem #ffffff;
+
     font-weight: bold;
     text-align: center;
-    font-size: 5rem;
-    margin-top: 1rem;
     text-transform: uppercase;
     background-color: white;
+
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 article {
