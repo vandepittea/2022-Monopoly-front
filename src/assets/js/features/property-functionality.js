@@ -235,7 +235,10 @@ function setHouseCountInHtml($item, response){
 }
 
 function setHotelCountInHtml($item, response){
-    $item.querySelector("#hotel-count").innerText = response.houses;
+    $item.querySelector("#hotel-count").innerText = response.hotels;
+    if (response.hotels === 0) {
+        $item.querySelector("#house-count").innerText = response.houses;
+    }
 }
 
 function improveBuildings(e) {
