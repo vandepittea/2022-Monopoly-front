@@ -25,6 +25,6 @@ function syncOnePawn(player){
 
     const $minimapTile = document.querySelectorAll(`.pawns #t${playerTileIdx}`);
     $minimapTile.forEach(tile =>{
-        tile.insertAdjacentHTML('beforeend', `<img src="../images/characters/${player.pawn}.webp" alt="${player.pawn} title="${player.pawn}">`);
+        tile.insertAdjacentHTML('beforeend', `<img src="../images/characters/${player.pawn}.png" alt="${player.pawn} title="${player.pawn}">`);
     });
 }

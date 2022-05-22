@@ -197,7 +197,7 @@ function addInformationToPlayerForAddingToWaitingList($templateNode, player){
     if (player.pawn !== null) {
         const $image = $template.querySelector("img");
 
-        $image.setAttribute("src", `images/characters/${player.pawn}.webp`);
+        $image.setAttribute("src", `images/characters/${player.pawn}.png`);
         $image.setAttribute("title", `${player.name}`);
         $image.setAttribute("alt", `${player.pawn}`);
     }

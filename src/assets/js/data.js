@@ -121,7 +121,7 @@ const _htmlElements =
             <article id="other-player-overview">
                 <div>
                     <button type="button" id="close-screen">&#10007;</button>
-                    <img src="../images/characters/waluigi.webp" alt="Waluigi" title="Waluigi"/>
+                    <img src="../images/characters/waluigi.png" alt="Waluigi" title="Waluigi"/>
                     <h2>PlayerName</h2>
                 </div>
                 <div>
