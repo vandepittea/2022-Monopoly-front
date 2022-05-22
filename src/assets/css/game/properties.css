@@ -4,6 +4,10 @@ article#properties {
     margin-bottom: 1rem;
 }
 
+article#property-manager{
+    padding: 5rem 5rem 0 5rem;
+}
+
 div#properties-container {
     display: flex;
     flex-flow: row wrap;
@@ -31,10 +35,15 @@ div#properties-container ul li {
     flex: 0 0 28%;
     margin-right: 1rem;
     filter: grayscale(100%);
+    border: 0.01rem solid transparent;
 }
 
 div#properties-container ul li.owned {
     filter: grayscale(0%);
+}
+
+div#properties-container ul li.selected{
+    border: #DC143C 0.01rem solid;
 }
 
 div#properties-container article.two-cards ul li {
@@ -51,6 +60,7 @@ div#properties-container ul li[data-name="jailcards"]:last-of-type {
 }
 
 div#properties-container article#property-manager ul li{
+    padding: 0.8rem;
     flex: initial;
 }
 
