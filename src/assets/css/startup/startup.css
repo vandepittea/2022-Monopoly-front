@@ -28,11 +28,6 @@ main{
     width: 100%;
 }
 
-#login{
-    display: flex;
-    align-items: flex-end;
-}
-
 article {
     background-color: lightgray;
     padding: 10rem 1rem 10rem 1rem;
@@ -56,11 +51,16 @@ div#error-and-successful{
     margin-top: 1rem;
 }
 
-#login aside{
+div#login{
+    display: flex;
+    align-items: flex-end;
+}
+
+div#login aside{
     width: 22.5%;
 }
 
-#character-screen div, #waiting-screen div{
+article#character-screen div, article#waiting-screen div{
     display: flex;
     flex-flow: wrap;
     width: 45%;
@@ -69,14 +69,14 @@ div#error-and-successful{
     justify-content: space-between;
 }
 
-#launch-screen div{
+div#launch-screen div{
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
     margin-top: 1rem;
 }
 
-#launch-screen #launch-button-and-current-player{
+div#launch-screen #launch-button-and-current-player{
     width: 60%;
     margin: 3rem auto 0 auto;
     justify-content: center;
@@ -99,13 +99,13 @@ p{
     font-weight: bold;
 }
 
-#game-list h2{
+article#game-list h2{
     display: inline-block;
     margin-bottom: 2rem;
     float: left;
 }
 
-#waiting-screen h2{
+article#waiting-screen h2{
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
@@ -118,7 +118,7 @@ figcaption{
     margin: 0.8rem 0 0.5rem 0;
 }
 
-#launch-button-and-current-player figcaption{
+div#launch-button-and-current-player figcaption{
     font-size: 1.5rem;
 }
 
@@ -146,26 +146,26 @@ header img{
     padding: 0.4rem;
 }
 
-#character-screen img.pawn-taken{
+article#character-screen img.pawn-taken{
     filter: grayscale(100%);
 }
 
-#login aside img{
+div#login aside img{
     width: 100%;
 }
 
-#launch-screen div img{
+div#launch-screen div img{
     width: 5rem;
     margin-right: 1.5rem;
     margin-left: 1.5rem;
 }
 
-#character-screen img:hover{
+article#character-screen img:hover{
     border-radius: 5%;
     background-color: #DC143C;
 }
 
-#waiting-screen figure{
+article#waiting-screen figure{
     flex: 0 0 19%;
     width: 1rem;
     margin: 0.4rem;
@@ -174,6 +174,6 @@ header img{
     justify-content: flex-end;
 }
 
-#launch-screen #launch-button-and-current-player img{
+div#launch-screen #launch-button-and-current-player img{
     width: 14rem;
 }

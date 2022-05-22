@@ -1,0 +1,62 @@
+/* fonts */
+@font-face {
+    font-family: "nintendo";
+    src: url("../fonts/Pretendo.ttf");
+}
+
+/* blocks */
+body {
+    font-family: "nintendo", sans-serif;
+    color: black;
+    background-color: rgba(120, 144, 248, 1);
+    font-size: 4rem;
+}
+
+article {
+    height: 100vh;
+}
+
+article#win-screen {
+    background-image: url("../media/Mario_Level_Completed.png");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 75%;
+}
+
+article#bankrupt-screen {
+    background-color: rgba(186, 36, 3, 1);
+    background-image: url("../media/Mario_Bankrupt.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+}
+
+div {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+div#win-screen-button {
+    background-image: url("../media/Super_Mario_Bros_Level_Completed_Wall.png");
+    background-size: 25%;
+}
+
+/* font styling */
+h1 {
+    color: #DC143C;
+    background-color: white;
+    text-shadow: 0 0.02rem 0.02rem #ffffff;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+a {
+    text-decoration: none;
+    width: 10rem;
+}
