@@ -353,15 +353,6 @@ img {
     max-width: 100%;
 }
 
-header #moves-container-and-history div img{
-    height: 100%;
-}
-
-header #moves-container-and-history div div img{
-    max-width: 3em;
-    height: auto;
-}
-
 div#dice img{
     margin-bottom: 2em;
 }
@@ -378,4 +369,13 @@ article#main-tile-deed img{
 
 footer #small-property-container img {
     margin-right: 2rem;
+}
+
+header #moves-container-and-history div img{
+    height: 100%;
+}
+
+header #moves-container-and-history div div img{
+    max-width: 3em;
+    height: auto;
 }
