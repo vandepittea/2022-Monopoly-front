@@ -42,6 +42,7 @@ function createGame(e)
         {
             _gameID = game.id;
 
+            createGameList();
             makeVisibleByID("game-list", allDivIds);
         })
         .catch(errorHandler);
@@ -119,6 +120,10 @@ function placeChosenCharactersInBlack(){
                     }
                 });
             });
+
+            if (!document.querySelector("main #character-screen").classList.contains("hidden")) {
+                setTimeout(placeChosenCharactersInBlack, 1500);
+            }
         })
         .catch(errorHandler);
 }
@@ -130,9 +135,6 @@ function joinGameWithPawn(e)
     if(!e.target.classList.contains("pawn-taken")){
         makeVisibleByID("waiting-screen", allDivIds);
         waitForPlayers();
-    }
-    else{
-        addErrorAndSuccessfulMessage("This player is already chosen.");
     }
 }
 
@@ -189,7 +191,10 @@ function addInformationToPlayerForAddingToWaitingList($templateNode, player){
     const $template = $templateNode.content.firstElementChild.cloneNode(true);
 
     const $image = $template.querySelector("img");
-    $image.setAttribute("src", `images/characters/${player.pawn}.webp`);
+
+    if (player.pawn !== null) {
+        $image.setAttribute("src", `images/characters/${player.pawn}.webp`);
+    }
     $image.setAttribute("title", `${player.name}`);
     $image.setAttribute("alt", `${player.pawn}`);
 
