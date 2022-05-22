@@ -4,7 +4,18 @@ function makeVisibleByID(idToActivate, allIDs) {
     allIDs.forEach(id => {
         document.querySelector(`#${id}`).classList.add("hidden");
     });
+
     document.querySelector(`#${idToActivate}`).classList.remove("hidden");
+}
+
+function toggleVisibilityByID(idsToToggle, hidden) {
+    idsToToggle.forEach(id => {
+        document.querySelector(`#${id}`).classList.remove("hidden");
+
+        if (hidden) {
+            document.querySelector(`#${id}`).classList.add("hidden");
+        }
+    });
 }
 
 function getPlayerObject(game, playerName) {
@@ -21,15 +32,6 @@ function getTileIdx(tileName) {
 
 function getTile(tileName) {
     return _tiles.find(tile => tile.name === tileName);
-}
-
-function toggleVisibilityByID(idsToToggle, hidden) {
-    idsToToggle.forEach(id => {
-        document.querySelector(`#${id}`).classList.remove("hidden");
-        if (hidden) {
-            document.querySelector(`#${id}`).classList.add("hidden");
-        }
-    });
 }
 
 function clearMain() {

@@ -40,6 +40,7 @@ function createGame(e)
         .then(game =>
         {
             _gameID = game.id;
+            createGameList();
             makeVisibleByID("game-list", allDivIds);
         })
         .catch(errorHandler);
@@ -122,8 +123,12 @@ function placeChosenCharactersInBlack(){
                     if(player.pawn === image.title){
                         image.classList.add("pawn-taken");
                     }
-                })
+                });
             });
+
+            if (!document.querySelector("main #character-screen").classList.contains("hidden")) {
+                setTimeout(placeChosenCharactersInBlack, 1500);
+            }
         })
         .catch(errorHandler);
 }
@@ -135,9 +140,6 @@ function joinGameWithPlayer(e)
     if(!e.target.classList.contains("pawn-taken")){
         makeVisibleByID("waiting-screen", allDivIds);
         waitForPlayers();
-    }
-    else{
-        addErrorAndSuccessfulMessage("This player is already chosen.");
     }
 }
 
@@ -183,10 +185,12 @@ function addPlayersToWaitingScreen(game)
     game.players.forEach(player =>
     {
         const $template = $templateNode.content.firstElementChild.cloneNode(true);
-        $template.querySelector("img").setAttribute('src', `images/characters/${player.pawn}.webp`);
+        if (player.pawn !== null) {
+            $template.querySelector("img").setAttribute('src', `images/characters/${player.pawn}.webp`);
+        }
         $template.querySelector("img").setAttribute('title', `${player.name}`);
         $template.querySelector("img").setAttribute('alt', `${player.pawn}`);
-        $template.querySelector("figcaption").innerText = player.pawn;
+        $template.querySelector("figcaption").innerText = player.name;
         $container.insertAdjacentHTML('beforeend', $template.outerHTML);
     });
 
