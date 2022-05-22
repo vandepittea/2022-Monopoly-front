@@ -13,17 +13,17 @@ const _htmlElements =
     {
         rollDice:
             `
-            <article id="dice">
+            <div id="dice">
                     <img src="../images/dice.png" alt="dice" title="dice">
                     <button type="button" id="roll-dice">Roll Dice</button>
-             </article>
+             </div>
           `,
         busyRolling:
             `
-            <article id="dice">
+            <div id="dice">
                 <img src="../images/dice.png" alt="dice" title="dice">
                 <p></p>
-            </article>
+            </div>
             `,
         propertyView:
             `
