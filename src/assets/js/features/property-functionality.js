@@ -52,11 +52,12 @@ function fillInPropertyDetails($propertyListContainer, tile){
 
 function activateCurrentPlayersProperties() {
     activateProperties(getPlayerObject(_currentGameState, _gameData.playerName));
+
     document.querySelector("#properties-container").insertAdjacentHTML('beforeend', _htmlElements.rentButton);
     document.querySelector("main #collect-rent").addEventListener("click", () => collectRent(_currentGameState));
 }
 
-function activatePlayerProperties(e) {
+function activateOtherPlayerProperties(e) {
     const player = getPlayerObject(_currentGameState, e.target.closest("article").dataset.player);
     activateProperties(player);
 }
@@ -66,10 +67,16 @@ function activateProperties(player) {
 
     const $main = document.querySelector("main");
     $main.innerText = "";
+
     $main.insertAdjacentHTML("beforeend", _htmlElements.propertyView);
     $main.querySelector("#close-screen").addEventListener("click", clearMain);
     $main.querySelector("#properties h2").innerText = `${player.name}'s properties`;
 
+    placeOwnedPropertiesInColor(player);
+    addGetOutOfJailCards(player);
+}
+
+function placeOwnedPropertiesInColor(player){
     const $propertiesContainer = document.querySelectorAll('#properties-container ul li');
     $propertiesContainer.forEach($property => {
         $property.classList.remove("owned");
@@ -79,8 +86,6 @@ function activateProperties(player) {
         const $property = document.querySelector(`#properties-container ul li[data-name='${property.property}']`);
         $property.classList.add("owned");
     });
-
-    addGetOutOfJailCards(player);
 }
 
 function addGetOutOfJailCards(player){

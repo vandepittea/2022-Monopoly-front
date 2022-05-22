@@ -90,7 +90,7 @@ function showPlayerInfo(e) {
         $main.innerText = "";
 
         $main.insertAdjacentHTML("beforeend", _htmlElements.playerOverview);
-        $main.querySelector("#other-player-overview-property").addEventListener("click", activatePlayerProperties);
+        $main.querySelector("#other-player-overview-property").addEventListener("click", activateOtherPlayerProperties);
         $main.querySelector("#close-screen").addEventListener("click", clearMain);
 
         fillInPlayerInfo(e, $main);
