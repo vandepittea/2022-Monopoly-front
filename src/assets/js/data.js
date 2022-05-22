@@ -1,7 +1,8 @@
 "use strict";
 
-let _tiles = null;
-let _gameData =
+let _tiles = null; //NOSONAR A constant isn't possible because this data is changed.
+
+let _gameData = //NOSONAR A constant isn't possible because this data is changed.
     {
         playerName: null,
         gameID: null,
@@ -10,7 +11,20 @@ let _gameData =
 
 const _htmlElements =
     {
-        rollDiceButton: "<button type=\"button\" id=\"roll-dice\">Roll Dice</button>",
+        rollDice:
+            `
+            <article id="dice">
+                    <img src="../images/dice.png" alt="dice" title="dice">
+                    <button type="button" id="roll-dice">Roll Dice</button>
+             </article>
+          `,
+        busyRolling:
+            `
+            <article id="dice">
+                <img src="../images/dice.png" alt="dice" title="dice">
+                <p></p>
+            </article>
+            `,
         propertyView:
             `
             <article id="properties">
@@ -75,7 +89,33 @@ const _htmlElements =
                 </div>
             </article>
             `,
-        rentButton: "<button type=\"button\" id=\"collect-rent\">Get rent</button>",
+        onePropertyInPropertyView:
+            `
+            <li data-name="">
+                    <img src="" alt="" title=""/>
+            </li>
+            `,
+        jailCardInPropertyView:
+            `
+            <li data-name="jailcards">
+                    <img src="../images/deeds/Get_Out_Of_Jail_Card.jpg" title="Get Out Of Jail Card" alt="Get Out Of Jail Card">
+            </li>
+            <li data-name="jailcards">
+                    <p></p>
+            </li>
+            `,
+        propertyInSmallContainer:
+            `
+                <div class="partially-of-screen">
+                        <div class="partially-of-screen-images">
+                               <img src="" title="" alt="">
+                        </div>
+                 </div>
+            `,
+        rentButton:
+            `
+            <button type=\"button\" id=\"collect-rent\">Get rent</button>
+            `,
         playerOverview:
             `
             <article id="other-player-overview">
@@ -98,39 +138,50 @@ const _htmlElements =
                     <h2>DeedName</h2>
                     <p>Price: <span>100</span> coins</p>
                 </div>
+                <div>
+                    <button type="button" id="main-property-buy">Buy property</button>
+                    <button type="button" id="main-property-dont-buy">Don't buy property</button>
+                </div>
             </article>
-            `,
-        tileDeedButtons:
-            `
-            <div>
-                <button type="button" id="main-property-buy">Buy property</button>
-                <button type="button" id="main-property-auction">Don't buy property</button>
-            </div>
             `,
         playerAction:
             `
-            <div id="multiple-player-actions">
-                <article id="player-action">
-                    <div>
-                        <img src="../images/deeds/Atlantic.jpg" alt="Atlantic" title="Atlantic">
-                    </div>
-                    <div>
-                        <h2>TileName</h2>
-                        <p>Description</p>
-                    </div>                    
-                </article>
+            <article id="player-action">
+                <div>
+                    <img src="" alt="" title="">
+                </div>
+                <div>
+                    <h2></h2>
+                    <p></p>
+                </div>                    
+            </article>
+            `,
+        jail:
+             `<article id="jail-choices">
+                    <h2>You are in jail :'-(</h2>
+                    <button type="button" id="roll-dice">Roll Dice</button>
+                    <button type="button" id="pay-fine">Pay Fine</button>
+              </article>
+             `,
+        possibleTiles:
+            `
+            <div>
+                <img src="" alt="" title="">
+                <div></div>
             </div>
             `,
-        jailFineButton:
+        history:
             `
-            <button type="button" id="pay-fine">Pay Fine</button>
+            <div id='history-container'>
+                <button type="button" id="close-screen">&#10007;</button>
+                <article id='history'></article>
+           </div>
             `,
-        jailCardButton:
+        moveInHistory:
             `
-            <button type="button" id="jail-card">Use your get out of jail card!</button>
-            `,
-        topButtons:
-            `
-            <button type="button">History</button>
+            <article>
+                <h2></h2>
+                <p></p>
+            </article>
             `
     };

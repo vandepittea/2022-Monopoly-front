@@ -146,6 +146,10 @@ header img{
     padding: 0.4rem;
 }
 
+#character-screen img.pawn-taken{
+    filter: grayscale(100%);
+}
+
 #login aside img{
     width: 100%;
 }

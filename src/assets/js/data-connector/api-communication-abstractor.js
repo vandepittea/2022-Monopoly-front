@@ -7,13 +7,13 @@ function fetchFromServer(path, httpVerb, requestBody){
         .then((response) => {
             return response.json();
         })
-        .then((jsonresponsetoparse) => {
-            if (jsonresponsetoparse.failure)
+        .then((jsonResponseToParse) => {
+            if (jsonResponseToParse.failure)
             {
                 generateVisualAPIErrorInConsole();
-                throw jsonresponsetoparse;
+                throw jsonResponseToParse;
             }
-            return jsonresponsetoparse;
+            return jsonResponseToParse;
         });
 }
 
@@ -23,13 +23,14 @@ function constructOptions(httpVerb, requestBody){
             method: httpVerb,
             headers: {},
         };
+
     options.headers["Content-Type"] = "application/json";
 
     if(_gameData.token !== null) {
         options.headers["Authorization"] = "Bearer " + _gameData.token.token;
     }
-    // Don't forget to add data to the body when needed
+
     options.body = JSON.stringify(requestBody);
+
     return options;
 }
-
