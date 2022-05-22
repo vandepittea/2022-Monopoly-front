@@ -343,6 +343,11 @@ div#error-and-successful p{
     color: #DC143C;
 }
 
+div#error-and-successful p#double-roll{
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
 /* images */
 img {
     max-width: 100%;
