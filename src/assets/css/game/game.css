@@ -68,12 +68,13 @@ article#other-player-overview div:last-child {
 
 article#player-action{
     display: flex;
+    flex: 1 1 30%;
     flex-direction: column;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
-    padding-right: 0.5rem;
-    padding-left: 0.5rem;
+    padding-right: 0.2rem;
+    padding-left: 0.2rem;
 }
 
 article#main-tile-deed {
@@ -334,6 +335,10 @@ main p {
     text-align: center;
 }
 
+article#player-action p{
+    font-size: 1.4rem;
+}
+
 article#main-tile-deed p{
     text-align: right;
 }
@@ -353,15 +358,6 @@ img {
     max-width: 100%;
 }
 
-header #moves-container-and-history div img{
-    height: 100%;
-}
-
-header #moves-container-and-history div div img{
-    max-width: 3em;
-    height: auto;
-}
-
 div#dice img{
     margin-bottom: 2em;
 }
@@ -378,4 +374,13 @@ article#main-tile-deed img{
 
 footer #small-property-container img {
     margin-right: 2rem;
+}
+
+header #moves-container-and-history div img{
+    height: 100%;
+}
+
+header #moves-container-and-history div div img{
+    max-width: 3em;
+    height: auto;
 }
