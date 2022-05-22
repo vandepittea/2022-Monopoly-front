@@ -281,7 +281,7 @@ function injectHistory(e){
     if(e.target.nodeName.toLowerCase() === "button"){
         const $main = document.querySelector("main");
 
-        $main.innerText = _htmlElements.history;
+        $main.innerHTML = _htmlElements.history;
         $main.querySelector("#close-screen").addEventListener("click", clearMain);
 
         injectMovesInHistory();
