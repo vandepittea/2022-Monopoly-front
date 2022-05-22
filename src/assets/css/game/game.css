@@ -33,7 +33,7 @@ header #moves-container-and-history div{
 
 header #moves-container-and-history div div{
     position: absolute; /* relative #moves-container-and-history div */
-    top: 0%;
+    top: 0;
     display: flex;
     max-width: 100%;
     width: 100%;
@@ -72,8 +72,8 @@ article#player-action{
     align-items: center;
     margin-left: auto;
     margin-right: auto;
-    padding-right: 1em;
-    padding-left: 1em;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
 }
 
 article#main-tile-deed {
