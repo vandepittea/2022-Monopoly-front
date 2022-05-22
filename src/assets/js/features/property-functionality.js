@@ -252,6 +252,7 @@ function setHotelCountInHtml($item, response){
 }
 
 function improveBuildings(e) {
+    let itemWasSelected = false;
     const $article = e.target.closest("article");
 
     if (checkIfItIsAnElementInsideThePropertyManager(e, "button", $article)) {
@@ -261,8 +262,13 @@ function improveBuildings(e) {
                 const hotelCounter = getHotelCountOutOfHtml($item);
 
                 buyHotelOrHouse($item, houseCounter);
+                itemWasSelected = true;
             }
         });
+
+        if (!itemWasSelected) {
+            addErrorAndSuccessfulMessage("You didn't select a property!");
+        }
     }
 }
 
@@ -296,6 +302,7 @@ function decideBuyingHotelOrHouse(propertyName, houseCounter){
 }
 
 function removeBuildings(e) {
+    let itemWasSelected = false;
     const $article = e.target.closest("article");
 
     if (checkIfItIsAnElementInsideThePropertyManager(e, "button", $article)) {
@@ -304,8 +311,13 @@ function removeBuildings(e) {
                 const hotelCounter = getHotelCountOutOfHtml($item);
 
                 sellHotelOrHouse($item, hotelCounter);
+                itemWasSelected = true;
             }
         });
+
+        if (!itemWasSelected) {
+            addErrorAndSuccessfulMessage("You didn't select a property!");
+        }
     }
 }
 
