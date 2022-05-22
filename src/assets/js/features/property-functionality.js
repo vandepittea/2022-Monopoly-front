@@ -55,6 +55,7 @@ function activateCurrentPlayersProperties() {
 
     document.querySelector("#properties-container").insertAdjacentHTML("beforeend", _htmlElements.rentButton);
     document.querySelector("main #collect-rent").addEventListener("click", () => collectRent(_currentGameState));
+    document.querySelector("#properties-container").addEventListener("click", manageProperty);
 }
 
 function activateOtherPlayerProperties(e) {
@@ -157,6 +158,7 @@ function manageProperty(e) {
     const $main = document.querySelector("main");
 
     $main.innerHTML = `<div id="properties-container"></div>`;
+    document.querySelector("#properties-container").addEventListener("click", selectPropertyToImprove);
     const $propertyContainer = $main.querySelector("div");
 
     if (checkIfThePropertyManagerIsAllowedToOpen(e, $article)) {
@@ -239,7 +241,7 @@ function setHouseCountInHtml($item, response){
 function setHotelCountInHtml($item, response){
     $item.querySelector("#hotel-count").innerText = response.hotels;
     if (response.hotels === 0) {
-        $item.querySelector("#house-count").innerText = response.houses;
+        $item.querySelector("#house-count").innerText = 4;
     }
 }
 

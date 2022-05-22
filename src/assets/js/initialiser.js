@@ -35,8 +35,6 @@ function initMonopolyEventHandlers(){
     document.querySelector("#other-players div").addEventListener("click", showPlayerInfo);
     document.querySelector("#bankrupt").addEventListener("click", declareBankrupt);
     document.querySelector("#tax-system").addEventListener("click", switchTaxSystem);
-    document.querySelector("main").addEventListener("click", manageProperty);
-    document.querySelector("main").addEventListener("click", selectPropertyToImprove);
     document.querySelector("#moves-container-and-history").addEventListener("click", injectHistory);
 }
 

@@ -198,7 +198,7 @@ function fillOtherPlayerMain(game) {
 }
 
 function checkIfWeHaveToStopPolling($main){
-    const $mainContent = $main.querySelector("article");
+    let $mainContent = $main.querySelector("article");
     if ($mainContent !== null) {
         if (_mainIdToNotRefresh.findIndex(id => $mainContent.id === id) !== -1) {
             return true;
