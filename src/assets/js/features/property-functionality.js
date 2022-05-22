@@ -2,48 +2,62 @@
 
 function fillProperties() {
     const $main = document.querySelector("main");
-    $main.insertAdjacentHTML('beforeend', _htmlElements.propertyView);
+    $main.insertAdjacentHTML("beforeend", _htmlElements.propertyView);
 
-    const $propertiesCont = document.querySelector("#properties-container");
-    const $railroadCont = $propertiesCont.querySelector("[data-streettype='railroad'] ul");
-    const $utilitiesCont = $propertiesCont.querySelector("[data-streettype='utilities'] ul");
+    const $propertiesContainer = document.querySelector("#properties-container");
+    const $railroadContainer = $propertiesContainer.querySelector("[data-streettype='railroad'] ul");
+    const $utilitiesContainer = $propertiesContainer.querySelector("[data-streettype='utilities'] ul");
 
     _tiles.forEach(tile => {
-        addTile(tile, $propertiesCont, $railroadCont, $utilitiesCont);
+        addTileToCorrectPropertyGroupContainer(tile, $propertiesContainer, $railroadContainer, $utilitiesContainer);
     });
 
     _htmlElements.propertyView = $main.innerHTML;
     $main.innerHTML = "";
 }
 
-function addTile(tile, $propertiesCont, $railroadCont, $utilitiesCont) {
+function addTileToCorrectPropertyGroupContainer(tile, $propertiesContainer, $railroadContainer, $utilitiesContainer) {
     switch (tile.type) {
         case "STREET":
-            const $container = $propertiesCont.querySelector(`[data-streettype='${tile.streetColor.toLowerCase()}'] ul`);
-            $container.insertAdjacentHTML('beforeend', `<li data-name="${tile.name}">
-                            <img src="../images/deeds/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
+            const $propertyListContainer = $propertiesContainer.querySelector(`[data-streettype='${tile.streetColor.toLowerCase()}'] ul`);
+            $propertyListContainer.insertAdjacentHTML('beforeend', _htmlElements.onePropertyInPropertyView);
+
+            fillInPropertyDetails($propertyListContainer, tile);
             break;
         case "RAILROAD":
-            $railroadCont.insertAdjacentHTML('beforeend', `<li data-name="${tile.name}">
-                            <img src="../images/deeds/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
+            $railroadContainer.insertAdjacentHTML('beforeend', _htmlElements.onePropertyInPropertyView);
+
+            fillInPropertyDetails($railroadContainer, tile);
             break;
         case "UTILITY":
-            $utilitiesCont.insertAdjacentHTML('beforeend', `<li data-name="${tile.name}">
-                            <img src="../images/deeds/${tile.nameAsPathParameter}.jpg" alt="${tile.name}"/></li>`);
+            $utilitiesContainer.insertAdjacentHTML('beforeend', _htmlElements.onePropertyInPropertyView);
+
+            fillInPropertyDetails($utilitiesContainer, tile);
             break;
         default:
-            console.log("something else");
             break;
     }
 }
 
+function fillInPropertyDetails($propertyListContainer, tile){
+    const $lastInsertedProperty = $propertyListContainer.lastElementChild;
+
+    $lastInsertedProperty.dataset.name = tile.name;
+
+    const $image = $lastInsertedProperty.querySelector("img");
+    $image.setAttribute("src", `../images/deeds/${tile.nameAsPathParameter}.jpg`);
+    $image.setAttribute("alt", tile.name);
+    $image.setAttribute("title", tile.name);
+}
+
 function activateCurrentPlayersProperties() {
     activateProperties(getPlayerObject(_currentGameState, _gameData.playerName));
+
     document.querySelector("#properties-container").insertAdjacentHTML('beforeend', _htmlElements.rentButton);
     document.querySelector("main #collect-rent").addEventListener("click", () => collectRent(_currentGameState));
 }
 
-function activatePlayerProperties(e) {
+function activateOtherPlayerProperties(e) {
     const player = getPlayerObject(_currentGameState, e.target.closest("article").dataset.player);
     activateProperties(player);
 }
@@ -52,11 +66,17 @@ function activateProperties(player) {
     toggleVisibilityByID(_divsToToggle, true);
 
     const $main = document.querySelector("main");
-    $main.innerHTML = "";
+    $main.innerText = "";
+
     $main.insertAdjacentHTML("beforeend", _htmlElements.propertyView);
     $main.querySelector("#close-screen").addEventListener("click", clearMain);
-    $main.querySelector("#properties h2").innerHTML = `${player.name}'s properties`;
+    $main.querySelector("#properties h2").innerText = `${player.name}'s properties`;
 
+    placeOwnedPropertiesInColor(player);
+    addGetOutOfJailCards(player);
+}
+
+function placeOwnedPropertiesInColor(player){
     const $propertiesContainer = document.querySelectorAll('#properties-container ul li');
     $propertiesContainer.forEach($property => {
         $property.classList.remove("owned");
@@ -66,24 +86,20 @@ function activateProperties(player) {
         const $property = document.querySelector(`#properties-container ul li[data-name='${property.property}']`);
         $property.classList.add("owned");
     });
-
-    addGetOutOfJailCards(player);
 }
 
 function addGetOutOfJailCards(player){
     const amountOfGetOutOfJailCards = player.getOutOfJailFreeCards;
+    const $jailCardsContainer = document.querySelector("#properties-container [data-streettype='jailcards'] ul");
 
-    const $jailCardsCont = document.querySelector("#properties-container [data-streettype='jailcards'] ul");
+    $jailCardsContainer.insertAdjacentHTML("beforeend",_htmlElements.jailCardInPropertyView);
+    $jailCardsContainer.querySelector("p").innerText = amountOfGetOutOfJailCards;
 
-    $jailCardsCont.insertAdjacentHTML("beforeend",
-        `<li data-name="jailcards">
-                    <img src="../images/deeds/Get_Out_Of_Jail_Card.jpg" title="Get Out Of Jail Card" alt="Get Out Of Jail Card">
-              </li>
-              <li data-name="jailcards">
-                <p>${amountOfGetOutOfJailCards}</p>
-              </li>`);
+    whenYouHaveAJailCardColorTheCard(amountOfGetOutOfJailCards);
+}
 
-        if(amountOfGetOutOfJailCards > 0)
+function whenYouHaveAJailCardColorTheCard(amountOfGetOutOfJailCards){
+    if(amountOfGetOutOfJailCards > 0)
     {
         const $jailCard = document.querySelector('#properties-container ul li[data-name="jailcards"]');
         $jailCard.classList.add("owned");
@@ -93,7 +109,6 @@ function addGetOutOfJailCards(player){
 function buyProperty(propertyName) {
     fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}`, 'POST')
         .then(result => {
-            console.log(result);
             addErrorAndSuccessfulMessage(`You bought the property ${result.property}.`);
             manageGame();
         })
@@ -103,7 +118,6 @@ function buyProperty(propertyName) {
 function dontBuyProperty(propertyName) {
     fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyName}`, 'DELETE')
         .then(result => {
-            console.log(result);
             addErrorAndSuccessfulMessage(`You didn't buy the property ${result.property}.`);
             manageGame();
         })
@@ -116,19 +130,24 @@ function collectRent(game) {
     game.players.forEach(player => {
         if (player.name !== _gameData.playerName) {
             const property = ownedProperties.find(property => property.property === player.currentTile);
-            if(property != null){
-                const propertyPathParam = getTile(property.property).nameAsPathParameter;
-                fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyPathParam}/visitors/${player.name}/rent`, 'DELETE')
-                    .then(response => {
-                        console.log(response);
-                        addErrorAndSuccessfulMessage("You collected your rent.");
-                        manageGame();
-                    })
-                    .catch(errorHandler);
-            }
-            else{
-                addErrorAndSuccessfulMessage("You can't get rent from a player.");
-            }
+
+            sendCollectRentRequestToTheAPI(property, player);
         }
     });
+}
+
+function sendCollectRentRequestToTheAPI(property, player){
+    if(property != null){
+        const propertyPathParameter = getTile(property.property).nameAsPathParameter;
+
+        fetchFromServer(`/games/${_gameData.gameID}/players/${_gameData.playerName}/properties/${propertyPathParameter}/visitors/${player.name}/rent`, 'DELETE')
+            .then(response => {
+                addErrorAndSuccessfulMessage("You collected your rent.");
+                manageGame();
+            })
+            .catch(errorHandler);
+    }
+    else{
+        addErrorAndSuccessfulMessage("You can't get rent from a player.");
+    }
 }

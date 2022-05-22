@@ -23,7 +23,7 @@ function initPreGame(){
     document.querySelector("#create-game-screen form").addEventListener('submit', createGame);
     document.querySelector("#launch-button-and-current-player button").addEventListener('click', goToGame);
 
-    document.querySelectorAll("#character-screen img").forEach(image => image.addEventListener("click", joinGameWithPlayer));
+    document.querySelectorAll("#character-screen img").forEach(image => image.addEventListener("click", joinGameWithPawn));
 }
 
 function initMonopoly(){
