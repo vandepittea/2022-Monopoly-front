@@ -37,7 +37,7 @@ function createGame(e)
        gameName: document.querySelector("#group-name").value
     };
 
-    fetchFromServer('/games', 'POST', bodyParams)
+    fetchFromServer("/games", "POST", bodyParams)
         .then(game =>
         {
             _gameID = game.id;
@@ -52,14 +52,14 @@ function createGameList()
 {
     if (_gameData.token === null)
     {
-        const gameListContainer = document.querySelector('#game-list tbody');
-        const $templateNode = gameListContainer.querySelector('template');
+        const gameListContainer = document.querySelector("#game-list tbody");
+        const $templateNode = gameListContainer.querySelector("template");
 
-        fetchFromServer(`/games?started=false&numberOfPlayers=${_amountPlayers}&prefix=${_config.prefix}`,'GET')
+        fetchFromServer(`/games?started=false&numberOfPlayers=${_amountPlayers}&prefix=${_config.prefix}`,"GET")
             .then(games =>
             {
                 gameListContainer.innerText = "";
-                gameListContainer.insertAdjacentElement('beforeend', $templateNode);
+                gameListContainer.insertAdjacentElement("beforeend", $templateNode);
                 games.forEach(game => addGameToGameList(gameListContainer, $templateNode, game));
             })
             .catch(errorHandler);
@@ -75,27 +75,27 @@ function addGameToGameList($gameListContainer, $templateNode, game)
 
     game.players.forEach(player =>
     {
-        $template.querySelector('ul').insertAdjacentHTML('beforeend', `<li>${player.name}</li>`);
+        $template.querySelector("ul").insertAdjacentHTML("beforeend", `<li>${player.name}</li>`);
     });
 
-    $template.querySelector('#active-players').innerText = game.players.length;
-    $template.querySelector('#max-players').innerText = game.numberOfPlayers;
-    $template.querySelector('#game-name').innerText = game.gameName;
+    $template.querySelector("#active-players").innerText = game.players.length;
+    $template.querySelector("#max-players").innerText = game.numberOfPlayers;
+    $template.querySelector("#game-name").innerText = game.gameName;
 
-    $gameListContainer.insertAdjacentHTML('beforeend', $template.outerHTML);
+    $gameListContainer.insertAdjacentHTML("beforeend", $template.outerHTML);
 }
 
 function joinGame(e)
 {
     if (e.target.nodeName.toLowerCase() === "button")
     {
-        _gameID = e.target.closest('tr').dataset.gameid;
+        _gameID = e.target.closest("tr").dataset.gameid;
 
         const playerObject = {
             playerName: _nickname
         };
 
-        fetchFromServer(`/games/${_gameID}/players`, 'POST', playerObject)
+        fetchFromServer(`/games/${_gameID}/players`, "POST", playerObject)
             .then(response =>
             {
                 _gameData.token = response;
@@ -107,7 +107,7 @@ function joinGame(e)
 }
 
 function placeChosenCharactersInBlack(){
-    fetchFromServer(`/games/${_gameID}`, 'GET')
+    fetchFromServer(`/games/${_gameID}`, "GET")
         .then(game =>
         {
             game.players.forEach(player =>
@@ -142,13 +142,13 @@ function assignPawn(e) {
         pawn: e.target.dataset.name
     };
 
-    fetchFromServer(`/games/${_gameID}/players`, 'POST', playerObject)
+    fetchFromServer(`/games/${_gameID}/players`, "POST", playerObject)
         .catch(errorHandler);
 }
 
 function waitForPlayers()
 {
-    fetchFromServer(`/games/${_gameID}`, 'GET')
+    fetchFromServer(`/games/${_gameID}`, "GET")
         .then(game =>
         {
             if (game.started)
@@ -181,6 +181,11 @@ function addPlayersToWaitingScreen(game)
 }
 
 function addOnePlayerToWaitingRoom($templateNode, $waitingRoomContainer, player){
+    const $template = addInformationToPlayerForAddingToWaitingList($templateNode, player);
+    $waitingRoomContainer.insertAdjacentHTML("beforeend", $template.outerHTML);
+}
+
+function addInformationToPlayerForAddingToWaitingList($templateNode, player){
     const $template = $templateNode.content.firstElementChild.cloneNode(true);
 
     const $image = $template.querySelector("img");
@@ -190,21 +195,21 @@ function addOnePlayerToWaitingRoom($templateNode, $waitingRoomContainer, player)
 
     $template.querySelector("figcaption").innerText = player.pawn;
 
-    $waitingRoomContainer.insertAdjacentHTML("beforeend", $template.outerHTML);
+    return $template;
 }
 
 function addImagesOfBlackMarioToShowHowManyUserWeAreStillWaitingFor($templateNode, $waitingRoomContainer, game){
     for (let i = 0; i < (game.numberOfPlayers - game.players.length); i++)
     {
         const $template = $templateNode.content.firstElementChild.cloneNode(true);
-        $waitingRoomContainer.insertAdjacentHTML('beforeend', $template.outerHTML);
+        $waitingRoomContainer.insertAdjacentHTML("beforeend", $template.outerHTML);
     }
 }
 
 function goToLaunchScreen(game)
 {
-    const $templateNode = document.querySelector('#launch-screen template');
-    const $playerContainer = document.querySelector('#other-players');
+    const $templateNode = document.querySelector("#launch-screen template");
+    const $playerContainer = document.querySelector("#other-players");
 
     game.players.forEach(player =>
     {
@@ -215,27 +220,18 @@ function goToLaunchScreen(game)
 }
 
 function addOnePlayerToLaunchScreen($templateNode, $playerContainer, player){
-    const $template = $templateNode.content.firstElementChild.cloneNode(true);
-
-    const $image = $template.querySelector("img");
-    $image.setAttribute("src", `images/characters/${player.pawn}.webp`);
-    $image.setAttribute("title", `${player.title}`);
-    $image.setAttribute("alt", `${player.pawn}`);
-
-    $template.querySelector('figcaption').innerText = player.name;
-
+    const $template = addInformationToPlayerForAddingToWaitingList($templateNode, player);
     addPlayerInMiddleOrTheBottomRightCorner($playerContainer, $template, player);
-
 }
 
 function addPlayerInMiddleOrTheBottomRightCorner($playerContainer, $template, player){
     if (player.name === _nickname)
     {
-        document.querySelector('#launch-button-and-current-player').insertAdjacentHTML('afterbegin', $template.outerHTML);
+        document.querySelector("#launch-button-and-current-player").insertAdjacentHTML("afterbegin", $template.outerHTML);
     }
     else
     {
-        $playerContainer.insertAdjacentHTML('beforeend', $template.outerHTML);
+        $playerContainer.insertAdjacentHTML("beforeend", $template.outerHTML);
     }
 }
 
